@@ -20,7 +20,7 @@ scope. Each phase below lists exactly which of those docs matter most.
 > routing change touched them (2, 3, 6 — flagged inline below).
 
 - [x] Phase 0 — Project scaffolding & tooling
-- [ ] Phase 1 — Design tokens & UI primitives
+- [x] Phase 1 — Design tokens & UI primitives
 - [ ] Phase 2 — Layout shell, i18n routing & navigation
 - [ ] Phase 3 — Hero section
 - [ ] Phase 4 — About section
@@ -94,9 +94,33 @@ Definition of Done:
 
 ---
 
-### Phase 1 — Design tokens & UI primitives
+### Phase 1 — Design tokens & UI primitives ✅ done (2026-07-24)
 
 **Depends on:** Phase 0. **Docs:** DESIGN_SYSTEM.md.
+
+Notes from actually doing this phase: the type scale uses explicit
+`-desktop`-suffixed tokens (e.g. `text-h1` / `md:text-h1-desktop`) rather
+than fluid `clamp()`, matching DESIGN_SYSTEM.md's "via Tailwind responsive
+prefixes" note literally. Found and fixed a real bug along the way: the
+default `tailwind-merge` config doesn't know about custom `--text-*`/
+`--tracking-*` theme keys, so it misclassified `text-label` (custom
+font-size) as conflicting with `text-accent` (color) and silently dropped
+it — `cn()` now uses `extendTailwindMerge` with the custom keys registered,
+with a regression test locking this in (`src/lib/cn.test.ts`). The React
+Compiler's stricter ESLint rules also caught two real issues:
+`useReducedMotion` rewritten around `useSyncExternalStore` instead of a
+`useEffect` + `setState` (the recommended pattern for this exact "subscribe
+to an external browser API" case), and `Barcode`'s bar positions precomputed
+at module scope instead of mutating a variable during render. Visual
+verification of the `transition`-based hover/focus microinteractions
+(bracket wrap, fill swap) couldn't be completed in-browser this session —
+the preview tab wasn't actively composited, so CSS transitions never
+ticked forward (confirmed via `getComputedStyle` staying at the
+transition's start value indefinitely, while non-transitioned style changes
+and selector matching resolved correctly). Class output, selector
+specificity, and DOM structure were all verified directly instead. Whoever
+picks up Phase 2+ should do a real visual pass on these interactions in an
+actual visible browser at the first opportunity.
 
 Scope:
 
