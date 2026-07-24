@@ -1,0 +1,46 @@
+@import "tailwindcss";
+
+/*
+ * Design tokens per docs/DESIGN_SYSTEM.md, pulled directly from the
+ * project's Claude Design file. Single dark theme by design — no
+ * light/dark toggle (out of scope per docs/PROJECT_BRIEF.md §10).
+ *
+ * Font families below are placeholder stacks. Real font loading
+ * (next/font/google for JetBrains Mono + Inter) lands in
+ * docs/IMPLEMENTATION_PLAN.md Phase 1/2: at that point --font-mono and
+ * --font-sans switch from literal stacks to `var(--font-injected-name)`
+ * references, which requires `@theme inline` instead of plain `@theme`
+ * (Tailwind only allows var() references inside an `inline` theme block).
+ */
+@theme {
+  --color-bg: #0a0a0c;
+  --color-surface: #141416;
+  --color-fg: #f2f2f0;
+  --color-muted: #8c8c88;
+  --color-grid-border: rgba(255, 255, 255, 0.07);
+  --color-accent: #9eff3d;
+  --color-accent-alt-1: #d4ff00;
+  --color-accent-alt-2: #c6ff3d;
+
+  /* Custom spacing scale — overrides Tailwind's default multiplier for
+     these specific steps, so p-1..p-10 etc. match the design file exactly. */
+  --spacing-1: 4px;
+  --spacing-2: 8px;
+  --spacing-3: 16px;
+  --spacing-4: 24px;
+  --spacing-5: 32px;
+  --spacing-6: 48px;
+  --spacing-7: 64px;
+  --spacing-8: 96px;
+  --spacing-9: 128px;
+  --spacing-10: 160px;
+
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --font-sans: "Inter", ui-sans-serif, sans-serif;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-fg);
+  font-family: var(--font-sans);
+}
