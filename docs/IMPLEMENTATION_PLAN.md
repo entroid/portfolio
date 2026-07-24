@@ -11,7 +11,7 @@ which phase to do, and have it read [ARCHITECTURE.md](./ARCHITECTURE.md),
 and [CODING_STANDARDS.md](./CODING_STANDARDS.md) as needed for that phase's
 scope. Each phase below lists exactly which of those docs matter most.
 
-- [ ] Phase 0 — Project scaffolding & tooling
+- [x] Phase 0 — Project scaffolding & tooling
 - [ ] Phase 1 — Design tokens & UI primitives
 - [ ] Phase 2 — Layout shell, i18n routing & navigation
 - [ ] Phase 3 — Hero section
@@ -32,9 +32,21 @@ phase(s) before it.
 
 ---
 
-### Phase 0 — Project scaffolding & tooling
+### Phase 0 — Project scaffolding & tooling ✅ done (2026-07-23)
 
 **Depends on:** nothing. **Docs:** ARCHITECTURE.md, CODING_STANDARDS.md.
+
+Notes from actually doing this phase: `create-next-app@latest` resolved to
+**Next.js 16** (not 15 as ARCHITECTURE.md originally assumed — updated) with
+React Compiler enabled by default; kept both. `globals.css` tokens were
+filled with the real confirmed values from DESIGN_SYSTEM.md rather than left
+empty, since they were already known — Phase 1 still owns building the
+actual UI primitives that consume them. `eslint-plugin-jsx-a11y` had to be
+merged as rules-only (`{ rules: jsxA11y.flatConfigs.strict.rules }`), since
+`eslint-config-next` already registers the plugin itself and redeclaring it
+throws a config error. `pnpm lint` runs with `--max-warnings=0` — the
+default eslint-config-next treats things like unused vars as warnings, which
+would otherwise pass CI silently.
 
 Scope:
 
