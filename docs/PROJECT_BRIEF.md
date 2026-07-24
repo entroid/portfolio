@@ -204,3 +204,31 @@ for full rationale):
 | Hero sphere implementation (not specified)                   | react-three-fiber (WebGL/Three.js)                            |
 | JSON _or_ MDX per project (Sección 8 left both options open) | JSON metadata + MDX body, per locale                          |
 | Testing/CI rigor (not specified)                             | Standard tier: unit/component tests + basic CI (no e2e in v1) |
+
+### Structural revision — 2026-07-24
+
+Hernán requested this change directly (not implied by the brief text above),
+before any of Phase 1+ was built:
+
+- **Site structure moves from single-page anchors to separate routes.**
+  §6's section list ("Navbar, Hero, About, Trabajo, Contacto") was originally
+  interpreted as one continuously-scrolling home page with in-page anchor
+  navigation between them (that's what earlier drafts of ARCHITECTURE.md and
+  IMPLEMENTATION_PLAN.md assumed, even though §6 itself never explicitly
+  mandated single-page). This is now explicitly superseded: `/` carries only
+  Hero + About; Work and Contact each get their own route. Full routing
+  table is in [ARCHITECTURE.md](./ARCHITECTURE.md#routes).
+- **New page added, beyond the brief's original scope: `/ai-workflow`.**
+  A page describing Hernán's AI-assisted design/build process. Full content
+  spec lives in [IMPLEMENTATION_PLAN.md](./IMPLEMENTATION_PLAN.md#phase-7--ai-workflow-page)
+  Phase 7. Nav order across the whole site: **Start, Work, AI Workflow,
+  Contact.**
+- **`/ai-workflow` is the one deliberate exception to "bilingual by
+  construction."** Its content ships English-only; the Spanish translation
+  is an explicitly deferred later pass, not a Phase 7 requirement. Every
+  other route still ships bilingual from the commit that introduces it —
+  see the carve-out noted in [ARCHITECTURE.md](./ARCHITECTURE.md#guiding-constraints)
+  and [CLAUDE.md](../CLAUDE.md).
+- **Footer contact links (email, LinkedIn, WhatsApp) are persistent across
+  every route**, not gated behind `/contact` — the fastest way to reach out
+  shouldn't require navigating to a specific page.

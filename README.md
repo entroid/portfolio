@@ -6,7 +6,7 @@ built — see [`docs/`](docs/) for the full technical documentation.
 
 > 🚧 In progress. This README will be filled in properly (live link,
 > screenshots, stack badges) in the final implementation phase — see
-> [docs/IMPLEMENTATION_PLAN.md](docs/IMPLEMENTATION_PLAN.md) Phase 12.
+> [docs/IMPLEMENTATION_PLAN.md](docs/IMPLEMENTATION_PLAN.md) Phase 13.
 
 ## Stack
 

@@ -62,7 +62,7 @@ excludes and why):
 - **Content layer**: schema validation and content-loader functions
   (`getAllProjects`, `getProjectBySlug`) get real unit tests against fixture
   content, not just type-checking.
-- **Manual QA checklist** (used in Phase 11 and for any visual/interaction
+- **Manual QA checklist** (used in Phase 12 and for any visual/interaction
   change): keyboard-only pass, screen-reader spot check on one page,
   responsive check at mobile/tablet/desktop, `prefers-reduced-motion`
   toggle check.
@@ -109,4 +109,6 @@ list in IMPLEMENTATION_PLAN.md)
 - [ ] New components have colocated tests, including an axe check
 - [ ] No hardcoded design values outside the token set
 - [ ] Keyboard/reduced-motion/alt-text checked by hand, not just assumed
-- [ ] Both locales verified for any new user-facing copy
+- [ ] Both locales verified for any new user-facing copy (except
+      `/ai-workflow`, which is deliberately English-only for now — see
+      ARCHITECTURE.md's Guiding constraints)

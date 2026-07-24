@@ -4,13 +4,15 @@ How case studies and site copy are authored, structured, validated, and
 rendered. No CMS, no database — everything is a file in the repo, read at
 build time (see [ARCHITECTURE.md](./ARCHITECTURE.md)).
 
-## Two kinds of content
+## Three kinds of content
 
-1. **Site copy** (nav labels, hero text, About paragraph, section headings,
-   form labels, error messages) → `src/i18n/messages/{en,es}.json`, managed
-   by `next-intl`.
+1. **Site copy** (nav labels, hero text, About paragraph, form labels, error
+   messages) → `src/i18n/messages/{en,es}.json`, managed by `next-intl`.
 2. **Work / case studies** → one folder per project under `src/content/work/`,
    split into shared metadata + per-locale body.
+3. **One-off static pages** (currently just `/ai-workflow`) → written
+   directly in their route file, no data layer at all. See "Static pages
+   (AI Workflow)" below for why this doesn't get the same treatment as #2.
 
 ## Project types
 
@@ -138,13 +140,58 @@ worth stating here since it directly shapes the MDX body template (no
   protagonist" and avoids a fragile layout component for something that's
   really a design asset.
 
+## Static pages (AI Workflow)
+
+Not every page needs the content-as-data machinery above. `/ai-workflow`
+(added 2026-07-24, see [PROJECT_BRIEF.md](./PROJECT_BRIEF.md#structural-revision--2026-07-24))
+is a single, one-off static page — a title, an intro paragraph, seven
+numbered steps, a closing line, and one highlighted callout subsection. It
+is **not** a collection like case studies (no enumeration, no per-item
+schema, no locale variants to keep in sync yet), so it deliberately skips
+the zod-schema + MDX pipeline built for `/work`:
+
+- Its copy is written directly as JSX in `app/[locale]/ai-workflow/page.tsx`
+  (or a small colocated helper if the file gets unwieldy) — not in a
+  `content/` data file. Introducing a generic "steps" data shape for a page
+  that will only ever have exactly one instance is premature abstraction.
+- The seven steps render as a real semantic `<ol>` (ordered list — order is
+  meaningful here), not a sequence of styled `<div>`s, per the accessibility
+  rules in CODING_STANDARDS.md.
+- The "How does this fit into a team?" callout is a bordered highlight
+  treatment. Build it inline for this page first; only promote it to
+  `components/ui/Callout.tsx` if a second use case actually shows up later
+  — don't build the reusable version speculatively.
+- **This page ships English-only.** Its Spanish translation is an
+  explicitly deferred later pass (Hernán's call, 2026-07-24) — the one
+  exception to "bilingual by construction" elsewhere in this project. Don't
+  block shipping this page on having Spanish copy ready, and don't silently
+  extend the same exception to any other page without checking first.
+
+## Shared site links
+
+Contact/social links — email, LinkedIn, WhatsApp, GitHub, CV file path —
+live in one place: `src/lib/site-links.ts`, plain exported constants (no
+zod needed, this isn't user-authored content, it's site configuration).
+
+Three consumers read from it: the persistent `Footer` (email, LinkedIn,
+WhatsApp, always visible on every route), the `Navbar` (LinkedIn, GitHub,
+CV), and the `/contact` page (email, LinkedIn, WhatsApp again, alongside the
+form). Centralizing it means the footer and the contact page can never drift
+out of sync with each other — update the phone number or LinkedIn handle
+once, everywhere picks it up.
+
 ## i18n site copy
 
 - `src/i18n/messages/en.json` and `es.json`, one flat-ish key namespace per
-  section (`nav.*`, `hero.*`, `about.*`, `work.*`, `contact.*`).
+  route (`nav.*`, `footer.*`, `home.hero.*`, `home.about.*`, `work.*`,
+  `contact.*`). No `ai-workflow.*` namespace yet — see "Static pages" above.
 - Both files must have the same keys at all times — enforce with a small
   script/test that diffs key sets and fails if they diverge (cheap, prevents
-  the classic "added an English string, forgot Spanish" bug).
+  the classic "added an English string, forgot Spanish" bug). This parity
+  check does not apply to `/ai-workflow`, which has no message keys yet by
+  design.
 - Locale switch preserves the current route (`/work/[slug]` in `es` ↔ same
   slug in `en`), via `next-intl`'s routing — a case study's `slug` is
-  identical across locales (only its rendered `title`/body differ).
+  identical across locales (only its rendered `title`/body differ). Visiting
+  `/ai-workflow` under either locale renders the same English content for
+  now — that's expected, not a bug, until the deferred translation pass.

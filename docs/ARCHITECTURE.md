@@ -15,7 +15,35 @@ starting any implementation module. Source requirements: [PROJECT_BRIEF.md](./PR
   code. Depth of polish > breadth of features.
 - **Bilingual by construction.** Every route and every piece of copy exists
   in `es` and `en` from the first commit that introduces it — not bolted on
-  later.
+  later. **One deliberate exception:** `/ai-workflow` ships English-only;
+  its Spanish translation is an explicitly deferred later pass (decided
+  2026-07-24, see [PROJECT_BRIEF.md](./PROJECT_BRIEF.md#structural-revision--2026-07-24)).
+  Don't generalize this carve-out to any other route.
+
+## Routes
+
+Multi-route structure (revised 2026-07-24 — see
+[PROJECT_BRIEF.md](./PROJECT_BRIEF.md#structural-revision--2026-07-24) for
+why this supersedes the earlier single-page-with-anchors approach). All
+routes below live under the `[locale]` segment (`en`/`es`) except where noted.
+
+| Route          | Content                                                              | Notes                                                                                                                |
+| -------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| `/`            | Hero + About only                                                    | No anchors — Hero's CTA and the nav's "Work" link both navigate to `/work` as a real route transition, not a scroll. |
+| `/work`        | Work index: Featured Case Studies + Other Work grid                  | Was a home-page section; now its own route.                                                                          |
+| `/work/[slug]` | Case study detail (featured or other-depth template)                 | Unchanged from the original content model.                                                                           |
+| `/ai-workflow` | AI-Assisted Workflow page (new — see IMPLEMENTATION_PLAN.md Phase 7) | English-only content; see the bilingual exception above.                                                             |
+| `/contact`     | Contact form + direct links (email, LinkedIn, WhatsApp)              | Was a home-page section; now its own route. The same direct links also appear in the persistent footer — see below.  |
+
+Persistent nav (every route): **Start, Work, AI Workflow, Contact** — in
+that order — plus the profile photo, LinkedIn/GitHub/CV links, and the
+language switcher from the original brief's Navbar spec.
+
+Persistent footer (every route): email, LinkedIn, and WhatsApp links are
+always visible, independent of `/contact` — reaching Hernán shouldn't
+require finding a specific page first. Both the footer and the `/contact`
+page read from the same `src/lib/site-links.ts` constants (see folder
+structure below) so the two never drift out of sync.
 
 ## Stack
 
@@ -60,19 +88,32 @@ starting any implementation module. Source requirements: [PROJECT_BRIEF.md](./PR
 src/
   app/
     [locale]/
-      layout.tsx          # root layout: fonts, providers, grain/grid overlays
-      page.tsx            # home: Hero, About, Work, Contact sections
-      work/[slug]/page.tsx
+      layout.tsx          # root layout: fonts, providers, grain/grid overlays, Navbar + Footer
+      page.tsx            # home: Hero + About only
+      work/
+        page.tsx           # /work index: Featured + Other grid
+        [slug]/page.tsx     # case study detail
+      ai-workflow/
+        page.tsx           # AI Workflow content lives directly here — single
+                           # static page, no reusable sub-components needed
+                           # (see CONTENT_MODEL.md)
+      contact/page.tsx
     sitemap.ts
     robots.ts
   components/
     ui/                    # primitives: Button, MonoLabel, Eyebrow, Container,
                            # Section, GridOverlay, Crosshair, Barcode, WireframeIcon
-    layout/                # Navbar, Footer, LanguageSwitcher
+    layout/                # Navbar (primary nav + profile/social/CV links),
+                           # Footer (persistent contact links), LanguageSwitcher
     hero/                  # WireframeSphere (r3f), HeroSection
-    sections/              # AboutSection, WorkSection, ContactSection
-    work/                  # CaseStudyCard, CaseStudyTemplate, OtherWorkTemplate, Gallery
-    contact/               # ContactForm
+    sections/              # AboutSection (home page only)
+    work/                  # CaseStudyCard, CaseStudyTemplate, OtherWorkTemplate,
+                           # Gallery, WorkIndex (the /work route's grid — moved
+                           # here from sections/ since it's no longer a home
+                           # page section but the whole route's content)
+    contact/               # ContactForm, ContactPage (the /contact route's
+                           # composition: form + direct links — moved here from
+                           # sections/ for the same reason as WorkIndex)
   content/
     work/<slug>/
       index.ts             # shared metadata (zod-validated): slug, featured, order, cover, gallery
@@ -84,7 +125,11 @@ src/
     messages/en.json
     messages/es.json
     routing.ts, request.ts  # next-intl config
-  lib/                      # cn() helper, constants, reduced-motion hook
+  lib/
+    site-links.ts           # shared contact/social links (email, LinkedIn,
+                            # WhatsApp, GitHub, CV path) — single source read
+                            # by Navbar, Footer, and the /contact page
+    cn() helper, constants, reduced-motion hook
   styles/globals.css         # Tailwind entry + @theme tokens + CSS variables
 public/
   cv/, images/
@@ -95,6 +140,14 @@ docs/
 Rationale for `content/` living under `src/` rather than repo root: it's
 imported by application code via typed helpers (`lib.ts`), not consumed by
 any external tool, so it belongs with the rest of the source.
+
+Rationale for `WorkIndex`/`ContactPage` moving out of `components/sections/`:
+when Work and Contact were home-page sections, grouping them together made
+sense. Now that each is a standalone route, they belong next to the other
+components that serve that same route (`CaseStudyCard` alongside `WorkIndex`,
+`ContactForm` alongside `ContactPage`) — `components/sections/` shrinks back
+to just `AboutSection`, the one piece of content that's still genuinely a
+section of another page (`/`) rather than a page of its own.
 
 ## Open items to confirm before/while building
 

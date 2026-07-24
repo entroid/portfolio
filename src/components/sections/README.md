@@ -1,7 +1,9 @@
 # components/sections
 
-`AboutSection`, `WorkSection`, `ContactSection`.
+`AboutSection` — the one remaining section of the home page (`/`), below
+the Hero. `WorkSection`/`ContactSection` moved out of here on 2026-07-24:
+Work and Contact are now their own routes, so their components live in
+`components/work/` (`WorkIndex`) and `components/contact/` (`ContactPage`)
+respectively — see [docs/ARCHITECTURE.md](../../../docs/ARCHITECTURE.md).
 
-Built across [Phase 4](../../../docs/IMPLEMENTATION_PLAN.md#phase-4--about-section),
-[Phase 6](../../../docs/IMPLEMENTATION_PLAN.md#phase-6--work-listing--case-study-pages),
-[Phase 7](../../../docs/IMPLEMENTATION_PLAN.md#phase-7--contact-section).
+Built in [Phase 4](../../../docs/IMPLEMENTATION_PLAN.md#phase-4--about-section).
