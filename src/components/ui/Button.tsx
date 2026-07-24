@@ -39,6 +39,14 @@ const variantClassName: Record<ButtonVariant, string> = {
   secondary: cn(base, "group border border-transparent px-1 py-1 text-fg"),
 };
 
+/**
+ * Exposes the variant classes for callers that need Button's look on a
+ * different link primitive (e.g. the Hero CTA uses next-intl's locale-aware
+ * `Link` instead of plain `next/link`, since it must preserve the current
+ * locale) — Button itself stays a generic, non-locale-aware primitive.
+ */
+export const buttonClassName = variantClassName;
+
 const bracket =
   "inline-block opacity-0 transition-all duration-150 group-hover:opacity-100 group-hover:translate-x-0 group-focus-visible:opacity-100 group-focus-visible:translate-x-0";
 

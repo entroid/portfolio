@@ -22,7 +22,7 @@ scope. Each phase below lists exactly which of those docs matter most.
 - [x] Phase 0 — Project scaffolding & tooling
 - [x] Phase 1 — Design tokens & UI primitives
 - [x] Phase 2 — Layout shell, i18n routing & navigation
-- [ ] Phase 3 — Hero section
+- [x] Phase 3 — Hero section
 - [ ] Phase 4 — About section
 - [ ] Phase 5 — Content layer (schema, MDX pipeline, seed content)
 - [ ] Phase 6 — Work listing + case study pages
@@ -226,9 +226,38 @@ Definition of Done:
 
 ---
 
-### Phase 3 — Hero section
+### Phase 3 — Hero section ✅ done (2026-07-24)
 
 **Depends on:** Phase 2. **Docs:** DESIGN_SYSTEM.md (Hero section).
+
+Notes from actually doing this phase: importing `@react-three/fiber` anywhere
+in the program breaks `Eyebrow.tsx`'s generic `<Tag>` JSX usage — its global
+`declare module 'react' { namespace JSX { interface IntrinsicElements
+extends ThreeElements {} } }` augmentation makes TS resolve a generic
+`ElementType`'s `children` prop to `never`. Fixed by rewriting `Eyebrow` to
+use `createElement` instead of JSX for the dynamic tag (`createElement`
+isn't subject to `JSX.IntrinsicElements` children-arity checks) — no change
+to Eyebrow's public API. The hero CTA needed a locale-aware link (so
+`/work` navigates as `/en/work`/`/es/work`, matching the Navbar's links,
+not a hard-redirect through the middleware); rather than change `Button`
+itself (a generic, non-locale-aware primitive used elsewhere, and changing
+its `Link` would've broken Phase 1's `Button.test.tsx`, which renders it
+without a next-intl provider), exported `buttonClassName` from `Button.tsx`
+and paired it with `next-intl`'s `Link` directly in `HeroSection`. Also:
+`HeroSection` uses `useTranslations` (sync, from `next-intl`) rather than
+`getTranslations` (async, from `next-intl/server`) — the async version
+throws under Vitest, since next-intl's server APIs resolve to a
+client-incompatible stub outside a real RSC pipeline (Vitest has no RSC
+renderer); `useTranslations` works in both Server and Client Components and
+is what `Footer`/`Navbar` already used. Adding `HeroSection` (which reads
+the locale) to the home page silently flipped `/[locale]` from static to
+dynamically-rendered in the build output — fixed by making `page.tsx` await
+`params` and call `setRequestLocale(locale)` itself, per next-intl's
+static-rendering requirement that _every_ page/layout using its APIs call
+it, not just the root layout. Hero copy (`home.hero.*` in
+`messages/{en,es}.json`) is real but not final-polish translated Spanish —
+same placeholder-quality allowance Phase 4 gives the About section, refined
+in Phase 10.
 
 > CTA behavior changed 2026-07-24: it navigates to `/work` as a real route
 > transition now, not an anchor scroll — there's no `#work` on the same page

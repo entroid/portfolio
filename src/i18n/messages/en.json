@@ -14,5 +14,13 @@
     "linkedin": "LinkedIn",
     "whatsapp": "WhatsApp",
     "rights": "All rights reserved."
+  },
+  "home": {
+    "hero": {
+      "eyebrow": "UX/UI DESIGN · UI DEVELOPMENT",
+      "headline": "DESIGN & BUILD",
+      "subtext": "Where design and code actually meet.",
+      "cta": "Case Studies & Work"
+    }
   }
 }
