@@ -1,0 +1,18 @@
+{
+  "nav": {
+    "start": "Start",
+    "work": "Work",
+    "aiWorkflow": "AI Workflow",
+    "contact": "Contact",
+    "menuOpen": "Open menu",
+    "menuClose": "Close menu",
+    "cv": "CV",
+    "language": "Language"
+  },
+  "footer": {
+    "email": "Email",
+    "linkedin": "LinkedIn",
+    "whatsapp": "WhatsApp",
+    "rights": "All rights reserved."
+  }
+}

@@ -21,7 +21,7 @@ scope. Each phase below lists exactly which of those docs matter most.
 
 - [x] Phase 0 — Project scaffolding & tooling
 - [x] Phase 1 — Design tokens & UI primitives
-- [ ] Phase 2 — Layout shell, i18n routing & navigation
+- [x] Phase 2 — Layout shell, i18n routing & navigation
 - [ ] Phase 3 — Hero section
 - [ ] Phase 4 — About section
 - [ ] Phase 5 — Content layer (schema, MDX pipeline, seed content)
@@ -148,10 +148,31 @@ Definition of Done:
 
 ---
 
-### Phase 2 — Layout shell, i18n routing & navigation
+### Phase 2 — Layout shell, i18n routing & navigation ✅ done (2026-07-24)
 
 **Depends on:** Phase 1. **Docs:** ARCHITECTURE.md (Routes, Guiding
 constraints), DESIGN_SYSTEM.md.
+
+Notes from actually doing this phase: Next 16 deprecates the root
+`middleware.ts` convention in favor of `proxy.ts` (same `next-intl`
+`createMiddleware` export, just a rename) — used `src/proxy.ts` to avoid
+shipping a deprecation warning on every build. `next-intl`'s default
+`localePrefix` mode prefixes the default locale too (`/en`, not bare `/`),
+so nav links and tests assert `/en`/`/es`-prefixed hrefs rather than
+unprefixed root paths — still satisfies "not an anchor" (`href` starts with
+`/`). Testing `next-intl`'s `useRouter`/navigation hooks under Vitest needed
+two fixes, now in `vitest.config.ts`: `test.server.deps.inline: ["next-intl"]`
+(its ESM dist re-exports bare `next/navigation` subpaths with no file
+extension, which Node's native ESM loader can't resolve once Vite
+externalizes the package) and mocking `next/navigation`'s `useRouter` per
+test file (it throws outside a mounted App Router context, which unit tests
+don't have). `lucide-react` no longer ships brand icons (`Linkedin`/`Github`
+were removed) — LinkedIn/GitHub links use `ExternalLink` + text instead,
+which also reads more consistently with the mono/text-first "instrument
+panel" language than a logo would. `src/lib/site-links.ts` values (email,
+LinkedIn, GitHub, WhatsApp) are placeholders — real ones are still an open
+item per ARCHITECTURE.md. `public/cv/hernan-ainsa-cv.pdf` is a
+programmatically-generated minimal valid placeholder PDF, not a real CV.
 
 > Scope updated 2026-07-24 for the multi-route structure: this phase now
 > also scaffolds the route skeleton for the whole site (previously only
