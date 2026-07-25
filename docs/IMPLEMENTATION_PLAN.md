@@ -23,11 +23,11 @@ scope. Each phase below lists exactly which of those docs matter most.
 - [x] Phase 1 — Design tokens & UI primitives
 - [x] Phase 2 — Layout shell, i18n routing & navigation
 - [x] Phase 3 — Hero section
-- [ ] Phase 4 — About section
-- [ ] Phase 5 — Content layer (schema, MDX pipeline, seed content)
+- [x] Phase 4 — About section
+- [x] Phase 5 — Content layer (schema, MDX pipeline, seed content)
 - [ ] Phase 6 — Work listing + case study pages
-- [ ] Phase 7 — AI Workflow page
-- [ ] Phase 8 — Contact page
+- [x] Phase 7 — AI Workflow page
+- [x] Phase 8 — Contact page
 - [ ] Phase 9 — Motion & interaction polish pass
 - [ ] Phase 10 — i18n content completion (full ES/EN parity)
 - [ ] Phase 11 — SEO, metadata & analytics
@@ -307,9 +307,34 @@ Definition of Done:
 
 ---
 
-### Phase 5 — Content layer (schema, MDX pipeline, seed content)
+### Phase 5 — Content layer (schema, MDX pipeline, seed content) ✅ done (2026-07-25)
 
 **Depends on:** Phase 0 (can run parallel to Phase 1). **Docs:** CONTENT_MODEL.md.
+
+Notes from actually doing this phase: `next-mdx-remote@6`'s `/rsc` entry
+exports `compileMDX<TFrontmatter>({ source, options: { parseFrontmatter: true },
+components })`, which covers both frontmatter parsing and RSC-compatible
+compilation in one call — no separate `gray-matter` dependency needed.
+`index.ts` metadata is loaded via a template-literal dynamic
+`import(`./work/${slug}/index.ts`)` relative to `lib.ts`; both Vite/Vitest
+and webpack (Next's bundler) resolve this as a context-module glob over
+`src/content/work/*/index.ts`, so it works identically in tests and in the
+real build without a manual slug→module registry. The "every
+`CaseStudyImage` has a non-trivial `alt`" rule can't be checked through the
+zod schema (it's inside the MDX body, not frontmatter), so it's enforced by
+regex-scanning the raw MDX source in `lib.ts`
+(`assertCaseStudyImageAltsAreValid`, exported for direct unit testing)
+before handing it to `compileMDX` — rejects empty alt and alt values that
+are just the image's filename. Verified the "build fails loudly" DoD
+requirement by hand: temporarily renaming `lumen-crm/es.mdx` away and
+re-running the content-layer tests produced a clear, located error
+(`[content/work/lumen-crm] missing required "es.mdx" ...`), then restored
+the file. Seed content: `signal-desk` (featured, exercises
+`role`/`context` + inline `CaseStudyImage` + all featured-template
+sections) and `lumen-crm` (other, lighter body, no `role`/`context`) —
+both real EN/ES prose, not machine-translated placeholders, but explicitly
+marked as placeholder case studies to swap for Hernán's real work in
+Phase 13.
 
 Scope:
 

@@ -21,6 +21,41 @@
       "headline": "DISEÑO Y CÓDIGO",
       "subtext": "Donde el diseño y el código realmente se encuentran.",
       "cta": "Casos de Estudio y Trabajo"
+    },
+    "about": {
+      "title": "Hola, soy Hernán.",
+      "bio": "Mitad diseñador, mitad desarrollador. Diseño interfaces en Figma y luego las construyo yo mismo. Llevo más de 15 años haciendo esto, vivo en Rosario, Argentina, y actualmente estoy buscando sumarme a un equipo a tiempo completo.",
+      "skills": [
+        "Diseño UX/UI",
+        "Desarrollo Front-End",
+        "Sistemas de Diseño",
+        "Prototipado"
+      ]
+    }
+  },
+  "contact": {
+    "eyebrow": "HABLEMOS",
+    "title": "Hablemos.",
+    "intro": "¿Tenés un proyecto en mente, o solo querés saludar? Enviá un mensaje, o contactame directamente.",
+    "form": {
+      "name": "Nombre",
+      "email": "Email",
+      "message": "Mensaje",
+      "submit": "Enviar Mensaje",
+      "submitting": "Enviando…",
+      "successTitle": "Mensaje enviado.",
+      "successBody": "Gracias por escribirme — te responderé pronto.",
+      "errorTitle": "Algo salió mal.",
+      "errorBody": "No se pudo enviar el mensaje. Probá de nuevo, o usá uno de los enlaces directos de abajo.",
+      "errors": {
+        "nameRequired": "Ingresá tu nombre.",
+        "emailRequired": "Ingresá tu email.",
+        "emailInvalid": "Ingresá un email válido.",
+        "messageRequired": "Ingresá un mensaje."
+      }
+    },
+    "direct": {
+      "title": "O contactame directamente"
     }
   }
 }

@@ -21,6 +21,41 @@
       "headline": "DESIGN & BUILD",
       "subtext": "Where design and code actually meet.",
       "cta": "Case Studies & Work"
+    },
+    "about": {
+      "title": "Hey, I'm Hernán.",
+      "bio": "Half designer, half developer. I design interfaces in Figma, then build them myself. Been doing this for 15+ years, based in Rosario, Argentina, and currently looking to join a full-time team.",
+      "skills": [
+        "UX/UI Design",
+        "Front-End Development",
+        "Design Systems",
+        "Prototyping"
+      ]
+    }
+  },
+  "contact": {
+    "eyebrow": "GET IN TOUCH",
+    "title": "Let's talk.",
+    "intro": "Have a project in mind, or just want to say hi? Send a message, or reach out directly.",
+    "form": {
+      "name": "Name",
+      "email": "Email",
+      "message": "Message",
+      "submit": "Send Message",
+      "submitting": "Sending…",
+      "successTitle": "Message sent.",
+      "successBody": "Thanks for reaching out — I'll get back to you soon.",
+      "errorTitle": "Something went wrong.",
+      "errorBody": "The message couldn't be sent. Try again, or use one of the direct links below.",
+      "errors": {
+        "nameRequired": "Enter your name.",
+        "emailRequired": "Enter your email.",
+        "emailInvalid": "Enter a valid email address.",
+        "messageRequired": "Enter a message."
+      }
+    },
+    "direct": {
+      "title": "Or reach out directly"
     }
   }
 }
