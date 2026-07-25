@@ -1,4 +1,8 @@
 {
+  "meta": {
+    "title": "Hernán Ainsa — Portfolio",
+    "description": "Design + development portfolio."
+  },
   "nav": {
     "start": "Start",
     "work": "Work",

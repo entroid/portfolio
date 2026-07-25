@@ -29,7 +29,7 @@ scope. Each phase below lists exactly which of those docs matter most.
 - [x] Phase 7 — AI Workflow page
 - [x] Phase 8 — Contact page
 - [ ] Phase 9 — Motion & interaction polish pass
-- [ ] Phase 10 — i18n content completion (full ES/EN parity)
+- [x] Phase 10 — i18n content completion (full ES/EN parity)
 - [ ] Phase 11 — SEO, metadata & analytics
 - [ ] Phase 12 — Testing & QA hardening
 - [ ] Phase 13 — Deployment & docs finalization
@@ -565,10 +565,32 @@ Definition of Done:
 
 ---
 
-### Phase 10 — i18n content completion
+### Phase 10 — i18n content completion ✅ done (2026-07-25)
 
 **Depends on:** everything with user-facing copy (Phases 2–6, 8). **Docs:**
 CONTENT_MODEL.md (i18n section).
+
+Notes from actually doing this phase: `en.json`/`es.json` copy from Phases
+2–6/8 turned out to already be real, native-quality translations (not the
+rough-MT placeholder Phase 4's `AboutSection` TODO warned about) — reviewed
+by hand and left as-is, removing the stale TODO comment. Added
+`src/i18n/messages.test.ts`: a Vitest test that flattens both message files
+to dot-path key sets and fails with a readable diff on any divergence, plus
+a companion check for blank string values — satisfies the parity-check
+requirement without a separate script, since `pnpm test` already runs in
+CI. One real gap found during an Explore-agent audit of hardcoded/untranslated
+strings: `src/app/[locale]/layout.tsx`'s root `metadata` export was a static
+English-only `title`/`description` applied to every route in both locales
+(the browser tab title/description never localized). Fixed by converting it
+to `generateMetadata` reading a new `meta.title`/`meta.description`
+namespace via `getTranslations` — a minimal, scoped fix; the fuller
+per-route `generateMetadata` (OG tags, per-page titles) is still Phase 11's
+job, this only fixes the root-layout fallback. The audit's other two
+findings (hardcoded "LinkedIn"/"GitHub" brand names in `Navbar`, and the
+`ContactForm` honeypot's hardcoded "Company" label) were left as-is:
+brand names are identical in both locales by convention, and the honeypot
+label is `aria-hidden` and visually off-screen, never exposed to a real
+user in either language.
 
 > `/ai-workflow` (Phase 7) is explicitly out of scope for this phase — its
 > English-only content is a deliberate, separate decision, not something

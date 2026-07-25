@@ -7,9 +7,6 @@ import { Container } from "@/components/ui/Container";
  * Hero. Uses `<h2>` to continue the document outline started by the
  * Hero's `<h1>` — see DESIGN_SYSTEM.md's H2 spec (same tight tracking
  * direction as H1, smaller step).
- *
- * TODO(i18n): `home.about.*` in `es.json` is a rough MT-quality placeholder
- * per IMPLEMENTATION_PLAN.md Phase 4 — real Spanish copy lands in Phase 10.
  */
 export function AboutSection() {
   const t = useTranslations("home.about");
