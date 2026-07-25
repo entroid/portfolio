@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
+import { siteConfig } from "@/lib/site-config";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import "../globals.css";
@@ -27,10 +29,31 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "meta" });
+  const title = t("title");
+  const description = t("description");
 
   return {
-    title: t("title"),
-    description: t("description"),
+    metadataBase: new URL(siteConfig.siteUrl),
+    title: {
+      default: title,
+      template: `%s — ${siteConfig.siteName}`,
+    },
+    description,
+    openGraph: {
+      type: "website",
+      siteName: siteConfig.siteName,
+      locale,
+      title,
+      description,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      ...(siteConfig.twitterHandle
+        ? { creator: siteConfig.twitterHandle }
+        : {}),
+    },
   };
 }
 
@@ -64,6 +87,7 @@ export default async function LocaleLayout({
           <main className="flex-1">{children}</main>
           <Footer />
         </NextIntlClientProvider>
+        <Analytics />
       </body>
     </html>
   );

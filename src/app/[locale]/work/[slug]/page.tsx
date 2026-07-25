@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
 import type { Locale } from "@/i18n/routing";
@@ -7,6 +8,39 @@ import { OtherWorkTemplate } from "@/components/work/OtherWorkTemplate";
 
 export function generateStaticParams() {
   return getAllProjectSlugs().map((slug) => ({ slug }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string; slug: string }>;
+}): Promise<Metadata> {
+  const { locale, slug } = await params;
+
+  if (!getAllProjectSlugs().includes(slug)) {
+    return {};
+  }
+
+  const project = await getProjectBySlug(slug, locale as Locale);
+  const { title, summary } = project.frontmatter;
+
+  return {
+    title,
+    description: summary,
+    openGraph: {
+      title,
+      description: summary,
+      type: "article",
+      locale,
+      images: [{ url: project.meta.coverImage }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description: summary,
+      images: [project.meta.coverImage],
+    },
+  };
 }
 
 export default async function CaseStudyPage({

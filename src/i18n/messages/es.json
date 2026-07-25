@@ -1,7 +1,15 @@
 {
   "meta": {
     "title": "Hernán Ainsa — Portfolio",
-    "description": "Portfolio de diseño y desarrollo."
+    "description": "Portfolio de diseño y desarrollo.",
+    "work": {
+      "title": "Casos de Estudio y Trabajo",
+      "description": "Casos de estudio seleccionados de diseño UX/UI y desarrollo front-end de Hernán Ainsa."
+    },
+    "contact": {
+      "title": "Contacto",
+      "description": "Ponete en contacto con Hernán Ainsa sobre un proyecto o una posición."
+    }
   },
   "nav": {
     "start": "Inicio",

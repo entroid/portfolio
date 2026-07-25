@@ -30,7 +30,7 @@ scope. Each phase below lists exactly which of those docs matter most.
 - [x] Phase 8 — Contact page
 - [ ] Phase 9 — Motion & interaction polish pass
 - [x] Phase 10 — i18n content completion (full ES/EN parity)
-- [ ] Phase 11 — SEO, metadata & analytics
+- [x] Phase 11 — SEO, metadata & analytics
 - [ ] Phase 12 — Testing & QA hardening
 - [ ] Phase 13 — Deployment & docs finalization
 
@@ -617,10 +617,42 @@ Definition of Done:
 
 ---
 
-### Phase 11 — SEO, metadata & analytics
+### Phase 11 — SEO, metadata & analytics ✅ done (2026-07-25)
 
 **Depends on:** Phase 6, Phase 7, Phase 8 (all routes must exist). **Docs:**
 ARCHITECTURE.md.
+
+Notes from actually doing this phase: production domain isn't confirmed yet,
+so `src/lib/site-config.ts` holds a placeholder `https://hernan-ainsa.vercel.app`
+`siteUrl` — swap it in Phase 13 once Hernán has a real domain (also update
+`metadataBase` will follow automatically since everything reads from this one
+constant). `openGraph`/`twitter` metadata fields don't deep-merge across
+nested layouts/pages the way `title` does with its template — a route that
+sets its own `openGraph`/`twitter` object replaces the parent's wholesale, so
+every route repeats `title`/`description` in full rather than assuming
+inheritance from the root layout. The default OG image lives at
+`src/app/[locale]/opengraph-image.tsx` using `next/og`'s `ImageResponse` — as
+a route-segment file it cascades to every child route under `[locale]` that
+doesn't define its own (`/`, `/work`, `/work/[slug]`, `/ai-workflow`,
+`/contact` all inherit it) except `/work/[slug]`, which sets its own explicit
+`openGraph.images`/`twitter.images` pointing at the project's real cover
+image. Found one non-obvious Next.js behavior: requesting
+`twitter.card: "summary_large_image"` on a route that doesn't also set an
+explicit `twitter.images` array gets silently downgraded to `"summary"` at
+render time — so that override was only kept on the case-study route (which
+does set an explicit image); other routes rely on Next's default instead of
+asserting a card type they can't actually get. `/ai-workflow` metadata is
+hardcoded English (module-level `export const metadata`, not
+`generateMetadata`), consistent with the page body's existing English-only
+exception. `sitemap.ts`/`robots.ts` live at the app root (not under
+`[locale]`) per Next's file convention, and the sitemap lists all five route
+shapes across both locale prefixes (10 static + `2 × getAllProjectSlugs()`
+URLs) by reading the same content-layer helper `/work` and `/work/[slug]`
+already use, so it stays in sync with real content automatically. Verified
+by hand against a local production build (`next build` + `next start`): dumped
+`sitemap.xml`/`robots.txt`, grepped rendered `<head>` output for `og:`/
+`twitter:` tags on `/`, `/work/signal-desk`, and `/ai-workflow`, and fetched
+`/en/opengraph-image` directly to confirm a real ~40KB PNG comes back.
 
 Scope:
 

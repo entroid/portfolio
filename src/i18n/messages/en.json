@@ -1,7 +1,15 @@
 {
   "meta": {
     "title": "Hernán Ainsa — Portfolio",
-    "description": "Design + development portfolio."
+    "description": "Design + development portfolio.",
+    "work": {
+      "title": "Case Studies & Work",
+      "description": "Selected UX/UI design and front-end engineering case studies by Hernán Ainsa."
+    },
+    "contact": {
+      "title": "Contact",
+      "description": "Get in touch with Hernán Ainsa about a project or role."
+    }
   },
   "nav": {
     "start": "Start",

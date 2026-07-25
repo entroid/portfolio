@@ -1,7 +1,23 @@
+import type { Metadata } from "next";
 import { setRequestLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
+
+const TITLE = "AI-Assisted Workflow";
+const DESCRIPTION =
+  "How Hernán Ainsa's design and development process is built around AI — from discovery to shipped interface.";
+
+/**
+ * English-only, same as the page body (see the bilingual exception noted
+ * below) — both locale segments get identical metadata.
+ */
+export const metadata: Metadata = {
+  title: TITLE,
+  description: DESCRIPTION,
+  openGraph: { title: TITLE, description: DESCRIPTION, type: "article" },
+  twitter: { title: TITLE, description: DESCRIPTION },
+};
 
 type Step = {
   lead: string;
