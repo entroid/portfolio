@@ -33,6 +33,21 @@
       ]
     }
   },
+  "work": {
+    "index": {
+      "eyebrow": "TRABAJO SELECCIONADO",
+      "title": "Casos de Estudio y Trabajo",
+      "featuredHeading": "Casos de Estudio Destacados",
+      "otherHeading": "Otros Trabajos",
+      "viewCaseStudy": "Ver caso de estudio"
+    },
+    "caseStudy": {
+      "role": "Rol",
+      "context": "Contexto",
+      "gallery": "Galería",
+      "back": "Volver a Trabajo"
+    }
+  },
   "contact": {
     "eyebrow": "HABLEMOS",
     "title": "Hablemos.",

@@ -78,3 +78,14 @@ export const caseStudyMdxComponents = {
   h3: CaseStudyHeading3,
   p: CaseStudyParagraph,
 };
+
+/**
+ * "Other work" bodies skip process/results-style headings entirely (per
+ * CONTENT_MODEL.md) — enforced structurally by not registering the
+ * heading-driven layout components here, rather than trusting authors to
+ * omit `## `-style headings in the MDX source.
+ */
+export const otherWorkMdxComponents = {
+  CaseStudyImage,
+  p: CaseStudyParagraph,
+};

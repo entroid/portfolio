@@ -8,8 +8,20 @@ describe("projectMetaSchema", () => {
       depth: "featured",
       order: 1,
       coverImage: "/images/work/signal-desk/cover.jpg",
+      coverImageAlt: "Signal Desk dashboard cover.",
     });
     expect(result.gallery).toEqual([]);
+  });
+
+  it("rejects a meta object missing coverImageAlt", () => {
+    expect(() =>
+      projectMetaSchema.parse({
+        slug: "signal-desk",
+        depth: "featured",
+        order: 1,
+        coverImage: "/x.jpg",
+      }),
+    ).toThrow();
   });
 
   it("rejects an invalid depth", () => {
@@ -29,6 +41,33 @@ describe("projectMetaSchema", () => {
         slug: "signal-desk",
         depth: "featured",
         coverImage: "/x.jpg",
+      }),
+    ).toThrow();
+  });
+
+  it("accepts gallery entries with src and alt", () => {
+    const result = projectMetaSchema.parse({
+      slug: "signal-desk",
+      depth: "featured",
+      order: 1,
+      coverImage: "/x.jpg",
+      coverImageAlt: "Descriptive cover alt text.",
+      gallery: [{ src: "/gallery-1.jpg", alt: "Descriptive alt text." }],
+    });
+    expect(result.gallery).toEqual([
+      { src: "/gallery-1.jpg", alt: "Descriptive alt text." },
+    ]);
+  });
+
+  it("rejects a gallery entry missing alt", () => {
+    expect(() =>
+      projectMetaSchema.parse({
+        slug: "signal-desk",
+        depth: "featured",
+        order: 1,
+        coverImage: "/x.jpg",
+        coverImageAlt: "Descriptive cover alt text.",
+        gallery: [{ src: "/gallery-1.jpg" }],
       }),
     ).toThrow();
   });

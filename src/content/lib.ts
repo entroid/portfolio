@@ -4,7 +4,10 @@ import type { ReactElement } from "react";
 import { compileMDX } from "next-mdx-remote/rsc";
 import type { Locale } from "@/i18n/routing";
 import { routing } from "@/i18n/routing";
-import { caseStudyMdxComponents } from "./mdx-components";
+import {
+  caseStudyMdxComponents,
+  otherWorkMdxComponents,
+} from "./mdx-components";
 import {
   projectFrontmatterSchema,
   projectMetaSchema,
@@ -84,7 +87,10 @@ async function loadProject(slug: string, locale: Locale): Promise<Project> {
     await compileMDX<ProjectFrontmatter>({
       source,
       options: { parseFrontmatter: true },
-      components: caseStudyMdxComponents,
+      components:
+        meta.depth === "featured"
+          ? caseStudyMdxComponents
+          : otherWorkMdxComponents,
     });
 
   const frontmatterResult = projectFrontmatterSchema.safeParse(rawFrontmatter);

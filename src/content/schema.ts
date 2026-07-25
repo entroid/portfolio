@@ -1,11 +1,19 @@
 import { z } from "zod";
 
+export const galleryImageSchema = z.object({
+  src: z.string(), // path under /public/images/work/<slug>/
+  alt: z.string(), // real, descriptive alt text — see CODING_STANDARDS.md
+});
+
+export type GalleryImage = z.infer<typeof galleryImageSchema>;
+
 export const projectMetaSchema = z.object({
   slug: z.string(), // must match folder name — validated in lib.ts
   depth: z.enum(["featured", "other"]),
   order: z.number(), // display order within its depth group
   coverImage: z.string(), // path under /public/images/work/<slug>/
-  gallery: z.array(z.string()).default([]),
+  coverImageAlt: z.string(), // real, descriptive alt text for coverImage
+  gallery: z.array(galleryImageSchema).default([]),
 });
 
 export type ProjectMeta = z.infer<typeof projectMetaSchema>;

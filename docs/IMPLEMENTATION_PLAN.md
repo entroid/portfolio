@@ -25,7 +25,7 @@ scope. Each phase below lists exactly which of those docs matter most.
 - [x] Phase 3 — Hero section
 - [x] Phase 4 — About section
 - [x] Phase 5 — Content layer (schema, MDX pipeline, seed content)
-- [ ] Phase 6 — Work listing + case study pages
+- [x] Phase 6 — Work listing + case study pages
 - [x] Phase 7 — AI Workflow page
 - [x] Phase 8 — Contact page
 - [ ] Phase 9 — Motion & interaction polish pass
@@ -360,9 +360,39 @@ Definition of Done:
 
 ---
 
-### Phase 6 — Work listing + case study pages
+### Phase 6 — Work listing + case study pages ✅ done (2026-07-25)
 
 **Depends on:** Phase 1, Phase 5. **Docs:** CONTENT_MODEL.md, DESIGN_SYSTEM.md.
+
+Notes from actually doing this phase: the Phase 5 seed content referenced
+`.jpg` cover/gallery/inline images that never actually existed under
+`public/images/work/` — this phase generates and adds real placeholder PNGs
+(a small hand-rolled PNG encoder script, no design tool needed, since actual
+imagery isn't available yet) and updates the seed content's paths from
+`.jpg` to `.png`. Also found and closed two real a11y gaps in the Phase 5
+schema while wiring cover images and the gallery into actual `<Image>`
+markup: `projectMetaSchema.gallery` was `string[]` with no per-image alt
+text, and `coverImage` had no alt field at all — both violate
+CODING_STANDARDS.md's non-negotiable "every image has a real, descriptive
+alt". Added `coverImageAlt: z.string()` (required) and changed `gallery` to
+`{ src, alt }[]`, updated both seed projects' `index.ts` and
+CONTENT_MODEL.md's schema snippet to match. Also split MDX component sets
+in `content/lib.ts` by `depth` (`otherWorkMdxComponents` omits the `h2`/`h3`
+overrides) so "other work" bodies structurally can't render
+process/results-style headings, per CONTENT_MODEL.md's "enforce
+structurally, not by convention" note — Phase 5 had wired only the one
+shared `caseStudyMdxComponents` set. Card cover images use `alt=""` (title
+text renders immediately after inside the same link, so the image is
+redundant per WCAG's adjacent-text-alternative pattern); the enlarged cover
+on `OtherWorkTemplate` and every gallery image use their real
+`coverImageAlt`/`alt` field since they aren't paired with equivalent text.
+Visual QA in an actual browser wasn't possible this session (the preview
+pane wasn't compositing, same issue noted in Phase 1) — verified instead via
+`pnpm build`'s route output (`/en/work`, `/es/work`,
+`/en/work/{signal-desk,lumen-crm}`, `/es/work/{signal-desk,lumen-crm}` all
+prerendered as static HTML) plus component/a11y tests. Whoever picks up
+Phase 9 (motion polish) or does a manual QA pass should do a real visual
+check of both templates and the card hover states in a visible browser.
 
 > Scope updated 2026-07-24: this is now the dedicated `/work` route, not a
 > section of `/`. Component renamed/relocated accordingly — see

@@ -6,6 +6,8 @@ export const meta: ProjectMeta = {
   slug: "lumen-crm",
   depth: "other",
   order: 1,
-  coverImage: "/images/work/lumen-crm/cover.jpg",
+  coverImage: "/images/work/lumen-crm/cover.png",
+  coverImageAlt:
+    "Lumen CRM's redesigned pipeline board with an inline deal detail panel open alongside it",
   gallery: [],
 };

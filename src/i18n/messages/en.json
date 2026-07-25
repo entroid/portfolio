@@ -33,6 +33,21 @@
       ]
     }
   },
+  "work": {
+    "index": {
+      "eyebrow": "SELECTED WORK",
+      "title": "Case Studies & Work",
+      "featuredHeading": "Featured Case Studies",
+      "otherHeading": "Other Work",
+      "viewCaseStudy": "View case study"
+    },
+    "caseStudy": {
+      "role": "Role",
+      "context": "Context",
+      "gallery": "Gallery",
+      "back": "Back to Work"
+    }
+  },
   "contact": {
     "eyebrow": "GET IN TOUCH",
     "title": "Let's talk.",
