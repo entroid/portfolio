@@ -4,10 +4,10 @@ import { buttonClassName } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { MonoLabel } from "@/components/ui/MonoLabel";
 import { GridOverlay } from "@/components/ui/GridOverlay";
-import { Crosshair } from "@/components/ui/Crosshair";
 import { Grain } from "@/components/ui/Grain";
 import { cn } from "@/lib/cn";
 import { HeroSphere } from "./HeroSphere";
+import { HeroBackgroundVideo } from "./HeroBackgroundVideo";
 
 /**
  * Headline/subtext/CTA are plain server-rendered text — visible and
@@ -21,9 +21,8 @@ export function HeroSection() {
   return (
     <section className="relative overflow-hidden py-24 md:py-32">
       <Grain />
-      <GridOverlay />
-      <Crosshair className="absolute top-4 left-4 md:top-8 md:left-8" />
-      <Crosshair className="absolute right-4 bottom-4 md:right-8 md:bottom-8" />
+      <HeroBackgroundVideo />
+      <GridOverlay className="opacity-40" color2="rgba(255, 255, 255, 0.86)" />
 
       <div className="relative mx-auto grid w-full max-w-[1280px] items-center gap-12 px-4 md:grid-cols-2 md:px-8">
         <div>

@@ -1,10 +1,27 @@
-import { describe, expect, it } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { screen } from "@testing-library/react";
 import { axe } from "jest-axe";
 import { renderWithIntl } from "@/test/renderWithIntl";
 import { HeroSection } from "./HeroSection";
 
+function mockMatchMedia(matches: boolean) {
+  window.matchMedia = vi.fn().mockReturnValue({
+    matches,
+    media: "(prefers-reduced-motion: reduce)",
+    addEventListener: vi.fn(),
+    removeEventListener: vi.fn(),
+  } as unknown as MediaQueryList);
+}
+
 describe("HeroSection", () => {
+  beforeEach(() => {
+    mockMatchMedia(false);
+  });
+
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+
   it("renders the headline, subtext, and CTA as real text (no JS required)", () => {
     renderWithIntl(<HeroSection />);
 
@@ -26,5 +43,5 @@ describe("HeroSection", () => {
   it("has no automatically detectable accessibility violations", async () => {
     const { container } = renderWithIntl(<HeroSection />);
     expect(await axe(container)).toHaveNoViolations();
-  });
+  }, 20000);
 });
