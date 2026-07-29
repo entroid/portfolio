@@ -49,7 +49,7 @@ export function Navbar() {
 
         <nav
           aria-label={t("start")}
-          className="hidden items-center gap-6 md:flex"
+          className="hidden items-center gap-6 lg:flex"
         >
           {navItems.map((item) => {
             const active = pathname === item.href;
@@ -66,7 +66,7 @@ export function Navbar() {
           })}
         </nav>
 
-        <div className="hidden items-center gap-5 md:flex">
+        <div className="hidden items-center gap-5 lg:flex">
           <a
             href={siteLinks.linkedin}
             target="_blank"
@@ -94,7 +94,7 @@ export function Navbar() {
 
         <button
           type="button"
-          className="flex items-center justify-center border border-grid-border p-2 text-fg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg md:hidden"
+          className="flex items-center justify-center border border-grid-border p-2 text-fg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg lg:hidden"
           aria-expanded={menuOpen}
           aria-controls="mobile-nav"
           aria-label={menuOpen ? t("menuClose") : t("menuOpen")}
@@ -108,7 +108,7 @@ export function Navbar() {
         <nav
           id="mobile-nav"
           aria-label={t("start")}
-          className="flex flex-col gap-4 border-t border-grid-border px-4 py-6 md:hidden"
+          className="flex flex-col gap-4 border-t border-grid-border px-4 py-6 lg:hidden"
         >
           {navItems.map((item) => {
             const active = pathname === item.href;

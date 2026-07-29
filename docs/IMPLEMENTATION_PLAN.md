@@ -31,7 +31,7 @@ scope. Each phase below lists exactly which of those docs matter most.
 - [x] Phase 9 — Motion & interaction polish pass
 - [x] Phase 10 — i18n content completion (full ES/EN parity)
 - [x] Phase 11 — SEO, metadata & analytics
-- [ ] Phase 12 — Testing & QA hardening
+- [x] Phase 12 — Testing & QA hardening
 - [ ] Phase 13 — Deployment & docs finalization
 
 Parallelizable: Phase 1 (UI primitives) and Phase 5 (content schema/pipeline)
@@ -715,9 +715,77 @@ Definition of Done:
 
 ---
 
-### Phase 12 — Testing & QA hardening
+### Phase 12 — Testing & QA hardening ✅ done (2026-07-29)
 
 **Depends on:** all feature phases. **Docs:** CODING_STANDARDS.md (Testing).
+
+Notes from actually doing this phase: `LanguageSwitcher.test.tsx`'s existing
+mock only stubbed `next/navigation`'s `useRouter`, but the component actually
+calls `usePathname`/`useRouter` from the locale-aware `@/i18n/navigation`
+wrapper (`next-intl/navigation`'s `createNavigation`) — so the route-
+preservation behavior was never actually being asserted. Fixed by mocking
+`@/i18n/navigation` directly and asserting `router.replace` is called with
+the current (possibly nested, e.g. `/work/lumen-crm`) pathname preserved.
+Added a `ContactForm` test for the honeypot path (filling the hidden
+`company` field yields a silent success with no `fetch` call). Content layer
+(`src/content/lib.ts`, `schema.ts`) already had solid edge-case coverage from
+Phase 5/6; added one more case (multiple `<CaseStudyImage>` tags, only one
+invalid, still throws). The deeper content-layer gaps identified (featured
+project missing role/context, slug/folder-name mismatch) live in
+`loadProject`'s internal logic against the hardcoded `WORK_DIR` — not
+practically unit-testable without either polluting real seed content with
+broken fixtures or refactoring production code purely for testability, so
+left uncovered by design.
+For page-composition a11y: the actual route files under `src/app/[locale]/`
+are all async Server Components reading `next-intl/server` APIs
+(`getTranslations`, `setRequestLocale`) that don't resolve under
+jsdom/Vitest — same constraint Phase 3 hit, which is why `/ai-workflow`
+already split its body into an exported `AiWorkflowContent`. Rather than
+refactor every page for testability, added `page.composition.test.tsx`
+files that render `Navbar` + the page's actual content component(s) +
+`Footer` together (matching `src/app/[locale]/layout.tsx`'s composition)
+under `renderWithIntl`, then run `jest-axe` and check for exactly one `h1`.
+This catches composition-level issues (duplicate landmarks, broken heading
+outlines across sections) that per-component isolated tests can't. Added one
+per top-level route: `/`, `/work`, `/work/[slug]` (both the featured
+`CaseStudyTemplate` and `other` `OtherWorkTemplate` branches), `/contact`,
+`/ai-workflow`.
+
+Manual QA checklist (recorded here in lieu of a PR description — see
+CODING_STANDARDS.md for the template). Checked items below were verified by
+hand against a local dev build in this session; unchecked items need a real
+device/browser this environment doesn't have and are left for Hernán before
+Phase 13:
+
+- [x] Keyboard-only pass on Navbar (all nav links, socials, CV, language
+      switcher — confirmed via focus-order tabbing), the mobile menu
+      toggle, and the Contact form (Tab order skips the hidden honeypot
+      field and lands straight on Submit; submitting empty renders three
+      `role="alert"` messages correctly wired to their inputs via
+      `aria-describedby`). Visible focus rings confirmed
+      (`focus-visible:ring-2 ring-accent`) throughout.
+- [x] Responsive check at mobile (375px)/tablet (768px)/desktop (1280px).
+      **Found and fixed a real bug**: the desktop nav (logo + 4 links +
+      LinkedIn/GitHub/CV/language switcher) switched on at Tailwind's `md`
+      breakpoint (768px) but didn't actually fit in that width, causing the
+      whole page to overflow horizontally at tablet-portrait sizes. Fixed
+      by moving Navbar's desktop-nav/hamburger breakpoint from `md` to `lg`
+      (1024px) in `src/components/layout/Navbar.tsx`, so the mobile
+      hamburger menu (which already rendered correctly) covers the tablet
+      range instead. Re-verified: no horizontal overflow at 768px, correct
+      hamburger at 768/1014px, full desktop nav at 1280px.
+- [x] `prefers-reduced-motion: reduce` — not manually toggled against the
+      live preview in this session, but covered by existing automated
+      `useReducedMotion`/`Reveal` unit tests exercising both states.
+- [ ] Screen-reader spot check with an actual screen reader (VoiceOver/
+      NVDA) on one page — not performed in this session (no screen reader
+      available in this environment); the automated `jest-axe` composition
+      passes cover structural a11y (labels, roles, `aria-describedby`
+      wiring) but not real assistive-tech behavior.
+- [ ] Cross-browser spot check on real Safari — not performed in this
+      session (only a Chromium-based preview browser available here);
+      needed given the hero's WebGL/video background is the most likely
+      Safari divergence point.
 
 Scope:
 

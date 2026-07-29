@@ -91,4 +91,14 @@ describe("assertCaseStudyImageAltsAreValid", () => {
       /filename/i,
     );
   });
+
+  it("throws when any image among several is invalid, not just the first", () => {
+    const source = [
+      `<CaseStudyImage src="/images/work/x/one.jpg" alt="Dashboard overview with three panels" />`,
+      `<CaseStudyImage src="/images/work/x/two.svg" alt="two.svg" />`,
+    ].join("\n");
+    expect(() => assertCaseStudyImageAltsAreValid(source, "x", "en")).toThrow(
+      /filename/i,
+    );
+  });
 });

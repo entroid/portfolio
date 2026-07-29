@@ -62,6 +62,22 @@ describe("ContactForm", () => {
     );
   });
 
+  it("silently pretends success when the honeypot field is filled", async () => {
+    const user = userEvent.setup();
+    renderWithIntl(<ContactForm />);
+
+    await user.type(screen.getByLabelText("Name"), "Ada Lovelace");
+    await user.type(screen.getByLabelText("Email"), "ada@example.com");
+    await user.type(screen.getByLabelText("Message"), "Hello there");
+    await user.type(screen.getByLabelText("Company"), "I am a bot");
+    await user.click(screen.getByRole("button", { name: "Send Message" }));
+
+    expect(await screen.findByRole("status")).toHaveTextContent(
+      "Message sent.",
+    );
+    expect(global.fetch).not.toHaveBeenCalled();
+  });
+
   it("shows an accessible error state when the request fails", async () => {
     vi.stubGlobal(
       "fetch",
