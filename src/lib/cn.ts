@@ -26,10 +26,12 @@ const customTwMerge = extendTailwindMerge({
             "h2-desktop",
             "h1",
             "h1-desktop",
+            "cta",
+            "cta-desktop",
           ],
         },
       ],
-      tracking: [{ tracking: ["h1", "eyebrow", "label"] }],
+      tracking: [{ tracking: ["h1", "eyebrow", "label", "cta"] }],
     },
   },
 });

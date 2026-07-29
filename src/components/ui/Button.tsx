@@ -26,15 +26,15 @@ const focusRing =
   "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg";
 
 const base = cn(
-  "inline-flex items-center gap-1 font-mono text-label tracking-label uppercase transition-colors duration-150",
+  "inline-flex items-center gap-1 font-mono text-cta tracking-cta uppercase transition-colors duration-150",
   focusRing,
 );
 
 const variantClassName: Record<ButtonVariant, string> = {
   primary: cn(
     base,
-    "border border-accent px-6 py-3 text-accent",
-    "hover:bg-accent hover:text-bg focus-visible:bg-accent focus-visible:text-bg",
+    "border border-accent-gradient px-6 py-3 text-accent",
+    "hover:bg-accent-gradient hover:text-bg font-bold focus-visible:bg-accent-gradient focus-visible:text-bg",
   ),
   secondary: cn(base, "group border border-transparent px-1 py-1 text-fg"),
 };
@@ -44,6 +44,10 @@ const variantClassName: Record<ButtonVariant, string> = {
  * different link primitive (e.g. the Hero CTA uses next-intl's locale-aware
  * `Link` instead of plain `next/link`, since it must preserve the current
  * locale) — Button itself stays a generic, non-locale-aware primitive.
+ * Exported classes:
+
+buttonClassName.primary - Primary variant styling for use with other link primitives
+buttonClassName.secondary - Secondary variant styling for use with other link primitives
  */
 export const buttonClassName = variantClassName;
 
