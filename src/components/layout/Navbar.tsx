@@ -6,6 +6,7 @@ import { useTranslations } from "next-intl";
 import { Download, ExternalLink, Menu, X } from "lucide-react";
 import { Link, usePathname } from "@/i18n/navigation";
 import { LanguageSwitcher } from "./LanguageSwitcher";
+import { BracketLabel } from "@/components/ui/BracketLabel";
 import { siteLinks } from "@/lib/site-links";
 import { cn } from "@/lib/cn";
 
@@ -17,7 +18,7 @@ const navItems = [
 ] as const;
 
 const navLinkClass =
-  "font-mono text-label uppercase tracking-label transition-colors duration-150 hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg";
+  "group inline-flex items-center font-mono text-label uppercase tracking-label transition-colors duration-150 hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg";
 
 const externalLinkClass =
   "inline-flex items-center gap-1 font-mono text-label uppercase tracking-label text-muted transition-colors duration-150 hover:text-fg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg";
@@ -59,7 +60,7 @@ export function Navbar() {
                 aria-current={active ? "page" : undefined}
                 className={cn(navLinkClass, active ? "text-accent" : "text-fg")}
               >
-                {t(item.key)}
+                <BracketLabel>{t(item.key)}</BracketLabel>
               </Link>
             );
           })}
@@ -119,7 +120,7 @@ export function Navbar() {
                 className={cn(navLinkClass, active ? "text-accent" : "text-fg")}
                 onClick={() => setMenuOpen(false)}
               >
-                {t(item.key)}
+                <BracketLabel>{t(item.key)}</BracketLabel>
               </Link>
             );
           })}

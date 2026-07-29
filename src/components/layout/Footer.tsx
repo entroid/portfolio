@@ -1,9 +1,10 @@
 import { useTranslations } from "next-intl";
 import { Grain } from "@/components/ui/Grain";
+import { BracketLabel } from "@/components/ui/BracketLabel";
 import { siteLinks } from "@/lib/site-links";
 
 const linkClass =
-  "font-mono text-label uppercase tracking-label text-muted transition-colors duration-150 hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg";
+  "group inline-flex items-center font-mono text-label uppercase tracking-label text-muted transition-colors duration-150 hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg";
 
 export function Footer() {
   const t = useTranslations("footer");
@@ -17,7 +18,7 @@ export function Footer() {
           className="flex flex-wrap items-center gap-6"
         >
           <a href={`mailto:${siteLinks.email}`} className={linkClass}>
-            {t("email")}
+            <BracketLabel>{t("email")}</BracketLabel>
           </a>
           <a
             href={siteLinks.linkedin}
@@ -25,7 +26,7 @@ export function Footer() {
             rel="noreferrer"
             className={linkClass}
           >
-            {t("linkedin")}
+            <BracketLabel>{t("linkedin")}</BracketLabel>
           </a>
           <a
             href={siteLinks.whatsapp}
@@ -33,7 +34,7 @@ export function Footer() {
             rel="noreferrer"
             className={linkClass}
           >
-            {t("whatsapp")}
+            <BracketLabel>{t("whatsapp")}</BracketLabel>
           </a>
         </nav>
         <p className="font-mono text-label text-muted">

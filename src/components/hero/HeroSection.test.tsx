@@ -36,7 +36,7 @@ describe("HeroSection", () => {
   it("CTA is a real route link to /work, not a scroll or no-op", () => {
     renderWithIntl(<HeroSection />);
 
-    const cta = screen.getByRole("link", { name: "Case Studies & Work" });
+    const cta = screen.getByRole("link", { name: "[ Case Studies & Work ]" });
     expect(cta).toHaveAttribute("href", "/en/work");
   });
 

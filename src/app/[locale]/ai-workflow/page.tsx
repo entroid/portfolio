@@ -3,6 +3,7 @@ import { setRequestLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
+import { Reveal } from "@/components/ui/Reveal";
 
 const TITLE = "AI-Assisted Workflow";
 const DESCRIPTION =
@@ -81,29 +82,31 @@ export function AiWorkflowContent() {
           through my hands, from a rough idea to a shipped interface.
         </p>
 
-        <ol className="mt-10 flex flex-col gap-6">
-          {steps.map((step, index) => (
-            <li
-              key={step.lead}
-              className="text-body text-muted md:text-body-desktop"
-            >
-              <span className="font-mono text-label text-accent">
-                {String(index + 1).padStart(2, "0")}
-              </span>{" "}
-              <span className="font-sans font-semibold text-fg">
-                {step.lead}
-              </span>{" "}
-              {step.body}
-            </li>
-          ))}
-        </ol>
+        <Reveal>
+          <ol className="mt-10 flex flex-col gap-6">
+            {steps.map((step, index) => (
+              <li
+                key={step.lead}
+                className="text-body text-muted md:text-body-desktop"
+              >
+                <span className="font-mono text-label text-accent">
+                  {String(index + 1).padStart(2, "0")}
+                </span>{" "}
+                <span className="font-sans font-semibold text-fg">
+                  {step.lead}
+                </span>{" "}
+                {step.body}
+              </li>
+            ))}
+          </ol>
+        </Reveal>
 
         <p className="mt-10 text-body text-muted md:text-body-desktop">
           At every step, I&apos;m the one deciding what and how it moves
           forward. AI does the heavy lifting — not the directing.
         </p>
 
-        <div className="mt-12 border border-grid-border p-6 md:p-8">
+        <Reveal className="mt-12 border border-grid-border p-6 md:p-8">
           <h2 className="text-h3 font-mono font-bold text-fg">
             How does this fit into a team?
           </h2>
@@ -115,7 +118,7 @@ export function AiWorkflowContent() {
             Figma and Jira with no AI involved at all. The tools change. The
             discipline doesn&apos;t.
           </p>
-        </div>
+        </Reveal>
       </Container>
     </Section>
   );

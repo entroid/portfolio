@@ -28,7 +28,7 @@ scope. Each phase below lists exactly which of those docs matter most.
 - [x] Phase 6 — Work listing + case study pages
 - [x] Phase 7 — AI Workflow page
 - [x] Phase 8 — Contact page
-- [ ] Phase 9 — Motion & interaction polish pass
+- [x] Phase 9 — Motion & interaction polish pass
 - [x] Phase 10 — i18n content completion (full ES/EN parity)
 - [x] Phase 11 — SEO, metadata & analytics
 - [ ] Phase 12 — Testing & QA hardening
@@ -540,10 +540,51 @@ Definition of Done:
 
 ---
 
-### Phase 9 — Motion & interaction polish pass
+### Phase 9 — Motion & interaction polish pass ✅ done (2026-07-29)
 
 **Depends on:** Phases 3, 4, 6, 7, 8 (everything with visible pages/sections).
 **Docs:** DESIGN_SYSTEM.md (Microinteractions).
+
+Notes from actually doing this phase: installed `motion` (the `ARCHITECTURE.md`-specified
+package was in the stack table since Phase 0 but never actually added as a
+dependency until now). Built one shared primitive,
+`components/ui/Reveal.tsx` — a client component wrapping `motion/react`'s
+`motion.div` with `whileInView`/`viewport:{once:true}`/~450ms ease-out,
+short-circuiting to a plain `<div>` (no transition, no wrapper animation)
+when `useReducedMotion()` is true — and applied it to the section-level
+blocks on Home (About), `/work` (featured/other groups), `/ai-workflow`
+(steps list, callout), and `/contact` (form, direct-links block). Page
+H1s/eyebrows stay static/unanimated on purpose — they must be immediately
+visible, not wait for a scroll trigger. The consistency audit surfaced two
+real gaps against the Microinteractions table: (1) Navbar's primary nav
+links and the Footer/`/contact` direct-links (email/LinkedIn/WhatsApp) were
+only doing a color transition, missing the "text wraps in brackets on
+hover/focus" treatment the table specifies for "Secondary buttons / nav
+links" — extracted the bracket markup Button.tsx already had into a shared
+`components/ui/BracketLabel.tsx` and applied it to both. Also traced a
+pre-existing failing test (`HeroSection.test.tsx`, confirmed via `git stash`
+to predate this phase): the hero CTA's `home.hero.cta` translation string
+(`en.json`/`es.json`) has literal `[ ]` characters baked into the copy —
+Hernán confirmed this is intentional (the brackets are part of the CTA
+copy itself, not the hover-only secondary-button affordance the table
+describes), so the fix was to the test's expected link name, not the copy.
+jsdom has neither `IntersectionObserver` (which
+`whileInView` constructs unconditionally, no feature-detection) nor
+`matchMedia` by default — added lightweight stubs for both to
+`src/test/setup.ts` so every test suite gets a safe default rather than
+requiring every component test that now renders a `Reveal` to mock them
+individually. Visual verification of the hover/focus bracket transitions
+hit the same known limitation noted in Phase 1 (`getComputedStyle` opacity
+reads stay at the resting value because the preview pane isn't actively
+compositing frames) — verified instead via `next build` + `next start`
+against a real production build: confirmed the generated CSS rule
+(`.group-focus-visible\:opacity-100:is(:where(.group):focus-visible *)`)
+exists and that the bracket `<span>` actually matches it
+(`element.matches(...)` → `true`) after a real keyboard Tab focus, plus
+spot-checked `/`, `/work`, `/ai-workflow`, `/contact` for console errors
+(none) and correct rendered copy. Whoever does Phase 12's manual QA pass
+should still do a real OS-level `prefers-reduced-motion` check in a visible
+browser, since that couldn't be exercised here either.
 
 Scope:
 

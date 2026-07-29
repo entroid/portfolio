@@ -24,12 +24,12 @@ describe("Navbar", () => {
     renderWithIntl(<Navbar />);
     const nav = screen.getAllByRole("navigation", { name: "Start" })[0];
     const links = nav.querySelectorAll("a");
-    expect(Array.from(links).map((link) => link.textContent)).toEqual([
-      "Start",
-      "Work",
-      "AI Workflow",
-      "Contact",
-    ]);
+    // Decorative `[`/`]` bracket spans (the shared hover/focus
+    // microinteraction) sit in textContent even though they're
+    // aria-hidden — strip them before comparing labels.
+    expect(
+      Array.from(links).map((link) => link.textContent?.replace(/[[\]]/g, "")),
+    ).toEqual(["Start", "Work", "AI Workflow", "Contact"]);
     expect(links[0]).toHaveAttribute("href", "/en");
     expect(links[1]).toHaveAttribute("href", "/en/work");
     expect(links[2]).toHaveAttribute("href", "/en/ai-workflow");

@@ -4,6 +4,7 @@ import { Container } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { GridOverlay } from "@/components/ui/GridOverlay";
 import { Crosshair } from "@/components/ui/Crosshair";
+import { Reveal } from "@/components/ui/Reveal";
 import type { Project } from "@/content/lib";
 import { CaseStudyCard } from "./CaseStudyCard";
 
@@ -33,7 +34,7 @@ export function WorkIndex({ projects }: WorkIndexProps) {
         </h1>
 
         {featured.length > 0 && (
-          <div className="mt-16">
+          <Reveal className="mt-16">
             <h2 className="text-h2 font-mono font-bold text-fg md:text-h2-desktop">
               {t("featuredHeading")}
             </h2>
@@ -46,11 +47,11 @@ export function WorkIndex({ projects }: WorkIndexProps) {
                 />
               ))}
             </div>
-          </div>
+          </Reveal>
         )}
 
         {other.length > 0 && (
-          <div className="mt-20">
+          <Reveal className="mt-20">
             <h2 className="text-h2 font-mono font-bold text-fg md:text-h2-desktop">
               {t("otherHeading")}
             </h2>
@@ -59,7 +60,7 @@ export function WorkIndex({ projects }: WorkIndexProps) {
                 <CaseStudyCard key={project.meta.slug} project={project} />
               ))}
             </div>
-          </div>
+          </Reveal>
         )}
       </Container>
     </Section>

@@ -2,11 +2,13 @@ import { useTranslations } from "next-intl";
 import { Section } from "@/components/ui/Section";
 import { Container } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
+import { BracketLabel } from "@/components/ui/BracketLabel";
+import { Reveal } from "@/components/ui/Reveal";
 import { siteLinks } from "@/lib/site-links";
 import { ContactForm } from "./ContactForm";
 
 const directLinkClassName =
-  "font-mono text-label uppercase tracking-label text-muted transition-colors duration-150 hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg";
+  "group inline-flex items-center font-mono text-label uppercase tracking-label text-muted transition-colors duration-150 hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg";
 
 export function ContactPage() {
   const t = useTranslations("contact");
@@ -23,11 +25,11 @@ export function ContactPage() {
           {t("intro")}
         </p>
 
-        <div className="mt-12">
+        <Reveal className="mt-12">
           <ContactForm />
-        </div>
+        </Reveal>
 
-        <div className="mt-16 border-t border-grid-border pt-8">
+        <Reveal className="mt-16 border-t border-grid-border pt-8" delay={0.1}>
           <h2 className="text-h3 font-mono font-extrabold tracking-h1 text-fg md:text-h3-desktop">
             {t("direct.title")}
           </h2>
@@ -39,7 +41,7 @@ export function ContactPage() {
               href={`mailto:${siteLinks.email}`}
               className={directLinkClassName}
             >
-              {tFooter("email")}
+              <BracketLabel>{tFooter("email")}</BracketLabel>
             </a>
             <a
               href={siteLinks.linkedin}
@@ -47,7 +49,7 @@ export function ContactPage() {
               rel="noreferrer"
               className={directLinkClassName}
             >
-              {tFooter("linkedin")}
+              <BracketLabel>{tFooter("linkedin")}</BracketLabel>
             </a>
             <a
               href={siteLinks.whatsapp}
@@ -55,10 +57,10 @@ export function ContactPage() {
               rel="noreferrer"
               className={directLinkClassName}
             >
-              {tFooter("whatsapp")}
+              <BracketLabel>{tFooter("whatsapp")}</BracketLabel>
             </a>
           </nav>
-        </div>
+        </Reveal>
       </Container>
     </Section>
   );
