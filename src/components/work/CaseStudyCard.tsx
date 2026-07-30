@@ -29,7 +29,7 @@ export function CaseStudyCard({
   return (
     <Link
       href={`/work/${meta.slug}`}
-      className="case-study-card group block border border-grid-border p-4 transition-colors duration-150 hover:border-accent focus-visible:border-accent focus-visible:outline-none md:p-6"
+      className="case-study-card group block border border-grid-border bg-bg p-4 transition-colors duration-150 hover:border-accent-gradient focus-visible:border-accent-gradient focus-visible:outline-none md:p-6"
     >
       <div className="relative aspect-[16/10] overflow-hidden border border-grid-border bg-surface">
         <Image

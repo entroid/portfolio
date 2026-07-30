@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { axe } from "jest-axe";
 import { renderWithIntl } from "@/test/renderWithIntl";
 import { AiWorkflowContent } from "./AiWorkflowContent";
@@ -34,5 +35,34 @@ describe("AiWorkflowContent", () => {
       locale: "en",
     });
     expect(await axe(container)).toHaveNoViolations();
+  });
+
+  it("renders a Prototyping/Figma to Code tablist defaulting to Prototyping", () => {
+    renderWithIntl(<AiWorkflowContent />, { locale: "en" });
+
+    expect(screen.getByRole("tablist")).toBeInTheDocument();
+    expect(screen.getByRole("tab", { name: "Prototyping" })).toHaveAttribute(
+      "aria-selected",
+      "true",
+    );
+    expect(screen.getByRole("tab", { name: "Figma to Code" })).toHaveAttribute(
+      "aria-selected",
+      "false",
+    );
+  });
+
+  it("switches to the empty Figma to Code panel when its tab is activated", async () => {
+    const user = userEvent.setup();
+    renderWithIntl(<AiWorkflowContent />, { locale: "en" });
+
+    await user.click(screen.getByRole("tab", { name: "Figma to Code" }));
+
+    expect(
+      screen.getByTestId("ai-workflow-tab-figma-to-code"),
+    ).toBeInTheDocument();
+    expect(screen.queryByTestId("ai-workflow-closing")).not.toBeInTheDocument();
+    expect(
+      screen.queryByTestId("ai-workflow-team-heading"),
+    ).not.toBeInTheDocument();
   });
 });

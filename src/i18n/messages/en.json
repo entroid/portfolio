@@ -96,40 +96,47 @@
     },
     "title": "AI-Assisted Workflow",
     "intro": "I don't just use AI to design faster — I built a process around it, one I keep refining. Here's how a project actually moves through my hands, from a rough idea to a shipped interface.",
-    "steps": [
-      {
-        "lead": "Discovery — human-led.",
-        "body": "I start where AI can't: talking with stakeholders and users, looking at competitors and the market, getting a real feel for the problem. No rigid framework — I keep it loose and follow what each project actually needs."
-      },
-      {
-        "lead": "Brief & direction.",
-        "body": "I turn that into a written functional brief and a visual direction — references, mood, constraints. This is what keeps everything that follows from going generic."
-      },
-      {
-        "lead": "Design system & concept — Claude Design.",
-        "body": "With the brief as context, I generate a first design system and visual concept. I review it, keep what works, rework what doesn't."
-      },
-      {
-        "lead": "Technical plan — Claude Code.",
-        "body": "Once the direction holds up, I move into Claude Code to define the tech stack, architecture, and a staged build plan. AI drafts it, I call it."
-      },
-      {
-        "lead": "Build.",
-        "body": "Execution happens in stages, checkpoint by checkpoint. Result: a working first version, not a mockup."
-      },
-      {
-        "lead": "Iterate.",
-        "body": "I test it, find what's off, and go back to whatever needs it — design, plan, or code."
-      },
-      {
-        "lead": "Back to Figma.",
-        "body": "Once the build settles, I sync the design system back into Figma via MCP — so it can keep moving between Figma and code as the product grows, not stay frozen after v1."
+    "tabs": {
+      "prototyping": "Prototyping",
+      "figmaToCode": "Figma to Code"
+    },
+    "prototyping": {
+      "steps": [
+        {
+          "lead": "Discovery — human-led.",
+          "body": "I start where AI can't: talking with stakeholders and users, looking at competitors and the market, getting a real feel for the problem. No rigid framework — I keep it loose and follow what each project actually needs."
+        },
+        {
+          "lead": "Brief & direction.",
+          "body": "I turn that into a written functional brief and a visual direction — references, mood, constraints. This is what keeps everything that follows from going generic."
+        },
+        {
+          "lead": "Design system & concept — Claude Design.",
+          "body": "With the brief as context, I generate a first design system and visual concept. I review it, keep what works, rework what doesn't."
+        },
+        {
+          "lead": "Technical plan — Claude Code.",
+          "body": "Once the direction holds up, I move into Claude Code to define the tech stack, architecture, and a staged build plan. AI drafts it, I call it."
+        },
+        {
+          "lead": "Build.",
+          "body": "Execution happens in stages, checkpoint by checkpoint. Result: a working first version, not a mockup."
+        },
+        {
+          "lead": "Iterate.",
+          "body": "I test it, find what's off, and go back to whatever needs it — design, plan, or code."
+        },
+        {
+          "lead": "Back to Figma.",
+          "body": "Once the build settles, I sync the design system back into Figma via MCP — so it can keep moving between Figma and code as the product grows, not stay frozen after v1."
+        }
+      ],
+      "closing": "At every step, I'm the one deciding what and how it moves forward. AI does the heavy lifting — not the directing.",
+      "team": {
+        "heading": "How does this fit into a team?",
+        "body": "Strip away the specific tools and what's left is just good process: a written brief before anything gets built, a design system as the single source of truth, a review checkpoint between every stage. That works whether it's me and Claude, or a full team on Figma and Jira with no AI involved at all. The tools change. The discipline doesn't."
       }
-    ],
-    "closing": "At every step, I'm the one deciding what and how it moves forward. AI does the heavy lifting — not the directing.",
-    "team": {
-      "heading": "How does this fit into a team?",
-      "body": "Strip away the specific tools and what's left is just good process: a written brief before anything gets built, a design system as the single source of truth, a review checkpoint between every stage. That works whether it's me and Claude, or a full team on Figma and Jira with no AI involved at all. The tools change. The discipline doesn't."
-    }
+    },
+    "figmaToCode": {}
   }
 }
