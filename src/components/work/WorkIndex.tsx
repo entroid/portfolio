@@ -34,7 +34,7 @@ export function WorkIndex({ projects }: WorkIndexProps) {
         </h1>
 
         {featured.length > 0 && (
-          <Reveal className="mt-16">
+          <Reveal className="mt-16" data-testid="work-featured">
             <h2 className="text-h2 font-mono font-bold text-fg md:text-h2-desktop">
               {t("featuredHeading")}
             </h2>
@@ -51,7 +51,7 @@ export function WorkIndex({ projects }: WorkIndexProps) {
         )}
 
         {other.length > 0 && (
-          <Reveal className="mt-20">
+          <Reveal className="mt-20" data-testid="work-other">
             <h2 className="text-h2 font-mono font-bold text-fg md:text-h2-desktop">
               {t("otherHeading")}
             </h2>

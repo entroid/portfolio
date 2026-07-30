@@ -46,6 +46,7 @@ export function CaseStudyCard({
       </div>
 
       <h3
+        data-testid="case-study-title"
         className={cn(
           "mt-4 font-mono font-medium text-fg",
           featured ? "text-h3 md:text-h2-desktop" : "text-h3",
@@ -53,7 +54,9 @@ export function CaseStudyCard({
       >
         {frontmatter.title}
       </h3>
-      <p className="mt-2 text-body text-muted">{frontmatter.summary}</p>
+      <p data-testid="case-study-summary" className="mt-2 text-body text-muted">
+        {frontmatter.summary}
+      </p>
 
       <span className="mt-4 inline-flex items-center gap-1 font-mono text-label uppercase tracking-label text-accent">
         <span aria-hidden="true" className={cn(bracket, "-translate-x-1")}>

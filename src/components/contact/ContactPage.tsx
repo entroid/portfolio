@@ -39,6 +39,7 @@ export function ContactPage() {
           >
             <a
               href={`mailto:${siteLinks.email}`}
+              data-testid="contact-direct-email"
               className={directLinkClassName}
             >
               <BracketLabel>{tFooter("email")}</BracketLabel>
@@ -47,6 +48,7 @@ export function ContactPage() {
               href={siteLinks.linkedin}
               target="_blank"
               rel="noreferrer"
+              data-testid="contact-direct-linkedin"
               className={directLinkClassName}
             >
               <BracketLabel>{tFooter("linkedin")}</BracketLabel>
@@ -55,6 +57,7 @@ export function ContactPage() {
               href={siteLinks.whatsapp}
               target="_blank"
               rel="noreferrer"
+              data-testid="contact-direct-whatsapp"
               className={directLinkClassName}
             >
               <BracketLabel>{tFooter("whatsapp")}</BracketLabel>

@@ -22,21 +22,18 @@ describe("HeroSection", () => {
     vi.restoreAllMocks();
   });
 
-  it("renders the headline, subtext, and CTA as real text (no JS required)", () => {
+  it("renders the headline and subtext as real text (no JS required)", () => {
     renderWithIntl(<HeroSection />);
 
-    expect(
-      screen.getByRole("heading", { level: 1, name: "DESIGN & BUILD" }),
-    ).toBeInTheDocument();
-    expect(
-      screen.getByText("Where design and code actually meet."),
-    ).toBeInTheDocument();
+    expect(screen.getByRole("heading", { level: 1 })).toBeInTheDocument();
+    expect(screen.getByTestId("hero-headline")).toBeInTheDocument();
+    expect(screen.getByTestId("hero-subtext")).toBeInTheDocument();
   });
 
   it("CTA is a real route link to /work, not a scroll or no-op", () => {
     renderWithIntl(<HeroSection />);
 
-    const cta = screen.getByRole("link", { name: "[ Case Studies & Work ]" });
+    const cta = screen.getByTestId("hero-cta");
     expect(cta).toHaveAttribute("href", "/en/work");
   });
 

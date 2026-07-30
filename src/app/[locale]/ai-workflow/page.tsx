@@ -72,11 +72,17 @@ export function AiWorkflowContent() {
   return (
     <Section id="ai-workflow">
       <Container className="max-w-[840px]">
-        <h1 className="text-h2 font-mono font-extrabold tracking-h1 text-fg md:text-h2-desktop">
+        <h1
+          data-testid="ai-workflow-title"
+          className="text-h2 font-mono font-extrabold tracking-h1 text-fg md:text-h2-desktop"
+        >
           AI-Assisted Workflow
         </h1>
 
-        <p className="mt-6 text-body text-muted md:text-body-desktop">
+        <p
+          data-testid="ai-workflow-intro"
+          className="mt-6 text-body text-muted md:text-body-desktop"
+        >
           I don&apos;t just use AI to design faster — I built a process around
           it, one I keep refining. Here&apos;s how a project actually moves
           through my hands, from a rough idea to a shipped interface.
@@ -101,13 +107,19 @@ export function AiWorkflowContent() {
           </ol>
         </Reveal>
 
-        <p className="mt-10 text-body text-muted md:text-body-desktop">
+        <p
+          data-testid="ai-workflow-closing"
+          className="mt-10 text-body text-muted md:text-body-desktop"
+        >
           At every step, I&apos;m the one deciding what and how it moves
           forward. AI does the heavy lifting — not the directing.
         </p>
 
         <Reveal className="mt-12 border border-grid-border p-6 md:p-8">
-          <h2 className="text-h3 font-mono font-bold text-fg">
+          <h2
+            data-testid="ai-workflow-team-heading"
+            className="text-h3 font-mono font-bold text-fg"
+          >
             How does this fit into a team?
           </h2>
           <p className="mt-4 text-body text-muted md:text-body-desktop">

@@ -60,6 +60,7 @@ export function Navbar() {
         </Link>
 
         <nav
+          data-testid="nav-desktop"
           aria-label={t("start")}
           className="hidden items-center gap-4 lg:flex"
         >
@@ -69,6 +70,7 @@ export function Navbar() {
               <Link
                 key={item.href}
                 href={item.href}
+                data-testid={`nav-link-${item.key}`}
                 aria-current={active ? "page" : undefined}
                 className={cn(
                   navLinkClass,
@@ -87,6 +89,7 @@ export function Navbar() {
             target="_blank"
             rel="noreferrer"
             aria-label={t("linkedin")}
+            data-testid="nav-linkedin"
             className={socialIconLinkClass}
           >
             <LinkedinIcon />
@@ -96,12 +99,17 @@ export function Navbar() {
             target="_blank"
             rel="noreferrer"
             aria-label={t("github")}
+            data-testid="nav-github"
             className={socialIconLinkClass}
           >
             <GithubIcon />
           </a>
           <div className="group relative">
-            <button type="button" className={externalLinkClass}>
+            <button
+              type="button"
+              data-testid="nav-cv-toggle"
+              className={externalLinkClass}
+            >
               {t("cv")}
               <ChevronDown aria-hidden="true" size={12} />
             </button>
@@ -117,6 +125,7 @@ export function Navbar() {
                   role="menuitem"
                   href={cv.href}
                   download
+                  data-testid={`nav-cv-${cv.labelKey}`}
                   className="flex items-center justify-between gap-4 px-3 py-2 font-mono text-label uppercase tracking-label text-muted transition-colors duration-150 hover:bg-surface hover:text-fg focus-visible:bg-surface focus-visible:text-fg focus-visible:outline-none"
                 >
                   {t(cv.labelKey)}
@@ -130,6 +139,7 @@ export function Navbar() {
 
         <button
           type="button"
+          data-testid="nav-mobile-toggle"
           className="flex items-center justify-center border border-grid-border p-2 text-fg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg lg:hidden"
           aria-expanded={menuOpen}
           aria-controls="mobile-nav"

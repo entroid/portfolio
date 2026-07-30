@@ -10,6 +10,7 @@ export type RevealProps = {
   className?: string;
   /** Stagger successive reveals on the same page without a second effect per element. */
   delay?: number;
+  "data-testid"?: string;
 };
 
 /**
@@ -19,15 +20,25 @@ export type RevealProps = {
  * the resting state with no transition, per the shared reduced-motion
  * contract every animated primitive in this codebase follows.
  */
-export function Reveal({ children, className, delay = 0 }: RevealProps) {
+export function Reveal({
+  children,
+  className,
+  delay = 0,
+  "data-testid": testId,
+}: RevealProps) {
   const reducedMotion = useReducedMotion();
 
   if (reducedMotion) {
-    return <div className={cn("reveal", className)}>{children}</div>;
+    return (
+      <div data-testid={testId} className={cn("reveal", className)}>
+        {children}
+      </div>
+    );
   }
 
   return (
     <motion.div
+      data-testid={testId}
       className={cn("reveal", className)}
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}

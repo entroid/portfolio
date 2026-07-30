@@ -27,14 +27,21 @@ export function HeroSection() {
       <div className="relative mx-auto grid w-full max-w-[1280px] items-center gap-12 px-4 md:grid-cols-2 md:px-8">
         <div>
           <Eyebrow>{t("eyebrow")}</Eyebrow>
-          <h1 className="mt-4 text-h1 font-mono font-extrabold tracking-h1 text-fg md:text-h1-desktop">
+          <h1
+            data-testid="hero-headline"
+            className="mt-4 text-h1 font-mono font-extrabold tracking-h1 text-fg md:text-h1-desktop"
+          >
             {t("headline")}
           </h1>
-          <p className="mt-6 max-w-md text-body text-muted md:text-body-desktop">
+          <p
+            data-testid="hero-subtext"
+            className="mt-6 max-w-md text-body text-muted md:text-body-desktop"
+          >
             {t("subtext")}
           </p>
           <Link
             href="/work"
+            data-testid="hero-cta"
             className={cn(
               buttonClassName.primary,
               "mt-8 inline-flex text-cta-main",

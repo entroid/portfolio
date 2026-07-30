@@ -7,10 +7,10 @@ describe("Container", () => {
   it("renders its children", () => {
     render(
       <Container>
-        <p>content</p>
+        <p data-testid="child" />
       </Container>,
     );
-    expect(screen.getByText("content")).toBeInTheDocument();
+    expect(screen.getByTestId("child")).toBeInTheDocument();
   });
 
   it("merges a custom className with the base styles", () => {

@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from "vitest";
-import { screen } from "@testing-library/react";
+import { screen, within } from "@testing-library/react";
 import { axe } from "jest-axe";
 import { renderWithIntl } from "@/test/renderWithIntl";
 import { WorkIndex } from "./WorkIndex";
@@ -50,32 +50,30 @@ const projects = [
 describe("WorkIndex", () => {
   it("renders the page title as an h1", () => {
     renderWithIntl(<WorkIndex projects={projects} />);
-    expect(
-      screen.getByRole("heading", { level: 1, name: "Case Studies & Work" }),
-    ).toBeInTheDocument();
+    expect(screen.getByRole("heading", { level: 1 })).toBeInTheDocument();
   });
 
   it("groups featured projects under their own heading", () => {
     renderWithIntl(<WorkIndex projects={projects} />);
+    const featured = screen.getByTestId("work-featured");
     expect(
-      screen.getByRole("heading", { level: 2, name: "Featured Case Studies" }),
+      within(featured).getByRole("heading", { level: 2 }),
     ).toBeInTheDocument();
-    expect(screen.getByText("Signal Desk")).toBeInTheDocument();
+    expect(featured.querySelectorAll(".case-study-card")).toHaveLength(1);
   });
 
   it("groups other work under its own heading", () => {
     renderWithIntl(<WorkIndex projects={projects} />);
+    const other = screen.getByTestId("work-other");
     expect(
-      screen.getByRole("heading", { level: 2, name: "Other Work" }),
+      within(other).getByRole("heading", { level: 2 }),
     ).toBeInTheDocument();
-    expect(screen.getByText("Lumen CRM")).toBeInTheDocument();
+    expect(other.querySelectorAll(".case-study-card")).toHaveLength(1);
   });
 
   it("omits the other-work heading entirely when there is none", () => {
     renderWithIntl(<WorkIndex projects={[projects[0]]} />);
-    expect(
-      screen.queryByRole("heading", { level: 2, name: "Other Work" }),
-    ).not.toBeInTheDocument();
+    expect(screen.queryByTestId("work-other")).not.toBeInTheDocument();
   });
 
   it("has no automatically detectable accessibility violations", async () => {

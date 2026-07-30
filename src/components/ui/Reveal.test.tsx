@@ -20,11 +20,11 @@ describe("Reveal", () => {
     mockMatchMedia(true);
     render(
       <Reveal className="reveal-test">
-        <p>Content</p>
+        <p data-testid="child">Content</p>
       </Reveal>,
     );
 
-    const wrapper = screen.getByText("Content").parentElement;
+    const wrapper = screen.getByTestId("child").parentElement;
     expect(wrapper).toHaveClass("reveal-test");
     expect(wrapper?.getAttribute("style")).toBeNull();
   });
@@ -33,10 +33,10 @@ describe("Reveal", () => {
     mockMatchMedia(false);
     render(
       <Reveal className="reveal-test">
-        <p>Content</p>
+        <p data-testid="child">Content</p>
       </Reveal>,
     );
 
-    expect(screen.getByText("Content")).toBeInTheDocument();
+    expect(screen.getByTestId("child")).toBeInTheDocument();
   });
 });

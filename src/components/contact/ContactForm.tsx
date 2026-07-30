@@ -96,6 +96,7 @@ export function ContactForm() {
           </label>
           <input
             id="contact-name"
+            data-testid="contact-name-input"
             type="text"
             className={inputClassName}
             aria-invalid={errors.name ? "true" : "false"}
@@ -119,6 +120,7 @@ export function ContactForm() {
           </label>
           <input
             id="contact-email"
+            data-testid="contact-email-input"
             type="email"
             className={inputClassName}
             aria-invalid={errors.email ? "true" : "false"}
@@ -142,6 +144,7 @@ export function ContactForm() {
           </label>
           <textarea
             id="contact-message"
+            data-testid="contact-message-input"
             rows={5}
             className={inputClassName}
             aria-invalid={errors.message ? "true" : "false"}
@@ -166,6 +169,7 @@ export function ContactForm() {
           <label htmlFor="contact-company">Company</label>
           <input
             id="contact-company"
+            data-testid="contact-company-input"
             type="text"
             tabIndex={-1}
             autoComplete="off"
@@ -175,6 +179,7 @@ export function ContactForm() {
 
         <button
           type="submit"
+          data-testid="contact-submit"
           disabled={status === "submitting"}
           className={cn(
             buttonClassName.primary,
@@ -184,7 +189,7 @@ export function ContactForm() {
           {status === "submitting" ? t("submitting") : t("submit")}
         </button>
 
-        <div aria-live="polite">
+        <div aria-live="polite" data-testid="contact-status">
           {status === "success" && (
             <p role="status" className="text-label text-accent">
               <span className="block font-mono uppercase tracking-label">

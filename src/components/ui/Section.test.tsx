@@ -7,11 +7,11 @@ describe("Section", () => {
   it("renders as a <section> containing its children", () => {
     render(
       <Section>
-        <p>content</p>
+        <p data-testid="child" />
       </Section>,
     );
-    expect(screen.getByText("content")).toBeInTheDocument();
-    expect(screen.getByText("content").closest("section")).not.toBeNull();
+    expect(screen.getByTestId("child")).toBeInTheDocument();
+    expect(screen.getByTestId("child").closest("section")).not.toBeNull();
   });
 
   it("has no automatically detectable accessibility violations", async () => {

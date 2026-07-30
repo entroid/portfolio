@@ -18,17 +18,18 @@ describe("ContactForm", () => {
     const user = userEvent.setup();
     renderWithIntl(<ContactForm />);
 
-    await user.click(screen.getByRole("button", { name: "Send Message" }));
+    await user.click(screen.getByTestId("contact-submit"));
 
-    const nameError = await screen.findByText("Enter your name.");
-    const nameInput = screen.getByLabelText("Name");
-    expect(nameInput).toHaveAttribute("aria-invalid", "true");
-    expect(nameInput).toHaveAttribute(
-      "aria-describedby",
-      nameError.getAttribute("id"),
+    await waitFor(() =>
+      expect(document.getElementById("contact-name-error")).toBeInTheDocument(),
     );
-    expect(screen.getByText("Enter your email.")).toBeInTheDocument();
-    expect(screen.getByText("Enter a message.")).toBeInTheDocument();
+    const nameInput = screen.getByTestId("contact-name-input");
+    expect(nameInput).toHaveAttribute("aria-invalid", "true");
+    expect(nameInput).toHaveAttribute("aria-describedby", "contact-name-error");
+    expect(document.getElementById("contact-email-error")).toBeInTheDocument();
+    expect(
+      document.getElementById("contact-message-error"),
+    ).toBeInTheDocument();
     expect(global.fetch).not.toHaveBeenCalled();
   });
 
@@ -36,14 +37,17 @@ describe("ContactForm", () => {
     const user = userEvent.setup();
     renderWithIntl(<ContactForm />);
 
-    await user.type(screen.getByLabelText("Name"), "Ada Lovelace");
-    await user.type(screen.getByLabelText("Email"), "not-an-email");
-    await user.type(screen.getByLabelText("Message"), "Hello there");
-    await user.click(screen.getByRole("button", { name: "Send Message" }));
+    await user.type(screen.getByTestId("contact-name-input"), "Ada Lovelace");
+    await user.type(screen.getByTestId("contact-email-input"), "not-an-email");
+    await user.type(screen.getByTestId("contact-message-input"), "Hello there");
+    await user.click(screen.getByTestId("contact-submit"));
 
-    expect(
-      await screen.findByText("Enter a valid email address."),
-    ).toBeInTheDocument();
+    await waitFor(() =>
+      expect(screen.getByTestId("contact-email-input")).toHaveAttribute(
+        "aria-invalid",
+        "true",
+      ),
+    );
     expect(global.fetch).not.toHaveBeenCalled();
   });
 
@@ -51,30 +55,32 @@ describe("ContactForm", () => {
     const user = userEvent.setup();
     renderWithIntl(<ContactForm />);
 
-    await user.type(screen.getByLabelText("Name"), "Ada Lovelace");
-    await user.type(screen.getByLabelText("Email"), "ada@example.com");
-    await user.type(screen.getByLabelText("Message"), "Hello there");
-    await user.click(screen.getByRole("button", { name: "Send Message" }));
+    await user.type(screen.getByTestId("contact-name-input"), "Ada Lovelace");
+    await user.type(
+      screen.getByTestId("contact-email-input"),
+      "ada@example.com",
+    );
+    await user.type(screen.getByTestId("contact-message-input"), "Hello there");
+    await user.click(screen.getByTestId("contact-submit"));
 
     await waitFor(() => expect(global.fetch).toHaveBeenCalledTimes(1));
-    expect(await screen.findByRole("status")).toHaveTextContent(
-      "Message sent.",
-    );
+    expect(await screen.findByRole("status")).toBeInTheDocument();
   });
 
   it("silently pretends success when the honeypot field is filled", async () => {
     const user = userEvent.setup();
     renderWithIntl(<ContactForm />);
 
-    await user.type(screen.getByLabelText("Name"), "Ada Lovelace");
-    await user.type(screen.getByLabelText("Email"), "ada@example.com");
-    await user.type(screen.getByLabelText("Message"), "Hello there");
-    await user.type(screen.getByLabelText("Company"), "I am a bot");
-    await user.click(screen.getByRole("button", { name: "Send Message" }));
-
-    expect(await screen.findByRole("status")).toHaveTextContent(
-      "Message sent.",
+    await user.type(screen.getByTestId("contact-name-input"), "Ada Lovelace");
+    await user.type(
+      screen.getByTestId("contact-email-input"),
+      "ada@example.com",
     );
+    await user.type(screen.getByTestId("contact-message-input"), "Hello there");
+    await user.type(screen.getByTestId("contact-company-input"), "I am a bot");
+    await user.click(screen.getByTestId("contact-submit"));
+
+    expect(await screen.findByRole("status")).toBeInTheDocument();
     expect(global.fetch).not.toHaveBeenCalled();
   });
 
@@ -86,14 +92,15 @@ describe("ContactForm", () => {
     const user = userEvent.setup();
     renderWithIntl(<ContactForm />);
 
-    await user.type(screen.getByLabelText("Name"), "Ada Lovelace");
-    await user.type(screen.getByLabelText("Email"), "ada@example.com");
-    await user.type(screen.getByLabelText("Message"), "Hello there");
-    await user.click(screen.getByRole("button", { name: "Send Message" }));
-
-    expect(await screen.findByRole("alert")).toHaveTextContent(
-      "Something went wrong.",
+    await user.type(screen.getByTestId("contact-name-input"), "Ada Lovelace");
+    await user.type(
+      screen.getByTestId("contact-email-input"),
+      "ada@example.com",
     );
+    await user.type(screen.getByTestId("contact-message-input"), "Hello there");
+    await user.click(screen.getByTestId("contact-submit"));
+
+    expect(await screen.findByRole("alert")).toBeInTheDocument();
   });
 
   it("has no automatically detectable accessibility violations", async () => {

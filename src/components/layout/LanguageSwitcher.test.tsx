@@ -29,13 +29,11 @@ vi.mock("@/i18n/navigation", async (importActual) => ({
 describe("LanguageSwitcher", () => {
   it("renders both locales with the current one marked", () => {
     renderWithIntl(<LanguageSwitcher />);
-    expect(screen.getByRole("button", { name: "EN" })).toHaveAttribute(
+    expect(screen.getByTestId("locale-en")).toHaveAttribute(
       "aria-current",
       "true",
     );
-    expect(screen.getByRole("button", { name: "ES" })).not.toHaveAttribute(
-      "aria-current",
-    );
+    expect(screen.getByTestId("locale-es")).not.toHaveAttribute("aria-current");
   });
 
   it("switches locale while preserving the current route, including nested slugs", async () => {
@@ -43,7 +41,7 @@ describe("LanguageSwitcher", () => {
     const user = userEvent.setup();
     renderWithIntl(<LanguageSwitcher />);
 
-    await user.click(screen.getByRole("button", { name: "ES" }));
+    await user.click(screen.getByTestId("locale-es"));
 
     expect(replace).toHaveBeenCalledWith("/work/lumen-crm", { locale: "es" });
   });

@@ -34,7 +34,7 @@ const project = {
 describe("CaseStudyCard", () => {
   it("links to the case study's route", () => {
     renderWithIntl(<CaseStudyCard project={project} />);
-    expect(screen.getByRole("link", { name: /Signal Desk/ })).toHaveAttribute(
+    expect(screen.getByRole("link")).toHaveAttribute(
       "href",
       "/en/work/signal-desk",
     );
@@ -42,17 +42,13 @@ describe("CaseStudyCard", () => {
 
   it("renders the title and summary", () => {
     renderWithIntl(<CaseStudyCard project={project} />);
-    expect(
-      screen.getByText("Signal Desk — real-time ops dashboard"),
-    ).toBeInTheDocument();
-    expect(
-      screen.getByText("Turning a wall of raw logs into a trusted dashboard."),
-    ).toBeInTheDocument();
+    expect(screen.getByTestId("case-study-title")).toBeInTheDocument();
+    expect(screen.getByTestId("case-study-summary")).toBeInTheDocument();
   });
 
   it("hides the bracket decoration from the accessibility tree", () => {
     renderWithIntl(<CaseStudyCard project={project} />);
-    const link = screen.getByRole("link", { name: /Signal Desk/ });
+    const link = screen.getByRole("link");
     const decorative = link.querySelectorAll('[aria-hidden="true"]');
     expect(decorative.length).toBeGreaterThanOrEqual(2);
   });

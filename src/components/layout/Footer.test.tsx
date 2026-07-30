@@ -8,15 +8,15 @@ import { Footer } from "./Footer";
 describe("Footer", () => {
   it("renders email, LinkedIn, and WhatsApp links from site-links.ts", () => {
     renderWithIntl(<Footer />);
-    expect(screen.getByRole("link", { name: "Email" })).toHaveAttribute(
+    expect(screen.getByTestId("footer-email")).toHaveAttribute(
       "href",
       `mailto:${siteLinks.email}`,
     );
-    expect(screen.getByRole("link", { name: "LinkedIn" })).toHaveAttribute(
+    expect(screen.getByTestId("footer-linkedin")).toHaveAttribute(
       "href",
       siteLinks.linkedin,
     );
-    expect(screen.getByRole("link", { name: "WhatsApp" })).toHaveAttribute(
+    expect(screen.getByTestId("footer-whatsapp")).toHaveAttribute(
       "href",
       siteLinks.whatsapp,
     );

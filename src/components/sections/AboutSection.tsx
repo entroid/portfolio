@@ -20,11 +20,17 @@ export function AboutSection() {
           <h2 className="text-h2 font-mono font-extrabold tracking-h1 text-fg md:text-h2-desktop">
             {t("title")}
           </h2>
-          <p className="mt-6 text-body text-muted md:text-body-desktop">
+          <p
+            data-testid="about-bio"
+            className="mt-6 text-body text-muted md:text-body-desktop"
+          >
             {t("bio")}
           </p>
           {skills.length > 0 && (
-            <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-2">
+            <ul
+              data-testid="about-skills"
+              className="mt-8 flex flex-wrap gap-x-6 gap-y-2"
+            >
               {skills.map((skill) => (
                 <li
                   key={skill}

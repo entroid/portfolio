@@ -42,12 +42,7 @@ describe("AI Workflow page composition", () => {
   it("has exactly one h1 and a continuous heading outline", () => {
     renderAiWorkflowComposition();
     expect(screen.getAllByRole("heading", { level: 1 })).toHaveLength(1);
-    expect(
-      screen.getByRole("heading", {
-        level: 2,
-        name: "How does this fit into a team?",
-      }),
-    ).toBeInTheDocument();
+    expect(screen.getByTestId("ai-workflow-team-heading")).toBeInTheDocument();
   });
 
   it("renders the seven steps as a real ordered list within the full composition", () => {

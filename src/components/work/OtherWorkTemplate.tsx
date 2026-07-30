@@ -19,10 +19,16 @@ export function OtherWorkTemplate({ project }: OtherWorkTemplateProps) {
   return (
     <Section id="other-work">
       <Container className="max-w-[720px]">
-        <h1 className="text-h1 font-mono font-extrabold tracking-h1 text-fg md:text-h1-desktop">
+        <h1
+          data-testid="other-work-title"
+          className="text-h1 font-mono font-extrabold tracking-h1 text-fg md:text-h1-desktop"
+        >
           {frontmatter.title}
         </h1>
-        <p className="mt-4 text-body text-muted md:text-body-desktop">
+        <p
+          data-testid="other-work-summary"
+          className="mt-4 text-body text-muted md:text-body-desktop"
+        >
           {frontmatter.summary}
         </p>
 
@@ -37,7 +43,9 @@ export function OtherWorkTemplate({ project }: OtherWorkTemplateProps) {
           />
         </div>
 
-        <div className="mt-8">{content}</div>
+        <div data-testid="other-work-content" className="mt-8">
+          {content}
+        </div>
       </Container>
     </Section>
   );

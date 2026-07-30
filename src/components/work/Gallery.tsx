@@ -15,7 +15,10 @@ export function Gallery({ images, title }: GalleryProps) {
 
   return (
     <div id="gallery" className="mt-12">
-      <h2 className="mt-12 mb-4 text-h3 font-medium first:mt-0 md:text-h2-desktop">
+      <h2
+        data-testid="gallery-heading"
+        className="mt-12 mb-4 text-h3 font-medium first:mt-0 md:text-h2-desktop"
+      >
         {title}
       </h2>
       <div className="grid gap-4 sm:grid-cols-2">

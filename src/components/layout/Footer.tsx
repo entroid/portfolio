@@ -20,13 +20,18 @@ export function Footer() {
           aria-label={t("email")}
           className="flex flex-wrap items-center gap-6"
         >
-          <a href={`mailto:${siteLinks.email}`} className={linkClass}>
+          <a
+            href={`mailto:${siteLinks.email}`}
+            data-testid="footer-email"
+            className={linkClass}
+          >
             <BracketLabel>{t("email")}</BracketLabel>
           </a>
           <a
             href={siteLinks.linkedin}
             target="_blank"
             rel="noreferrer"
+            data-testid="footer-linkedin"
             className={linkClass}
           >
             <BracketLabel>{t("linkedin")}</BracketLabel>
@@ -35,6 +40,7 @@ export function Footer() {
             href={siteLinks.whatsapp}
             target="_blank"
             rel="noreferrer"
+            data-testid="footer-whatsapp"
             className={linkClass}
           >
             <BracketLabel>{t("whatsapp")}</BracketLabel>

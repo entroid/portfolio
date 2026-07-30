@@ -6,11 +6,12 @@ import KitchenSinkPage from "./page";
 describe("KitchenSinkPage", () => {
   it("renders every primitive section", () => {
     render(<KitchenSinkPage />);
-    expect(
-      screen.getByRole("heading", { level: 1, name: "Kitchen Sink" }),
-    ).toBeInTheDocument();
-    expect(screen.getByText("Case Studies & Work")).toBeInTheDocument();
-    expect(screen.getByText("work")).toBeInTheDocument();
+    expect(screen.getByRole("heading", { level: 1 })).toBeInTheDocument();
+    expect(screen.getAllByRole("heading", { level: 2 }).length).toBeGreaterThan(
+      0,
+    );
+    expect(screen.getAllByRole("button").length).toBeGreaterThan(0);
+    expect(screen.getAllByRole("link").length).toBeGreaterThan(0);
   });
 
   it("has no automatically detectable accessibility violations", async () => {

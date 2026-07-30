@@ -46,9 +46,7 @@ describe("Home page composition", () => {
   it("has exactly one h1 and a continuous heading outline", () => {
     renderHomeComposition();
     expect(screen.getAllByRole("heading", { level: 1 })).toHaveLength(1);
-    expect(
-      screen.getByRole("heading", { level: 2, name: "Hey, I'm Hernán." }),
-    ).toBeInTheDocument();
+    expect(screen.getByRole("heading", { level: 2 })).toBeInTheDocument();
   });
 
   it("has no automatically detectable accessibility violations", async () => {

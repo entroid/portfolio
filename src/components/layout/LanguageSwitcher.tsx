@@ -32,6 +32,7 @@ export function LanguageSwitcher({ className }: { className?: string }) {
           )}
           <button
             type="button"
+            data-testid={`locale-${loc}`}
             aria-current={loc === locale ? "true" : undefined}
             onClick={() => router.replace(pathname, { locale: loc })}
             className={cn(
