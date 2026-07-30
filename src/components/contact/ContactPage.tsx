@@ -1,11 +1,11 @@
 import { useTranslations } from "next-intl";
 import { Section } from "@/components/ui/Section";
 import { Container } from "@/components/ui/Container";
-import { Eyebrow } from "@/components/ui/Eyebrow";
 import { BracketLabel } from "@/components/ui/BracketLabel";
 import { Reveal } from "@/components/ui/Reveal";
 import { siteLinks } from "@/lib/site-links";
 import { ContactForm } from "./ContactForm";
+import { GridOverlay } from "@/components/ui/GridOverlay";
 
 const directLinkClassName =
   "group inline-flex items-center font-mono text-label uppercase tracking-label text-muted transition-colors duration-150 hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg";
@@ -17,7 +17,8 @@ export function ContactPage() {
   return (
     <Section id="contact">
       <Container className="max-w-[720px]">
-        <Eyebrow>{t("eyebrow")}</Eyebrow>
+        <GridOverlay className="opacity-40 [mask-image:linear-gradient(to_bottom,black,transparent)]" />
+
         <h1 className="mt-4 text-h1 font-mono font-extrabold tracking-h1 text-fg md:text-h1-desktop">
           {t("title")}
         </h1>

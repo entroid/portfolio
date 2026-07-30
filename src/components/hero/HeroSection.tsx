@@ -22,7 +22,7 @@ export function HeroSection() {
     <section id="hero" className="relative overflow-hidden py-24 md:py-32">
       <Grain />
       <HeroBackgroundVideo />
-      <GridOverlay className="opacity-30" color2="rgba(255, 255, 255, 0.86)" />
+      <GridOverlay className="opacity-40 [mask-image:linear-gradient(to_bottom,black,transparent)]" />
 
       <div className="relative mx-auto grid w-full max-w-[1280px] items-center gap-12 px-4 md:grid-cols-2 md:px-8">
         <div>

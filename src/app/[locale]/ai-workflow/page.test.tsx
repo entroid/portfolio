@@ -1,11 +1,12 @@
 import { describe, expect, it } from "vitest";
-import { render, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 import { axe } from "jest-axe";
-import { AiWorkflowContent } from "./page";
+import { renderWithIntl } from "@/test/renderWithIntl";
+import { AiWorkflowContent } from "./AiWorkflowContent";
 
 describe("AiWorkflowContent", () => {
   it("renders the title, intro, and closing line", () => {
-    render(<AiWorkflowContent />);
+    renderWithIntl(<AiWorkflowContent />, { locale: "en" });
 
     expect(screen.getByRole("heading", { level: 1 })).toBeInTheDocument();
     expect(screen.getByTestId("ai-workflow-title")).toBeInTheDocument();
@@ -14,7 +15,7 @@ describe("AiWorkflowContent", () => {
   });
 
   it("renders the seven steps as a real ordered list", () => {
-    render(<AiWorkflowContent />);
+    renderWithIntl(<AiWorkflowContent />, { locale: "en" });
 
     const list = screen.getByRole("list");
     expect(list.tagName).toBe("OL");
@@ -22,14 +23,16 @@ describe("AiWorkflowContent", () => {
   });
 
   it("renders the team callout as a heading + paragraph", () => {
-    render(<AiWorkflowContent />);
+    renderWithIntl(<AiWorkflowContent />, { locale: "en" });
 
     expect(screen.getByTestId("ai-workflow-team-heading")).toBeInTheDocument();
     expect(screen.getByRole("heading", { level: 2 })).toBeInTheDocument();
   });
 
   it("has no automatically detectable accessibility violations", async () => {
-    const { container } = render(<AiWorkflowContent />);
+    const { container } = renderWithIntl(<AiWorkflowContent />, {
+      locale: "en",
+    });
     expect(await axe(container)).toHaveNoViolations();
   });
 });

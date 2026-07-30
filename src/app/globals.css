@@ -94,3 +94,47 @@ body {
     var(--color-accent-2)
   );
 }
+
+/*
+ * Grid overlay opacity animation — smooth pulse from 100% to 70% and back,
+ * 3 second duration, infinite loop.
+ */
+@keyframes gridPulse {
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.2;
+  }
+}
+
+.grid-overlay {
+  animation: gridPulse 3s ease-in-out infinite;
+}
+
+/*
+ * Grid shadow sweep animation — circular gradient shadow sweep every 6 seconds
+ */
+@keyframes gridShadowSweep {
+  0% {
+    background-position: -150% -150%;
+  }
+  100% {
+    background-position: 150% 150%;
+  }
+}
+
+.grid-shadow-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at center,
+    rgba(10, 10, 12, 0.8) 0%,
+    rgba(10, 10, 12, 0.6) 20%,
+    transparent 40%
+  );
+  background-size: 200% 200%;
+  animation: gridShadowSweep 5s linear infinite;
+  pointer-events: none;
+}

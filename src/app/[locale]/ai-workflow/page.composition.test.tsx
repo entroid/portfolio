@@ -4,7 +4,7 @@ import { axe } from "jest-axe";
 import { renderWithIntl } from "@/test/renderWithIntl";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
-import { AiWorkflowContent } from "./page";
+import { AiWorkflowContent } from "./AiWorkflowContent";
 
 vi.mock("next/navigation", async (importActual) => ({
   ...(await importActual<typeof import("next/navigation")>()),
@@ -35,6 +35,7 @@ function renderAiWorkflowComposition() {
       </main>
       <Footer />
     </>,
+    { locale: "en" },
   );
 }
 

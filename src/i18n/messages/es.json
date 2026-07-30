@@ -88,5 +88,48 @@
     "direct": {
       "title": "O contactame directamente"
     }
+  },
+  "aiWorkflow": {
+    "meta": {
+      "title": "Flujo Asistido por IA",
+      "description": "Cómo el proceso de diseño y desarrollo de Hernán Ainsa está construido alrededor de la IA — desde el descubrimiento hasta la interfaz entregada."
+    },
+    "title": "Flujo Asistido por IA",
+    "intro": "No solo uso IA para diseñar más rápido — construí un proceso alrededor de ella, que sigo refinando. Así es como un proyecto realmente pasa por mis manos, desde una idea rudimentaria hasta una interfaz entregada.",
+    "steps": [
+      {
+        "lead": "Descubrimiento — liderado por humanos.",
+        "body": "Empiezo donde la IA no puede: hablando con stakeholders y usuarios, mirando competidores y el mercado, entendiendo realmente el problema. Sin marcos rígidos — lo mantengo flexible y sigo lo que cada proyecto realmente necesita."
+      },
+      {
+        "lead": "Brief y dirección.",
+        "body": "Convierto eso en un brief funcional escrito y una dirección visual — referencias, mood, restricciones. Esto es lo que evita que todo lo que siga se vuelva genérico."
+      },
+      {
+        "lead": "Sistema de diseño y concepto — Claude Design.",
+        "body": "Con el brief como contexto, genero un primer sistema de diseño y concepto visual. Lo reviso, mantengo lo que funciona, rehago lo que no."
+      },
+      {
+        "lead": "Plan técnico — Claude Code.",
+        "body": "Una vez que la dirección se sostiene, me muevo a Claude Code para definir el stack técnico, la arquitectura y un plan de construcción por etapas. La IA lo redacta, yo lo apruebo."
+      },
+      {
+        "lead": "Construcción.",
+        "body": "La ejecución sucede en etapas, checkpoint por checkpoint. Resultado: una primera versión funcional, no un mockup."
+      },
+      {
+        "lead": "Iterar.",
+        "body": "Lo pruebo, encuentro lo que está mal, y vuelvo a lo que lo necesite — diseño, plan o código."
+      },
+      {
+        "lead": "Volver a Figma.",
+        "body": "Una vez que la construcción se asienta, sincronizo el sistema de diseño de vuelta a Figma vía MCP — para que pueda seguir moviéndose entre Figma y código a medida que el producto crece, no quedarse congelado después de la v1."
+      }
+    ],
+    "closing": "En cada paso, soy yo quien decide qué y cómo avanza. La IA hace el trabajo pesado — no la dirección.",
+    "team": {
+      "heading": "¿Cómo encaja esto en un equipo?",
+      "body": "Quitá las herramientas específicas y lo que queda es solo buen proceso: un brief escrito antes de construir algo, un sistema de diseño como única fuente de verdad, un checkpoint de revisión entre cada etapa. Esto funciona tanto si soy yo y Claude, como un equipo completo en Figma y Jira sin IA involucrada. Las herramientas cambian. La disciplina no."
+    }
   }
 }

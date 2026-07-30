@@ -29,8 +29,8 @@ function buildGridTileSvg(color: string, color2: string) {
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${CELL}" height="${CELL}" viewBox="0 0 ${CELL} ${CELL}">
   <line x1="0" y1="${CELL / 2}" x2="${CELL}" y2="${CELL / 2}" stroke="${color}" stroke-width="1" stroke-dasharray="2 3" stroke-linecap="round" />
   <line x1="${CELL / 2}" y1="0" x2="${CELL / 2}" y2="${CELL}" stroke="${color}" stroke-width="1" stroke-dasharray="2 3" stroke-linecap="round" />
-  <line x1="${CELL / 2 - 4}" y1="${CELL / 2}" x2="${CELL / 2 + 4}" y2="${CELL / 2}" stroke="${color2}" stroke-width="1.5" stroke-linecap="round" />
-  <line x1="${CELL / 2}" y1="${CELL / 2 - 4}" x2="${CELL / 2}" y2="${CELL / 2 + 4}" stroke="${color2}" stroke-width="1.5" stroke-linecap="round" />
+  <line x1="${CELL / 2 - 4}" y1="${CELL / 2}" x2="${CELL / 2 + 4}" y2="${CELL / 2}" stroke="${color2}" stroke-width="3" stroke-linecap="round" />
+  <line x1="${CELL / 2}" y1="${CELL / 2 - 4}" x2="${CELL / 2}" y2="${CELL / 2 + 4}" stroke="${color2}" stroke-width="3" stroke-linecap="round" />
 </svg>`;
 }
 
@@ -64,6 +64,8 @@ export function GridOverlay({
       )}
       style={{ ...buildGridStyle(color, color2), ...style }}
       {...rest}
-    />
+    >
+      <div className="grid-shadow-overlay" />
+    </div>
   );
 }
