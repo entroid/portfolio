@@ -12,7 +12,7 @@ export function Crosshair({ className, ...rest }: CrosshairProps) {
       fill="none"
       stroke="currentColor"
       strokeWidth={1}
-      className={cn("h-4 w-4 text-grid-border", className)}
+      className={cn("crosshair", "h-4 w-4 text-grid-border", className)}
       {...rest}
     >
       <line x1="12" y1="0" x2="12" y2="9" />

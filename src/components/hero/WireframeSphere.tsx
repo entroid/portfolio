@@ -67,6 +67,7 @@ export function WireframeSphere() {
 
   return (
     <Canvas
+      id="wireframe-sphere"
       camera={{ position: [0, 0, 4], fov: 50 }}
       dpr={[1, 2]}
       frameloop={reducedMotion ? "demand" : "always"}

@@ -19,7 +19,7 @@ export function HeroSection() {
   const t = useTranslations("home.hero");
 
   return (
-    <section className="relative overflow-hidden py-24 md:py-32">
+    <section id="hero" className="relative overflow-hidden py-24 md:py-32">
       <Grain />
       <HeroBackgroundVideo />
       <GridOverlay className="opacity-30" color2="rgba(255, 255, 255, 0.86)" />
@@ -35,7 +35,10 @@ export function HeroSection() {
           </p>
           <Link
             href="/work"
-            className={cn(buttonClassName.primary, "mt-8 inline-flex")}
+            className={cn(
+              buttonClassName.primary,
+              "mt-8 inline-flex text-cta-main",
+            )}
           >
             {t("cta")}
           </Link>

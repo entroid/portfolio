@@ -14,7 +14,7 @@ export function AboutSection() {
   const skills = t.raw("skills") as string[];
 
   return (
-    <Section>
+    <Section id="about">
       <Container className="max-w-[720px]">
         <Reveal>
           <h2 className="text-h2 font-mono font-extrabold tracking-h1 text-fg md:text-h2-desktop">

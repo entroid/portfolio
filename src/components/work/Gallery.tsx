@@ -14,7 +14,7 @@ export function Gallery({ images, title }: GalleryProps) {
   if (images.length === 0) return null;
 
   return (
-    <div className="mt-12">
+    <div id="gallery" className="mt-12">
       <h2 className="mt-12 mb-4 text-h3 font-medium first:mt-0 md:text-h2-desktop">
         {title}
       </h2>

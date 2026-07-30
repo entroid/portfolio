@@ -23,7 +23,7 @@ export function WorkIndex({ projects }: WorkIndexProps) {
   const other = projects.filter((p) => p.meta.depth === "other");
 
   return (
-    <Section className="relative overflow-hidden">
+    <Section id="work-index" className="relative overflow-hidden">
       <GridOverlay className="opacity-40 [mask-image:linear-gradient(to_bottom,black,transparent)]" />
       <Crosshair className="absolute top-8 right-8 h-6 w-6" />
 

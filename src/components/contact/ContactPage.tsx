@@ -15,7 +15,7 @@ export function ContactPage() {
   const tFooter = useTranslations("footer");
 
   return (
-    <Section>
+    <Section id="contact">
       <Container className="max-w-[720px]">
         <Eyebrow>{t("eyebrow")}</Eyebrow>
         <h1 className="mt-4 text-h1 font-mono font-extrabold tracking-h1 text-fg md:text-h1-desktop">

@@ -14,6 +14,7 @@ export function WireframeSphereFallback({
 }: WireframeSphereFallbackProps) {
   return (
     <svg
+      id="wireframe-sphere-fallback"
       aria-hidden="true"
       viewBox="0 0 320 320"
       fill="none"

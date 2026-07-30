@@ -25,6 +25,7 @@ export function HeroBackgroundVideo() {
 
   return (
     <video
+      id="hero-background-video"
       ref={videoRef}
       aria-hidden="true"
       className="absolute inset-0 h-full w-full object-cover opacity-70"

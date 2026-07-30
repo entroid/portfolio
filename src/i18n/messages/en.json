@@ -19,7 +19,11 @@
     "menuOpen": "Open menu",
     "menuClose": "Close menu",
     "cv": "CV",
-    "language": "Language"
+    "cvEnglish": "English",
+    "cvSpanish": "Spanish",
+    "language": "Language",
+    "linkedin": "LinkedIn",
+    "github": "GitHub"
   },
   "footer": {
     "email": "Email",
@@ -36,7 +40,7 @@
     },
     "about": {
       "title": "Hey, I'm Hernán.",
-      "bio": "Half designer, half developer. I design interfaces in Figma, then build them myself. Been doing this for 15+ years, based in Rosario, Argentina, and currently looking to join a full-time team.",
+      "bio": "60% designer, 40% developer. I design interfaces in Figma, then build them myself. Been doing this for 15+ years, based in Rosario, Argentina, and currently looking to join a full-time team.",
       "skills": [
         "UX/UI Design",
         "Front-End Development",

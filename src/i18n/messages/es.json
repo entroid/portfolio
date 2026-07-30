@@ -19,7 +19,11 @@
     "menuOpen": "Abrir menú",
     "menuClose": "Cerrar menú",
     "cv": "CV",
-    "language": "Idioma"
+    "cvEnglish": "Inglés",
+    "cvSpanish": "Español",
+    "language": "Idioma",
+    "linkedin": "LinkedIn",
+    "github": "GitHub"
   },
   "footer": {
     "email": "Email",
@@ -31,12 +35,12 @@
     "hero": {
       "eyebrow": "DISEÑO UX/UI · DESARROLLO UI",
       "headline": "DISEÑO Y CÓDIGO",
-      "subtext": "Donde el diseño y el código realmente se encuentran.",
+      "subtext": "Donde el diseño y el desarrollo realmente se encuentran.",
       "cta": "[ Casos de Estudio y Trabajo ]"
     },
     "about": {
       "title": "Hola, soy Hernán.",
-      "bio": "Mitad diseñador, mitad desarrollador. Diseño interfaces en Figma y luego las construyo yo mismo. Llevo más de 15 años haciendo esto, vivo en Rosario, Argentina, y actualmente estoy buscando sumarme a un equipo a tiempo completo.",
+      "bio": "60% diseñador, 40% desarrollador. Diseño interfaces en Figma y luego las construyo yo mismo. Llevo más de 15 años haciendo esto, vivo en Rosario, Argentina, y actualmente estoy buscando sumarme a un equipo a tiempo completo.",
       "skills": [
         "Diseño UX/UI",
         "Desarrollo Front-End",

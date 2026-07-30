@@ -6,8 +6,11 @@
  */
 export const siteLinks = {
   email: "hello@example.com",
-  linkedin: "https://www.linkedin.com/in/hernan-ainsa",
-  whatsapp: "https://wa.me/00000000000",
-  github: "https://github.com/hernan-ainsa",
-  cvPath: "/cv/hernan-ainsa-cv.pdf",
+  linkedin: "https://www.linkedin.com/in/hainsa/",
+  whatsapp: "https://wa.me/5493417211814?text=Hey%20Hernan!",
+  github: "https://github.com/entroid",
+  // `cvPathEs` has no file behind it yet — Hernán needs to supply the
+  // Spanish CV and drop it in `public/cv/` under this exact name.
+  cvPathEn: "/cv/hernan-ainsa-cv.pdf",
+  cvPathEs: "/cv/hernan-ainsa-cv-es.pdf",
 } as const;

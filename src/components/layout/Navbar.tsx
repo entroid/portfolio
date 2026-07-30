@@ -3,25 +3,34 @@
 import { useState } from "react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import { Download, ExternalLink, Menu, X } from "lucide-react";
+import { ChevronDown, Download, Menu, X } from "lucide-react";
 import { Link, usePathname } from "@/i18n/navigation";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { BracketLabel } from "@/components/ui/BracketLabel";
+import { LinkedinIcon } from "@/components/ui/LinkedinIcon";
+import { GithubIcon } from "@/components/ui/GithubIcon";
 import { siteLinks } from "@/lib/site-links";
 import { cn } from "@/lib/cn";
 
 const navItems = [
-  { href: "/", key: "start" },
   { href: "/work", key: "work" },
   { href: "/ai-workflow", key: "aiWorkflow" },
   { href: "/contact", key: "contact" },
 ] as const;
 
+const cvLinks = [
+  { href: siteLinks.cvPathEn, labelKey: "cvEnglish" },
+  { href: siteLinks.cvPathEs, labelKey: "cvSpanish" },
+] as const;
+
 const navLinkClass =
-  "group inline-flex items-center font-mono text-label uppercase tracking-label transition-colors duration-150 hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg";
+  "group inline-flex items-center font-mono text-cta uppercase tracking-cta transition-colors duration-150 hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg";
 
 const externalLinkClass =
-  "inline-flex items-center gap-1 font-mono text-label uppercase tracking-label text-muted transition-colors duration-150 hover:text-fg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg";
+  "inline-flex text-cta items-center gap-1 font-mono  uppercase tracking-label text-muted transition-colors duration-150 hover:text-fg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg";
+
+const socialIconLinkClass =
+  "inline-flex items-center text-muted transition-colors duration-150 hover:text-fg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg";
 
 export function Navbar() {
   const t = useTranslations("nav");
@@ -29,7 +38,10 @@ export function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-grid-border bg-bg/95 backdrop-blur">
+    <header
+      id="navbar"
+      className="sticky top-0 z-50 border-b border-grid-border bg-bg/95 backdrop-blur"
+    >
       <div className="mx-auto flex w-full max-w-[1280px] items-center justify-between px-4 py-4 md:px-8">
         <Link
           href="/"
@@ -49,7 +61,7 @@ export function Navbar() {
 
         <nav
           aria-label={t("start")}
-          className="hidden items-center gap-6 lg:flex"
+          className="hidden items-center gap-4 lg:flex"
         >
           {navItems.map((item) => {
             const active = pathname === item.href;
@@ -58,7 +70,10 @@ export function Navbar() {
                 key={item.href}
                 href={item.href}
                 aria-current={active ? "page" : undefined}
-                className={cn(navLinkClass, active ? "text-accent" : "text-fg")}
+                className={cn(
+                  navLinkClass,
+                  active ? "text-accent cursor-default" : "text-muted",
+                )}
               >
                 <BracketLabel>{t(item.key)}</BracketLabel>
               </Link>
@@ -66,29 +81,50 @@ export function Navbar() {
           })}
         </nav>
 
-        <div className="hidden items-center gap-5 lg:flex">
+        <div className="hidden items-center gap-4 lg:flex">
           <a
             href={siteLinks.linkedin}
             target="_blank"
             rel="noreferrer"
-            className={externalLinkClass}
+            aria-label={t("linkedin")}
+            className={socialIconLinkClass}
           >
-            LinkedIn
-            <ExternalLink aria-hidden="true" size={12} />
+            <LinkedinIcon />
           </a>
           <a
             href={siteLinks.github}
             target="_blank"
             rel="noreferrer"
-            className={externalLinkClass}
+            aria-label={t("github")}
+            className={socialIconLinkClass}
           >
-            GitHub
-            <ExternalLink aria-hidden="true" size={12} />
+            <GithubIcon />
           </a>
-          <a href={siteLinks.cvPath} download className={externalLinkClass}>
-            {t("cv")}
-            <Download aria-hidden="true" size={12} />
-          </a>
+          <div className="group relative">
+            <button type="button" className={externalLinkClass}>
+              {t("cv")}
+              <ChevronDown aria-hidden="true" size={12} />
+            </button>
+
+            <div
+              role="menu"
+              aria-label={t("cv")}
+              className="absolute top-full right-0 z-10 flex min-w-[140px] flex-col border border-grid-border bg-bg py-1 opacity-0 pointer-events-none transition-opacity duration-150 group-hover:opacity-100 group-hover:pointer-events-auto group-focus-within:opacity-100 group-focus-within:pointer-events-auto"
+            >
+              {cvLinks.map((cv) => (
+                <a
+                  key={cv.href}
+                  role="menuitem"
+                  href={cv.href}
+                  download
+                  className="flex items-center justify-between gap-4 px-3 py-2 font-mono text-label uppercase tracking-label text-muted transition-colors duration-150 hover:bg-surface hover:text-fg focus-visible:bg-surface focus-visible:text-fg focus-visible:outline-none"
+                >
+                  {t(cv.labelKey)}
+                  <Download aria-hidden="true" size={12} />
+                </a>
+              ))}
+            </div>
+          </div>
           <LanguageSwitcher />
         </div>
 
@@ -117,7 +153,10 @@ export function Navbar() {
                 key={item.href}
                 href={item.href}
                 aria-current={active ? "page" : undefined}
-                className={cn(navLinkClass, active ? "text-accent" : "text-fg")}
+                className={cn(
+                  navLinkClass,
+                  active ? "text-accent cursor-default" : "text-muted",
+                )}
                 onClick={() => setMenuOpen(false)}
               >
                 <BracketLabel>{t(item.key)}</BracketLabel>
@@ -129,24 +168,31 @@ export function Navbar() {
               href={siteLinks.linkedin}
               target="_blank"
               rel="noreferrer"
-              className={externalLinkClass}
+              aria-label={t("linkedin")}
+              className={socialIconLinkClass}
             >
-              LinkedIn
-              <ExternalLink aria-hidden="true" size={12} />
+              <LinkedinIcon />
             </a>
             <a
               href={siteLinks.github}
               target="_blank"
               rel="noreferrer"
-              className={externalLinkClass}
+              aria-label={t("github")}
+              className={socialIconLinkClass}
             >
-              GitHub
-              <ExternalLink aria-hidden="true" size={12} />
+              <GithubIcon />
             </a>
-            <a href={siteLinks.cvPath} download className={externalLinkClass}>
-              {t("cv")}
-              <Download aria-hidden="true" size={12} />
-            </a>
+            {cvLinks.map((cv) => (
+              <a
+                key={cv.href}
+                href={cv.href}
+                download
+                className={externalLinkClass}
+              >
+                {t("cv")} ({t(cv.labelKey)})
+                <Download aria-hidden="true" size={12} />
+              </a>
+            ))}
           </div>
           <LanguageSwitcher className="pt-2" />
         </nav>

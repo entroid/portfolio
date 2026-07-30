@@ -3,6 +3,7 @@
 import type { ReactNode } from "react";
 import { motion } from "motion/react";
 import { useReducedMotion } from "@/lib/useReducedMotion";
+import { cn } from "@/lib/cn";
 
 export type RevealProps = {
   children: ReactNode;
@@ -22,12 +23,12 @@ export function Reveal({ children, className, delay = 0 }: RevealProps) {
   const reducedMotion = useReducedMotion();
 
   if (reducedMotion) {
-    return <div className={className}>{children}</div>;
+    return <div className={cn("reveal", className)}>{children}</div>;
   }
 
   return (
     <motion.div
-      className={className}
+      className={cn("reveal", className)}
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}

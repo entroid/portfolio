@@ -26,6 +26,7 @@ export function Eyebrow({
     Tag,
     {
       className: cn(
+        "eyebrow",
         "font-mono text-eyebrow uppercase tracking-eyebrow text-muted md:text-eyebrow-desktop",
         className,
       ),

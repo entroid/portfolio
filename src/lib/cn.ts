@@ -28,6 +28,7 @@ const customTwMerge = extendTailwindMerge({
             "h1-desktop",
             "cta",
             "cta-desktop",
+            "cta-main",
           ],
         },
       ],

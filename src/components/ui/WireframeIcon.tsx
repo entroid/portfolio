@@ -16,7 +16,7 @@ export function WireframeIcon({ className, ...rest }: WireframeIconProps) {
       fill="none"
       stroke="currentColor"
       strokeWidth={1}
-      className={cn("h-6 w-6 text-accent", className)}
+      className={cn("wireframe-icon", "h-6 w-6 text-accent", className)}
       {...rest}
     >
       <circle cx="12" cy="12" r="10" />

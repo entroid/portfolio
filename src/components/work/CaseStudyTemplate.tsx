@@ -19,7 +19,7 @@ export function CaseStudyTemplate({ project }: CaseStudyTemplateProps) {
   const { meta, frontmatter, content } = project;
 
   return (
-    <Section>
+    <Section id="case-study">
       <Container className="max-w-[720px]">
         <h1 className="text-h1 font-mono font-extrabold tracking-h1 text-fg md:text-h1-desktop">
           {frontmatter.title}

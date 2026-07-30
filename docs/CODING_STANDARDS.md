@@ -16,6 +16,28 @@ reads as one consistent codebase.
 - Prefer server components by default; add `"use client"` only where
   interactivity/browser APIs actually require it (form, hero sphere,
   language switcher, anything using Motion hooks).
+- **Every component/section wrapper gets an `id`.** The outermost element a
+  component renders (a page section, a major layout block, a standalone
+  component's root) must carry a unique, kebab-case `id` describing what it
+  is (`id="hero"`, `id="case-study-card"`, `id="contact-form"`), so any part
+  of the app can be linked to or targeted directly (`#id`) without hunting
+  through markup. Applies to new components and new sections in existing
+  pages alike — not a follow-up, part of the commit that introduces them.
+  Skip only genuinely repeated leaf instances inside a `.map()` (e.g. each
+  card in a grid) where a static id would collide — the wrapping list/section
+  still needs one.
+- **Reusable primitives that render multiple times per page get a reference
+  class instead of an id** (same kebab-case, referential naming — e.g.
+  `Button` → `"button"`, `Reveal` → `"reveal"`, `MonoLabel` →
+  `"mono-label"`). This covers exactly the case above: an `id` must be
+  unique per page, a class doesn't have to be, so components like
+  `CaseStudyCard` rendered in a `.map()` carry a class (`case-study-card`)
+  even though they can't carry a static id. Add the class first in the `cn(...)`
+  call so consumer-supplied `className` still wins on any conflicting utility.
+  Avoid literal Tailwind-reserved utility names (e.g. `container`) as a
+  reference class — pick a differentiated name (`content-container`) instead,
+  since `tailwind-merge` treats it as a real utility class and it can
+  silently fight with the component's own layout classes.
 
 ## TypeScript
 
@@ -107,6 +129,7 @@ list in IMPLEMENTATION_PLAN.md)
 
 - [ ] `pnpm lint && pnpm typecheck && pnpm test && pnpm build` all pass
 - [ ] New components have colocated tests, including an axe check
+- [ ] Every new component/section wrapper has a unique `id`
 - [ ] No hardcoded design values outside the token set
 - [ ] Keyboard/reduced-motion/alt-text checked by hand, not just assumed
 - [ ] Both locales verified for any new user-facing copy (except

@@ -13,7 +13,7 @@ const bracket =
  */
 export function BracketLabel({ children }: { children: ReactNode }) {
   return (
-    <>
+    <span className="bracket-label">
       <span aria-hidden="true" className={cn(bracket, "-translate-x-1")}>
         [
       </span>
@@ -21,6 +21,6 @@ export function BracketLabel({ children }: { children: ReactNode }) {
       <span aria-hidden="true" className={cn(bracket, "translate-x-1")}>
         ]
       </span>
-    </>
+    </span>
   );
 }

@@ -27,7 +27,7 @@ export function Barcode({ className, ...rest }: BarcodeProps) {
       aria-hidden="true"
       viewBox={`0 0 ${TOTAL_WIDTH} 16`}
       fill="currentColor"
-      className={cn("h-4 text-fg", className)}
+      className={cn("barcode", "h-4 text-fg", className)}
       {...rest}
     >
       {BARS.map((bar, index) => (

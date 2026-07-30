@@ -57,7 +57,11 @@ export function GridOverlay({
   return (
     <div
       aria-hidden="true"
-      className={cn("pointer-events-none absolute inset-0", className)}
+      className={cn(
+        "grid-overlay",
+        "pointer-events-none absolute inset-0",
+        className,
+      )}
       style={{ ...buildGridStyle(color, color2), ...style }}
       {...rest}
     />

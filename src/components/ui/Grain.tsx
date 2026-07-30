@@ -19,6 +19,7 @@ export function Grain({ className }: GrainProps) {
     <div
       aria-hidden="true"
       className={cn(
+        "grain",
         "pointer-events-none absolute inset-0 opacity-5 mix-blend-overlay",
         className,
       )}

@@ -10,7 +10,10 @@ export function Footer() {
   const t = useTranslations("footer");
 
   return (
-    <footer className="relative overflow-hidden border-t border-grid-border">
+    <footer
+      id="footer"
+      className="relative overflow-hidden border-t border-grid-border"
+    >
       <Grain />
       <div className="relative mx-auto flex w-full max-w-[1280px] flex-col gap-4 px-4 py-10 md:flex-row md:items-center md:justify-between md:px-8">
         <nav

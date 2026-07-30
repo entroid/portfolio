@@ -70,7 +70,7 @@ export function generateStaticParams() {
  */
 export function AiWorkflowContent() {
   return (
-    <Section>
+    <Section id="ai-workflow">
       <Container className="max-w-[840px]">
         <h1 className="text-h2 font-mono font-extrabold tracking-h1 text-fg md:text-h2-desktop">
           AI-Assisted Workflow

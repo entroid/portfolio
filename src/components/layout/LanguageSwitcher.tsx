@@ -18,6 +18,7 @@ export function LanguageSwitcher({ className }: { className?: string }) {
 
   return (
     <div
+      id="language-switcher"
       role="group"
       aria-label={t("language")}
       className={cn("flex items-center gap-1 font-mono text-label", className)}
@@ -35,7 +36,9 @@ export function LanguageSwitcher({ className }: { className?: string }) {
             onClick={() => router.replace(pathname, { locale: loc })}
             className={cn(
               "uppercase tracking-label transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg",
-              loc === locale ? "text-accent" : "text-muted hover:text-fg",
+              loc === locale
+                ? "text-accent"
+                : "text-muted hover:text-fg cursor-pointer",
             )}
           >
             {localeLabel[loc]}

@@ -29,14 +29,13 @@ describe("Navbar", () => {
     // aria-hidden — strip them before comparing labels.
     expect(
       Array.from(links).map((link) => link.textContent?.replace(/[[\]]/g, "")),
-    ).toEqual(["Start", "Work", "AI Workflow", "Contact"]);
-    expect(links[0]).toHaveAttribute("href", "/en");
-    expect(links[1]).toHaveAttribute("href", "/en/work");
-    expect(links[2]).toHaveAttribute("href", "/en/ai-workflow");
-    expect(links[3]).toHaveAttribute("href", "/en/contact");
+    ).toEqual(["Work", "AI Workflow", "Contact"]);
+    expect(links[0]).toHaveAttribute("href", "/en/work");
+    expect(links[1]).toHaveAttribute("href", "/en/ai-workflow");
+    expect(links[2]).toHaveAttribute("href", "/en/contact");
   });
 
-  it("exposes LinkedIn, GitHub, and CV download links", () => {
+  it("exposes LinkedIn and GitHub links", () => {
     renderWithIntl(<Navbar />);
     expect(
       screen.getAllByRole("link", { name: /linkedin/i })[0],
@@ -45,9 +44,19 @@ describe("Navbar", () => {
       "target",
       "_blank",
     );
-    const cvLink = screen.getAllByRole("link", { name: /cv/i })[0];
-    expect(cvLink).toHaveAttribute("href", "/cv/hernan-ainsa-cv.pdf");
-    expect(cvLink).toHaveAttribute("download");
+  });
+
+  it("exposes an English/Spanish CV download menu", () => {
+    renderWithIntl(<Navbar />);
+    expect(
+      screen.getAllByRole("button", { name: /^cv$/i })[0],
+    ).toBeInTheDocument();
+    const englishCv = screen.getAllByRole("menuitem", { name: /english/i })[0];
+    expect(englishCv).toHaveAttribute("href", "/cv/hernan-ainsa-cv.pdf");
+    expect(englishCv).toHaveAttribute("download");
+    const spanishCv = screen.getAllByRole("menuitem", { name: /spanish/i })[0];
+    expect(spanishCv).toHaveAttribute("href", "/cv/hernan-ainsa-cv-es.pdf");
+    expect(spanishCv).toHaveAttribute("download");
   });
 
   it("toggles the mobile menu via keyboard", async () => {

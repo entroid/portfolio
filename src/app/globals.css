@@ -11,7 +11,7 @@
   --color-fg: #f2f2f0;
   --color-muted: #8c8c88;
   --color-grid-border: rgba(255, 255, 255, 0.07);
-  --color-accent: #fc3e8a;
+  --color-accent: #9eff3d;
   --color-accent-2: #473ad8;
   --color-accent-alt-1: #d4ff00;
   --color-accent-alt-2: #c6ff3d;
@@ -36,6 +36,7 @@
   --text-label-desktop: 0.75rem;
   --text-cta: 0.8125rem;
   --text-cta-desktop: 0.9rem;
+  --text-cta-main: 1rem;
   --text-eyebrow: 0.75rem;
   --text-eyebrow-desktop: 0.8125rem;
   --text-body: 1rem;

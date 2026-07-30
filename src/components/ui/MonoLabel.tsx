@@ -13,6 +13,7 @@ export function MonoLabel({ className, children, ...rest }: MonoLabelProps) {
     <span
       aria-hidden="true"
       className={cn(
+        "mono-label",
         "font-mono text-label tracking-label text-muted md:text-label-desktop",
         className,
       )}

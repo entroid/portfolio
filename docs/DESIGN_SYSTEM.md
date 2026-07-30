@@ -66,14 +66,16 @@ and mapped in Tailwind's `fontFamily` theme.
 Type scale (rem, mobile → desktop via Tailwind responsive prefixes) —
 kept as an implementation-friendly bridge from the raw px values above:
 
-| Token          | Mobile    | Desktop   | Use                     |
-| -------------- | --------- | --------- | ----------------------- |
-| `text-label`   | 0.6875rem | 0.75rem   | Label/Data (11–12px)    |
-| `text-eyebrow` | 0.75rem   | 0.8125rem | Eyebrow (12–13px)       |
-| `text-body`    | 1rem      | 1.125rem  | Paragraphs (16–18px)    |
-| `text-h3`      | 1.25rem   | 1.5rem    | Card titles             |
-| `text-h2`      | 1.75rem   | 2.5rem    | Section headings        |
-| `text-h1`      | 4.5rem    | 6rem      | Hero headline (72–96px) |
+| Token           | Mobile    | Desktop   | Use                                                            |
+| --------------- | --------- | --------- | -------------------------------------------------------------- |
+| `text-label`    | 0.6875rem | 0.75rem   | Label/Data (11–12px)                                           |
+| `text-eyebrow`  | 0.75rem   | 0.8125rem | Eyebrow (12–13px)                                              |
+| `text-cta`      | 0.8125rem | 0.9rem    | Buttons/nav links (13–14px)                                    |
+| `text-cta-main` | 1rem      | —         | Primary hero/page CTA (16px), overrides `text-cta` on `Button` |
+| `text-body`     | 1rem      | 1.125rem  | Paragraphs (16–18px)                                           |
+| `text-h3`       | 1.25rem   | 1.5rem    | Card titles                                                    |
+| `text-h2`       | 1.75rem   | 2.5rem    | Section headings                                               |
+| `text-h1`       | 4.5rem    | 6rem      | Hero headline (72–96px)                                        |
 
 ## Spacing scale
 
