@@ -2,6 +2,7 @@ import type { ReactElement } from "react";
 import { useTranslations } from "next-intl";
 import { Section } from "@/components/ui/Section";
 import { Container } from "@/components/ui/Container";
+import { GridOverlay } from "@/components/ui/GridOverlay";
 import type { Project } from "@/content/lib";
 import { Gallery } from "./Gallery";
 
@@ -11,16 +12,20 @@ export type CaseStudyTemplateProps = {
 
 /**
  * Full template for `depth: "featured"` projects. Per DESIGN_SYSTEM.md's
- * hierarchy rule, the body itself stays quiet — no grid/crosshair/mono-label
- * decoration here, unlike the /work index.
+ * hierarchy rule, the body itself stays quiet — no crosshair/mono-label
+ * decoration here, unlike the /work index. `GridOverlay` is the one
+ * exception: it fades out via a mask before the body content starts, same
+ * header treatment as hero/contact/ai-workflow.
  */
 export function CaseStudyTemplate({ project }: CaseStudyTemplateProps) {
   const t = useTranslations("work.caseStudy");
   const { meta, frontmatter, content } = project;
 
   return (
-    <Section id="case-study">
-      <Container className="max-w-[720px]">
+    <Section id="case-study" className="relative overflow-hidden">
+      <GridOverlay className="opacity-40 [mask-image:linear-gradient(to_bottom,black,transparent)]" />
+
+      <Container className="relative max-w-[720px] bg-bg">
         <h1
           data-testid="case-study-heading"
           className="text-h1 font-mono font-extrabold tracking-h1 text-fg md:text-h1-desktop"

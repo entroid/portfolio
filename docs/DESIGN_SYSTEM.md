@@ -96,8 +96,10 @@ Confirmed custom scale from the design file — configure as Tailwind's
 | `space-10` | 160px |
 
 Content max-width: `1280px` container, with a visible thin-line grid
-(`--color-grid-border`) as a background decoration in hero/nav/section-ends
-only (per brief's hierarchy rule — not inside case study bodies).
+(`--color-grid-border`) as a background decoration in hero/nav/section-ends,
+and — as of the case study header treatment — the top of case study pages
+too (per brief's hierarchy rule, faded out via a mask before the body text
+starts).
 
 - Section vertical rhythm: generous — `py-24` mobile / `py-32` desktop
   minimum between major sections, consistent with a portfolio that wants
@@ -106,8 +108,9 @@ only (per brief's hierarchy rule — not inside case study bodies).
 ## Recurring motifs (component inventory)
 
 Build each as a small, isolated primitive in `components/ui/`, used
-sparingly (brief: "2-3 per section, never all together", and never inside
-case study bodies):
+sparingly (brief: "2-3 per section, never all together"). `GridOverlay` is
+also used as the muted header decoration on case study pages (see above);
+the rest stay out of case study bodies:
 
 - `GridOverlay` — absolutely-positioned SVG/CSS background of thin lines at
   `--color-grid-border`.

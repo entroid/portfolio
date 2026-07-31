@@ -1,0 +1,77 @@
+---
+title: "Hard Rock — Marketing Planner"
+summary: "Una reconstrucción de sistema de 7 semanas que convirtió planillas de campañas dispersas en un planificador estructurado en el que marketing ops realmente confía."
+role: "UX Engineer — a cargo del diseño de interacción, la arquitectura de información y la entrega front-end de una herramienta interna de planificación de 7 semanas, trabajando directamente sobre una librería de componentes y el handoff del design system."
+context: "El equipo de marketing de Hard Rock gestionaba campañas en distintas propiedades sin una forma centralizada de planificarlas o hacerles seguimiento — las ofertas, jobs y campañas vivían en planillas desconectadas entre sí, por lo que los solapamientos y dependencias perdidas eran comunes. El Marketing Planner necesitaba darle al equipo un solo sistema para estructurar, programar y lanzar campañas, construido sobre una jerarquía de datos (Plan → Jobs → Campaigns → Offering Vars) que debía mantenerse legible en la interfaz incluso al escalar."
+---
+
+## Proceso
+
+La restricción central no era una funcionalidad faltante, sino una estructura
+faltante: los datos de campaña tenían cuatro niveles anidados (Plan, Jobs,
+Campaigns, Offering Vars), y el flujo de trabajo basado en planillas no le
+daba a marketing ops una forma confiable de ver cómo un cambio en un nivel
+repercutía en los demás. De ahí surgieron dos problemas concretos: falta de
+visibilidad centralizada sobre qué estaba programado y cuándo, y una
+jerarquía lo bastante compleja como para que una interfaz ingenua terminara
+trasladando la confusión de la planilla a una herramienta con base de datos,
+en vez de resolverla.
+
+<CaseStudyImage
+  src="/images/work/hardrock-marketing-planner/quick-tour.png"
+  alt="Diagrama de flujo que recorre los pasos centrales del Marketing Planner: crear plan, definir jobs, configurar campañas y establecer variables de oferta"
+/>
+
+Eso redefinió el encargo de "diseñar un formulario" a "diseñar un sistema":
+el calendario, el explorador de jerarquía y el flujo de configuración de
+campañas debían leer y escribir sobre la misma estructura de datos
+subyacente sin exponerle la complejidad cruda del modelo de datos a la
+persona que usaba la herramienta.
+
+## Decisiones
+
+**Simplificar la estructura del sistema.** La jerarquía de cuatro niveles se
+mantuvo en el modelo de datos pero se redujo a tres capas visibles en la
+interfaz — las Offering Vars se muestran en línea, donde se configuran, en
+vez de como un nivel de navegación aparte, eliminando un clic y un cambio de
+contexto de la tarea más repetida.
+
+<CaseStudyImage
+  src="/images/work/hardrock-marketing-planner/key-decisions.png"
+  alt="Comparación lado a lado de las vistas de calendario y configuración de campaña del Marketing Planner, mostrando la navegación de tres capas ya simplificada"
+/>
+
+**Proteger la usabilidad a escala.** A medida que crecía el número de
+campañas simultáneas, las vistas de lista y calendario se diseñaron para
+mantenerse legibles en vez de degradar en un muro de filas — filtrar y
+agrupar por job se trataron como interacciones centrales, no controles
+secundarios, porque eso era lo que mantenía la herramienta usable una vez
+que el volumen real de campañas la puso a prueba.
+
+**Automatizar la configuración y la eficiencia.** Varios campos que antes
+requerían carga manual por campaña (variables de oferta recurrentes,
+ventanas de programación por defecto) se reemplazaron por valores por
+defecto basados en reglas, derivados del job padre, de modo que configurar
+una campaña nueva pasó a ser confirmar valores en vez de escribirlos desde
+cero.
+
+## Notas técnicas
+
+La interfaz se construyó sobre Ant Design como librería base de componentes,
+lo que evitó que el equipo tuviera que resolver de nuevo patrones de
+interacción ya resueltos (tablas, selectores de fecha, validación de
+formularios) y permitió concentrar el esfuerzo de diseño en la complejidad
+real del planificador — la jerarquía y el calendario. Los componentes se
+documentaron en Storybook y se mantuvieron sincronizados con la fuente en
+Figma a través de Zeroheight, de modo que el design system se mantuvo como
+una única fuente de verdad para ambos lados, en vez de desalinearse entre lo
+diseñado y lo entregado.
+
+## Resultados
+
+Cifras reales y medidas — no proyectadas ni inventadas: el tiempo de creación
+de campañas se redujo alrededor de un 30%, la adopción de la herramienta
+creció cerca de un 120% en el primer mes tras el lanzamiento, y el uso
+general siguió creciendo alrededor de un 30% más allá de ese pico inicial, a
+medida que más del equipo de marketing dejaba las planillas y pasaba al
+planificador.

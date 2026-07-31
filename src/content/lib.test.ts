@@ -8,7 +8,10 @@ import {
 
 describe("getAllProjectSlugs", () => {
   it("finds both seed projects", () => {
-    expect(getAllProjectSlugs().sort()).toEqual(["lumen-crm", "signal-desk"]);
+    expect(getAllProjectSlugs().sort()).toEqual([
+      "hardrock-marketing-planner",
+      "lumen-crm",
+    ]);
   });
 });
 
@@ -16,7 +19,7 @@ describe("getAllProjects", () => {
   it("returns featured projects before other, sorted by order within each group", async () => {
     const projects = await getAllProjects("en");
     expect(projects.map((p) => p.meta.slug)).toEqual([
-      "signal-desk",
+      "hardrock-marketing-planner",
       "lumen-crm",
     ]);
     expect(projects[0].meta.depth).toBe("featured");
@@ -35,9 +38,9 @@ describe("getAllProjects", () => {
 
 describe("getProjectBySlug", () => {
   it("returns the featured project with role/context populated", async () => {
-    const project = await getProjectBySlug("signal-desk", "en");
+    const project = await getProjectBySlug("hardrock-marketing-planner", "en");
     expect(project.meta.depth).toBe("featured");
-    expect(project.frontmatter.title).toContain("Signal Desk");
+    expect(project.frontmatter.title).toContain("Hard Rock");
     expect(project.frontmatter.role).toBeTruthy();
     expect(project.frontmatter.context).toBeTruthy();
   });

@@ -1,0 +1,69 @@
+---
+title: "Hard Rock — Marketing Planner"
+summary: "A 7-week system rebuild that turned scattered campaign spreadsheets into a structured planner marketing ops actually trusts."
+role: "UX Engineer — owned interaction design, information architecture, and front-end delivery for a 7-week internal planning tool, working directly against a component library and design-system handoff."
+context: "Hard Rock's marketing team ran campaigns across properties with no centralized way to plan or track them — offers, jobs, and campaigns lived in disconnected spreadsheets, so overlaps and missed dependencies were common. The Marketing Planner needed to give the team one system to structure, schedule, and launch campaigns, built on a data hierarchy (Plan → Jobs → Campaigns → Offering Vars) that had to stay legible in the UI even as it scaled."
+---
+
+## Process
+
+The core constraint wasn't a missing feature, it was a missing structure: campaign
+data had four nested levels (Plan, Jobs, Campaigns, Offering Vars), and the
+existing spreadsheet-based workflow gave marketing ops no reliable way to see
+how a change at one level rippled into the others. Two problems came out of
+that directly: no centralized visibility into what was scheduled when, and a
+hierarchy complex enough that a naive UI would just move the spreadsheet's
+confusion into a database-backed tool instead of fixing it.
+
+<CaseStudyImage
+  src="/images/work/hardrock-marketing-planner/quick-tour.png"
+  alt="Flow diagram walking through the Marketing Planner's core steps: create plan, define jobs, configure campaigns, and set offering variables"
+/>
+
+That reframed the brief from "design a form" to "design a system": the
+calendar, the hierarchy browser, and the campaign-setup flow all had to read
+from and write to the same underlying structure without the UI exposing raw
+data-model complexity to the person using it.
+
+## Decisions
+
+**Simplifying the system structure.** The four-level hierarchy stayed in the
+data model but was collapsed to three visible layers in the interface —
+Offering Vars are surfaced inline where they're configured rather than as a
+separate navigation level, cutting a click and a context switch out of the
+most repeated task.
+
+<CaseStudyImage
+  src="/images/work/hardrock-marketing-planner/key-decisions.png"
+  alt="Side-by-side comparison of the Marketing Planner's calendar and campaign-setup views showing the collapsed three-layer navigation"
+/>
+
+**Protecting usability at scale.** As the number of concurrent campaigns
+grew, list and calendar views were built to stay legible rather than degrade
+into a wall of rows — filtering and grouping by job were treated as core
+interactions, not secondary controls, since that's what kept the tool usable
+once real campaign volume hit it.
+
+**Automating setup & efficiency.** Several fields that used to require
+manual entry per campaign (recurring offer variables, default scheduling
+windows) were replaced with rule-based defaults derived from the parent job,
+so setting up a new campaign meant confirming values instead of typing them
+from scratch.
+
+## Technical notes
+
+The interface was built on Ant Design as the base component library, which
+kept the team from re-solving already-solved interaction patterns (tables,
+date pickers, form validation) and let the design effort concentrate on the
+planner's actual complexity — the hierarchy and the calendar. Components were
+documented in Storybook and kept in sync with the Figma source through
+Zeroheight, so the design system stayed a single source of truth for both
+sides instead of drifting between what was designed and what shipped.
+
+## Results
+
+Real, measured numbers — not projected or invented: campaign creation time
+dropped by roughly 30%, tool adoption grew about 120% in the first month
+after rollout, and overall usage kept growing around 30% beyond that initial
+spike as more of the marketing team moved off spreadsheets and onto the
+planner.
