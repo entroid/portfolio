@@ -38,7 +38,7 @@ export function WorkIndex({ projects }: WorkIndexProps) {
             <h2 className="text-h2 font-mono font-bold text-fg md:text-h2-desktop">
               {t("featuredHeading")}
             </h2>
-            <div className="mt-8 grid gap-8 md:grid-cols-2">
+            <div className="mt-6 grid gap-8 md:grid-cols-2">
               {featured.map((project) => (
                 <CaseStudyCard
                   key={project.meta.slug}
@@ -51,11 +51,11 @@ export function WorkIndex({ projects }: WorkIndexProps) {
         )}
 
         {other.length > 0 && (
-          <Reveal className="mt-20" data-testid="work-other">
+          <Reveal className="mt-28" data-testid="work-other">
             <h2 className="text-h2 font-mono font-bold text-fg md:text-h2-desktop">
               {t("otherHeading")}
             </h2>
-            <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="mt-4 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {other.map((project) => (
                 <CaseStudyCard key={project.meta.slug} project={project} />
               ))}

@@ -29,7 +29,7 @@ export function HeroSection() {
           <Eyebrow>{t("eyebrow")}</Eyebrow>
           <h1
             data-testid="hero-headline"
-            className="mt-4 text-h1 font-mono font-extrabold tracking-h1 text-fg md:text-h1-desktop"
+            className="mt-4 text-hero font-mono font-extrabold tracking-h1 text-fg md:text-hero-desktop leading-hero"
           >
             {t("headline")}
           </h1>

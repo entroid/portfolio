@@ -25,10 +25,10 @@ export function CaseStudyTemplate({ project }: CaseStudyTemplateProps) {
     <Section id="case-study" className="relative overflow-hidden">
       <GridOverlay className="opacity-40 [mask-image:linear-gradient(to_bottom,black,transparent)]" />
 
-      <Container className="relative max-w-[720px] bg-bg">
+      <Container className="relative max-w-[840px] bg-bg">
         <h1
           data-testid="case-study-heading"
-          className="text-h1 font-mono font-extrabold tracking-h1 text-fg md:text-h1-desktop"
+          className="text-h1 font-mono font-extrabold tracking-h1 text-fg md:text-h1-desktop leading-h1"
         >
           {frontmatter.title}
         </h1>
@@ -60,6 +60,24 @@ export function CaseStudyTemplate({ project }: CaseStudyTemplateProps) {
             </dd>
           </div>
         </dl>
+
+        {frontmatter.results && frontmatter.results.length > 0 && (
+          <dl
+            data-testid="case-study-results"
+            className="flex flex-col items-center gap-6 border-b border-grid-border py-6 text-center sm:flex-row sm:justify-center sm:gap-16"
+          >
+            {frontmatter.results.map((result) => (
+              <div key={result.label}>
+                <dt className="font-mono font-extrabold text-accent-2 text-h3-desktop">
+                  {result.value}
+                </dt>
+                <dd className="mt-1 font-mono text-label uppercase tracking-label text-muted">
+                  {result.label}
+                </dd>
+              </div>
+            ))}
+          </dl>
+        )}
 
         <div data-testid="case-study-content" className="mt-8">
           {content}

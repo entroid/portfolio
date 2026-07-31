@@ -7,6 +7,13 @@ export const galleryImageSchema = z.object({
 
 export type GalleryImage = z.infer<typeof galleryImageSchema>;
 
+export const resultSchema = z.object({
+  value: z.string(), // the number/stat itself, e.g. "-30%"
+  label: z.string(), // what it measures, e.g. "campaign creation time"
+});
+
+export type Result = z.infer<typeof resultSchema>;
+
 export const projectMetaSchema = z.object({
   slug: z.string(), // must match folder name — validated in lib.ts
   depth: z.enum(["featured", "other"]),
@@ -24,6 +31,7 @@ export const projectFrontmatterSchema = z.object({
   summary: z.string(), // one-line card summary
   role: z.string().optional(), // omitted for "other" depth
   context: z.string().optional(), // omitted for "other" depth
+  results: z.array(resultSchema).optional(), // real measured numbers only — see CONTENT_MODEL.md
 });
 
 export type ProjectFrontmatter = z.infer<typeof projectFrontmatterSchema>;

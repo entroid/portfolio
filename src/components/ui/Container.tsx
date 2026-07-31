@@ -8,7 +8,7 @@ export function Container({ className, children, ...rest }: ContainerProps) {
     <div
       className={cn(
         "content-container",
-        "mx-auto w-full max-w-[1280px] px-4 md:px-8",
+        "mx-auto w-full max-w-[1280px] px-4 md:px-6 py-2",
         className,
       )}
       {...rest}
