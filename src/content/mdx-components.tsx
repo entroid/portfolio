@@ -67,7 +67,7 @@ function CaseStudyParagraph({
 }: ComponentPropsWithoutRef<"p">) {
   return (
     <p
-      className="text-body md:text-body-desktop text-muted leading-relaxed"
+      className="text-body md:text-body-desktop text-muted leading-relaxed mb-3"
       {...props}
     >
       {children}

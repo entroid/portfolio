@@ -4,7 +4,7 @@ export const meta: ProjectMeta = {
   slug: "hardrock-marketing-planner",
   depth: "featured",
   order: 1,
-  coverImage: "/images/work/hardrock-marketing-planner/cover.png",
+  coverImage: "/images/work/hardrock-marketing-planner/cover.jpg",
   coverImageAlt:
     "Collage of the Hard Rock Marketing Planner interface: campaign calendar, offering-variant setup form, and the Plan / Jobs / Campaigns hierarchy view",
   gallery: [

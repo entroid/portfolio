@@ -1,76 +1,54 @@
 ---
 title: "Hard Rock — Marketing Planner"
-summary: "A 7-week system rebuild that turned scattered campaign spreadsheets into a structured planner marketing ops actually trusts."
-role: "UX Engineer — owned interaction design, information architecture, and front-end delivery for a 7-week internal planning tool, working directly against a component library and design-system handoff."
-context: "Hard Rock's marketing team ran campaigns across properties with no centralized way to plan or track them — offers, jobs, and campaigns lived in disconnected spreadsheets, so overlaps and missed dependencies were common. The Marketing Planner needed to give the team one system to structure, schedule, and launch campaigns, built on a data hierarchy (Plan → Jobs → Campaigns → Offering Vars) that had to stay legible in the UI even as it scaled."
+
+summary: "An internal web application that turned unstandardized, spreadsheets-driven workflows into an automated, structured planner for campaign creation that marketing ops actually trusts"
+
+role: "UX/UI Engineer — UX/UI Design End-to-end • Stakeholders Alignment • Core User Flows • Wireframes & Hi-Fi Prototypes • Design System & Component Library • Cross-functional Collaboration & AI-Assisted Design-to-Code Handoff"
+
+context: "Hard Rock's marketing team ran campaigns across multiple casino properties based on complex hard to standarize business rules, reliyng on spreadsheets and SQL scripts, maintained by a handful of 'Excel experts'. The process was manual, error-prone, time-consuming and hard to scale. Any new system proposal had to prove its value fast to stakeholders who were resistant to change." 
+
 results:
-  - value: "-30%"
+  - value: "↓70%"
     label: "campaign creation time"
-  - value: "+120%"
-    label: "tool adoption in month 1"
-  - value: "+30%"
-    label: "continued usage growth"
+  - value: "↑65%"
+    label: "offers launched the first month"
+  - value: "↓82%"
+    label: "reported errors"
 ---
 
 ## Approach
 
-The core constraint wasn't a missing feature, it was a missing structure: campaign
-data had four nested levels (Plan, Jobs, Campaigns, Offering Vars), and the
-existing spreadsheet-based workflow gave marketing ops no reliable way to see
-how a change at one level rippled into the others. Two problems came out of
-that directly: no centralized visibility into what was scheduled when, and a
-hierarchy complex enough that a naive UI would just move the spreadsheet's
-confusion into a database-backed tool instead of fixing it.
+Reverse-engineered the legacy Excel/SQL logic into a clear, scalable data hierarchy: Plan → Jobs → Campaigns → Offers/Tiers. That standardized how campaigns are created, managed, and reused to speed up the process and keep consistency. Mapped and validated the core flow (create plan → add jobs via import/copy/create → define campaigns and offers → validate and publish to CMP or export) with a FigJam flowchart before touching UI, then built wireframes and HiFi prototypes on top of that model.
 
 <CaseStudyImage
   src="/images/work/hardrock-marketing-planner/quick-tour.png"
   alt="Flow diagram walking through the Marketing Planner's core steps: create plan, define jobs, configure campaigns, and set offering variables"
 />
 
-That reframed the brief from "design a form" to "design a system": the
-calendar, the hierarchy browser, and the campaign-setup flow all had to read
-from and write to the same underlying structure without the UI exposing raw
-data-model complexity to the person using it.
+In parallel, treated the design system as a product decision, not just a styling exercise: built it on Ant Design as a foundation, then defined tokens (color, spacing, typography) as the shared source of truth between Figma and code. So FE consumed the same variables design was iterating on. To close the loop with development, set up an AI-assisted workflow (Figma MCP → React) that generated ui/component code directly from Figma into a separate branch, which developers then reviewed and merged — turning handoff into a working starting point for engineering rather than a static spec to re-interpret.
 
-## Decisions
+## Key Product Decisions
 
-**Simplifying the system structure.** The four-level hierarchy stayed in the
-data model but was collapsed to three visible layers in the interface —
-Offering Vars are surfaced inline where they're configured rather than as a
-separate navigation level, cutting a click and a context switch out of the
-most repeated task.
+**• Simplified the system structure.** standardized an unstructured, scattered business-rule-heavy process into a clear hierarchy, despite initial stakeholders resistance to change — trading short-term friction for long-term consistency and scalability.
+
+**• Protected usability in data-dense views:** Reduced visual noise by limiting displayed data (dozens of overlapping campaigns with thousands of offers per month) — layering detail behind interaction and creating a color-based system to communicate extra information, prioritizing clarity over cognitive overload.
+
+**• Automated repetitive workflows at interaction level:** designed job import and duplication workflows, data autofills, quick approvals and direct publishing, reducing manual effort and human errors.
+
 
 <CaseStudyImage
   src="/images/work/hardrock-marketing-planner/key-decisions.png"
   alt="Side-by-side comparison of the Marketing Planner's calendar and campaign-setup views showing the collapsed three-layer navigation"
 />
 
-**Protecting usability at scale.** As the number of concurrent campaigns
-grew, list and calendar views were built to stay legible rather than degrade
-into a wall of rows — filtering and grouping by job were treated as core
-interactions, not secondary controls, since that's what kept the tool usable
-once real campaign volume hit it.
-
-**Automating setup & efficiency.** Several fields that used to require
-manual entry per campaign (recurring offer variables, default scheduling
-windows) were replaced with rule-based defaults derived from the parent job,
-so setting up a new campaign meant confirming values instead of typing them
-from scratch.
-
 ## Technical notes
 
-The interface was built on Ant Design as the base component library, which
-kept the team from re-solving already-solved interaction patterns (tables,
-date pickers, form validation) and let the design effort concentrate on the
-planner's actual complexity — the hierarchy and the calendar. Components were
-documented in Storybook and kept in sync with the Figma source through
-Zeroheight, so the design system stayed a single source of truth for both
-sides instead of drifting between what was designed and what shipped.
+- **• Base component library:** the interface was built on **Ant Design** as the base component library, which kept the team from re-solving already-solved interaction patterns (tables, date pickers, form validation, pagination) and focused engineering effort on the app's actual complexity — the campaign data model and calendar density — instead of UI plumbing.
+
+- **• Design tokens as the design-dev contract:** color, spacing, typography, and component variants were defined as tokens on top of Ant Design's theming layer (through **Tailwind**) rather than hard-coded values, so changes propagated from a single source of truth shared between Figma and the codebase.
+
+- **• AI-assisted Figma-to-code pipeline:** component code was generated directly from Figma files via **Figma MCP** into a dedicated branch; developers reviewed, adjusted, and merged from there, so the handoff produced working React components instead of a static reference to rebuild from scratch — cutting implementation time on the design system layer.
 
 ## Results
 
-Real, measured numbers — not projected or invented: campaign creation time
-dropped by roughly 30%, tool adoption grew about 120% in the first month
-after rollout, and overall usage kept growing around 30% beyond that initial
-spike as more of the marketing team moved off spreadsheets and onto the
-planner.
+Early MVP feedback showed marketing teams replacing manual workflows with the new system, creating campaigns faster, with fewer errors, and at a significantly higher scale. The core lesson: the biggest impact came not from adding features, but from structuring complexity and enabling automation.

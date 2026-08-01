@@ -5,6 +5,7 @@ import { Container } from "@/components/ui/Container";
 import { GridOverlay } from "@/components/ui/GridOverlay";
 import type { Project } from "@/content/lib";
 import { Gallery } from "./Gallery";
+import { CaseStudyImage } from "@/content/mdx-components";
 
 export type CaseStudyTemplateProps = {
   project: Pick<Project, "meta" | "frontmatter"> & { content: ReactElement };
@@ -35,6 +36,10 @@ export function CaseStudyTemplate({ project }: CaseStudyTemplateProps) {
         <p className="mt-4 text-body text-muted md:text-body-desktop">
           {frontmatter.summary}
         </p>
+
+        {meta.coverImage && (
+          <CaseStudyImage src={meta.coverImage} alt={meta.coverImageAlt} />
+        )}
 
         <dl className="mt-8 grid gap-6 border-t border-b border-grid-border py-6 sm:grid-cols-2">
           <div>

@@ -1,84 +1,56 @@
 ---
 title: "Hard Rock — Marketing Planner"
-summary: "Una reconstrucción de sistema de 7 semanas que convirtió planillas de campañas dispersas en un planificador estructurado en el que marketing ops realmente confía."
-role: "UX Engineer — a cargo del diseño de interacción, la arquitectura de información y la entrega front-end de una herramienta interna de planificación de 7 semanas, trabajando directamente sobre una librería de componentes y el handoff del design system."
-context: "El equipo de marketing de Hard Rock gestionaba campañas en distintas propiedades sin una forma centralizada de planificarlas o hacerles seguimiento — las ofertas, jobs y campañas vivían en planillas desconectadas entre sí, por lo que los solapamientos y dependencias perdidas eran comunes. El Marketing Planner necesitaba darle al equipo un solo sistema para estructurar, programar y lanzar campañas, construido sobre una jerarquía de datos (Plan → Jobs → Campaigns → Offering Vars) que debía mantenerse legible en la interfaz incluso al escalar."
+
+summary: "Aplicación interna para el equipo de marketing de Hard Rock que reemplaza complejos procesos manuales y no estandarizados de creación de campañas, por un sistema automatizado y estructurado fácil de usar"
+
+role: "UX/UI Engineer — Diseño UX/UI completo • Alineación de stakeholders • Flujos de usuario principales • Wireframes y prototipos Hi-Fi • Sistema de diseño y libreria de componentes • Colaboracion cross-funcional y handoff de diseño a código asistida por IA"
+
+context: "El equipo de marketing de Hard Rock gestionaba campañas en múltiples propiedades de casino basándose en reglas de negocio complejas y difíciles de estandarizar, utilizando hojas de cálculo y scripts SQL, mantenidos por un grupo de 'expertos en Excel'. El proceso era sumamente manual, propenso a errores, requería mucho tiempo y era difícil de escalar. Además cualquier propuesta de un nuevo sistema tenía que demostrar su valor rápidamente ante unos stakeholders que se mostraban reacios al cambio."
+
 results:
-  - value: "-30%"
+  - value: "↓70%"
     label: "tiempo de creación de campañas"
-  - value: "+120%"
-    label: "adopción de la herramienta en el primer mes"
-  - value: "+30%"
-    label: "crecimiento sostenido de uso"
+  - value: "↑65%"
+    label: "ofertas lanzadas el primer mes"
+  - value: "↓82%"
+    label: "errores reportados"
 ---
 
 ## Proceso
 
-La restricción central no era una funcionalidad faltante, sino una estructura
-faltante: los datos de campaña tenían cuatro niveles anidados (Plan, Jobs,
-Campaigns, Offering Vars), y el flujo de trabajo basado en planillas no le
-daba a marketing ops una forma confiable de ver cómo un cambio en un nivel
-repercutía en los demás. De ahí surgieron dos problemas concretos: falta de
-visibilidad centralizada sobre qué estaba programado y cuándo, y una
-jerarquía lo bastante compleja como para que una interfaz ingenua terminara
-trasladando la confusión de la planilla a una herramienta con base de datos,
-en vez de resolverla.
+Se hizo análisis e ingeniería inversa de la lógica legacy en Excel/SQL para definir una jerarquía de datos clara y escalable: Plan → Jobs → Campaigns → Offers/Tiers. Con esto estandarizé la creación, gestión y reutilización de campañas para agilizar el proceso y mantener la consistencia. Mapeé y validé el flujo principal (crear plan → agregar jobs vía import/copia/creación → definir campañas y ofertas → validar y publicar a CMP o exportar) con un flowchart en FigJam antes de tocar la UI. Luego creé wireframes y prototipos HiFi sobre ese modelo.
 
 <CaseStudyImage
   src="/images/work/hardrock-marketing-planner/quick-tour.png"
   alt="Diagrama de flujo que recorre los pasos centrales del Marketing Planner: crear plan, definir jobs, configurar campañas y establecer variables de oferta"
 />
 
-Eso redefinió el encargo de "diseñar un formulario" a "diseñar un sistema":
-el calendario, el explorador de jerarquía y el flujo de configuración de
-campañas debían leer y escribir sobre la misma estructura de datos
-subyacente sin exponerle la complejidad cruda del modelo de datos a la
-persona que usaba la herramienta.
+En paralelo, consideré el design system como una decisión de producto: lo construí sobre Ant Design como base, y definí tokens (color, espaciado, tipografía) como fuente única de verdad compartida entre Figma y código, para que FE consumiera las mismas variables que diseño iteraba. Para cerrar el círculo con desarrollo, propuse un flujo asistido por IA (Figma MCP → React) que generaba el código de los componentes directamente desde Figma en un branch separado, que luego los developers revisaban y mergeaban — convirtiendo el handoff en un punto de partida funcional para ingeniería, más que solo una spec estática.
 
-## Decisiones
+## Decisiones Clave
 
-**Simplificar la estructura del sistema.** La jerarquía de cuatro niveles se
-mantuvo en el modelo de datos pero se redujo a tres capas visibles en la
-interfaz — las Offering Vars se muestran en línea, donde se configuran, en
-vez de como un nivel de navegación aparte, eliminando un clic y un cambio de
-contexto de la tarea más repetida.
+**• Se simplificó la estructura del sistema:** se estandarizó un proceso desestructurado y disperso, cargado de reglas de negocio, en una jerarquía clara, pese a la resistencia inicial de los stakeholders al cambio — cambiando fricción de corto plazo por consistencia y escalabilidad de largo plazo.
+
+**• Se protegió la usabilidad en vistas densas en datos:** se redujo el ruido visual limitando los datos mostrados (decenas de campañas superpuestas con miles de ofertas por mes) — sumando más detalles con la interacción y creando un sistema basado en color para comunicar información adicional, priorizando la claridad por sobre la sobrecarga cognitiva.
+
+**• Se automatizaron flujos repetitivos a nivel de interacción:** se diseñaron flujos de importación y duplicación de 'jobs', autocompletado de datos, aprobaciones rápidas y publicación directa, reduciendo el esfuerzo manual y los errores humanos.
+
+
+
+## Notas técnicas
+
+- **• Librería base de componentes:** la interfaz se construyó sobre **Ant Design** como librería base, lo que ahorró al equipo el trabajo de resolver patrones de interacción ya resueltos (tablas, date pickers, validación de formularios, paginación, y especialmente, el calendario) y permitió enfocar el esfuerzo de ingeniería en la complejidad real de la app: el modelo de datos de campañas y la complejidad de las validaciones y publicación.
+
+- **• Tokens de diseño como contrato entre diseño y desarrollo:** el Design System: color, espaciado, tipografía y variantes de componentes, se definió como tokens sobre la capa de theming de Ant Design (a través de **Tailwind**) en lugar de valores hardcodeados, de modo que los cambios se implementaron desde una única fuente de verdad compartida entre Figma y el código.
+
+- **• Pipeline de Figma a código asistido por IA:** el código de los componentes se generó directamente desde los archivos de Figma vía **Figma MCP** hacia una branch dedicada; los developers revisaban, ajustaban y mergeaban desde ahí, de modo que el handoff entregaba componentes React funcionales en lugar de una referencia estática a reconstruir desde cero, reduciendo el tiempo de implementación de la capa de design system.
+
 
 <CaseStudyImage
   src="/images/work/hardrock-marketing-planner/key-decisions.png"
   alt="Comparación lado a lado de las vistas de calendario y configuración de campaña del Marketing Planner, mostrando la navegación de tres capas ya simplificada"
 />
 
-**Proteger la usabilidad a escala.** A medida que crecía el número de
-campañas simultáneas, las vistas de lista y calendario se diseñaron para
-mantenerse legibles en vez de degradar en un muro de filas — filtrar y
-agrupar por job se trataron como interacciones centrales, no controles
-secundarios, porque eso era lo que mantenía la herramienta usable una vez
-que el volumen real de campañas la puso a prueba.
-
-**Automatizar la configuración y la eficiencia.** Varios campos que antes
-requerían carga manual por campaña (variables de oferta recurrentes,
-ventanas de programación por defecto) se reemplazaron por valores por
-defecto basados en reglas, derivados del job padre, de modo que configurar
-una campaña nueva pasó a ser confirmar valores en vez de escribirlos desde
-cero.
-
-## Notas técnicas
-
-La interfaz se construyó sobre Ant Design como librería base de componentes,
-lo que evitó que el equipo tuviera que resolver de nuevo patrones de
-interacción ya resueltos (tablas, selectores de fecha, validación de
-formularios) y permitió concentrar el esfuerzo de diseño en la complejidad
-real del planificador — la jerarquía y el calendario. Los componentes se
-documentaron en Storybook y se mantuvieron sincronizados con la fuente en
-Figma a través de Zeroheight, de modo que el design system se mantuvo como
-una única fuente de verdad para ambos lados, en vez de desalinearse entre lo
-diseñado y lo entregado.
-
 ## Resultados
 
-Cifras reales y medidas — no proyectadas ni inventadas: el tiempo de creación
-de campañas se redujo alrededor de un 30%, la adopción de la herramienta
-creció cerca de un 120% en el primer mes tras el lanzamiento, y el uso
-general siguió creciendo alrededor de un 30% más allá de ese pico inicial, a
-medida que más del equipo de marketing dejaba las planillas y pasaba al
-planificador.
+Feedback temprano del MVP mostró a los equipos de marketing reemplazando flujos manuales por el nuevo sistema, creando campañas más rápido, con menos errores y a una escala significativamente mayor. La lección principal: el mayor impacto no vino de agregar más features, sino de estructurar y simplifcar la complejidad y habilitar la automatización.
