@@ -62,7 +62,9 @@
       "context": "Context",
       "results": "Results",
       "gallery": "Gallery",
-      "back": "Back to Work"
+      "back": "Back to Work",
+      "expandImage": "View full size",
+      "closeImage": "Close"
     }
   },
   "contact": {

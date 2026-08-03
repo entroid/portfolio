@@ -1,5 +1,5 @@
-import Image from "next/image";
 import type { ComponentPropsWithoutRef } from "react";
+import { Lightbox } from "@/components/ui/Lightbox";
 import { cn } from "@/lib/cn";
 
 type CaseStudyImageProps = ComponentPropsWithoutRef<"img"> & {
@@ -19,19 +19,15 @@ export function CaseStudyImage({
   width = 1600,
   height = 900,
   className,
-  ...props
 }: CaseStudyImageProps) {
   return (
-    <Image
+    <Lightbox
       src={src}
       alt={alt}
       width={width}
       height={height}
-      className={cn(
-        "my-8 w-full border border-[color:var(--color-grid-border)]",
-        className,
-      )}
-      {...props}
+      className={cn("my-8 w-full", className)}
+      imageClassName="w-full border border-[color:var(--color-grid-border)]"
     />
   );
 }

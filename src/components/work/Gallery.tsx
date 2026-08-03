@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { Lightbox } from "@/components/ui/Lightbox";
 import type { GalleryImage } from "@/content/schema";
 
 export type GalleryProps = {
@@ -27,12 +27,13 @@ export function Gallery({ images, title }: GalleryProps) {
             key={image.src}
             className="relative aspect-[4/3] border border-grid-border"
           >
-            <Image
+            <Lightbox
               src={image.src}
               alt={image.alt}
               fill
               sizes="(min-width: 640px) 50vw, 100vw"
-              className="object-cover"
+              className="absolute inset-0"
+              imageClassName="object-cover"
             />
           </div>
         ))}

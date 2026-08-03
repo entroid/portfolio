@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render, screen } from "@testing-library/react";
 import { axe } from "jest-axe";
+import { renderWithIntl } from "@/test/renderWithIntl";
 import { Gallery } from "./Gallery";
 
 describe("Gallery", () => {
@@ -10,7 +11,7 @@ describe("Gallery", () => {
   });
 
   it("renders every image", () => {
-    render(
+    renderWithIntl(
       <Gallery
         images={[
           { src: "/a.png", alt: "Alpha screen" },
@@ -23,7 +24,7 @@ describe("Gallery", () => {
   });
 
   it("renders the section title as a heading", () => {
-    render(
+    renderWithIntl(
       <Gallery images={[{ src: "/a.png", alt: "Alpha" }]} title="Gallery" />,
     );
     expect(screen.getByTestId("gallery-heading")).toBeInTheDocument();
@@ -31,7 +32,7 @@ describe("Gallery", () => {
   });
 
   it("has no automatically detectable accessibility violations", async () => {
-    const { container } = render(
+    const { container } = renderWithIntl(
       <Gallery images={[{ src: "/a.png", alt: "Alpha" }]} title="Gallery" />,
     );
     expect(await axe(container)).toHaveNoViolations();
