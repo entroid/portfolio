@@ -13,6 +13,9 @@ const IDLE_ROTATION_SPEED = 0.22;
 const PARALLAX_RANGE = 0.15;
 const PARALLAX_EASE = 0.05;
 
+// Secondary accent from design system (--color-accent-2)
+const SECONDARY_ACCENT_COLOR = "#473ad8";
+
 function Sphere({ reducedMotion }: { reducedMotion: boolean }) {
   const meshRef = useRef<THREE.Mesh>(null);
   const groupRef = useRef<THREE.Group>(null);
@@ -41,7 +44,7 @@ function Sphere({ reducedMotion }: { reducedMotion: boolean }) {
       <mesh ref={meshRef}>
         <sphereGeometry args={[1.6, 24, 16]} />
         <meshBasicMaterial
-          color="#9eff3d"
+          color={SECONDARY_ACCENT_COLOR}
           wireframe
           transparent
           opacity={0.6}

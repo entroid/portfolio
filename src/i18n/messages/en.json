@@ -33,19 +33,37 @@
   },
   "home": {
     "hero": {
-      "eyebrow": "UX/UI DESIGN · UI DEVELOPMENT",
+      "eyebrow": "PRODUCT DESIGNER · DESIGN TECHNOLOGIST",
       "headline": "DESIGN & BUILD",
-      "subtext": "Where design and code actually meet.",
+      "subtext": "From research to shipped product, powered by AI-assisted workflows.",
       "cta": "[ Case Studies & Work ]"
     },
     "about": {
       "title": "Hey, I'm Hernán.",
-      "bio": "Half designer, half developer. I design interfaces in Figma, then build them myself. Been doing this for 15+ years, based in Rosario, Argentina, and currently looking to join a full-time team.",
+      "bio": "I design user-centered interfaces in Figma, then build them myself using AI-assisted development workflows (React, Next.js). I've been doing this for 15+ years, based in Rosario, Argentina. Currently looking to join a full-time team.",
       "skills": [
         "UX/UI Design",
-        "Front-End Development",
         "Design Systems",
-        "Prototyping"
+        "AI Assisted Development",
+        "Prototyping",
+        "Cross-functional Collaboration"
+      ],
+      "stats": [
+        {
+          "value": "12+",
+          "label": "Years Experience",
+          "description": "In The Web Design Industry Field."
+        },
+        {
+          "value": "75+",
+          "label": "Projects Done",
+          "description": "Around Worldwide In Last Five Years."
+        },
+        {
+          "value": "98%",
+          "label": "Satisfied Clients",
+          "description": "With A Great Experience And Results."
+        }
       ]
     }
   },

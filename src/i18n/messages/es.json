@@ -33,19 +33,37 @@
   },
   "home": {
     "hero": {
-      "eyebrow": "DISEÑO UX/UI · DESARROLLO UI",
-      "headline": "DISEÑO Y CÓDIGO",
-      "subtext": "Donde el diseño y el desarrollo realmente se encuentran.",
+      "eyebrow": "PRODUCT DESIGNER · DESIGN TECHNOLOGIST",
+      "headline": "DISEÑO Y DESARROLLO",
+      "subtext": "De la investigación al producto en producción, con flujos asistidos por IA.",
       "cta": "[ Casos de Estudio y Trabajo ]"
     },
     "about": {
       "title": "Hola, soy Hernán.",
-      "bio": "Mitad diseñador, mitad desarrollador. Diseño interfaces en Figma y luego las construyo yo mismo. Llevo más de 15 años haciendo esto, vivo en Rosario, Argentina, y actualmente estoy buscando sumarme a un equipo a tiempo completo.",
+      "bio": "Diseño interfaces centradas en el usuario en Figma y las llevo a desarrollo con flujos asistidos por IA (React, Next.js). Llevo más de 15 años en esto, con base en Rosario, Argentina. Hoy busco sumarme a un equipo full-time.",
       "skills": [
         "Diseño UX/UI",
-        "Desarrollo Front-End",
         "Sistemas de Diseño",
-        "Prototipado"
+        "Desarrollo Asistido por IA",
+        "Prototipado",
+        "Colaboración Interequipos"
+      ],
+      "stats": [
+        {
+          "value": "12+",
+          "label": "Años de Experiencia",
+          "description": "En la industria del diseño web."
+        },
+        {
+          "value": "75+",
+          "label": "Proyectos Realizados",
+          "description": "Alrededor del mundo en los últimos cinco años."
+        },
+        {
+          "value": "98%",
+          "label": "Clientes Satisfechos",
+          "description": "Con una gran experiencia y resultados."
+        }
       ]
     }
   },
