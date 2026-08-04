@@ -83,14 +83,18 @@ describe("projectFrontmatterSchema", () => {
     expect(result.context).toBeUndefined();
   });
 
-  it("accepts frontmatter with role/context (featured projects)", () => {
+  it("accepts frontmatter with role/responsibilities/context (featured projects)", () => {
     const result = projectFrontmatterSchema.parse({
       title: "Signal Desk",
       summary: "A dashboard redesign.",
       role: "Product designer",
+      responsibilities: "UX/UI Design • Front-End Engineering",
       context: "An internal ops tool.",
     });
     expect(result.role).toBe("Product designer");
+    expect(result.responsibilities).toBe(
+      "UX/UI Design • Front-End Engineering",
+    );
   });
 
   it("rejects frontmatter missing a title", () => {

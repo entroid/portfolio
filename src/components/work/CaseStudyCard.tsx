@@ -46,6 +46,12 @@ export function CaseStudyCard({
           }
           className="object-cover"
         />
+        <div className="absolute inset-0 bg-bg/0 transition-colors duration-150 group-hover:bg-bg/40" />
+        {frontmatter.role && (
+          <span className="absolute right-3 bottom-3 border border-grid-border bg-bg/80 px-4 py-2 font-mono text-label uppercase tracking-label md:text-label-desktop">
+            {frontmatter.role}
+          </span>
+        )}
       </div>
 
       <h3

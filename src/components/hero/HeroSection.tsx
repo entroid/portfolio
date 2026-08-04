@@ -54,7 +54,8 @@ export function HeroSection() {
             </Link>
           </div>
 
-          <div className="relative z-0 mx-auto mt-12 aspect-square w-full max-w-[420px] overflow-hidden border-2 border-accent-2 bg-[color:var(--color-surface)] md:absolute md:top-1/2 md:right-0 md:mx-0 md:mt-0 md:w-1/2 md:max-w-[480px] md:-translate-y-1/2">
+          <div className="relative z-0 mx-auto mt-12 aspect-square w-full max-w-[420px] overflow-hidden border-2 border-accent-2 bg-[color:var(--color-surface)] [border-radius:0_30%_0] md:absolute md:top-1/2 md:right-0 md:mx-0 md:mt-0 md:w-1/2 md:max-w-[480px] md:-translate-y-1/2">
+            {/* Deliberate exception to DESIGN_SYSTEM.md's zero-radius rule, per Hernán. */}
             {/* HeroSphere is temporarily disabled above. */}
             <Image
               src="/images/profile2.webp"

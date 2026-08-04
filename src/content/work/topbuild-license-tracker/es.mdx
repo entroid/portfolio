@@ -1,9 +1,9 @@
 ---
-title: "Hard Rock — Marketing Planner"
+title: "Topbuild - License Tracker"
 
 summary: "Aplicación interna para el equipo de marketing de Hard Rock que reemplaza complejos procesos manuales y no estandarizados de creación de campañas, por un sistema automatizado y estructurado fácil de usar"
 
-role: "Design Engineer"
+role: "UX/UI Engineer"
 
 responsibilities: "Diseño UX/UI completo • Alineación de stakeholders • Flujos de usuario principales • Wireframes y prototipos Hi-Fi • Sistema de diseño y libreria de componentes • Colaboracion cross-funcional y handoff de diseño a código asistida por IA"
 
@@ -17,7 +17,7 @@ results:
   - value: "↓82%"
     label: "errores reportados"
 
-resultsNote: "*Impacto estimado comparando el proceso manual anterior con el nuevo flujo"
+resultsNote: "* Impacto estimado comparando el proceso manual anterior con el nuevo flujo"
 ---
 
 ## Proceso
@@ -29,7 +29,7 @@ Se hizo análisis e ingeniería inversa de la lógica legacy en Excel/SQL para d
   alt="Diagrama de flujo que recorre los pasos centrales del Marketing Planner: crear plan, definir jobs, configurar campañas y establecer variables de oferta"
 />
 
-En paralelo, consideré el design system como una decisión de producto: lo construí sobre Ant Design como base, y definí tokens (color, espaciado, tipografía) como fuente única de verdad compartida entre Figma y código, para que FE consumiera las mismas variables que diseño iteraba. Para cerrar el círculo con desarrollo, propuse un flujo asistido por IA (Figma MCP → Claude Code → React) que generaba el código de los componentes directamente desde Figma en un branch separado, que luego los developers revisaban y mergeaban — convirtiendo el handoff en un punto de partida funcional para ingeniería, más que solo una spec estática.
+En paralelo, consideré el design system como una decisión de producto: lo construí sobre Ant Design como base, y definí tokens (color, espaciado, tipografía) como fuente única de verdad compartida entre Figma y código, para que FE consumiera las mismas variables que diseño iteraba. Para cerrar el círculo con desarrollo, propuse un flujo asistido por IA (Figma MCP → React) que generaba el código de los componentes directamente desde Figma en un branch separado, que luego los developers revisaban y mergeaban — convirtiendo el handoff en un punto de partida funcional para ingeniería, más que solo una spec estática.
 
 ## Decisiones Clave
 
@@ -47,7 +47,7 @@ En paralelo, consideré el design system como una decisión de producto: lo cons
 
 - **• Tokens de diseño como contrato entre diseño y desarrollo:** el Design System: color, espaciado, tipografía y variantes de componentes, se definió como tokens sobre la capa de theming de Ant Design (a través de **Tailwind**) en lugar de valores hardcodeados, de modo que los cambios se implementaron desde una única fuente de verdad compartida entre Figma y el código.
 
-- **• Pipeline de Figma a código asistido por IA:** el código de los componentes se generó directamente desde Figma vía **Figma MCP + Claude Code** en una branch dedicada. El equipo de desarrollo tomaba ese código y le sumaba lógica de negocio y conexión con backend. De modo que el handoff entregaba componentes React funcionales en lugar de solo una referencia a archivos o documentación estática a reconstruir desde cero, reduciendo el tiempo de implementación de la capa de design system.
+- **• Pipeline de Figma a código asistido por IA:** el código de los componentes se generó directamente desde los archivos de Figma vía **Figma MCP** hacia una branch dedicada; los developers revisaban, ajustaban y mergeaban desde ahí, de modo que el handoff entregaba componentes React funcionales en lugar de una referencia estática a reconstruir desde cero, reduciendo el tiempo de implementación de la capa de design system.
 
 
 <CaseStudyImage

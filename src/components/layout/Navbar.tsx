@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { ChevronDown, Download, Menu, X } from "lucide-react";
 import { Link, usePathname } from "@/i18n/navigation";
@@ -47,13 +46,13 @@ export function Navbar() {
           href="/"
           className="flex items-center gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
         >
-          <Image
+          {/* <Image
             src="/images/profile-placeholder.svg"
             alt=""
             width={32}
             height={32}
             className="border border-grid-border"
-          />
+          /> */}
           <span className="font-mono text-label uppercase tracking-label text-fg">
             Hernán Ainsa
           </span>

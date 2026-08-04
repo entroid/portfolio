@@ -5,7 +5,7 @@ import { Container } from "@/components/ui/Container";
 import { GridOverlay } from "@/components/ui/GridOverlay";
 import type { Project } from "@/content/lib";
 import { Gallery } from "./Gallery";
-import { CaseStudyImage } from "@/content/mdx-components";
+import { CaseStudyHeader } from "./CaseStudyHeader";
 
 export type CaseStudyTemplateProps = {
   project: Pick<Project, "meta" | "frontmatter"> & { content: ReactElement };
@@ -27,61 +27,35 @@ export function CaseStudyTemplate({ project }: CaseStudyTemplateProps) {
       <GridOverlay className="opacity-40 [mask-image:linear-gradient(to_bottom,black,transparent)]" />
 
       <Container className="relative max-w-[840px] bg-bg">
-        <h1
-          data-testid="case-study-heading"
-          className="text-h1 font-mono font-extrabold tracking-h1 text-fg md:text-h1-desktop leading-h1"
-        >
-          {frontmatter.title}
-        </h1>
-        <p className="mt-4 text-body text-muted md:text-body-desktop">
-          {frontmatter.summary}
-        </p>
-
-        {meta.coverImage && (
-          <CaseStudyImage src={meta.coverImage} alt={meta.coverImageAlt} />
-        )}
-
-        <dl className="mt-8 grid gap-6 border-t border-b border-grid-border py-6 sm:grid-cols-2">
-          <div>
-            <dt className="font-mono text-label uppercase tracking-label text-muted">
-              {t("role")}
-            </dt>
-            <dd
-              data-testid="case-study-role"
-              className="mt-1 text-body text-fg"
-            >
-              {frontmatter.role}
-            </dd>
-          </div>
-          <div>
-            <dt className="font-mono text-label uppercase tracking-label text-muted">
-              {t("context")}
-            </dt>
-            <dd
-              data-testid="case-study-context"
-              className="mt-1 text-body text-fg"
-            >
-              {frontmatter.context}
-            </dd>
-          </div>
-        </dl>
+        <CaseStudyHeader project={project} />
 
         {frontmatter.results && frontmatter.results.length > 0 && (
-          <dl
-            data-testid="case-study-results"
-            className="flex flex-col items-center gap-6 border-b border-grid-border py-6 text-center sm:flex-row sm:justify-center sm:gap-16"
-          >
-            {frontmatter.results.map((result) => (
-              <div key={result.label}>
-                <dt className="font-mono font-extrabold text-accent-2 text-h3-desktop">
-                  {result.value}
-                </dt>
-                <dd className="mt-1 font-mono text-label uppercase tracking-label text-muted">
-                  {result.label}
-                </dd>
-              </div>
-            ))}
-          </dl>
+          <div className="border-b border-grid-border py-6">
+            <dl
+              data-testid="case-study-results"
+              className="flex flex-col items-center gap-6 text-center sm:flex-row sm:justify-center sm:gap-16"
+            >
+              {frontmatter.results.map((result) => (
+                <div key={result.label}>
+                  <dt className="font-mono font-extrabold text-accent-2 text-h2-desktop">
+                    {result.value}
+                  </dt>
+                  <dd className="mt-1 font-mono text-label uppercase tracking-label ">
+                    {result.label}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+
+            {frontmatter.resultsNote && (
+              <p
+                data-testid="case-study-results-note"
+                className="mt-4 text-center font-mono text-label text-muted md:text-label-desktop"
+              >
+                {frontmatter.resultsNote}
+              </p>
+            )}
+          </div>
         )}
 
         <div data-testid="case-study-content" className="mt-8">

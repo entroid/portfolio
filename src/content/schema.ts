@@ -29,9 +29,11 @@ export type ProjectMeta = z.infer<typeof projectMetaSchema>;
 export const projectFrontmatterSchema = z.object({
   title: z.string(),
   summary: z.string(), // one-line card summary
-  role: z.string().optional(), // omitted for "other" depth
-  context: z.string().optional(), // omitted for "other" depth
+  role: z.string().optional(), // required by convention for "featured" — see lib.ts
+  responsibilities: z.string().optional(), // shown only when present, any depth
+  context: z.string().optional(), // required by convention for "featured" — see lib.ts
   results: z.array(resultSchema).optional(), // real measured numbers only — see CONTENT_MODEL.md
+  resultsNote: z.string().optional(), // optional footnote below results, e.g. how the numbers were measured
 });
 
 export type ProjectFrontmatter = z.infer<typeof projectFrontmatterSchema>;

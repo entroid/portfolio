@@ -1,9 +1,12 @@
 import type { ProjectMeta } from "../../schema";
 
+// Duplicated from hardrock-marketing-planner as a starting point — title
+// updated, everything else (images, copy) still needs to be replaced with
+// the real Topbuild content.
 export const meta: ProjectMeta = {
-  slug: "hardrock-marketing-planner",
+  slug: "topbuild-license-tracker",
   depth: "featured",
-  order: 1,
+  order: 2,
   coverImage: "/images/work/hardrock-marketing-planner/cover.jpg",
   coverImageAlt:
     "Collage of the Hard Rock Marketing Planner interface: campaign calendar, offering-variant setup form, and the Plan / Jobs / Campaigns hierarchy view",

@@ -50,18 +50,18 @@
       ],
       "stats": [
         {
-          "value": "12+",
+          "value": "15+",
           "label": "Years Experience",
-          "description": "In The Web Design Industry Field."
+          "description": "In The IT Industry Field."
         },
         {
-          "value": "75+",
-          "label": "Projects Done",
-          "description": "Around Worldwide In Last Five Years."
+          "value": "8+",
+          "label": "End-to-end Product Design",
+          "description": "Plus Dozens Of Smaller Projects."
         },
         {
-          "value": "98%",
-          "label": "Satisfied Clients",
+          "value": "6+",
+          "label": "Real companies helped",
           "description": "With A Great Experience And Results."
         }
       ]
@@ -77,6 +77,7 @@
     },
     "caseStudy": {
       "role": "Role",
+      "responsibilities": "Responsibility",
       "context": "Context",
       "results": "Results",
       "gallery": "Gallery",

@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
-import { render, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 import { axe } from "jest-axe";
+import { renderWithIntl } from "@/test/renderWithIntl";
 import { OtherWorkTemplate } from "./OtherWorkTemplate";
 
 const project = {
@@ -21,23 +22,49 @@ const project = {
 
 describe("OtherWorkTemplate", () => {
   it("renders the title as an h1", () => {
-    render(<OtherWorkTemplate project={project} />);
+    renderWithIntl(<OtherWorkTemplate project={project} />);
     expect(screen.getByRole("heading", { level: 1 })).toBeInTheDocument();
-    expect(screen.getByTestId("other-work-title")).toBeInTheDocument();
+    expect(screen.getByTestId("case-study-heading")).toBeInTheDocument();
   });
 
   it("renders the enlarged cover image", () => {
-    render(<OtherWorkTemplate project={project} />);
+    renderWithIntl(<OtherWorkTemplate project={project} />);
     expect(screen.getByRole("img")).toBeInTheDocument();
   });
 
+  it("does not render the role/responsibilities/context block when the project has none", () => {
+    renderWithIntl(<OtherWorkTemplate project={project} />);
+    expect(screen.queryByTestId("case-study-role")).not.toBeInTheDocument();
+    expect(
+      screen.queryByTestId("case-study-responsibilities"),
+    ).not.toBeInTheDocument();
+    expect(screen.queryByTestId("case-study-context")).not.toBeInTheDocument();
+  });
+
+  it("renders only the detail fields an 'other' project supplies", () => {
+    const projectWithRole = {
+      ...project,
+      frontmatter: { ...project.frontmatter, role: "Product Designer" },
+    };
+    renderWithIntl(<OtherWorkTemplate project={projectWithRole} />);
+    expect(screen.getByTestId("case-study-role")).toHaveTextContent(
+      "Product Designer",
+    );
+    expect(
+      screen.queryByTestId("case-study-responsibilities"),
+    ).not.toBeInTheDocument();
+    expect(screen.queryByTestId("case-study-context")).not.toBeInTheDocument();
+  });
+
   it("renders the extended description body", () => {
-    render(<OtherWorkTemplate project={project} />);
+    renderWithIntl(<OtherWorkTemplate project={project} />);
     expect(screen.getByTestId("other-work-content")).toBeInTheDocument();
   });
 
   it("has no automatically detectable accessibility violations", async () => {
-    const { container } = render(<OtherWorkTemplate project={project} />);
+    const { container } = renderWithIntl(
+      <OtherWorkTemplate project={project} />,
+    );
     expect(await axe(container)).toHaveNoViolations();
   });
 });

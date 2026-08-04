@@ -7,10 +7,11 @@ import {
 } from "./lib";
 
 describe("getAllProjectSlugs", () => {
-  it("finds both seed projects", () => {
+  it("finds every seed project", () => {
     expect(getAllProjectSlugs().sort()).toEqual([
       "hardrock-marketing-planner",
       "lumen-crm",
+      "topbuild-license-tracker",
     ]);
   });
 });
@@ -20,10 +21,12 @@ describe("getAllProjects", () => {
     const projects = await getAllProjects("en");
     expect(projects.map((p) => p.meta.slug)).toEqual([
       "hardrock-marketing-planner",
+      "topbuild-license-tracker",
       "lumen-crm",
     ]);
     expect(projects[0].meta.depth).toBe("featured");
-    expect(projects[1].meta.depth).toBe("other");
+    expect(projects[1].meta.depth).toBe("featured");
+    expect(projects[2].meta.depth).toBe("other");
   });
 
   it("returns validated, typed frontmatter for every project", async () => {
@@ -45,10 +48,10 @@ describe("getProjectBySlug", () => {
     expect(project.frontmatter.context).toBeTruthy();
   });
 
-  it("returns the other-depth project without requiring role/context", async () => {
+  it("returns the other-depth project without requiring role/context, though it may supply them", async () => {
     const project = await getProjectBySlug("lumen-crm", "en");
     expect(project.meta.depth).toBe("other");
-    expect(project.frontmatter.role).toBeUndefined();
+    expect(project.frontmatter.responsibilities).toBeUndefined();
   });
 
   it("returns Spanish frontmatter when locale is es", async () => {

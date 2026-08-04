@@ -19,7 +19,10 @@ const project = {
     title: "Signal Desk — real-time ops dashboard",
     summary: "Turning raw logs into a trusted dashboard.",
     role: "Product designer & front-end engineer.",
+    responsibilities: "UX/UI Design • Front-End Engineering",
     context: "An internal ops tool for an on-call team.",
+    results: [{ value: "-30%", label: "incident response time" }],
+    resultsNote: "* Estimated impact based on before/after incident logs.",
   },
   content: <p>Process narrative goes here.</p>,
 };
@@ -31,10 +34,48 @@ describe("CaseStudyTemplate", () => {
     expect(screen.getByTestId("case-study-heading")).toBeInTheDocument();
   });
 
-  it("renders role and context", () => {
+  it("renders role, responsibilities, and context", () => {
     renderWithIntl(<CaseStudyTemplate project={project} />);
     expect(screen.getByTestId("case-study-role")).toBeInTheDocument();
+    expect(
+      screen.getByTestId("case-study-responsibilities"),
+    ).toBeInTheDocument();
     expect(screen.getByTestId("case-study-context")).toBeInTheDocument();
+  });
+
+  it("omits the responsibilities block when the project has none", () => {
+    renderWithIntl(
+      <CaseStudyTemplate
+        project={{
+          ...project,
+          frontmatter: { ...project.frontmatter, responsibilities: undefined },
+        }}
+      />,
+    );
+    expect(
+      screen.queryByTestId("case-study-responsibilities"),
+    ).not.toBeInTheDocument();
+  });
+
+  it("renders the results footnote when the project supplies one", () => {
+    renderWithIntl(<CaseStudyTemplate project={project} />);
+    expect(screen.getByTestId("case-study-results-note")).toHaveTextContent(
+      project.frontmatter.resultsNote,
+    );
+  });
+
+  it("omits the results footnote when the project has none", () => {
+    renderWithIntl(
+      <CaseStudyTemplate
+        project={{
+          ...project,
+          frontmatter: { ...project.frontmatter, resultsNote: undefined },
+        }}
+      />,
+    );
+    expect(
+      screen.queryByTestId("case-study-results-note"),
+    ).not.toBeInTheDocument();
   });
 
   it("renders the MDX body content", () => {

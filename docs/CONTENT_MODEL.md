@@ -19,14 +19,17 @@ build time (see [ARCHITECTURE.md](./ARCHITECTURE.md)).
 Per the brief, there are two depths of project page, both living at
 `/work/[slug]`:
 
-- **Featured Case Study** (2–3 projects): full template — context, role,
-  process, decisions, technical notes, results, inline images interleaved
-  with text, optional trailing gallery.
+- **Featured Case Study** (2–3 projects): full template — process,
+  decisions, technical notes, results, inline images interleaved with text,
+  optional trailing gallery.
 - **Other work**: light template — enlarged image + extended description
   only, no process/results sections.
 
-Both share the same routing and metadata schema; the template used is picked
-by the `depth` field (see schema below), not by a separate route.
+Both share the same routing and metadata schema, and the same header —
+title, summary, cover image, and the optional role/responsibilities/context
+block (`CaseStudyHeader`, rendered by both `CaseStudyTemplate` and
+`OtherWorkTemplate`). The template used past the header is picked by the
+`depth` field (see schema below), not by a separate route.
 
 ## Folder structure
 
@@ -56,6 +59,11 @@ export const galleryImageSchema = z.object({
   alt: z.string(), // real, descriptive alt text — same rule as CaseStudyImage
 });
 
+export const resultSchema = z.object({
+  value: z.string(), // the number/stat itself, e.g. "-30%"
+  label: z.string(), // what it measures, e.g. "campaign creation time"
+});
+
 export const projectMetaSchema = z.object({
   slug: z.string(), // must match folder name — validated in a build script
   depth: z.enum(["featured", "other"]),
@@ -71,8 +79,11 @@ export type ProjectMeta = z.infer<typeof projectMetaSchema>;
 export const projectFrontmatterSchema = z.object({
   title: z.string(),
   summary: z.string(), // one-line card summary
-  role: z.string().optional(), // omitted for "other" depth
-  context: z.string().optional(), // omitted for "other" depth
+  role: z.string().optional(), // required by convention for "featured"
+  responsibilities: z.string().optional(), // shown only when present, any depth
+  context: z.string().optional(), // required by convention for "featured"
+  results: z.array(resultSchema).optional(), // real measured numbers only, no invented metrics
+  resultsNote: z.string().optional(), // optional footnote below results, e.g. how the numbers were measured
 });
 
 export type ProjectFrontmatter = z.infer<typeof projectFrontmatterSchema>;
@@ -82,11 +93,18 @@ export type ProjectFrontmatter = z.infer<typeof projectFrontmatterSchema>;
 convention** for `depth: "featured"` — enforce that as a build-time check
 (fail the build if a featured project is missing them), not just a type
 optional, so a missing field can't silently ship a thin featured case study.
+`resultsNote` is fully optional and only rendered when a project supplies
+it — e.g. a disclaimer on how the `results` numbers were measured.
+`responsibilities` is always fully optional, on both depths — the header
+renders only the role/responsibilities/context fields a project actually
+supplies, so an "other" project can add a `role` without needing the rest,
+and a featured one can skip `responsibilities` without a placeholder.
 
 ## MDX body conventions
 
 - `en.mdx` / `es.mdx` start with YAML frontmatter (`title`, `summary`, and
-  for featured projects `role`/`context`), then the body.
+  optionally `role`/`responsibilities`/`context` — required by convention
+  for featured projects), then the body.
 - Body content for featured case studies follows the brief's structure as
   MDX headings + prose, with images imported and placed **inline**, next to
   the paragraph that discusses them — not batched at the end:

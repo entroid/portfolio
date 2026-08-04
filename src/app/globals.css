@@ -33,7 +33,7 @@
      suffixed token applied via the md: breakpoint, per DESIGN_SYSTEM.md's
      "Tailwind responsive prefixes" note (e.g. `text-h1 md:text-h1-desktop`). */
   --text-label: 0.6875rem;
-  --text-label-desktop: 0.75rem;
+  --text-label-desktop: 0.73rem;
   --text-cta: 0.8125rem;
   --text-cta-desktop: 0.9rem;
   --text-cta-main: 1rem;
