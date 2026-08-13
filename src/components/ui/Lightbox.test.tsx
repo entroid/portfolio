@@ -23,6 +23,17 @@ describe("Lightbox", () => {
     ).toBeInTheDocument();
   });
 
+  it("shows a caption with the alt text while the modal is open", async () => {
+    const user = userEvent.setup();
+    renderWithIntl(<Lightbox src="/a.png" alt="Alpha screen" />);
+
+    await user.click(screen.getByTestId("lightbox-trigger"));
+
+    expect(screen.getByTestId("lightbox-caption")).toHaveTextContent(
+      "Alpha screen",
+    );
+  });
+
   it("closes the modal via the close button", async () => {
     const user = userEvent.setup();
     renderWithIntl(<Lightbox src="/a.png" alt="Alpha screen" />);

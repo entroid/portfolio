@@ -21,14 +21,18 @@ export function CaseStudyImage({
   className,
 }: CaseStudyImageProps) {
   return (
-    <Lightbox
-      src={src}
-      alt={alt}
-      width={width}
-      height={height}
-      className={cn("my-8 w-full", className)}
-      imageClassName="w-full border border-[color:var(--color-grid-border)]"
-    />
+    <figure className={cn("my-8 w-full", className)}>
+      <Lightbox
+        src={src}
+        alt={alt}
+        width={width}
+        height={height}
+        imageClassName="w-full border border-[color:var(--color-grid-border)]"
+      />
+      <figcaption className="mt-2 font-mono text-label text-muted text-center">
+        {alt}
+      </figcaption>
+    </figure>
   );
 }
 

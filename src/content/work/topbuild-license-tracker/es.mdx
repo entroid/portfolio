@@ -1,60 +1,85 @@
 ---
-title: "Topbuild - License Tracker"
+title: "TopBuild — License Tracker"
 
-summary: "Aplicación interna para el equipo de marketing de Hard Rock que reemplaza complejos procesos manuales y no estandarizados de creación de campañas, por un sistema automatizado y estructurado fácil de usar"
+summary: "Sistema interno para centralizar la gestión de cientos de licencias de construcción en múltiples estados de EE.UU., reemplazando spreadsheets desconectados, sistemas legacy y llamadas telefónicas de operaciones por un flujo único con visibilidad en tiempo real"
 
-role: "UX/UI Engineer"
+role: "Lead UX/UI Designer"
 
-responsibilities: "Diseño UX/UI completo • Alineación de stakeholders • Flujos de usuario principales • Wireframes y prototipos Hi-Fi • Sistema de diseño y libreria de componentes • Colaboracion cross-funcional y handoff de diseño a código asistida por IA"
+responsibilities: "UX/UI end-to-end (MVP) • Research (stakeholders + usuarios) • Personas & Empathy/Journey Mapping • Arquitectura de la información y flujos • Priorización de features MVP • Wireframes → Hi-Fi → Prototypes"
 
-context: "El equipo de marketing de Hard Rock gestionaba campañas en múltiples propiedades de casino basándose en reglas de negocio complejas y difíciles de estandarizar, utilizando hojas de cálculo y scripts SQL, mantenidos por un grupo de 'expertos en Excel'. El proceso era sumamente manual, propenso a errores, requería mucho tiempo y era difícil de escalar. Además cualquier propuesta de un nuevo sistema tenía que demostrar su valor rápidamente ante unos stakeholders que se mostraban reacios al cambio."
+context: "TopBuild (servicios de construcción) necesitaba gestionar cientos de licencias de construcción en múltiples estados de EE.UU. El sistema existente dependía de spreadsheets desconectados, sistemas legacy, llamadas telefónicas de operarios en el campo y portales de distintos departamentos, generando ineficiencias, riesgo de incumplimientos y demoras de proyecto."
 
 results:
   - value: "↓70%"
-    label: "tiempo de creación de campañas"
-  - value: "↑65%"
-    label: "ofertas lanzadas el primer mes"
-  - value: "↓82%"
-    label: "errores reportados"
+    label: "tiempo de gestión de licencias"
+  - value: "↓Demoras"
+    label: "en renovaciones de licencias"
+  - value: "↑Accesso"
+    label: "para operarios en campo"
 
-resultsNote: "* Impacto estimado comparando el proceso manual anterior con el nuevo flujo"
+resultsNote: "*Impacto estimado, comparando el proceso manual anterior con el nuevo flujo"
 ---
+
+<CaseStudyImage
+  src="/images/work/topbuild-license-tracker/legacy-admin-system.webp"
+  alt="Captura del sistema legacy de administración de licencias basado en spreadsheets y documentos dispersos en carpetas"
+/>
 
 ## Proceso
 
-Se hizo análisis e ingeniería inversa de la lógica legacy en Excel/SQL para definir una jerarquía de datos clara y escalable: Plan → Jobs → Campaigns → Offers/Tiers. Con esto estandarizé la creación, gestión y reutilización de campañas para agilizar el proceso y mantener la consistencia. Mapeé y validé el flujo principal (crear plan → agregar jobs vía import/copia/creación → definir campañas y ofertas → validar y publicar a CMP o exportar) con un flowchart en FigJam antes de tocar la UI. Luego creé wireframes y prototipos HiFi sobre ese modelo.
+Hicimos research extensivo a través de entrevistas con stakeholders y usuarios de distintos equipos para mapear procesos actuales y entender los cuellos de botella más importantes. Hallazgos clave: falta de visibilidad centralizada sobre el estado y documentación de licencias, canales de comunicación poco claros y flujos manuales propensos a errores. El resultado: licencias que vencían sin aviso, documentación difícil de ubicar en el momento de una inspección, carga y mantenimiento del ciclo complejos y extremadamente manuales. 
+
+Contrastamos el mercado (Fizzera, Snow License Manager, ServiceNow SAM) para identificar gaps de funcionalidad antes de definir el alcance del MVP.
 
 <CaseStudyImage
-  src="/images/work/hardrock-marketing-planner/flow.jpg"
-  alt="Diagrama de flujo que recorre los pasos centrales del Marketing Planner: crear plan, definir jobs, configurar campañas y establecer variables de oferta"
+  src="/images/work/topbuild-license-tracker/competitive-analysis.webp"
+  alt="Tabla de análisis competitivo comparando Fizzera, Snow License Manager y ServiceNow SAM"
 />
-
-En paralelo, consideré el design system como una decisión de producto: lo construí sobre Ant Design como base, y definí tokens (color, espaciado, tipografía) como fuente única de verdad compartida entre Figma y código, para que FE consumiera las mismas variables que diseño iteraba. Para cerrar el círculo con desarrollo, propuse un flujo asistido por IA (Figma MCP → React) que generaba el código de los componentes directamente desde Figma en un branch separado, que luego los developers revisaban y mergeaban — convirtiendo el handoff en un punto de partida funcional para ingeniería, más que solo una spec estática.
 
 ## Decisiones Clave
 
-**• Se simplificó la estructura del sistema:** se estandarizó un proceso desestructurado y disperso, cargado de reglas de negocio, en una jerarquía clara, pese a la resistencia inicial de los stakeholders al cambio — cambiando fricción de corto plazo por consistencia y escalabilidad de largo plazo.
+**• Priorizamos visibilidad en tiempo real sobre funcionalidad exhaustiva:** el MVP se acotó a búsqueda avanzada de licencias, alertas de renovación/estado, flujos de acceso a documentación y generación de reportes. Para la primer etapa, lo que el research mostró como el dolor más urgente, no todo lo que el sistema legacy intentaba cubrir.
 
-**• Se protegió la usabilidad en vistas densas en datos:** se redujo el ruido visual limitando los datos mostrados (decenas de campañas superpuestas con miles de ofertas por mes) — sumando más detalles con la interacción y creando un sistema basado en color para comunicar información adicional, priorizando la claridad por sobre la sobrecarga cognitiva.
+**• Diseñamos para dos personas/perfiles con necesidades opuestas:** Marcus (operaciones, en el campo, necesita rapidez y acceso móvil) y Sofia (administrativa, necesita organización centralizada y trazabilidad) — el sistema tenía que servir a ambos sin friccionar a ninguno.
 
-**• Se automatizaron flujos repetitivos a nivel de interacción:** se diseñaron flujos de importación y duplicación de 'jobs', autocompletado de datos, aprobaciones rápidas y publicación directa, reduciendo el esfuerzo manual y los errores humanos.
-
-
-
-## Notas técnicas
-
-- **• Librería base de componentes:** la interfaz se construyó sobre **Ant Design** como librería base, lo que ahorró al equipo el trabajo de resolver patrones de interacción ya resueltos (tablas, date pickers, validación de formularios, paginación, y especialmente, el calendario) y permitió enfocar el esfuerzo de ingeniería en la complejidad real de la app: el modelo de datos de campañas y la complejidad de las validaciones y publicación.
-
-- **• Tokens de diseño como contrato entre diseño y desarrollo:** el Design System: color, espaciado, tipografía y variantes de componentes, se definió como tokens sobre la capa de theming de Ant Design (a través de **Tailwind**) en lugar de valores hardcodeados, de modo que los cambios se implementaron desde una única fuente de verdad compartida entre Figma y el código.
-
-- **• Pipeline de Figma a código asistido por IA:** el código de los componentes se generó directamente desde los archivos de Figma vía **Figma MCP** hacia una branch dedicada; los developers revisaban, ajustaban y mergeaban desde ahí, de modo que el handoff entregaba componentes React funcionales en lugar de una referencia estática a reconstruir desde cero, reduciendo el tiempo de implementación de la capa de design system.
+**• Estructuramos la información antes de diseñar pantallas:** mapeamos arquitectura de la información y flujos en Mural a partir del research, para validar la lógica del sistema con stakeholders antes de invertir tiempo en wireframes y mockups.
 
 
 <CaseStudyImage
-  src="/images/work/hardrock-marketing-planner/design-system.webp"
-  alt="Tokens y librería de componentes del sistema de diseño usado en el Marketing Planner"
+  src="/images/work/topbuild-license-tracker/user-personas.webp"
+  alt="Personas de Marcus Delgado y Sofia Ramirez con sus objetivos y frustraciones"
+/>
+
+<CaseStudyImage
+  src="/images/work/topbuild-license-tracker/marcus-journey-map.webp"
+  alt="Journey map de Marcus con columnas de Actions, Painpoint, Feeling, Thoughts y Opportunity"
+/>
+
+## Notas
+
+- **• Research estructurado en capas:** entrevistas a stakeholders → empathy map → user journey map → síntesis de main painpoints (Operational Delay, Error Risk, Oversight Gap, Budget Risk) — cada capa alimentando la siguiente, no research suelto.
+
+- **• Arquitectura de la información en Mural:** los flujos y la jerarquía de información se mapearon colaborativamente antes de tocar Figma, para que el equipo (y luego desarrollo) tuviera un modelo compartido del sistema.
+
+- **• De lo-fi a hi-fi en Figma con validación:** bocetos y wireframes de baja fidelidad para validar casos de uso rápido, solo entonces se pasó a trabajar en diseños de alta fidelidad, reduciendo revisiones costosas en etapas tardías.
+
+- **• UI pensada para aliviar painpoints de usuarios:** la interfaz se diseñó pensando en reducir fricciones identificadas en el journey map, priorizando claridad y rapidez de acción.
+
+<CaseStudyImage
+  src="/images/work/topbuild-license-tracker/mural-board.webp"
+  alt="Board de Mural con arquitectura de la información y user flows"
+/>
+
+<CaseStudyImage
+  src="/images/work/topbuild-license-tracker/lofi-sketches.webp"
+  alt="Primeros bocetos conceptuales del sistema de licencias"
+/>
+
+<CaseStudyImage
+  src="/images/work/topbuild-license-tracker/wireframes-collage.webp"
+  alt="Collage de wireframes de media fidelidad, para validacion rapida de flujos principales"
 />
 
 ## Resultados
 
-Feedback temprano del MVP mostró a los equipos de marketing reemplazando flujos manuales por el nuevo sistema, creando campañas más rápido, con menos errores y a una escala significativamente mayor. La lección principal: el mayor impacto no vino de agregar más features, sino de estructurar y simplifcar la complejidad y habilitar la automatización.
+El feedback temprano sobre el MVP con algunos usuarios seleccionados mostró que tanto equipos de campo como administrativos reemplazaban procesos manuales por el nuevo sistema con velocidad y pocos errores. En el futuro vendrían más iteraciones para mejorar el producto y agregar más funcionalidades. En este punto, la lección principal no vino de sumar funcionalidades, sino de estructurar la complejidad existente en un flujo claro y accesible para ambos perfiles de usuario.

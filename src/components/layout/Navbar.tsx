@@ -10,6 +10,7 @@ import { LinkedinIcon } from "@/components/ui/LinkedinIcon";
 import { GithubIcon } from "@/components/ui/GithubIcon";
 import { siteLinks } from "@/lib/site-links";
 import { cn } from "@/lib/cn";
+import Image from "next/image";
 
 const navItems = [
   { href: "/work", key: "work" },
@@ -41,18 +42,18 @@ export function Navbar() {
       id="navbar"
       className="sticky top-0 z-50 border-b border-grid-border bg-bg/95 backdrop-blur"
     >
-      <div className="mx-auto flex w-full max-w-[1280px] items-center justify-between px-4 py-4 md:px-8">
+      <div className="mx-auto flex w-full max-w-[1280px] items-center justify-between px-4 py-2 md:px-8">
         <Link
           href="/"
           className="flex items-center gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
         >
-          {/* <Image
-            src="/images/profile-placeholder.svg"
+          <Image
+            src="/images/profile3.webp"
             alt=""
-            width={32}
-            height={32}
+            width={68}
+            height={68}
             className="border border-grid-border"
-          /> */}
+          />
           <span className="font-mono text-label uppercase tracking-label text-fg">
             Hernán Ainsa
           </span>

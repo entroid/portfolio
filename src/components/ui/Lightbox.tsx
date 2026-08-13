@@ -62,7 +62,7 @@ export function Lightbox({
         onClick={() => setOpen(true)}
         aria-label={t("expandImage")}
         className={cn(
-          "block cursor-zoom-in focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg",
+          "block cursor-zoom-in focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg w-full",
           className,
         )}
       >
@@ -100,13 +100,13 @@ export function Lightbox({
               onClick={() => setOpen(false)}
               className="absolute inset-0 h-full w-full cursor-zoom-out bg-bg/95 backdrop-blur-sm"
             />
-            <div className="pointer-events-none absolute inset-0 flex items-center justify-center p-4 md:p-12">
+            <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center gap-3 p-4 md:p-12">
               <button
                 type="button"
                 data-testid="lightbox-close"
                 aria-label={t("closeImage")}
                 onClick={() => setOpen(false)}
-                className="pointer-events-auto absolute top-4 right-4 flex items-center justify-center border border-grid-border bg-bg p-2 text-fg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
+                className="pointer-events-auto absolute top-4 right-4 flex cursor-zoom-out items-center justify-center border border-grid-border bg-bg p-2 text-fg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
               >
                 <X aria-hidden="true" />
               </button>
@@ -114,8 +114,14 @@ export function Lightbox({
               <img
                 src={src}
                 alt={alt}
-                className="pointer-events-auto max-h-full max-w-full border border-grid-border object-contain"
+                className="pointer-events-auto min-h-0 max-w-full flex-1 md:flex-[unset] border border-grid-border object-cover md:object-contain"
               />
+              <p
+                data-testid="lightbox-caption"
+                className="pointer-events-auto shrink-0 text-center font-mono text-label text-fg"
+              >
+                {alt}
+              </p>
             </div>
           </div>,
           document.body,

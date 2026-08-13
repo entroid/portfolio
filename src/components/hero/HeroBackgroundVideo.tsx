@@ -28,7 +28,7 @@ export function HeroBackgroundVideo() {
       id="hero-background-video"
       ref={videoRef}
       aria-hidden="true"
-      className="absolute inset-0 h-full w-full object-cover opacity-70"
+      className="absolute inset-0 h-full w-full object-cover opacity-80"
       autoPlay
       muted
       loop

@@ -9,8 +9,13 @@ import {
 describe("getAllProjectSlugs", () => {
   it("finds every seed project", () => {
     expect(getAllProjectSlugs().sort()).toEqual([
+      "groundworks-inspection-app",
       "hardrock-marketing-planner",
+      "issutrax-onboard",
       "lumen-crm",
+      "muu-livestock-app",
+      "oz-svm",
+      "signos-santafesinos",
       "topbuild-license-tracker",
     ]);
   });
@@ -22,11 +27,21 @@ describe("getAllProjects", () => {
     expect(projects.map((p) => p.meta.slug)).toEqual([
       "hardrock-marketing-planner",
       "topbuild-license-tracker",
+      "oz-svm",
+      "issutrax-onboard",
       "lumen-crm",
+      "muu-livestock-app",
+      "signos-santafesinos",
+      "groundworks-inspection-app",
     ]);
     expect(projects[0].meta.depth).toBe("featured");
     expect(projects[1].meta.depth).toBe("featured");
-    expect(projects[2].meta.depth).toBe("other");
+    expect(projects[2].meta.depth).toBe("featured");
+    expect(projects[3].meta.depth).toBe("featured");
+    expect(projects[4].meta.depth).toBe("other");
+    expect(projects[5].meta.depth).toBe("other");
+    expect(projects[6].meta.depth).toBe("other");
+    expect(projects[7].meta.depth).toBe("other");
   });
 
   it("returns validated, typed frontmatter for every project", async () => {

@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { buttonClassName } from "@/components/ui/Button";
@@ -21,10 +20,13 @@ export function HeroSection() {
   const t = useTranslations("home.hero");
 
   return (
-    <section id="hero" className="relative overflow-hidden py-24 md:py-32">
+    <section
+      id="hero"
+      className="relative overflow-hidden min-h-[100vh] flex items-center py-24 md:py-0 md:pb-7 "
+    >
       <Grain />
       <HeroBackgroundVideo />
-      <GridOverlay className="opacity-40 [mask-image:linear-gradient(to_bottom,black,transparent)]" />
+      <GridOverlay className="opacity-80 [mask-image:linear-gradient(to_bottom,black,transparent)]" />
 
       <div className="relative mx-auto w-full max-w-[1280px] px-4 md:px-8">
         <div className="relative md:min-h-[420px]">
@@ -54,16 +56,33 @@ export function HeroSection() {
             </Link>
           </div>
 
-          <div className="relative z-0 mx-auto mt-12 aspect-square w-full max-w-[420px] overflow-hidden border-2 border-accent-2 bg-[color:var(--color-surface)] [border-radius:0_30%_0] md:absolute md:top-1/2 md:right-0 md:mx-0 md:mt-0 md:w-1/2 md:max-w-[480px] md:-translate-y-1/2">
-            {/* Deliberate exception to DESIGN_SYSTEM.md's zero-radius rule, per Hernán. */}
-            {/* HeroSphere is temporarily disabled above. */}
-            <Image
+          {/*<div className="relative z-0 mx-auto mt-12 aspect-square w-full max-w-[420px] overflow-hidden border-2 border-accent-2 bg-[color:var(--color-surface)] [border-radius:0_30%_0] md:absolute md:top-1/2 md:right-0 md:mx-0 md:mt-0 md:w-1/2 md:max-w-[480px] md:-translate-y-1/2">
+             
+             <Image
               src="/images/profile2.webp"
               alt="Hernán Ainsa"
               fill
               sizes="(min-width: 768px) 480px, 420px"
               className="object-cover"
               priority
+            /> 
+            
+            <MonoLabel className="absolute top-0 left-0">
+              N43.28 W72.01
+            </MonoLabel>
+            <MonoLabel className="absolute right-0 bottom-0">SIG-004</MonoLabel>
+          </div>*/}
+
+          <div className="relative z-0 mx-auto mt-12 aspect-square w-full max-w-[600px] overflow-hidden  bg-[color:var(--color-surface)] md:absolute md:top-1/2 md:right-0 md:mx-0 md:mt-0 md:w-1/2 md:max-w-[600px] md:-translate-y-1/2">
+            {/* Deliberate exception to DESIGN_SYSTEM.md's zero-radius rule, per Hernán. */}
+            {/* HeroSphere is temporarily disabled above. */}
+            <video
+              src="/vids/Designer-to-Handoff.mp4"
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="absolute inset-0 h-full w-full object-cover"
             />
             <MonoLabel className="absolute top-0 left-0">
               N43.28 W72.01

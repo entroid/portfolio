@@ -1,39 +1,41 @@
 import type { ProjectMeta } from "../../schema";
 
-// Duplicated from hardrock-marketing-planner as a starting point — title
-// updated, everything else (images, copy) still needs to be replaced with
-// the real Topbuild content.
+// TODO: replace placeholder image paths below with real TopBuild assets.
 export const meta: ProjectMeta = {
   slug: "topbuild-license-tracker",
   depth: "featured",
   order: 2,
-  coverImage: "/images/work/hardrock-marketing-planner/cover.jpg",
+  coverImage: "/images/work/topbuild-license-tracker/portada.webp",
   coverImageAlt:
-    "Collage of the Hard Rock Marketing Planner interface: campaign calendar, offering-variant setup form, and the Plan / Jobs / Campaigns hierarchy view",
+    "Collage of the TopBuild License Track System interface: main dashboard with license status counters, expiring-licenses table, and license record detail view",
   gallery: [
     {
-      src: "/images/work/hardrock-marketing-planner/calendar.webp",
-      alt: "Marketing Planner's calendar view showing campaigns grouped by job across a multi-week timeline",
+      src: "/images/work/topbuild-license-tracker/dashboard.webp",
+      alt: "Main MVP dashboard with relevant overview counters that also filter the table below, selected records for batch editing, and color system for status indicators.",
     },
     {
-      src: "/images/work/hardrock-marketing-planner/gallery-add-jobs.webp",
-      alt: "Add Jobs view with import, jobs list, and selected job details",
+      src: "/images/work/topbuild-license-tracker/advanced-filtering.webp",
+      alt: "Detail: Advanced column filtering for license records.",
     },
     {
-      src: "/images/work/hardrock-marketing-planner/jobs.webp",
-      alt: "Jobs list with offering lists, counts and status indicators",
+      src: "/images/work/topbuild-license-tracker/inline-editing.webp",
+      alt: "Inline editing UI for quick updating licenses",
     },
     {
-      src: "/images/work/hardrock-marketing-planner/Monitoring.webp",
-      alt: "Monitoring view with campaign status and validation indicators",
+      src: "/images/work/topbuild-license-tracker/batch-updates.webp",
+      alt: "Batch updates modal: applying changes to multiple licenses at once",
     },
     {
-      src: "/images/work/hardrock-marketing-planner/add-offers.webp",
-      alt: "Add Offers view with offer variants and configuration",
+      src: "/images/work/topbuild-license-tracker/licenses-general.webp",
+      alt: "License record detail view with tabs for General, License Doc, License Agency, Payment, ISA, Deliverables, and Management",
     },
     {
-      src: "/images/work/hardrock-marketing-planner/add-jobs.webp",
-      alt: "Add Jobs view with job details and configuration",
+      src: "/images/work/topbuild-license-tracker/management-qualifiers.webp",
+      alt: "Qualifiers Management view for tracking individuals qualified to hold licenses",
+    },
+    {
+      src: "/images/work/topbuild-license-tracker/payment.webp",
+      alt: "Payments view for adding and tracking license payments",
     },
   ],
 };
