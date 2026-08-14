@@ -51,7 +51,7 @@ describe("AiWorkflowContent", () => {
     );
   });
 
-  it("switches to the empty Figma to Code panel when its tab is activated", async () => {
+  it("switches to the Figma to Code panel when its tab is activated", async () => {
     const user = userEvent.setup();
     renderWithIntl(<AiWorkflowContent />, { locale: "en" });
 
@@ -60,9 +60,13 @@ describe("AiWorkflowContent", () => {
     expect(
       screen.getByTestId("ai-workflow-tab-figma-to-code"),
     ).toBeInTheDocument();
-    expect(screen.queryByTestId("ai-workflow-closing")).not.toBeInTheDocument();
+    expect(screen.getByTestId("ai-workflow-closing")).toBeInTheDocument();
     expect(
       screen.queryByTestId("ai-workflow-team-heading"),
     ).not.toBeInTheDocument();
+
+    const list = screen.getByRole("list");
+    expect(list.tagName).toBe("OL");
+    expect(list.children).toHaveLength(7);
   });
 });

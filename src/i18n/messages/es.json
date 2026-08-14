@@ -40,9 +40,11 @@
     },
     "about": {
       "title": "Hola, soy Hernán.",
-      "bio": "Diseño interfaces centradas en el usuario en Figma y las llevo a desarrollo con flujos asistidos por IA (React, Next.js). Llevo más de 15 años en esto, con base en Rosario, Argentina. Hoy busco sumarme a un equipo full-time o part-time.",
+      "bio": "Diseño interfaces centradas en el usuario en Figma y las llevo a desarrollo con flujos asistidos por IA (React, Next.js). Llevo más de 15 años en la industria, los últimos 8 años liderando diseño UX/UI y product design end-to-end — con base en Rosario, Argentina. Actualmente abierto a roles full-time o colaboraciones part-time selectas.",
       "skills": [
+        "Product Design",
         "Diseño UX/UI",
+        "Investigación de Usuarios",
         "Sistemas de Diseño",
         "Desarrollo Asistido por IA",
         "Prototipado",
@@ -114,10 +116,11 @@
   "aiWorkflow": {
     "meta": {
       "title": "Flujo Asistido por IA",
-      "description": "Cómo el proceso de diseño y desarrollo de Hernán Ainsa está construido alrededor de la IA — desde el descubrimiento hasta la interfaz entregada."
+      "description": "El proceso de diseño y desarrollo de Hernán Ainsa está cada vez más influenciado y reestructurado alrededor de la IA para hacerlo más rápido y eficiente desde el descubrimiento hasta la interfaz entregada."
     },
     "title": "Flujo Asistido por IA",
-    "intro": "No solo uso IA para diseñar más rápido — construí un proceso alrededor de ella, que sigo refinando. Así es como un proyecto realmente pasa por mis manos, desde una idea rudimentaria hasta una interfaz entregada.",
+    "intro": "No solo incorporo la IA para diseñar y entregar más eficientemente: construí un proceso alrededor de ella, que continúo refinando. Así es, a grandes rasgos, como un proyecto realmente pasa por mis manos, desde una idea rudimentaria hasta una interfaz entregada. Estos procesos están en constante evolución.",
+    "closing": "En cada paso, soy yo quien decide qué y cómo avanza. La IA hace el trabajo pesado — no la dirección.",
     "tabs": {
       "prototyping": "Prototipado",
       "figmaToCode": "Figma a Código"
@@ -125,40 +128,74 @@
     "prototyping": {
       "steps": [
         {
-          "lead": "Descubrimiento — liderado por humanos.",
-          "body": "Empiezo donde la IA no puede: hablando con stakeholders y usuarios, mirando competidores y el mercado, entendiendo realmente el problema. Sin marcos rígidos — lo mantengo flexible y sigo lo que cada proyecto realmente necesita."
+          "lead": "Descubrimiento.",
+          "body": "En la etapa mas 'humana', empiezo entendiendo el producto y su ecosistema general: hablando con stakeholders del negocio y usuarios, analizando competidores y el mercado ya existente, entendiendo las necesidades a cubrir. Sin metodologías rígidas: lo mantengo flexible y sigo lo que cada proyecto realmente necesita."
         },
         {
           "lead": "Brief y dirección.",
-          "body": "Convierto eso en un brief funcional escrito y una dirección visual — referencias, mood, restricciones. Esto es lo que evita que todo lo que siga se vuelva genérico."
+          "body": "Convierto toda esa información en documentos guía: un brief funcional escrito y una dirección visual con referencias, mood, restricciones. Esto es clave para evitar que todo lo que siga se vuelva genérico."
         },
         {
-          "lead": "Sistema de diseño y concepto — Claude Design.",
-          "body": "Con el brief como contexto, genero un primer sistema de diseño y concepto visual. Lo reviso, mantengo lo que funciona, rehago lo que no."
+          "lead": "Sistema de diseño y concepto — Claude Design/Figma Make.",
+          "body": "Con el brief como contexto, genero un primer sistema de diseño y concepto visual básicos. Lo reviso, dejo lo que funciona, rehago lo que no."
         },
         {
-          "lead": "Plan técnico — Claude Code.",
-          "body": "Una vez que la dirección se sostiene, me muevo a Claude Code para definir el stack técnico, la arquitectura y un plan de construcción por etapas. La IA lo redacta, yo lo apruebo."
+          "lead": "Plan técnico — Claude Code/Cursor/Otros...",
+          "body": "Me muevo a Claude Code (o cualquier Agente/IDE asistido por IA) para comenzar definiendo el stack técnico, la arquitectura y un plan de construcción por etapas. Aqui debe haber fuerte contacto con el equipo tecnico para asegurar que el plan sea realista y escalable. La idea no es apresurarse y tirar codigo basura de entrada que luego habra que rehacer, sino planificar el proyecto y iniciar con una base sólida y escalable."
         },
         {
           "lead": "Construcción.",
-          "body": "La ejecución sucede en etapas, checkpoint por checkpoint. Resultado: una primera versión funcional, no un mockup."
+          "body": "La ejecución sucede en etapas (o en paralelo), checkpoint por checkpoint. Resultado: una primera versión funcional, no un mockup."
         },
         {
           "lead": "Iterar.",
-          "body": "Lo pruebo, encuentro lo que está mal, y vuelvo a lo que lo necesite — diseño, plan o código."
+          "body": "Valido rápidamente, con stakeholders o usuarios cuando es posible, identificando los puntos de mejora urgentes, y aplico los cambios necesarios."
         },
         {
-          "lead": "Volver a Figma.",
-          "body": "Una vez que la construcción se asienta, sincronizo el sistema de diseño de vuelta a Figma vía MCP — para que pueda seguir moviéndose entre Figma y código a medida que el producto crece, no quedarse congelado después de la v1."
+          "lead": "Sincronización con Figma.",
+          "body": "Una vez que el producto cobra cierta solidez, puede ser necesario sincronizar la UI y el sistema de diseño con Figma, vía extensión de chrome o MCP, para poder evolucionar y escalar el diseño a medida que el producto crece."
         }
       ],
-      "closing": "En cada paso, soy yo quien decide qué y cómo avanza. La IA hace el trabajo pesado — no la dirección.",
       "team": {
         "heading": "¿Cómo encaja esto en un equipo?",
         "body": "Quitá las herramientas específicas y lo que queda es solo buen proceso: un brief escrito antes de construir algo, un sistema de diseño como única fuente de verdad, un checkpoint de revisión entre cada etapa. Esto funciona tanto si soy yo y Claude, como un equipo completo en Figma y Jira sin IA involucrada. Las herramientas cambian. La disciplina no."
       }
     },
-    "figmaToCode": {}
+    "figmaToCode": {
+      "steps": [
+        {
+          "lead": "Auditoría del Design System.",
+          "body": "Antes de generar cualquier código, me aseguro de que el archivo de Figma esté listo: tokens (color, spacing, typography) definidos como variables, componentes construidos con Auto Layout, estados claros, y convenciones de nombres que un agente de IA pueda interpretar sin tener que adivinar. Un archivo desordenado produce código desordenado. Este paso no es opcional."
+        },
+        {
+          "lead": "Contexto & Convenciones.",
+          "body": "Configuro al agente de IA (Figma MCP + Claude Code, o un setup similar) con el tech stack real del proyecto, la estructura de carpetas y las convenciones de código: la librería de componentes en uso, patrones de nombres, arquitectura. Sin esto, el agente completa los vacíos con supuestos, y eso suele significar retrabajo."
+        },
+        {
+          "lead": "Tokens Primero.",
+          "body": "Los design tokens se exportan desde Figma antes de tocar un solo componente: color, spacing y typography se convierten en la fuente de verdad compartida entre Figma y el código."
+        },
+        {
+          "lead": "Componentes Base.",
+          "body": "Con los tokens ya definidos, genero primero los bloques más pequeños: botones, inputs, cards. Calcados de su versión en Figma, incluyendo los estados interactivos (hover, disabled, error, loading). Ningún componente avanza hasta que se sostiene contra el spec."
+        },
+        {
+          "lead": "Ensamblaje Atómico.",
+          "body": "A partir de ahí, los componentes suben la escalera de Atomic Design: componentes base se combinan en moléculas, luego organismos, luego pantallas completas. Siempre validados contra el layout de Figma, nunca generados de una sola pasada sin control."
+        },
+        {
+          "lead": "Branch Aislada, Revisión del Equipo.",
+          "body": "Todo el código generado por IA vive en su propia branch. Los developers lo revisan y mergean vía pull requests de GitHub, exactamente igual que cualquier otra contribución. La IA acelera el primer borrador, el equipo sigue siendo dueño del control de calidad."
+        },
+        {
+          "lead": "Sincronizar & Evolucionar.",
+          "body": "Una vez mergeado, mantengo el archivo de Figma y la librería de componentes viva sincronizados, para que diseño y código no se desalineen a medida que el producto crece."
+        }
+      ],
+      "team": {
+        "heading": "Proceso de handoff",
+        "body": "El código generado por IA pasa por el mismo proceso de revisión que cualquier otro pull request. Esto requiere sincronización con el equipo de desarrollo y hablar su mismo lenguaje."
+      }
+    }
   }
 }

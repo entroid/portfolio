@@ -40,9 +40,11 @@
     },
     "about": {
       "title": "Hey, I'm Hernán.",
-      "bio": "I design user-centered interfaces in Figma, then build them myself using AI-assisted development workflows (React, Next.js). I've been doing this for 15+ years, based in Rosario, Argentina. Currently looking to join a team as a full-time or part-time.",
+      "bio": "I design user-centered interfaces in Figma, and build them myself using AI-assisted development workflows (React, Next.js). 15+ years in the industry, 8+ of them leading UX/UI and product design end-to-end — based in Rosario, Argentina. Currently open to full-time roles, or select part-time collaborations.",
       "skills": [
+        "Product Design",
         "UX/UI Design",
+        "User Research",
         "Design Systems",
         "AI Assisted Development",
         "Prototyping",
@@ -114,10 +116,11 @@
   "aiWorkflow": {
     "meta": {
       "title": "AI-Assisted Workflow",
-      "description": "How Hernán Ainsa's design and development process is built around AI — from discovery to shipped interface."
+      "description": "Hernán Ainsa's design and development process is increasingly influenced and restructured around AI to make it faster and more efficient from discovery to delivered interface."
     },
     "title": "AI-Assisted Workflow",
-    "intro": "I don't just use AI to design faster — I built a process around it, one I keep refining. Here's how a project actually moves through my hands, from a rough idea to a shipped interface.",
+    "intro": "I don't just incorporate AI to design and deliver more efficiently — I built a process around it, one I keep refining. Here's how a project actually moves through my hands, from a rough idea to a delivered interface. These processes are in constant evolution.",
+    "closing": "At every step, I'm the one deciding what and how it moves forward. AI does the heavy lifting — not the directing.",
     "tabs": {
       "prototyping": "Prototyping",
       "figmaToCode": "Figma to Code"
@@ -125,40 +128,74 @@
     "prototyping": {
       "steps": [
         {
-          "lead": "Discovery — human-led.",
-          "body": "I start where AI can't: talking with stakeholders and users, looking at competitors and the market, getting a real feel for the problem. No rigid framework — I keep it loose and follow what each project actually needs."
+          "lead": "Discovery.",
+          "body": "In the most 'human' stage, I start by understanding the product and its overall ecosystem: talking with business stakeholders and users, analyzing competitors and the existing market, understanding the needs to be covered. No rigid methodologies: I keep it flexible and follow what each project actually needs."
         },
         {
           "lead": "Brief & direction.",
-          "body": "I turn that into a written functional brief and a visual direction — references, mood, constraints. This is what keeps everything that follows from going generic."
+          "body": "I convert all that information into guide documents: a written functional brief and a visual direction with references, mood, constraints. This is key to preventing everything that follows from becoming generic."
         },
         {
-          "lead": "Design system & concept — Claude Design.",
-          "body": "With the brief as context, I generate a first design system and visual concept. I review it, keep what works, rework what doesn't."
+          "lead": "Design system & concept — Claude Design/Figma Make.",
+          "body": "With the brief as context, I generate a first basic design system and visual concept. I review it, keep what works, redo what doesn't."
         },
         {
-          "lead": "Technical plan — Claude Code.",
-          "body": "Once the direction holds up, I move into Claude Code to define the tech stack, architecture, and a staged build plan. AI drafts it, I call it."
+          "lead": "Technical plan — Claude Code/Cursor/Others...",
+          "body": "I move to Claude Code (or any AI-assisted Agent/IDE) to start defining the tech stack, architecture, and a staged build plan. Here there must be strong contact with the technical team to ensure the plan is realistic and scalable. The idea is not to rush and throw out garbage code that will later need to be redone, but to plan the project and start with a solid, scalable foundation."
         },
         {
           "lead": "Build.",
-          "body": "Execution happens in stages, checkpoint by checkpoint. Result: a working first version, not a mockup."
+          "body": "Execution happens in stages (or in parallel), checkpoint by checkpoint. Result: a functional first version, not a mockup."
         },
         {
           "lead": "Iterate.",
-          "body": "I test it, find what's off, and go back to whatever needs it — design, plan, or code."
+          "body": "I quickly validate it — with users or stakeholders when possible — identify critical improvement points, and apply the necessary changes."
         },
         {
-          "lead": "Back to Figma.",
-          "body": "Once the build settles, I sync the design system back into Figma via MCP — so it can keep moving between Figma and code as the product grows, not stay frozen after v1."
+          "lead": "Synch to Figma.",
+          "body": "Once the product gains some solidity, it may be necessary to sync the UI and design system with Figma, via Chrome extension or MCP, to be able to evolve and scale the design as the product grows."
         }
       ],
-      "closing": "At every step, I'm the one deciding what and how it moves forward. AI does the heavy lifting — not the directing.",
       "team": {
         "heading": "How does this fit into a team?",
-        "body": "Strip away the specific tools and what's left is just good process: a written brief before anything gets built, a design system as the single source of truth, a review checkpoint between every stage. That works whether it's me and Claude, or a full team on Figma and Jira with no AI involved at all. The tools change. The discipline doesn't."
+        "body": "Strip away the specific tools and what's left is just good process: a written brief before building anything, a design system as the single source of truth, a review checkpoint between each stage. This works whether it's me and Claude, or a full team on Figma and Jira with no AI involved. The tools change. The discipline doesn't."
       }
     },
-    "figmaToCode": {}
+    "figmaToCode": {
+      "steps": [
+        {
+          "lead": "Design System Audit.",
+          "body": "Before any code gets generated, I make sure the Figma file is actually code-ready: tokens (color, spacing, typography) defined as variables, components built with proper Auto Layout, clear states, and naming conventions an AI agent can parse without guessing. A messy file produces messy code — this step isn't optional."
+        },
+        {
+          "lead": "Context & Conventions.",
+          "body": "I set up the AI agent (Figma MCP + Claude Code, or a similar setup) with the project's real tech stack, folder structure, and coding conventions — the component library in use, naming patterns, existing architecture. Without this, the agent fills the gaps with assumptions, and assumptions mean rework."
+        },
+        {
+          "lead": "Tokens First.",
+          "body": "Design tokens get exported from Figma before a single component is touched — colors, spacing, typography become the single source of truth shared between Figma and the codebase, so nothing gets hardcoded downstream."
+        },
+        {
+          "lead": "Base Components.",
+          "body": "With tokens in place, I generate the smallest building blocks first — buttons, inputs, cards — matched 1:1 to their Figma counterparts, including every interactive state (hover, disabled, error, loading). No component moves forward until it holds up against spec."
+        },
+        {
+          "lead": "Atomic Assembly.",
+          "body": "From there, components climb the Atomic Design ladder: base components combine into molecules, then organisms, then full screens — always validated against the Figma layout, never generated in one uncontrolled pass."
+        },
+        {
+          "lead": "Isolated Branch, Team Review.",
+          "body": "All AI-generated code lands in its own branch, never directly on main. Developers review and merge it through GitHub pull requests, exactly like any other contribution — AI speeds up the first draft, the team still owns quality control."
+        },
+        {
+          "lead": "Sync & Evolve.",
+          "body": "Once merged, I keep the Figma file and the live component library aligned, so design and code don't drift apart as the product grows — the same discipline as step 07 in Prototyping, applied in reverse."
+        }
+      ],
+      "team": {
+        "heading": "Handoff Process",
+        "body": "AI-generated code goes through the same review process as any other pull request. This requires synchronization with the development team and speaking their language."
+      }
+    }
   }
 }

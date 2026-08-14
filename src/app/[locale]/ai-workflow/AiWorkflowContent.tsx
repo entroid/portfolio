@@ -12,6 +12,25 @@ type Step = {
   body: string;
 };
 
+function StepsList({ steps }: { steps: Step[] }) {
+  return (
+    <ol className="flex flex-col gap-6">
+      {steps.map((step, index) => (
+        <li
+          key={step.lead}
+          className="text-body text-muted md:text-body-desktop"
+        >
+          <span className="font-mono text-body text-accent md:text-body-desktop">
+            {String(index + 1).padStart(2, "0")}
+          </span>{" "}
+          <span className="font-sans font-semibold text-fg">{step.lead}</span>{" "}
+          {step.body}
+        </li>
+      ))}
+    </ol>
+  );
+}
+
 function PrototypingTab() {
   const t = useTranslations("aiWorkflow.prototyping");
   const steps = t.raw("steps") as Step[];
@@ -19,30 +38,8 @@ function PrototypingTab() {
   return (
     <>
       <Reveal>
-        <ol className="flex flex-col gap-6">
-          {steps.map((step, index) => (
-            <li
-              key={step.lead}
-              className="text-body text-muted md:text-body-desktop"
-            >
-              <span className="font-mono text-label text-accent">
-                {String(index + 1).padStart(2, "0")}
-              </span>{" "}
-              <span className="font-sans font-semibold text-fg">
-                {step.lead}
-              </span>{" "}
-              {step.body}
-            </li>
-          ))}
-        </ol>
+        <StepsList steps={steps} />
       </Reveal>
-
-      <p
-        data-testid="ai-workflow-closing"
-        className="mt-10 text-body text-muted md:text-body-desktop"
-      >
-        {t("closing")}
-      </p>
 
       <Reveal className="mt-12 border border-grid-border p-6 md:p-8">
         <h2
@@ -60,7 +57,28 @@ function PrototypingTab() {
 }
 
 function FigmaToCodeTab() {
-  return <div data-testid="ai-workflow-tab-figma-to-code" />;
+  const t = useTranslations("aiWorkflow.figmaToCode");
+  const steps = t.raw("steps") as Step[];
+
+  return (
+    <div data-testid="ai-workflow-tab-figma-to-code">
+      <Reveal>
+        <StepsList steps={steps} />
+      </Reveal>
+
+      <Reveal className="mt-12 border border-grid-border p-6 md:p-8">
+        <h2
+          data-testid="ai-workflow-team-heading"
+          className="text-h3 font-mono font-bold text-fg"
+        >
+          {t("team.heading")}
+        </h2>
+        <p className="mt-4 text-body text-muted md:text-body-desktop">
+          {t("team.body")}
+        </p>
+      </Reveal>
+    </div>
+  );
 }
 
 /**
@@ -91,6 +109,13 @@ export function AiWorkflowContent() {
           className="mt-6 text-body text-muted md:text-body-desktop"
         >
           {t("intro")}
+        </p>
+
+        <p
+          data-testid="ai-workflow-closing"
+          className="mt-4 text-body text-muted md:text-body-desktop"
+        >
+          {t("closing")}
         </p>
 
         <Tabs

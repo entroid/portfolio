@@ -85,7 +85,7 @@ export function HeroSection() {
               className="absolute inset-0 h-full w-full object-cover"
             />
             <MonoLabel className="absolute top-0 left-0">
-              N43.28 W72.01
+              S32.94 W60.65
             </MonoLabel>
             <MonoLabel className="absolute right-0 bottom-0">SIG-004</MonoLabel>
           </div>
