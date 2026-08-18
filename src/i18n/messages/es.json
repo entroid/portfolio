@@ -121,6 +121,35 @@
     "title": "Flujo Asistido por IA",
     "intro": "No solo incorporo la IA para diseñar y entregar más eficientemente: construí un proceso alrededor de ella, que continúo refinando. Así es, a grandes rasgos, como un proyecto realmente pasa por mis manos, desde una idea rudimentaria hasta una interfaz entregada. Estos procesos están en constante evolución.",
     "closing": "En cada paso, soy yo quien decide qué y cómo avanza. La IA hace el trabajo pesado — no la dirección.",
+    "workflow": {
+      "heading": "El Workflow Real",
+      "diagram": [
+        { "label": "Prompt", "microLabel": "Instrucción detallada" },
+        { "label": "Revisión", "microLabel": "Evaluar el resultado" },
+        { "label": "Crítica", "microLabel": "Qué funciona, qué no" },
+        { "label": "Iteración", "microLabel": "Refinar y reintentar" },
+        { "label": "Repetición", "microLabel": "Hasta lograrlo" }
+      ],
+      "contextLine": "*Un ciclo puede tomar 15 minutos o varias horas, según la complejidad.",
+      "helps": {
+        "heading": "Dónde ayuda",
+        "items": [
+          "Explorar y testear ideas rápido",
+          "Eliminar trabajo repetitivo de producción",
+          "Generar variaciones (tres direcciones de hero section para un cliente — horas, no días)",
+          "Comprimir semanas de trabajo en días"
+        ]
+      },
+      "doesnt": {
+        "heading": "Dónde no",
+        "items": [
+          "Tomar la decisión en lugar del diseñador",
+          "Entender el gusto estético",
+          "Ser creativa por sí misma"
+        ]
+      },
+      "closing": "Creatividad, gusto y criterio — las tres cosas que la IA todavía no puede hacer. Es exactamente lo que estoy afilando para 2026 y en adelante."
+    },
     "tabs": {
       "prototyping": "Prototipado",
       "figmaToCode": "Figma a Código"

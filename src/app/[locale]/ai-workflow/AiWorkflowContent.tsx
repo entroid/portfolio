@@ -1,16 +1,183 @@
 "use client";
 
+import { Fragment } from "react";
 import { useTranslations } from "next-intl";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import { Reveal } from "@/components/ui/Reveal";
 import { Tabs } from "@/components/ui/Tabs";
 import { GridOverlay } from "@/components/ui/GridOverlay";
+import { cn } from "@/lib/cn";
 
 type Step = {
   lead: string;
   body: string;
 };
+
+type DiagramNode = {
+  label: string;
+  microLabel: string;
+};
+
+/**
+ * Shared between both tabs, so it lives above the tab selector rather than
+ * inside PrototypingTab/FigmaToCodeTab. Deliberately plain `div`s, not an
+ * `ol`/`ul` — page.test.tsx/page.composition.test.tsx query the 7-step tab
+ * panel via `getByRole("list")`, which requires exactly one list on the
+ * page.
+ */
+function WorkflowDiagram() {
+  const t = useTranslations("aiWorkflow.workflow");
+  const nodes = t.raw("diagram") as DiagramNode[];
+  const helpsItems = t.raw("helps.items") as string[];
+  const doesntItems = t.raw("doesnt.items") as string[];
+
+  return (
+    <Reveal className="mt-16">
+      {/* <h2 className="text-h3 font-mono font-bold text-fg md:text-h3-desktop">
+        {t("heading")}
+      </h2> */}
+
+      {/* Mobile: each node (box + label below it) stacked, arrow rotated as a divider. */}
+      <div className="mt-8 flex flex-col items-center gap-3 md:hidden">
+        {nodes.map((node, index) => {
+          const isLast = index === nodes.length - 1;
+          return (
+            <div key={node.label} className="w-full">
+              <div
+                className={cn(
+                  "border px-4 py-3 text-center transition-[border-color,border-image] duration-150",
+                  isLast
+                    ? "border-accent-gradient"
+                    : "border-grid-border hover:border-accent-gradient",
+                )}
+              >
+                <p
+                  className={cn(
+                    "font-mono text-label font-bold uppercase tracking-label text-fg",
+                  )}
+                >
+                  {node.label}
+                </p>
+              </div>
+              <p className="mt-2 text-center font-sans text-label text-muted">
+                {node.microLabel}
+              </p>
+              {!isLast && (
+                <p aria-hidden className="mt-3 text-center text-muted">
+                  &darr;
+                </p>
+              )}
+            </div>
+          );
+        })}
+      </div>
+
+      {/*
+        Desktop: boxes + arrows share one row so the arrows sit at the
+        vertical center of the (label-free, equal-height) boxes; labels
+        live in a second row below, with a matching invisible spacer where
+        each arrow was so the label columns stay aligned to their boxes.
+      */}
+      <div className="mt-8 hidden md:block">
+        <div className="flex items-center">
+          {nodes.map((node, index) => {
+            const isLast = index === nodes.length - 1;
+            return (
+              <Fragment key={node.label}>
+                <div
+                  className={cn(
+                    "flex-1 border px-4 py-3 text-center transition-[border-color,border-image] duration-150",
+                    isLast
+                      ? "border-accent-gradient"
+                      : "border-grid-border hover:border-accent-gradient",
+                  )}
+                >
+                  <p
+                    className={cn(
+                      "font-mono text-label-desktop font-bold uppercase tracking-label text-fg",
+                    )}
+                  >
+                    {node.label}
+                  </p>
+                </div>
+                {!isLast && (
+                  <span aria-hidden className="px-2 text-muted">
+                    &rsaquo;
+                  </span>
+                )}
+              </Fragment>
+            );
+          })}
+        </div>
+        <div className="mt-2 flex items-start">
+          {nodes.map((node, index) => {
+            const isLast = index === nodes.length - 1;
+            return (
+              <Fragment key={node.label}>
+                <p className="flex-1 text-center font-sans text-label-desktop text-muted">
+                  {node.microLabel}
+                </p>
+                {!isLast && (
+                  <span aria-hidden className="px-2 text-transparent">
+                    &rsaquo;
+                  </span>
+                )}
+              </Fragment>
+            );
+          })}
+        </div>
+      </div>
+
+      <p className="mt-4 text-label text-muted md:text-label-desktop italic">
+        {t("contextLine")}
+      </p>
+
+      <div className="mt-10 grid grid-cols-1 divide-y divide-grid-border sm:grid-cols-2 sm:divide-x sm:divide-y-0">
+        <div className="pb-8 sm:pr-8 sm:pb-0">
+          <h2 className="font-mono text-label font-bold uppercase tracking-label text-fg md:text-label-desktop">
+            {t("helps.heading")}
+          </h2>
+          <div className="mt-4 flex flex-col gap-2">
+            {helpsItems.map((item) => (
+              <p
+                key={item}
+                className="text-body text-muted md:text-body-desktop"
+              >
+                <span aria-hidden className="text-accent">
+                  +
+                </span>{" "}
+                {item}
+              </p>
+            ))}
+          </div>
+        </div>
+        <div className="pt-8 sm:pt-0 sm:pl-8">
+          <h2 className="font-mono text-label font-bold uppercase tracking-label text-fg md:text-label-desktop">
+            {t("doesnt.heading")}
+          </h2>
+          <div className="mt-4 flex flex-col gap-2">
+            {doesntItems.map((item) => (
+              <p
+                key={item}
+                className="text-body text-muted md:text-body-desktop"
+              >
+                <span aria-hidden className="text-red-500">
+                  &ndash;
+                </span>{" "}
+                {item}
+              </p>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <p className="mt-8 text-body text-muted md:text-body-desktop">
+        {t("closing")}
+      </p>
+    </Reveal>
+  );
+}
 
 function StepsList({ steps }: { steps: Step[] }) {
   return (
@@ -20,7 +187,7 @@ function StepsList({ steps }: { steps: Step[] }) {
           key={step.lead}
           className="text-body text-muted md:text-body-desktop"
         >
-          <span className="font-mono text-body text-accent md:text-body-desktop">
+          <span className="font-mono text-body text-accent-2 md:text-body-desktop">
             {String(index + 1).padStart(2, "0")}
           </span>{" "}
           <span className="font-sans font-semibold text-fg">{step.lead}</span>{" "}
@@ -117,6 +284,8 @@ export function AiWorkflowContent() {
         >
           {t("closing")}
         </p>
+
+        <WorkflowDiagram />
 
         <Tabs
           className="relative mt-10 bg-bg"

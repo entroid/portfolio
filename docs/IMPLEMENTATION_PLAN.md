@@ -171,8 +171,11 @@ were removed) — LinkedIn/GitHub links use `ExternalLink` + text instead,
 which also reads more consistently with the mono/text-first "instrument
 panel" language than a logo would. `src/lib/site-links.ts` values (email,
 LinkedIn, GitHub, WhatsApp) are placeholders — real ones are still an open
-item per ARCHITECTURE.md. `public/cv/hernan-ainsa-cv.pdf` is a
-programmatically-generated minimal valid placeholder PDF, not a real CV.
+item per ARCHITECTURE.md. `public/cv/hernan-ainsa-cv.pdf` was originally a
+programmatically-generated minimal valid placeholder PDF, not a real CV —
+**superseded**: real CV files now live at `public/cv/Hernan_Ainsa_CV_Resumee_2026.pdf`
+(EN) and `public/cv/Hernan_Ainsa_CV_2026_esp.pdf` (ES), wired up via
+`cvPathEn`/`cvPathEs` in `site-links.ts`.
 
 > Scope updated 2026-07-24 for the multi-route structure: this phase now
 > also scaffolds the route skeleton for the whole site (previously only
@@ -427,9 +430,19 @@ Definition of Done:
 **Depends on:** Phase 1, Phase 2. **Docs:** CONTENT_MODEL.md ("Static pages
 (AI Workflow)"), PROJECT_BRIEF.md ("Structural revision — 2026-07-24").
 
-New page, added 2026-07-24, out of the original brief's scope. Content is
-final copy from Hernán (English), reproduced below — implement verbatim,
-don't paraphrase:
+> **Superseded since original write-up:** the page shipped with a second
+> tab, "Figma to Code" (steps 01–07 + closing line, mirroring the
+> "Prototyping" tab's format), and both tabs are now fully bilingual. Copy
+> for both tabs lives in the `aiWorkflow.*` i18n message namespace
+> (`src/i18n/messages/{en,es}.json`), consumed by `AiWorkflowContent.tsx`
+> via `useTranslations`/`t.raw("steps")` — not written directly as JSX in
+> `page.tsx` as originally scoped below. The English-only exception
+> mentioned in the DoD is no longer in effect. See CONTENT_MODEL.md's
+> "Static pages (AI Workflow)" section for the current shape.
+
+New page, added 2026-07-24, out of the original brief's scope. Original
+"Prototyping" tab content is final copy from Hernán (English), reproduced
+below — implement verbatim, don't paraphrase:
 
 > **Title:** AI-Assisted Workflow
 >
@@ -488,9 +501,8 @@ Scope:
 
 Definition of Done:
 
-- Page renders at `/ai-workflow` in both `en` and `es` locale segments
-  (same English content under both — see the bilingual exception in
-  ARCHITECTURE.md's Guiding constraints).
+- Page renders at `/ai-workflow` in both `en` and `es` locale segments,
+  each with fully translated content (no shared-English exception).
 - The 7 steps are a real `<ol>` in the DOM (not `<div>`s with CSS counters),
   verified via the rendered HTML, not just visually.
 - Heading levels form a real outline continuing from the page's own H1 (no
@@ -633,10 +645,11 @@ brand names are identical in both locales by convention, and the honeypot
 label is `aria-hidden` and visually off-screen, never exposed to a real
 user in either language.
 
-> `/ai-workflow` (Phase 7) is explicitly out of scope for this phase — its
-> English-only content is a deliberate, separate decision, not something
-> this phase forgot. Don't add an `ai-workflow.*` message namespace here
-> unless Hernán has actually asked for the translation pass to start.
+> `/ai-workflow` (Phase 7) was out of scope for this phase at the time —
+> its English-only content was a deliberate, separate decision, not
+> something this phase forgot. **Superseded:** an `ai-workflow.*` message
+> namespace was added later and is now fully translated in both `en.json`
+> and `es.json`, covered by the same parity check as every other namespace.
 
 Scope:
 
@@ -651,9 +664,8 @@ Scope:
 Definition of Done:
 
 - Manual pass through the entire site in both `/en` and `/es` — no leftover
-  placeholder/MT text, no missing keys (blank strings) — except
-  `/ai-workflow`, which is expected to render identical English content
-  under both locales for now.
+  placeholder/MT text, no missing keys (blank strings). `/ai-workflow` is
+  now covered by this too (see the superseded note above).
 - Parity check passes in CI.
 
 ---
@@ -682,10 +694,12 @@ image. Found one non-obvious Next.js behavior: requesting
 explicit `twitter.images` array gets silently downgraded to `"summary"` at
 render time — so that override was only kept on the case-study route (which
 does set an explicit image); other routes rely on Next's default instead of
-asserting a card type they can't actually get. `/ai-workflow` metadata is
-hardcoded English (module-level `export const metadata`, not
-`generateMetadata`), consistent with the page body's existing English-only
-exception. `sitemap.ts`/`robots.ts` live at the app root (not under
+asserting a card type they can't actually get. `/ai-workflow` metadata was
+originally hardcoded English (module-level `export const metadata`, not
+`generateMetadata`), consistent with the page body's English-only exception
+at the time — **superseded**: it now uses `generateMetadata` reading the
+`aiWorkflow.meta.title`/`description` keys via `getTranslations`, same
+pattern as every other route. `sitemap.ts`/`robots.ts` live at the app root (not under
 `[locale]`) per Next's file convention, and the sitemap lists all five route
 shapes across both locale prefixes (10 static + `2 × getAllProjectSlugs()`
 URLs) by reading the same content-layer helper `/work` and `/work/[slug]`
@@ -813,13 +827,21 @@ Definition of Done:
 
 **Depends on:** everything. **Docs:** all.
 
+> Partial progress ahead of this phase formally starting: the real CV
+> files are already in place — `public/cv/Hernan_Ainsa_CV_Resumee_2026.pdf`
+> (EN) and `public/cv/Hernan_Ainsa_CV_2026_esp.pdf` (ES), wired via
+> `cvPathEn`/`cvPathEs` in `site-links.ts` — and the favicon/app icons
+> (`src/app/favicon.ico`, `icon.png`, `apple-icon.png`) were also replaced
+> with final assets. Remaining scope below (domain, README, Lighthouse)
+> is still open.
+
 Scope:
 
 - Vercel project connected, environment variables set, production domain
   configured.
-- Real CV file in place, real profile photo, final confirmed case study
-  content (swap seed placeholders if real content wasn't already dropped in
-  during Phase 5/6).
+- Real CV file in place ✅ done, real profile photo, final confirmed case
+  study content (swap seed placeholders if real content wasn't already
+  dropped in during Phase 5/6).
 - Root `README.md` finished properly: project description, live link,
   stack summary/badges, local dev instructions (`pnpm install`, `pnpm dev`,
   `pnpm test`), screenshot(s), license.

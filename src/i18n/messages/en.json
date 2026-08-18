@@ -121,6 +121,35 @@
     "title": "AI-Assisted Workflow",
     "intro": "I don't just incorporate AI to design and deliver more efficiently — I built a process around it, one I keep refining. Here's how a project actually moves through my hands, from a rough idea to a delivered interface. These processes are in constant evolution.",
     "closing": "At every step, I'm the one deciding what and how it moves forward. AI does the heavy lifting — not the directing.",
+    "workflow": {
+      "heading": "The Real Workflow",
+      "diagram": [
+        { "label": "Prompt", "microLabel": "Detailed instruction" },
+        { "label": "Review", "microLabel": "Assess the output" },
+        { "label": "Critique", "microLabel": "What works, what doesn't" },
+        { "label": "Iterate", "microLabel": "Refine and re-prompt" },
+        { "label": "Repeat", "microLabel": "Until it's right" }
+      ],
+      "contextLine": "*A single loop can take 15 minutes or several hours, depending on the complexity.",
+      "helps": {
+        "heading": "Where AI helps",
+        "items": [
+          "Exploring and testing ideas fast",
+          "Cutting repetitive production work",
+          "Generating variations (three hero-section directions for a client — hours, not days)",
+          "Compressing weeks of work into days"
+        ]
+      },
+      "doesnt": {
+        "heading": "Where it doesn't",
+        "items": [
+          "Making the call instead of the designer",
+          "Understanding taste",
+          "Being creative on its own"
+        ]
+      },
+      "closing": "Creativity, taste, and judgment — the three things AI still can't do. That's exactly what I'm sharpening for 2026 and beyond."
+    },
     "tabs": {
       "prototyping": "Prototyping",
       "figmaToCode": "Figma to Code"

@@ -223,12 +223,11 @@ before any of Phase 1+ was built:
   spec lives in [IMPLEMENTATION_PLAN.md](./IMPLEMENTATION_PLAN.md#phase-7--ai-workflow-page)
   Phase 7. Nav order across the whole site: **Start, Work, AI Workflow,
   Contact.**
-- **`/ai-workflow` is the one deliberate exception to "bilingual by
-  construction."** Its content ships English-only; the Spanish translation
-  is an explicitly deferred later pass, not a Phase 7 requirement. Every
-  other route still ships bilingual from the commit that introduces it —
-  see the carve-out noted in [ARCHITECTURE.md](./ARCHITECTURE.md#guiding-constraints)
-  and [CLAUDE.md](../CLAUDE.md).
+- **`/ai-workflow` ships bilingual (EN/ES) like every other route** — both
+  tabs ("Prototyping" and "Figma to Code") are fully translated via the
+  `aiWorkflow.*` i18n message namespace. An earlier draft of this doc
+  carved out `/ai-workflow` as English-only; that carve-out has been
+  superseded now that both tabs are translated.
 - **Footer contact links (email, LinkedIn, WhatsApp) are persistent across
   every route**, not gated behind `/contact` — the fastest way to reach out
   shouldn't require navigating to a specific page.

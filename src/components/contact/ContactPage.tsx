@@ -8,7 +8,7 @@ import { ContactForm } from "./ContactForm";
 import { GridOverlay } from "@/components/ui/GridOverlay";
 
 const directLinkClassName =
-  "group inline-flex items-center font-mono text-label uppercase tracking-label text-muted transition-colors duration-150 hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg";
+  "group inline-flex items-center font-mono text-body uppercase tracking-label transition-colors duration-150 hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg";
 
 export function ContactPage() {
   const t = useTranslations("contact");
@@ -26,14 +26,10 @@ export function ContactPage() {
           {t("intro")}
         </p>
 
-        <Reveal className="mt-12">
-          <ContactForm />
-        </Reveal>
-
-        <Reveal className="mt-16 border-t border-grid-border pt-8" delay={0.1}>
-          <h2 className="text-h3 font-mono font-extrabold tracking-h1 text-fg md:text-h3-desktop">
+        <Reveal className="mt-16  " delay={0.1}>
+          {/*<h2 className="text-h3 font-mono font-extrabold tracking-h1 text-fg md:text-h3-desktop">
             {t("direct.title")}
-          </h2>
+          </h2> */}
           <nav
             aria-label={t("direct.title")}
             className="mt-6 flex flex-wrap items-center gap-6"
@@ -64,6 +60,10 @@ export function ContactPage() {
               <BracketLabel>{tFooter("whatsapp")}</BracketLabel>
             </a>
           </nav>
+        </Reveal>
+
+        <Reveal className="mt-12 border-t border-grid-border pt-8">
+          <ContactForm />
         </Reveal>
       </Container>
     </Section>

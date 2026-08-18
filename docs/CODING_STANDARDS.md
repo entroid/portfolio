@@ -132,6 +132,4 @@ list in IMPLEMENTATION_PLAN.md)
 - [ ] Every new component/section wrapper has a unique `id`
 - [ ] No hardcoded design values outside the token set
 - [ ] Keyboard/reduced-motion/alt-text checked by hand, not just assumed
-- [ ] Both locales verified for any new user-facing copy (except
-      `/ai-workflow`, which is deliberately English-only for now — see
-      ARCHITECTURE.md's Guiding constraints)
+- [ ] Both locales verified for any new user-facing copy

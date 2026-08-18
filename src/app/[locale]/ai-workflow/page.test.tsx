@@ -26,8 +26,9 @@ describe("AiWorkflowContent", () => {
   it("renders the team callout as a heading + paragraph", () => {
     renderWithIntl(<AiWorkflowContent />, { locale: "en" });
 
-    expect(screen.getByTestId("ai-workflow-team-heading")).toBeInTheDocument();
-    expect(screen.getByRole("heading", { level: 2 })).toBeInTheDocument();
+    const heading = screen.getByTestId("ai-workflow-team-heading");
+    expect(heading).toBeInTheDocument();
+    expect(heading.tagName).toBe("H2");
   });
 
   it("has no automatically detectable accessibility violations", async () => {

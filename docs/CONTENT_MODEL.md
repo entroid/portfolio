@@ -10,9 +10,11 @@ build time (see [ARCHITECTURE.md](./ARCHITECTURE.md)).
    messages) → `src/i18n/messages/{en,es}.json`, managed by `next-intl`.
 2. **Work / case studies** → one folder per project under `src/content/work/`,
    split into shared metadata + per-locale body.
-3. **One-off static pages** (currently just `/ai-workflow`) → written
-   directly in their route file, no data layer at all. See "Static pages
-   (AI Workflow)" below for why this doesn't get the same treatment as #2.
+3. **One-off static pages** (currently just `/ai-workflow`) → copy lives in
+   the `aiWorkflow.*` i18n message namespace (`src/i18n/messages/{en,es}.json`),
+   consumed by `AiWorkflowContent.tsx`; no `content/` data file, no
+   zod-schema/MDX pipeline. See "Static pages (AI Workflow)" below for why
+   this doesn't get the same treatment as #2.
 
 ## Project types
 
@@ -168,28 +170,34 @@ worth stating here since it directly shapes the MDX body template (no
 
 Not every page needs the content-as-data machinery above. `/ai-workflow`
 (added 2026-07-24, see [PROJECT_BRIEF.md](./PROJECT_BRIEF.md#structural-revision--2026-07-24))
-is a single, one-off static page — a title, an intro paragraph, seven
-numbered steps, a closing line, and one highlighted callout subsection. It
-is **not** a collection like case studies (no enumeration, no per-item
-schema, no locale variants to keep in sync yet), so it deliberately skips
-the zod-schema + MDX pipeline built for `/work`:
+is a single, one-off static page — a title, an intro paragraph, a closing
+line, and two tabs ("Prototyping" and "Figma to Code"), each with its own
+seven numbered steps and a highlighted callout/closing subsection. It is
+**not** a collection like case studies (no enumeration, no per-item schema,
+no locale variants to keep in sync yet), so it deliberately skips the
+zod-schema + MDX pipeline built for `/work`:
 
-- Its copy is written directly as JSX in `app/[locale]/ai-workflow/page.tsx`
-  (or a small colocated helper if the file gets unwieldy) — not in a
-  `content/` data file. Introducing a generic "steps" data shape for a page
-  that will only ever have exactly one instance is premature abstraction.
-- The seven steps render as a real semantic `<ol>` (ordered list — order is
-  meaningful here), not a sequence of styled `<div>`s, per the accessibility
-  rules in CODING_STANDARDS.md.
-- The "How does this fit into a team?" callout is a bordered highlight
-  treatment. Build it inline for this page first; only promote it to
-  `components/ui/Callout.tsx` if a second use case actually shows up later
-  — don't build the reusable version speculatively.
-- **This page ships English-only.** Its Spanish translation is an
-  explicitly deferred later pass (Hernán's call, 2026-07-24) — the one
-  exception to "bilingual by construction" elsewhere in this project. Don't
-  block shipping this page on having Spanish copy ready, and don't silently
-  extend the same exception to any other page without checking first.
+- Its copy lives in the `aiWorkflow.*` namespace of
+  `src/i18n/messages/{en,es}.json` (title, intro, closing, `tabs.*` labels,
+  and a `steps` array + `team`/`closing` block per tab), consumed via
+  `useTranslations`/`t.raw("steps")` in `AiWorkflowContent.tsx` — not a
+  `content/` data file. Introducing a generic "steps" data shape outside
+  i18n for a page that will only ever have exactly one instance is
+  premature abstraction.
+- Each tab's seven steps render as a real semantic `<ol>` (ordered list —
+  order is meaningful here), not a sequence of styled `<div>`s, per the
+  accessibility rules in CODING_STANDARDS.md. Both tabs share one
+  `StepsList` sub-component so numbering/typography can't drift between
+  them.
+- The "How does this fit into a team?" callout (Prototyping tab) and the
+  closing-line callout (Figma to Code tab) both use the same bordered
+  highlight treatment. Built inline for this page; only promote it to
+  `components/ui/Callout.tsx` if a second use case actually shows up
+  elsewhere — don't build the reusable version speculatively.
+- **This page ships bilingual (EN/ES), like every other route.** An
+  earlier draft shipped `/ai-workflow` English-only with the Spanish
+  translation deferred (Hernán's call, 2026-07-24); that carve-out is
+  superseded now that both tabs are fully translated.
 
 ## Shared site links
 
@@ -208,14 +216,14 @@ once, everywhere picks it up.
 
 - `src/i18n/messages/en.json` and `es.json`, one flat-ish key namespace per
   route (`nav.*`, `footer.*`, `home.hero.*`, `home.about.*`, `work.*`,
-  `contact.*`). No `ai-workflow.*` namespace yet — see "Static pages" above.
+  `contact.*`, `aiWorkflow.*`) — see "Static pages" above for the
+  `aiWorkflow.*` shape.
 - Both files must have the same keys at all times — enforce with a small
   script/test that diffs key sets and fails if they diverge (cheap, prevents
-  the classic "added an English string, forgot Spanish" bug). This parity
-  check does not apply to `/ai-workflow`, which has no message keys yet by
-  design.
+  the classic "added an English string, forgot Spanish" bug). This applies
+  to `aiWorkflow.*` too, same as every other namespace.
 - Locale switch preserves the current route (`/work/[slug]` in `es` ↔ same
   slug in `en`), via `next-intl`'s routing — a case study's `slug` is
-  identical across locales (only its rendered `title`/body differ). Visiting
-  `/ai-workflow` under either locale renders the same English content for
-  now — that's expected, not a bug, until the deferred translation pass.
+  identical across locales (only its rendered `title`/body differ). Same
+  for `/ai-workflow`: the route persists across the switch and both tabs
+  render fully translated content in either locale.
