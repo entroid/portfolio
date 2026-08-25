@@ -5,14 +5,14 @@ summary: "A strategic decision-making tool that replaced disconnected spreadshee
 
 role: "Lead UX/UI Designer"
 
-responsibilities: "End-to-end research (stakeholders + future users) • Discovery workshops • Information architecture & user flows • Feature definition & prioritization (POC + roadmap) • Wireframes → high-fidelity UI • Dev hand-off"
+responsibilities: "End-to-end research (stakeholders + future users) • Discovery workshops • Information architecture & user flows • Feature definition & prioritization (POC + roadmap) • Wireframes → interactive prototypes → high-fidelity UI • Dev hand-off"
 
 context: "Enterprise teams relied on disjointed Excel and PowerPoint presentations to compare project impact, causing slow, inconsistent decisions and lost strategic clarity. OZ used its own internal structure as a use case to build a tool it could later offer as a service to other clients."
 ---
 
 <CaseStudyImage
-  src="/images/work/oz-svm/login.png"
-  alt="SVM — Strategic Value Model login screen"
+  src="/images/work/oz-svm/bubble-chart.webp"
+  alt="Impact Comparison Tool bubble chart, comparing projects by cost, effort, and strategic impact"
 />
 
 ## Approach
@@ -20,26 +20,48 @@ context: "Enterprise teams relied on disjointed Excel and PowerPoint presentatio
 We started from scratch, running workshops with stakeholders and future users to understand business needs and current process pain points. From there we organized basic user journeys and core feature requirements, followed by the first versions of information architecture, feature relationships, and user flows — all mapped collaboratively in Mural. The project moved fast, so we prioritized iterating ideas, presenting, and testing hypotheses quickly over polish.
 
 <CaseStudyImage
-  src="/images/work/oz-svm/mural.png"
-  alt="Mural board with user identification, information architecture, brainmaps, and user journeys"
+  src="/images/work/oz-svm/mural.webp"
+  alt="Mural board with insights and requirements, user identification, information architecture and brainmaps"
+/>
+
+Wireframes fed into clickable prototypes, which were the real validation instrument: walking a stakeholder through the navigation surfaced structural problems that no static screen ever did. The product has kept going through that loop since — flows, wireframes, prototype, feedback — and several of the decisions below come from later passes, not from the first round.
+
+<CaseStudyImage
+  src="/images/work/oz-svm/wireframes-grid.webp"
+  alt="Grid of initial low-fidelity wireframes exploring layout and data-entry flows"
+/>
+
+<CaseStudyImage
+  src="/images/work/oz-svm/flow-to-design.webp"
+  alt="Navigation flow sketched in FigJam next to the sidebar it became: structure thought through in the simplest possible form first, then executed in the design"
 />
 
 ## Key Product Decisions
 
-**• Scoped the POC to 3 core features** (Impact Comparison Tool, Prioritization Matrix, Data Input Flow), leaving dashboard, analytics, and user management for a future phase — necessary scope control for a fast-moving project.
+**• Scoped the POC to 3 core features** (Impact Comparison Tool, Prioritization Matrix, Data Input Flow), with a multitenant approach, leaving dashboard, analytics, and user management for a future phase — necessary scope control for a fast-moving project.
 
-**• Defined 4 user roles upfront** (Decision Makers, Project Owners, Analysts/Contributors, Admin Users), shaping permission and flow decisions from early design rather than as a later patch.
+**• Swapped to *analysis* as the unit of work, instead of the project.** We started grouping items under "Projects" as the main unit of work, while after few iterations it came up that the primary action was creating an "analysis" — two competing object models in the same menu. Reframing the analysis as the container (with projects living inside it) gave the comparison chart somewhere to belong.
 
-**• Replaced static spreadsheet comparison with a visual, data-driven model** — a bubble chart comparing projects by cost, effort, and strategic impact — directly addressing the root problem: lost strategic clarity in Excel.
+**• Froze each analysis's scoring model at creation, with drift detection.** If the organization's weights changed, past results would silently change with them — the exact inconsistency the tool existed to remove. Instead, an analysis keeps the model it was created with, and the system flags when the shared model has moved on, grouping the differences by consequence: what recalculates safely, what needs new data, what would discard existing data.
+
+**• Defined 3 user roles upfront** (Project Owners, Analysts/Contributors, Admin Users), shaping permission and flow decisions from early design rather than as a later patch.
+
+**• Replaced static spreadsheet comparison with a visual, data-driven model** — a bubble chart (more visualization options for later phases) comparing projects by cost, effort, and strategic impact — paired with a traceability panel that breaks down where each project's position comes from, category by category. Without that breakdown, a chart is an opinion shaped like data.
 
 <CaseStudyImage
-  src="/images/work/oz-svm/bubble-chart.png"
-  alt="Impact Comparison Tool bubble chart, comparing projects by cost, effort, and strategic impact"
+  src="/images/work/oz-svm/results-traceability.webp"
+  alt="Results view with the traceability panel open, breaking down category by category where a project's position on the chart comes from"
+/>
+
+
+<CaseStudyImage
+  src="/images/work/oz-svm/value-model.webp"
+  alt="View of the workspace's valuation model"
 />
 
 <CaseStudyImage
-  src="/images/work/oz-svm/prioritization-matrix.png"
-  alt="Prioritization Matrix view with categories and weighted attributes"
+  src="/images/work/oz-svm/dashboard.webp"
+  alt="Dashboard view with day to day tasks and quick actions"
 />
 
 ## Notes
@@ -48,18 +70,12 @@ We started from scratch, running workshops with stakeholders and future users to
 
 - **• Wireframes as an exploration tool, not an approval gate:** used to explore layout and data-entry flows, with frequent validation sessions alongside stakeholders and potential users — iterating fast rather than arriving with a locked proposal.
 
-- **• Multi-tenant by design:** "My Workspaces" accounted for multiple clients/organizations (including disabled workspace states) as part of the data model from early stages, anticipating the product's use as a service for third parties.
+- **• Multi-tenant by design:** "Workspaces" accounted for multiple clients/organizations (including disabled workspace states) as part of the data model from early stages, anticipating the product's use as a service for third parties.
 
-<CaseStudyImage
-  src="/images/work/oz-svm/wireframes-grid.png"
-  alt="Grid of initial low-fidelity wireframes exploring layout and data-entry flows"
-/>
+## Deferred to Phase 2
 
-<CaseStudyImage
-  src="/images/work/oz-svm/workspaces.png"
-  alt="My Workspaces view with multi-client cards, including disabled workspace states"
-/>
+Selection between different models within a workspace, dashboard with tasks, users and workspaces admin, bulk scoring entry, updating model scenarios, analytics and comparing analyses across quarters, permission enforcement for the three defined roles, optional chart visualizations and priorization matrix in the results view. Each was traced, understood, and left out on purpose — the MVP only had to support the first real decision made with the tool.
 
 ## Results
 
-Early MVP feedback showed faster, more aligned, and data-informed decision-making. Stakeholders requested additional features for the next phase — a signal of strong engagement and perceived value, not just fulfillment of the initial scope.
+Early and continuous MVP feedback showed faster, more intuitive, and data-informed decision-making. Stakeholders kept requesting additional features for the next phase — a signal of strong engagement and perceived value beyond the initial scope.

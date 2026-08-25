@@ -1,32 +1,31 @@
 import type { ProjectMeta } from "../../schema";
 
-// TODO: replace placeholder image paths below with real OZ SVM assets.
 export const meta: ProjectMeta = {
   slug: "oz-svm",
   depth: "featured",
   order: 3,
-  coverImage: "/images/work/oz-svm/login.png",
-  coverImageAlt: "SVM — Strategic Value Model login screen",
+  coverImage: "/images/work/oz-svm/cover.webp",
+  coverImageAlt: "SVM — Strategic Value Model cover image",
   gallery: [
     {
-      src: "/images/work/oz-svm/bubble-chart.png",
-      alt: "Impact Comparison Tool bubble chart, comparing projects by cost, effort, and strategic impact",
+      src: "/images/work/oz-svm/login.webp",
+      alt: "SVM — Strategic Value Model login screen",
     },
     {
-      src: "/images/work/oz-svm/prioritization-matrix.png",
-      alt: "Prioritization Matrix view with categories and weighted attributes",
+      src: "/images/work/oz-svm/overview.webp",
+      alt: "Analysis overview with relevant information and quick actions",
     },
     {
-      src: "/images/work/oz-svm/workspaces.png",
-      alt: "My Workspaces view with multi-client cards, including disabled workspace states",
+      src: "/images/work/oz-svm/information-architechture.webp",
+      alt: "Information architecture diagram showing the structure of the application",
     },
     {
-      src: "/images/work/oz-svm/dashboards-sidebar.png",
-      alt: "Client dashboards with per-client sidebar navigation (GASTRO, Berkley, Armstrong)",
+      src: "/images/work/oz-svm/model-versioning.webp",
+      alt: "Model version differences grouped by consequence: what recalculates safely, what requires new data, and what would discard existing data",
     },
     {
-      src: "/images/work/oz-svm/wireframes-grid.png",
-      alt: "Grid of initial low-fidelity wireframes exploring layout and data-entry flows",
+      src: "/images/work/oz-svm/projects.webp",
+      alt: "List and management of projects to be analyzed",
     },
   ],
 };
