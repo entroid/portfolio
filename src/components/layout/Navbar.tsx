@@ -48,7 +48,7 @@ export function Navbar() {
           className="flex items-center gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
         >
           <Image
-            src="/images/profile5.webp"
+            src="/images/profile6.webp"
             alt=""
             width={68}
             height={68}
