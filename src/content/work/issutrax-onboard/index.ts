@@ -5,7 +5,7 @@ export const meta: ProjectMeta = {
   slug: "issutrax-onboard",
   depth: "featured",
   order: 4,
-  coverImage: "/images/work/issutrax-onboard/hero-mockup.png",
+  coverImage: "/images/work/issutrax-onboard/hero-mockup.webp",
   coverImageAlt:
     "Placeholder — IssuTrax laptop and phone mockup, hero composition",
   gallery: [
