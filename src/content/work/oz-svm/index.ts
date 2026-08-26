@@ -4,6 +4,7 @@ export const meta: ProjectMeta = {
   slug: "oz-svm",
   depth: "featured",
   order: 3,
+  year: "2023–2024",
   coverImage: "/images/work/oz-svm/cover.webp",
   coverImageAlt: "SVM — Strategic Value Model cover image",
   gallery: [

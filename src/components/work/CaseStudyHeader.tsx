@@ -20,9 +20,15 @@ export function CaseStudyHeader({ project }: CaseStudyHeaderProps) {
 
   return (
     <>
+      <span
+        data-testid="case-study-year"
+        className="block font-mono  uppercase tracking-label text-accent-2"
+      >
+        {meta.year}
+      </span>
       <h1
         data-testid="case-study-heading"
-        className="text-h1 font-mono font-extrabold tracking-h1 text-fg md:text-h1-desktop leading-h1"
+        className="mt-1 text-h1 font-mono font-extrabold tracking-h1 text-fg md:text-h1-desktop leading-h1"
       >
         {frontmatter.title}
       </h1>

@@ -23,6 +23,7 @@ const project = {
     order: 1,
     coverImage: "/images/work/signal-desk/cover.png",
     coverImageAlt: "Signal Desk dashboard cover.",
+    year: "2023",
     gallery: [],
   },
   frontmatter: {

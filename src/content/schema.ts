@@ -20,6 +20,7 @@ export const projectMetaSchema = z.object({
   order: z.number(), // display order within its depth group
   coverImage: z.string(), // path under /public/images/work/<slug>/
   coverImageAlt: z.string(), // real, descriptive alt text for coverImage
+  year: z.string(), // e.g. "2023" or "2023–2024" — shown as a kicker above the title
   gallery: z.array(galleryImageSchema).default([]),
 });
 

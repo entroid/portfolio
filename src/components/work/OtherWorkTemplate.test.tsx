@@ -11,6 +11,7 @@ const project = {
     order: 1,
     coverImage: "/images/work/lumen-crm/cover.png",
     coverImageAlt: "Lumen CRM pipeline board cover.",
+    year: "2022",
     gallery: [],
   },
   frontmatter: {

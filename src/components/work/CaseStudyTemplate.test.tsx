@@ -11,6 +11,7 @@ const project = {
     order: 1,
     coverImage: "/images/work/signal-desk/cover.png",
     coverImageAlt: "Signal Desk dashboard cover.",
+    year: "2023",
     gallery: [
       { src: "/images/work/signal-desk/gallery-1.png", alt: "Gallery shot." },
     ],

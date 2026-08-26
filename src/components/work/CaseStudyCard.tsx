@@ -54,10 +54,16 @@ export function CaseStudyCard({
         )}
       </div>
 
+      <span
+        data-testid="case-study-year"
+        className="mt-4 block font-mono text-label uppercase tracking-label text-accent-2"
+      >
+        {meta.year}
+      </span>
       <h3
         data-testid="case-study-title"
         className={cn(
-          "mt-4 font-mono font-medium text-fg leading-h3 text-h3 ",
+          "mt-1 font-mono font-medium text-fg leading-h3 text-h3 ",
           featured ? "md:text-h3-desktop" : "",
         )}
       >

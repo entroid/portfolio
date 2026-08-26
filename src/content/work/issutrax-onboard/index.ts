@@ -5,28 +5,28 @@ export const meta: ProjectMeta = {
   slug: "issutrax-onboard",
   depth: "featured",
   order: 4,
+  year: "2018",
   coverImage: "/images/work/issutrax-onboard/hero-mockup.webp",
-  coverImageAlt:
-    "Placeholder — IssuTrax laptop and phone mockup, hero composition",
+  coverImageAlt: "IssuTrax laptop and phone mockup, hero composition",
   gallery: [
     {
-      src: "/images/work/issutrax-onboard/dashboard-issues.png",
+      src: "/images/work/issutrax-onboard/dashboard-issues.webp",
       alt: "Placeholder — issue dashboard with Open Issues, New Today, and Completed Today counters",
     },
     {
-      src: "/images/work/issutrax-onboard/issues-table.png",
+      src: "/images/work/issutrax-onboard/issues-table.webp",
       alt: "Placeholder — issues table with Issue#, Type, Department, Location, Status, and Response Time columns",
     },
     {
-      src: "/images/work/issutrax-onboard/issue-detail.png",
+      src: "/images/work/issutrax-onboard/issue-detail.webp",
       alt: "Placeholder — issue detail view with timeline and history",
     },
     {
-      src: "/images/work/issutrax-onboard/style-guide.png",
+      src: "/images/work/issutrax-onboard/style-guide.webp",
       alt: "Placeholder — style guide and component library: colors, typography, components",
     },
     {
-      src: "/images/work/issutrax-onboard/notifications.png",
+      src: "/images/work/issutrax-onboard/notifications.webp",
       alt: "Placeholder — notifications list",
     },
   ],

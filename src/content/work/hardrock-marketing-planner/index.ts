@@ -4,6 +4,7 @@ export const meta: ProjectMeta = {
   slug: "hardrock-marketing-planner",
   depth: "featured",
   order: 1,
+  year: "2026",
   coverImage: "/images/work/hardrock-marketing-planner/cover.jpg",
   coverImageAlt:
     "Hard Rock Marketing Planner UI showcase: campaign calendar view, offering-variant setup form, and the Plan / Jobs / Campaigns hierarchy view",

@@ -5,6 +5,7 @@ export const meta: ProjectMeta = {
   slug: "signos-santafesinos",
   depth: "other",
   order: 3,
+  year: "2016",
   coverImage: "/images/work/signos-santafesinos/hero-collage.png",
   coverImageAlt:
     "Placeholder — Signos Santafesinos mockup collage on salmon/peach background",

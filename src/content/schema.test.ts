@@ -9,6 +9,7 @@ describe("projectMetaSchema", () => {
       order: 1,
       coverImage: "/images/work/signal-desk/cover.jpg",
       coverImageAlt: "Signal Desk dashboard cover.",
+      year: "2023",
     });
     expect(result.gallery).toEqual([]);
   });
@@ -52,6 +53,7 @@ describe("projectMetaSchema", () => {
       order: 1,
       coverImage: "/x.jpg",
       coverImageAlt: "Descriptive cover alt text.",
+      year: "2023",
       gallery: [{ src: "/gallery-1.jpg", alt: "Descriptive alt text." }],
     });
     expect(result.gallery).toEqual([
@@ -67,6 +69,7 @@ describe("projectMetaSchema", () => {
         order: 1,
         coverImage: "/x.jpg",
         coverImageAlt: "Descriptive cover alt text.",
+        year: "2023",
         gallery: [{ src: "/gallery-1.jpg" }],
       }),
     ).toThrow();

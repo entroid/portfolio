@@ -24,6 +24,7 @@ const projects = [
       order: 1,
       coverImage: "/images/work/signal-desk/cover.png",
       coverImageAlt: "Signal Desk dashboard cover.",
+      year: "2023",
       gallery: [],
     },
     frontmatter: {
@@ -38,6 +39,7 @@ const projects = [
       order: 1,
       coverImage: "/images/work/lumen-crm/cover.png",
       coverImageAlt: "Lumen CRM pipeline board cover.",
+      year: "2022",
       gallery: [],
     },
     frontmatter: {

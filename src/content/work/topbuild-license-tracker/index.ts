@@ -5,6 +5,7 @@ export const meta: ProjectMeta = {
   slug: "topbuild-license-tracker",
   depth: "featured",
   order: 2,
+  year: "2020",
   coverImage: "/images/work/topbuild-license-tracker/portada.webp",
   coverImageAlt:
     "Collage of the TopBuild License Track System interface: main dashboard with license status counters, expiring-licenses table, and license record detail view",
