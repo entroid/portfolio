@@ -6,8 +6,8 @@ export const meta: ProjectMeta = {
   depth: "other",
   order: 2,
   year: "2025",
-  coverImage: "/images/work/muu-livestock-app/cover.png",
+  coverImage: "/images/work/muu-livestock-app/cover.webp",
   coverImageAlt:
-    "Two phone screens showing Muu's redesigned onboarding flow and home screen",
+    "Phone mockups showing Muu's redesigned onboarding flow and home screen",
   gallery: [],
 };
