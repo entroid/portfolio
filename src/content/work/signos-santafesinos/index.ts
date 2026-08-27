@@ -6,8 +6,7 @@ export const meta: ProjectMeta = {
   depth: "other",
   order: 3,
   year: "2016",
-  coverImage: "/images/work/signos-santafesinos/hero-collage.png",
-  coverImageAlt:
-    "Placeholder — Signos Santafesinos mockup collage on salmon/peach background",
+  coverImage: "/images/work/signos-santafesinos/hero-collage.webp",
+  coverImageAlt: "Signos Santafesinos mockup collage",
   gallery: [],
 };

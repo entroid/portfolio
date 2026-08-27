@@ -18,16 +18,16 @@ export const meta: ProjectMeta = {
       alt: "Placeholder — issues table with Issue#, Type, Department, Location, Status, and Response Time columns",
     },
     {
+      src: "/images/work/issutrax-onboard/notifications.webp",
+      alt: "Placeholder — notifications list",
+    },
+    {
       src: "/images/work/issutrax-onboard/issue-detail.webp",
       alt: "Placeholder — issue detail view with timeline and history",
     },
     {
       src: "/images/work/issutrax-onboard/style-guide.webp",
       alt: "Placeholder — style guide and component library: colors, typography, components",
-    },
-    {
-      src: "/images/work/issutrax-onboard/notifications.webp",
-      alt: "Placeholder — notifications list",
     },
   ],
 };
