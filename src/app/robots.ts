@@ -6,6 +6,8 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: "*",
       allow: "/",
+      // /dev/* are local QA surfaces, not part of the portfolio.
+      disallow: "/dev/",
     },
     sitemap: `${siteConfig.siteUrl}/sitemap.xml`,
   };

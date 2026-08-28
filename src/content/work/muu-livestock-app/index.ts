@@ -1,6 +1,5 @@
 import type { ProjectMeta } from "../../schema";
 
-// TODO: replace placeholder image paths below with real Muu assets.
 export const meta: ProjectMeta = {
   slug: "muu-livestock-app",
   depth: "other",

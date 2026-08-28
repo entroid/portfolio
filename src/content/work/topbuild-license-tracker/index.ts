@@ -1,6 +1,5 @@
 import type { ProjectMeta } from "../../schema";
 
-// TODO: replace placeholder image paths below with real TopBuild assets.
 export const meta: ProjectMeta = {
   slug: "topbuild-license-tracker",
   depth: "featured",

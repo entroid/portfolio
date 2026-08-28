@@ -9,6 +9,12 @@ import { MonoLabel } from "@/components/ui/MonoLabel";
 import { Section } from "@/components/ui/Section";
 import { WireframeIcon } from "@/components/ui/WireframeIcon";
 
+export const metadata = {
+  // Dev-only QA surface — kept out of search results alongside the
+  // Disallow: /dev/ rule in robots.ts.
+  robots: { index: false, follow: false },
+};
+
 /**
  * Throwaway visual QA route for every Phase 1 primitive, in place of
  * Storybook (see docs/ARCHITECTURE.md's "Why these were left out"). Not
