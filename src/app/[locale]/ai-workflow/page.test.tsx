@@ -62,9 +62,11 @@ describe("AiWorkflowContent", () => {
       screen.getByTestId("ai-workflow-tab-figma-to-code"),
     ).toBeInTheDocument();
     expect(screen.getByTestId("ai-workflow-closing")).toBeInTheDocument();
-    expect(
-      screen.queryByTestId("ai-workflow-team-heading"),
-    ).not.toBeInTheDocument();
+    // Both tabs carry their own team box; assert this is the Figma-to-Code
+    // one rather than the Prototyping panel's.
+    expect(screen.getByTestId("ai-workflow-team-heading")).toHaveTextContent(
+      "Handoff Process",
+    );
 
     const list = screen.getByRole("list");
     expect(list.tagName).toBe("OL");

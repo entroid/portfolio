@@ -4,6 +4,7 @@ import userEvent from "@testing-library/user-event";
 import { axe } from "jest-axe";
 import { renderWithIntl } from "@/test/renderWithIntl";
 import { Navbar } from "./Navbar";
+import { siteLinks } from "@/lib/site-links";
 
 // next-intl's useRouter wraps Next's App Router useRouter(), which throws
 // outside a mounted <AppRouterContext> — not present in these unit tests.
@@ -46,10 +47,10 @@ describe("Navbar", () => {
     renderWithIntl(<Navbar />);
     expect(screen.getAllByTestId("nav-cv-toggle")[0]).toBeInTheDocument();
     const englishCv = screen.getAllByTestId("nav-cv-cvEnglish")[0];
-    expect(englishCv).toHaveAttribute("href", "/cv/hernan-ainsa-cv.pdf");
+    expect(englishCv).toHaveAttribute("href", siteLinks.cvPathEn);
     expect(englishCv).toHaveAttribute("download");
     const spanishCv = screen.getAllByTestId("nav-cv-cvSpanish")[0];
-    expect(spanishCv).toHaveAttribute("href", "/cv/hernan-ainsa-cv-es.pdf");
+    expect(spanishCv).toHaveAttribute("href", siteLinks.cvPathEs);
     expect(spanishCv).toHaveAttribute("download");
   });
 
