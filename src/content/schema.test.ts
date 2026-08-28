@@ -79,8 +79,8 @@ describe("projectMetaSchema", () => {
 describe("projectFrontmatterSchema", () => {
   it("accepts frontmatter without role/context (other-depth projects)", () => {
     const result = projectFrontmatterSchema.parse({
-      title: "Lumen CRM",
-      summary: "A pipeline view redesign.",
+      title: "Muu",
+      summary: "A livestock marketplace redesign.",
     });
     expect(result.role).toBeUndefined();
     expect(result.context).toBeUndefined();

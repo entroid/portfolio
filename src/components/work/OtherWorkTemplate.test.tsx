@@ -6,17 +6,17 @@ import { OtherWorkTemplate } from "./OtherWorkTemplate";
 
 const project = {
   meta: {
-    slug: "lumen-crm",
+    slug: "muu-livestock-app",
     depth: "other" as const,
     order: 1,
-    coverImage: "/images/work/lumen-crm/cover.png",
-    coverImageAlt: "Lumen CRM pipeline board cover.",
+    coverImage: "/images/work/muu-livestock-app/cover.png",
+    coverImageAlt: "Muu livestock marketplace cover.",
     year: "2022",
     gallery: [],
   },
   frontmatter: {
-    title: "Lumen CRM — pipeline view redesign",
-    summary: "A lighter pass on a sales CRM's pipeline view.",
+    title: "Muu — livestock marketplace redesign",
+    summary: "A lighter pass on a livestock marketplace app.",
   },
   content: <p>Extended description goes here.</p>,
 };

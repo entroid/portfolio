@@ -1,56 +1,63 @@
 ---
-title: "Groundworks — App de inspección de inmuebles"
-summary: "Diseño de interacción para una app mobile de inspecciones a campo, construida desde cero, pensada para funcionar sin conexión."
+title: "Groundworks — Inspecciones de inmuebles"
+summary: "Diseño de interacción y UI para una app mobile de inspecciones de propiedades, construida desde cero, pensada para funcionar sin conexión."
 role: "Lead UX/UI Designer"
-context: "Mi primer proyecto grande de UX/UI. Diseñada desde cero junto a un equipo en OZ (asignación principal 2018/2019, con ajustes esporádicos un año más)."
+context: "Mi primer proyecto grande de UX/UI. Diseñada desde cero junto a un equipo ágil en OZ (asignación principal 2018/2019, con intervenciones esporádicas posteriores)."
 ---
 
-Groundworks es una app mobile para que inspectores registren el estado de
-inmuebles a campo. El trabajo llegó como requerimientos ya definidos por el
-equipo de producto, y mi rol fue tomarlos y resolverlos en interacción y UI
-para flujos complejos, más que liderar research desde cero. Ahí aparecieron
-varios problemas de diseño interesantes: la app tenía que funcionar
-completamente offline y sincronizar después, sin que el usuario perdiera
-datos cargados en el campo; los formularios tenían que adaptarse
-dinámicamente según selecciones previas (información dependiente, no un
-formulario lineal); había que integrar captura de fotos de espacios y
-detalles directamente en el flujo de inspección; y todo esto corriendo con
-buena performance en dispositivos de gama media/baja de la época, dentro de
-las limitaciones técnicas de Xamarin como stack de desarrollo.
+Groundworks es una app mobile para que inspectores de propiedades generen registros
+extremadamente detallados del estado de los inmuebles. El trabajo llegó
+como requerimientos ya definidos y priorizados por el equipo de producto. Mi rol fue
+tomarlos y resolverlos con patrones de interacción y diseño de UI para
+flujos de formularios complejos. A lo largo del proyecto aparecieron varios problemas de diseño interesantes: la app tenía que funcionar completamente offline y sincronizar después, sin que el
+usuario perdiera los datos cargados; los formularios complejos tenían que
+adaptarse dinámicamente según selecciones previas (información dependiente,
+no un formulario lineal); había que integrar la captura de fotos de espacios
+y detalles clave directamente en el flujo de inspección; y todo esto
+corriendo con buena performance en dispositivos de gama media/baja de la
+época, dentro de las limitaciones técnicas de Xamarin como stack de
+desarrollo y de exigentes requisitos legales de compliance gubernamental.
 
 <CaseStudyImage
-  src="/images/work/groundworks-inspection-app/dashboard.png"
-  alt="Placeholder — dashboard con números/resumen de inspecciones o propiedades asignadas"
+  src="/images/work/groundworks-inspection-app/login-process.webp"
+  alt="Splash, login con acceso por huella y home del inspector con los contadores de órdenes asignadas, en proceso, grab-it board, mensajes y scans pendientes"
 />
 <CaseStudyImage
-  src="/images/work/groundworks-inspection-app/inspection-form.png"
-  alt="Placeholder — formulario de inspección con campos condicionales/dependientes"
+  src="/images/work/groundworks-inspection-app/assigned-in-process.webp"
+  alt="Listados de órdenes en proceso y asignadas, con las vencidas marcadas en rojo y acciones de aceptar/rechazar en cada asignación"
 />
-<CaseStudyImage
-  src="/images/work/groundworks-inspection-app/property-map.png"
-  alt="Placeholder — vista de propiedad con mapa/ubicación"
-/>
-<CaseStudyImage
-  src="/images/work/groundworks-inspection-app/photo-capture.png"
-  alt="Placeholder — flujo o pantalla de captura de fotos"
-/>
-
-El foco de este proyecto estuvo en resolver interacción y UI para problemas
-técnicos concretos (offline, sync, formularios dinámicos, cámara,
-performance), no en un proceso de research extenso — y así se presenta acá,
-sin agregar fases de discovery que no formaron parte real del trabajo.
 
 ## Resultados
 
-El resultado fue una app funcional para inspecciones a campo, usada de
-forma sostenida por el equipo de OZ durante más de un año, con iteraciones
-puntuales post-lanzamiento a medida que surgían nuevos casos de uso.
+Con este proyecto empecé a meterme de verdad en los fundamentos del diseño
+UI/UX para aplicaciones de workflows complejos, con styleguides y componentes
+rudimentarios en Adobe XD. El resultado fue una app funcional para
+inspecciones a campo, usada de forma sostenida por los inspectores
+contratistas de Groundworks durante varios años, incluso hasta hoy, con
+iteraciones puntuales continuas post-lanzamiento y mejoras en el sistema de
+diseño a medida que surgían nuevos casos de uso y requerimientos.
 
 <CaseStudyImage
-  src="/images/work/groundworks-inspection-app/offline-sync.png"
-  alt="Placeholder — indicador de estado offline/sincronización"
+  src="/images/work/groundworks-inspection-app/order.webp"
+  alt="Vista de orden: el formulario PCR dividido en secciones con contadores de campos pendientes, y la pestaña de detalles con datos de la propiedad, contactos y mapa"
+/>
+
+
+<CaseStudyImage
+  src="/images/work/groundworks-inspection-app/pcr-form-property-information.webp"
+  alt="Pasos de Property Information y Locational Influences, donde los selects y toggles sí/no muestran u ocultan los campos siguientes"
 />
 <CaseStudyImage
-  src="/images/work/groundworks-inspection-app/inspection-detail.png"
-  alt="Placeholder — vista de detalle de inspección o listado de inmuebles"
+  src="/images/work/groundworks-inspection-app/pcr-form-locational-influences.webp"
+  alt="Selector de influencias del entorno con steppers de cantidad por ítem, y la pantalla de captura de foto que pide imagen y explicación por cada instancia"
+/>
+<CaseStudyImage
+  src="/images/work/groundworks-inspection-app/buildings.webp"
+  alt="Estructura anidada de la propiedad: listado de edificios, unidades dentro de un edificio y niveles dentro de una unidad, repitiendo el mismo patrón de formulario"
+/>
+
+
+<CaseStudyImage
+  src="/images/work/groundworks-inspection-app/messages-scans.webp"
+  alt="Bandeja de mensajes del vendor y la cola de scans sin enviar, donde quedan retenidos los envíos pendientes"
 />

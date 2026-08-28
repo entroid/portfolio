@@ -37,13 +37,15 @@ describe("LanguageSwitcher", () => {
   });
 
   it("switches locale while preserving the current route, including nested slugs", async () => {
-    mockPathname = "/work/lumen-crm";
+    mockPathname = "/work/muu-livestock-app";
     const user = userEvent.setup();
     renderWithIntl(<LanguageSwitcher />);
 
     await user.click(screen.getByTestId("locale-es"));
 
-    expect(replace).toHaveBeenCalledWith("/work/lumen-crm", { locale: "es" });
+    expect(replace).toHaveBeenCalledWith("/work/muu-livestock-app", {
+      locale: "es",
+    });
   });
 
   it("has no automatically detectable accessibility violations", async () => {

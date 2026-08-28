@@ -12,7 +12,6 @@ describe("getAllProjectSlugs", () => {
       "groundworks-inspection-app",
       "hardrock-marketing-planner",
       "issutrax-onboard",
-      "lumen-crm",
       "muu-livestock-app",
       "oz-svm",
       "signos-santafesinos",
@@ -29,7 +28,6 @@ describe("getAllProjects", () => {
       "topbuild-license-tracker",
       "oz-svm",
       "issutrax-onboard",
-      "lumen-crm",
       "muu-livestock-app",
       "signos-santafesinos",
       "groundworks-inspection-app",
@@ -41,7 +39,6 @@ describe("getAllProjects", () => {
     expect(projects[4].meta.depth).toBe("other");
     expect(projects[5].meta.depth).toBe("other");
     expect(projects[6].meta.depth).toBe("other");
-    expect(projects[7].meta.depth).toBe("other");
   });
 
   it("returns validated, typed frontmatter for every project", async () => {
@@ -64,16 +61,16 @@ describe("getProjectBySlug", () => {
   });
 
   it("returns the other-depth project without requiring role/context, though it may supply them", async () => {
-    const project = await getProjectBySlug("lumen-crm", "en");
+    const project = await getProjectBySlug("muu-livestock-app", "en");
     expect(project.meta.depth).toBe("other");
     expect(project.frontmatter.responsibilities).toBeUndefined();
   });
 
   it("returns Spanish frontmatter when locale is es", async () => {
-    const project = await getProjectBySlug("lumen-crm", "es");
-    expect(project.frontmatter.title).toContain("Lumen CRM");
+    const project = await getProjectBySlug("muu-livestock-app", "es");
+    expect(project.frontmatter.title).toContain("Mercado digital ganadero");
     expect(project.frontmatter.title).not.toEqual(
-      (await getProjectBySlug("lumen-crm", "en")).frontmatter.title,
+      (await getProjectBySlug("muu-livestock-app", "en")).frontmatter.title,
     );
   });
 

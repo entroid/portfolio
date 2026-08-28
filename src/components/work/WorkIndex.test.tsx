@@ -34,17 +34,17 @@ const projects = [
   },
   {
     meta: {
-      slug: "lumen-crm",
+      slug: "muu-livestock-app",
       depth: "other" as const,
       order: 1,
-      coverImage: "/images/work/lumen-crm/cover.png",
-      coverImageAlt: "Lumen CRM pipeline board cover.",
+      coverImage: "/images/work/muu-livestock-app/cover.png",
+      coverImageAlt: "Muu livestock marketplace cover.",
       year: "2022",
       gallery: [],
     },
     frontmatter: {
-      title: "Lumen CRM",
-      summary: "A pipeline view redesign.",
+      title: "Muu",
+      summary: "A livestock marketplace redesign.",
     },
   },
 ];
