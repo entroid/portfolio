@@ -32,7 +32,7 @@ scope. Each phase below lists exactly which of those docs matter most.
 - [x] Phase 10 — i18n content completion (full ES/EN parity)
 - [x] Phase 11 — SEO, metadata & analytics
 - [x] Phase 12 — Testing & QA hardening
-- [ ] Phase 13 — Deployment & docs finalization
+- [x] Phase 13 — Deployment & docs finalization
 
 Parallelizable: Phase 1 (UI primitives) and Phase 5 (content schema/pipeline)
 touch disjoint code and can run concurrently once Phase 0 is merged. Phase 7
@@ -675,11 +675,11 @@ Definition of Done:
 **Depends on:** Phase 6, Phase 7, Phase 8 (all routes must exist). **Docs:**
 ARCHITECTURE.md.
 
-Notes from actually doing this phase: production domain isn't confirmed yet,
-so `src/lib/site-config.ts` holds a placeholder `https://hernan-ainsa.vercel.app`
-`siteUrl` — swap it in Phase 13 once Hernán has a real domain (also update
-`metadataBase` will follow automatically since everything reads from this one
-constant). `openGraph`/`twitter` metadata fields don't deep-merge across
+Notes from actually doing this phase: `src/lib/site-config.ts` holds the
+`siteUrl`, `https://hernan-ainsa.vercel.app` — confirmed as the production
+origin in Phase 13. A custom domain later is a one-line change here;
+`metadataBase`, the sitemap and the OG tags all follow automatically since
+everything reads from this one constant. `openGraph`/`twitter` metadata fields don't deep-merge across
 nested layouts/pages the way `title` does with its template — a route that
 sets its own `openGraph`/`twitter` object replaces the parent's wholesale, so
 every route repeats `title`/`description` in full rather than assuming
@@ -853,3 +853,36 @@ Definition of Done:
 - Production URL live and matches local dev build.
 - README reads well to an outside visitor (recruiter browsing GitHub) with
   no placeholder text remaining anywhere in the shipped site.
+
+**Outcome (2026-08-28).** Live at <https://hernan-ainsa.vercel.app>, staying
+on the Vercel domain for now, so `siteConfig.siteUrl` needed no change.
+`NEXT_PUBLIC_FORMSUBMIT_EMAIL` is set to `hernansahha@gmail.com`. README
+rewritten with real production screenshots under `docs/screenshots/`.
+Placeholder sweep finished: the IssuTrax gallery alt text still literally
+began "Placeholder —", the stale `TODO: replace placeholder image paths`
+comments are gone, and `profile-placeholder.svg` was deleted. `/dev/
+kitchen-sink` was prerendering into production and crawlable — now
+`noindex` plus `Disallow: /dev/`.
+
+Lighthouse on production (mobile preset, throttled):
+
+| Route                                 | Perf               | A11y     | Best practices | SEO |
+| ------------------------------------- | ------------------ | -------- | -------------- | --- |
+| `/en`                                 | 93                 | 100      | 100            | 100 |
+| `/es`                                 | 95                 | 100      | 100            | 100 |
+| `/en/contact`                         | 73                 | 100      | 100            | 100 |
+| `/en/work`                            | 63 → 96 a11y fixed | 96 → 100 | 100            | 100 |
+| `/en/work/hardrock-marketing-planner` | 63                 | 96 → 100 | 100            | 100 |
+
+The accessibility miss was real and is fixed: `--color-accent-2` (`#6559ec`)
+on the case-study year label is 3.67:1, under the 4.5:1 that
+DESIGN_SYSTEM.md's own accent rule requires for text below 24px. Added
+`--color-accent-2-text` (`#8b82f2`, 5.76:1) for small violet text and
+documented it as rule 5 in DESIGN_SYSTEM.md.
+
+**Still open — deliberately not closed here:** performance on the two
+image-heavy work routes sits at 63, driven by ~4.7s total blocking time, not
+by asset weight (CLS is 0 and there are no Lighthouse byte-savings
+opportunities). That points at hydration/animation work on long card and
+gallery lists rather than anything the deployment step can fix. Worth its own
+pass; see the QA backlog above.

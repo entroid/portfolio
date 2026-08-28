@@ -22,7 +22,7 @@ export function CaseStudyHeader({ project }: CaseStudyHeaderProps) {
     <>
       <span
         data-testid="case-study-year"
-        className="block font-mono  uppercase tracking-label text-accent-2"
+        className="block font-mono  uppercase tracking-label text-accent-2-text"
       >
         {meta.year}
       </span>

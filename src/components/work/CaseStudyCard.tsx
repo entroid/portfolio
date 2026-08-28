@@ -56,7 +56,7 @@ export function CaseStudyCard({
 
       <span
         data-testid="case-study-year"
-        className="mt-4 block font-mono text-label uppercase tracking-label text-accent-2"
+        className="mt-4 block font-mono text-label uppercase tracking-label text-accent-2-text"
       >
         {meta.year}
       </span>

@@ -187,7 +187,7 @@ function StepsList({ steps }: { steps: Step[] }) {
           key={step.lead}
           className="text-body text-muted md:text-body-desktop"
         >
-          <span className="font-mono text-body text-accent-2 md:text-body-desktop">
+          <span className="font-mono text-body text-accent-2-text md:text-body-desktop">
             {String(index + 1).padStart(2, "0")}
           </span>{" "}
           <span className="font-sans font-semibold text-fg">{step.lead}</span>{" "}

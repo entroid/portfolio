@@ -151,8 +151,15 @@ section of another page (`/`) rather than a page of its own.
 
 ## Open items to confirm before/while building
 
-- Final list and slugs of featured vs. "other" projects (real content).
-- FormSubmit target email + one-time activation (FormSubmit requires a
-  confirmation click on the first real submission to that address).
-- Domain name for production deployment (affects `metadataBase`, sitemap,
-  OG images).
+All three items below were resolved in Phase 13 (2026-08-28) and are kept
+here as a record of what was decided.
+
+- ~~Final list and slugs of featured vs. "other" projects (real content).~~
+  Settled: seven projects under `src/content/work/`, all with real copy and
+  WebP screenshots.
+- ~~FormSubmit target email + one-time activation.~~ Set to
+  `hernansahha@gmail.com` via `NEXT_PUBLIC_FORMSUBMIT_EMAIL` in Vercel.
+- ~~Domain name for production deployment.~~ Staying on
+  `https://hernan-ainsa.vercel.app` for now; a custom domain would only need
+  `siteUrl` in `src/lib/site-config.ts` changed, which feeds `metadataBase`,
+  the sitemap and the OG tags.

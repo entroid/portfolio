@@ -13,6 +13,12 @@
   --color-grid-border: rgba(255, 255, 255, 0.07);
   --color-accent: #9eff3d;
   --color-accent-2: #6559ec;
+
+  /* Text-safe tint of --color-accent-2. The base violet is only 3.67:1 on
+     --color-surface, so it fails the WCAG AA rule in DESIGN_SYSTEM.md for
+     standalone text under 24px; this tint is 5.76:1 on surface and 6.19:1
+     on bg. Use --color-accent-2 for fills and gradients, this for text. */
+  --color-accent-2-text: #8b82f2;
   --color-accent-alt-1: #d4ff00;
   --color-accent-alt-2: #c6ff3d;
 
@@ -124,6 +130,7 @@ body {
   100% {
     opacity: 0.3;
   }
+
   50% {
     opacity: 0.2;
   }
@@ -140,6 +147,7 @@ body {
   0% {
     background-position: -150% -150%;
   }
+
   100% {
     background-position: 150% 150%;
   }

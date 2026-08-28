@@ -1,8 +1,8 @@
 /**
  * Site-wide constants for metadata (metadataBase, sitemap, OG/Twitter tags).
- * `siteUrl` is a placeholder Vercel preview domain until Hernán confirms a
- * production domain (tracked in docs/ARCHITECTURE.md's "Open items to
- * confirm") — swap it in Phase 13.
+ * `siteUrl` is the production origin. The site currently ships on its
+ * Vercel domain by choice; pointing a custom domain at it is a one-line
+ * change here, which propagates to metadataBase, the sitemap and OG tags.
  */
 export const siteConfig = {
   siteUrl: "https://hernan-ainsa.vercel.app",

@@ -43,6 +43,11 @@ system.
 4. Accent is for: CTA button fill/border, link underline, active nav state,
    focus ring, highlighted numeric/technical data points. Not for: decorative
    grid lines, large icon fills, section backgrounds.
+5. The same rule bit `--color-accent-2` (`#6559ec`) in practice: it is only
+   3.67:1 on `--color-surface`, so it fails AA for text under 24px. Use
+   `--color-accent-2-text` (`#8b82f2`, 5.76:1 on surface) for small
+   standalone text in the violet accent; keep `--color-accent-2` itself for
+   fills, gradients, and text at 24px and above.
 
 ## Typography
 

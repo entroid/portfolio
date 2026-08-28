@@ -7,7 +7,16 @@ It is meant to work as two things at once: a portfolio that presents the work,
 and a readable example of how it was built. The reasoning behind every
 technical choice lives in [`docs/`](docs/), not just in the commit history.
 
-**Live:** _pending production deploy._
+**Live:** <https://hernan-ainsa.vercel.app>
+
+![Home page — the Design & Build hero over the animated grid background](docs/screenshots/home.webp)
+
+<table>
+<tr>
+<td width="50%"><img src="docs/screenshots/work.webp" alt="Work index listing featured case studies as cards"></td>
+<td width="50%"><img src="docs/screenshots/case-study.webp" alt="Hard Rock Marketing Planner case study page"></td>
+</tr>
+</table>
 
 ## Highlights
 
