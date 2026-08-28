@@ -11,7 +11,7 @@ import { cn } from "@/lib/cn";
 const formSubmitEmail = process.env.NEXT_PUBLIC_FORMSUBMIT_EMAIL;
 
 const inputClassName =
-  "w-full border border-grid-border bg-surface px-4 py-3 text-body text-fg transition-colors duration-150 placeholder:text-muted focus:border-accent focus:outline-none";
+  "w-full border border-field-border bg-field px-4 py-3 text-body text-fg transition-colors duration-150 placeholder:text-muted hover:border-white/25 focus:border-accent focus:outline-none";
 
 const labelClassName =
   "font-mono text-label uppercase tracking-label text-muted md:text-label-desktop";
@@ -191,7 +191,10 @@ export function ContactForm() {
 
         <div aria-live="polite" data-testid="contact-status">
           {status === "success" && (
-            <p role="status" className="text-label text-accent">
+            <p
+              role="status"
+              className="text-cta text-accent md:text-cta-desktop"
+            >
               <span className="block font-mono uppercase tracking-label">
                 {t("successTitle")}
               </span>
@@ -201,7 +204,10 @@ export function ContactForm() {
             </p>
           )}
           {status === "error" && (
-            <p role="alert" className="text-label text-accent">
+            <p
+              role="alert"
+              className="text-cta text-accent md:text-cta-desktop"
+            >
               <span className="block font-mono uppercase tracking-label">
                 {t("errorTitle")}
               </span>

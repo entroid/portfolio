@@ -27,7 +27,7 @@ const navLinkClass =
   "group inline-flex items-center font-mono text-cta uppercase tracking-cta transition-colors duration-150 hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg";
 
 const externalLinkClass =
-  "inline-flex text-cta items-center gap-1 font-mono  uppercase tracking-label text-muted transition-colors duration-150 hover:text-fg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg";
+  "inline-flex text-cta items-center gap-1 font-mono uppercase tracking-label text-muted transition-colors duration-150 hover:text-fg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg";
 
 const socialIconLinkClass =
   "inline-flex items-center text-muted transition-colors duration-150 hover:text-fg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg";
@@ -108,7 +108,7 @@ export function Navbar() {
             <button
               type="button"
               data-testid="nav-cv-toggle"
-              className={externalLinkClass}
+              className={cn(externalLinkClass, "font-bold text-fg")}
             >
               {t("cv")}
               <ChevronDown aria-hidden="true" size={12} />

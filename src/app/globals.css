@@ -16,6 +16,12 @@
   --color-accent-alt-1: #d4ff00;
   --color-accent-alt-2: #c6ff3d;
 
+  /* Form fields sit one step above --color-surface with a stronger border,
+     so inputs read as editable against the page instead of disappearing
+     into it. Scoped to form controls — the base tokens above are unchanged. */
+  --color-field: #1c1c1f;
+  --color-field-border: rgba(255, 255, 255, 0.16);
+
   /* Custom spacing scale — overrides Tailwind's default multiplier for
      these specific steps, so p-1..p-10 etc. match the design file exactly. */
   --spacing-1: 4px;
