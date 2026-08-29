@@ -62,6 +62,26 @@ describe("OtherWorkTemplate", () => {
     expect(screen.getByTestId("other-work-content")).toBeInTheDocument();
   });
 
+  it("closes with the shared outro, next project included", () => {
+    renderWithIntl(
+      <OtherWorkTemplate
+        project={project}
+        nextProject={{
+          meta: { ...project.meta, slug: "signos-santafesinos" },
+          frontmatter: {
+            title: "Signos Santafesinos",
+            summary: "A site for the Santa Fe provincial government.",
+          },
+        }}
+      />,
+    );
+    expect(screen.getByTestId("case-study-outro")).toBeInTheDocument();
+    expect(screen.getByTestId("case-study-next")).toHaveAttribute(
+      "href",
+      "/en/work/signos-santafesinos",
+    );
+  });
+
   it("has no automatically detectable accessibility violations", async () => {
     const { container } = renderWithIntl(
       <OtherWorkTemplate project={project} />,
