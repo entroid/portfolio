@@ -1,10 +1,14 @@
 {
   "meta": {
     "title": "Hernán Ainsa — Portfolio",
-    "description": "Portfolio de diseño y desarrollo.",
+    "description": "Hernán Ainsa — Product Designer y UX Engineer. 9 años liderando diseño de producto enterprise, tras 8 como desarrollador front-end. Remoto, horario EE.UU.",
+    "og": {
+      "kicker": "Product Design · Sistemas de Diseño · Entrega con IA",
+      "tagline": "Diseño en Figma y lo construyo en React."
+    },
     "work": {
       "title": "Casos de Estudio y Trabajo",
-      "description": "Casos de estudio seleccionados de diseño UX/UI y desarrollo front-end de Hernán Ainsa."
+      "description": "Casos de estudio seleccionados de product design y sistemas de diseño de Hernán Ainsa — herramientas enterprise, plataformas internas e interfaces en producción."
     },
     "contact": {
       "title": "Contacto",
@@ -33,14 +37,14 @@
   },
   "home": {
     "hero": {
-      "eyebrow": "PRODUCT DESIGNER · DESIGN TECHNOLOGIST",
+      "eyebrow": "PRODUCT DESIGNER · UX ENGINEER",
       "headline": "DISEÑO Y DESARROLLO",
       "subtext": "De la investigación al producto en producción, con flujos asistidos por IA.",
       "cta": "[ Casos de Estudio y Trabajo ]"
     },
     "about": {
       "title": "Hola, soy Hernán.",
-      "bio": "Diseño interfaces centradas en el usuario en Figma y las llevo a desarrollo con flujos asistidos por IA (React, Next.js). Llevo más de 15 años en la industria, los últimos 8 años liderando diseño UX/UI y product design end-to-end — con base en Rosario, Argentina. Actualmente abierto a roles full-time o colaboraciones part-time selectas.",
+      "bio": "Diseño interfaces centradas en el usuario en Figma y las llevo a desarrollo con flujos asistidos por IA (React, Next.js). Más de 15 años en tecnología: los primeros 8 escribiendo HTML, CSS y JavaScript a mano como desarrollador de UI web, los últimos 9 liderando diseño UX/UI y product design end-to-end — con base en Rosario, Argentina. Actualmente abierto a roles full-time o colaboraciones part-time selectas.",
       "skills": [
         "Product Design",
         "Diseño UX/UI",
@@ -158,7 +162,7 @@
       "steps": [
         {
           "lead": "Descubrimiento.",
-          "body": "En la etapa mas 'humana', empiezo entendiendo el producto y su ecosistema general: hablando con stakeholders del negocio y usuarios, analizando competidores y el mercado ya existente, entendiendo las necesidades a cubrir. Sin metodologías rígidas: lo mantengo flexible y sigo lo que cada proyecto realmente necesita."
+          "body": "En la etapa más “humana”, empiezo entendiendo el producto y su ecosistema general: hablando con stakeholders del negocio y usuarios, analizando competidores y el mercado ya existente, entendiendo las necesidades a cubrir. Sin metodologías rígidas: lo mantengo flexible y sigo lo que cada proyecto realmente necesita."
         },
         {
           "lead": "Brief y dirección.",
@@ -170,7 +174,7 @@
         },
         {
           "lead": "Plan técnico — Claude Code/Cursor/Otros...",
-          "body": "Me muevo a Claude Code (o cualquier Agente/IDE asistido por IA) para comenzar definiendo el stack técnico, la arquitectura y un plan de construcción por etapas. Aqui debe haber fuerte contacto con el equipo tecnico para asegurar que el plan sea realista y escalable. La idea no es apresurarse y tirar codigo basura de entrada que luego habra que rehacer, sino planificar el proyecto y iniciar con una base sólida y escalable."
+          "body": "Me muevo a Claude Code (o cualquier Agente/IDE asistido por IA) para comenzar definiendo el stack técnico, la arquitectura y un plan de construcción por etapas. Aquí debe haber fuerte contacto con el equipo técnico para asegurar que el plan sea realista y escalable. La idea no es apresurarse y tirar código basura de entrada que luego habrá que rehacer, sino planificar el proyecto y iniciar con una base sólida y escalable."
         },
         {
           "lead": "Construcción.",

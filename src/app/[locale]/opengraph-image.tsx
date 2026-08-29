@@ -1,15 +1,30 @@
 import { ImageResponse } from "next/og";
+import { getTranslations } from "next-intl/server";
+import { routing } from "@/i18n/routing";
 
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
+export const alt = "Hernán Ainsa — Portfolio";
+
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
+}
 
 /**
- * Single site-wide default OG image (route-segment file convention cascades
+ * Site-wide OG image, one per locale (route-segment file convention cascades
  * to every child route that doesn't define its own) — per-case-study images
  * are a stretch goal per docs/IMPLEMENTATION_PLAN.md Phase 11, not required
- * for v1. Deliberately not localized: same image under /en and /es.
+ * for v1. Copy lives in `meta.og.*` in the messages, like every other
+ * user-facing string.
  */
-export default function OpengraphImage() {
+export default async function OpengraphImage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "meta.og" });
+
   return new ImageResponse(
     <div
       style={{
@@ -25,14 +40,14 @@ export default function OpengraphImage() {
     >
       <div
         style={{
-          fontSize: 32,
-          letterSpacing: 4,
+          fontSize: 26,
+          letterSpacing: 3,
           color: "#8a8a8a",
           textTransform: "uppercase",
           display: "flex",
         }}
       >
-        UX/UI Design · Front-End Development
+        {t("kicker")}
       </div>
       <div
         style={{
@@ -52,7 +67,7 @@ export default function OpengraphImage() {
           display: "flex",
         }}
       >
-        Where design and code actually meet.
+        {t("tagline")}
       </div>
     </div>,
     { ...size },
