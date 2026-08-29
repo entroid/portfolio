@@ -67,6 +67,6 @@ export default async function CaseStudyPage({
   return project.meta.depth === "featured" ? (
     <CaseStudyTemplate project={project} nextProject={nextProject} />
   ) : (
-    <OtherWorkTemplate project={project} />
+    <OtherWorkTemplate project={project} nextProject={nextProject} />
   );
 }
