@@ -22,6 +22,33 @@ describe("Footer", () => {
     );
   });
 
+  it("states location, working hours and availability", () => {
+    renderWithIntl(<Footer />);
+    expect(screen.getByTestId("footer-status")).toHaveTextContent(
+      "Rosario, Argentina",
+    );
+  });
+
+  it("links to GitHub and to the CV for the active locale", () => {
+    renderWithIntl(<Footer />);
+    expect(screen.getByTestId("footer-github")).toHaveAttribute(
+      "href",
+      siteLinks.github,
+    );
+    expect(screen.getByTestId("footer-cv")).toHaveAttribute(
+      "href",
+      siteLinks.cvPathEn,
+    );
+  });
+
+  it("serves the Spanish CV under the es locale", () => {
+    renderWithIntl(<Footer />, { locale: "es" });
+    expect(screen.getByTestId("footer-cv")).toHaveAttribute(
+      "href",
+      siteLinks.cvPathEs,
+    );
+  });
+
   it("has no automatically detectable accessibility violations", async () => {
     const { container } = renderWithIntl(<Footer />);
     expect(await axe(container)).toHaveNoViolations();

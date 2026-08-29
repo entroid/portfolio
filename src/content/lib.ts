@@ -35,12 +35,42 @@ export async function getAllProjects(locale: Locale): Promise<Project[]> {
     slugs.map((slug) => loadProject(slug, locale)),
   );
 
-  return projects.sort((a, b) => {
-    if (a.meta.depth !== b.meta.depth) {
-      return a.meta.depth === "featured" ? -1 : 1;
-    }
-    return a.meta.order - b.meta.order;
-  });
+  return projects.sort((a, b) => byReadingOrder(a.meta, b.meta));
+}
+
+/**
+ * Featured first, then by `order` within each depth group — the order
+ * /work lists projects in, and therefore the order "next case study"
+ * follows.
+ */
+function byReadingOrder(a: ProjectMeta, b: ProjectMeta): number {
+  if (a.depth !== b.depth) {
+    return a.depth === "featured" ? -1 : 1;
+  }
+  return a.order - b.order;
+}
+
+/**
+ * The project after `slug` in that same reading order, wrapping around at
+ * the end so the last case study still offers somewhere to go. Only
+ * `index.ts` metadata is read to pick the neighbour; the MDX for the one
+ * project that wins gets compiled after that.
+ */
+export async function getNextProject(
+  slug: string,
+  locale: Locale,
+): Promise<Project | null> {
+  const metas = await Promise.all(
+    listProjectSlugs().map((s) => loadMeta(path.join(WORK_DIR, s), s)),
+  );
+
+  if (metas.length < 2) return null;
+
+  metas.sort(byReadingOrder);
+  const index = metas.findIndex((meta) => meta.slug === slug);
+  if (index === -1) return null;
+
+  return loadProject(metas[(index + 1) % metas.length].slug, locale);
 }
 
 export async function getProjectBySlug(

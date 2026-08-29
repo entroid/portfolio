@@ -4,20 +4,26 @@ import { Container } from "@/components/ui/Container";
 import { GridOverlay } from "@/components/ui/GridOverlay";
 import type { Project } from "@/content/lib";
 import { CaseStudyHeader } from "./CaseStudyHeader";
+import { CaseStudyOutro } from "./CaseStudyOutro";
 
 export type OtherWorkTemplateProps = {
   project: Pick<Project, "meta" | "frontmatter"> & { content: ReactElement };
+  nextProject?: Pick<Project, "meta" | "frontmatter"> | null;
 };
 
 /**
  * Light template for `depth: "other"` projects — shares the same header
  * (title, summary, cover image, optional role/responsibilities/context)
  * as CaseStudyTemplate, but skips the process/results sections
- * (CONTENT_MODEL.md). Stays quiet like CaseStudyTemplate — no
+ * (CONTENT_MODEL.md), and shares its closing `CaseStudyOutro`. Stays quiet
+ * like CaseStudyTemplate — no
  * crosshair/mono-label decoration. `GridOverlay` is the one exception,
  * same header treatment as CaseStudyTemplate/hero/contact/ai-workflow.
  */
-export function OtherWorkTemplate({ project }: OtherWorkTemplateProps) {
+export function OtherWorkTemplate({
+  project,
+  nextProject,
+}: OtherWorkTemplateProps) {
   const { content } = project;
 
   return (
@@ -30,6 +36,8 @@ export function OtherWorkTemplate({ project }: OtherWorkTemplateProps) {
         <div data-testid="other-work-content" className="mt-8">
           {content}
         </div>
+
+        <CaseStudyOutro nextProject={nextProject} />
       </Container>
     </Section>
   );

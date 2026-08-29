@@ -33,14 +33,16 @@
     "email": "Email",
     "linkedin": "LinkedIn",
     "whatsapp": "WhatsApp",
+    "status": "Based in Rosario, Argentina · Working remotely on US hours · Open to full-time roles and contract work",
     "rights": "All rights reserved."
   },
   "home": {
     "hero": {
       "eyebrow": "PRODUCT DESIGNER · UX ENGINEER",
       "headline": "DESIGN & BUILD",
-      "subtext": "From research to shipped product, powered by AI-assisted workflows.",
-      "cta": "[ Case Studies & Work ]"
+      "subtext": "I take complex enterprise products — dense internal tools and operations platforms — from research to a shipped interface.",
+      "cta": "[ Case Studies & Work ]",
+      "availability": "Available now · Remote, US hours · Full-time or contract"
     },
     "about": {
       "title": "Hey, I'm Hernán.",
@@ -71,6 +73,10 @@
           "description": "With A Great Experience And Results."
         }
       ]
+    },
+    "featured": {
+      "heading": "Selected work",
+      "all": "See all case studies"
     }
   },
   "work": {
@@ -90,12 +96,18 @@
       "back": "Back to Work",
       "expandImage": "View full size",
       "closeImage": "Close"
+    },
+    "outro": {
+      "title": "Want to talk through this one?",
+      "body": "I'm available for full-time roles and contract work, remote on US hours.",
+      "cta": "[ Get in touch ]",
+      "next": "Next case study"
     }
   },
   "contact": {
     "eyebrow": "GET IN TOUCH",
     "title": "Let's talk.",
-    "intro": "Have a project in mind, or just want to say hi? Send a message, or reach out directly.",
+    "intro": "Hiring, or looking for someone to take a product from research to shipped interface? Send a message.",
     "form": {
       "name": "Name",
       "email": "Email",
@@ -128,11 +140,26 @@
     "workflow": {
       "heading": "The Real Workflow",
       "diagram": [
-        { "label": "Prompt", "microLabel": "Detailed instruction" },
-        { "label": "Review", "microLabel": "Assess the output" },
-        { "label": "Critique", "microLabel": "What works, what doesn't" },
-        { "label": "Iterate", "microLabel": "Refine and re-prompt" },
-        { "label": "Repeat", "microLabel": "Until it's right" }
+        {
+          "label": "Prompt",
+          "microLabel": "Detailed instruction"
+        },
+        {
+          "label": "Review",
+          "microLabel": "Assess the output"
+        },
+        {
+          "label": "Critique",
+          "microLabel": "What works, what doesn't"
+        },
+        {
+          "label": "Iterate",
+          "microLabel": "Refine and re-prompt"
+        },
+        {
+          "label": "Repeat",
+          "microLabel": "Until it's right"
+        }
       ],
       "contextLine": "*A single loop can take 15 minutes or several hours, depending on the complexity.",
       "helps": {
@@ -157,6 +184,10 @@
     "tabs": {
       "prototyping": "Prototyping",
       "figmaToCode": "Figma to Code"
+    },
+    "cta": {
+      "body": "This is how I'd work with your team.",
+      "button": "[ Let's talk ]"
     },
     "prototyping": {
       "steps": [

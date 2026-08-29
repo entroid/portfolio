@@ -26,6 +26,20 @@ describe("ContactPage", () => {
     );
   });
 
+  it("offers the CV in the language the page is read in", () => {
+    renderWithIntl(<ContactPage />);
+    expect(screen.getByTestId("contact-direct-cv")).toHaveAttribute(
+      "href",
+      siteLinks.cvPathEn,
+    );
+
+    renderWithIntl(<ContactPage />, { locale: "es" });
+    expect(screen.getAllByTestId("contact-direct-cv")[1]).toHaveAttribute(
+      "href",
+      siteLinks.cvPathEs,
+    );
+  });
+
   it("has no automatically detectable accessibility violations", async () => {
     const { container } = renderWithIntl(<ContactPage />);
     expect(await axe(container)).toHaveNoViolations();

@@ -1,4 +1,4 @@
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { Section } from "@/components/ui/Section";
 import { Container } from "@/components/ui/Container";
 import { BracketLabel } from "@/components/ui/BracketLabel";
@@ -13,26 +13,27 @@ const directLinkClassName =
 export function ContactPage() {
   const t = useTranslations("contact");
   const tFooter = useTranslations("footer");
+  const tNav = useTranslations("nav");
+  const locale = useLocale();
+
+  const cvPath = locale === "es" ? siteLinks.cvPathEs : siteLinks.cvPathEn;
 
   return (
     <Section id="contact">
       <Container className="max-w-[720px]">
         <GridOverlay className="opacity-40 [mask-image:linear-gradient(to_bottom,black,transparent)]" />
 
-        <h1 className="mt-4 text-h1 font-mono font-extrabold tracking-h1 text-fg md:text-h1-desktop">
+        <h1 className="text-h1 font-mono font-extrabold tracking-h1 text-fg md:text-h1-desktop">
           {t("title")}
         </h1>
-        <p className="mt-6 text-body text-muted md:text-body-desktop">
+        <p className="mt-5 text-body text-muted md:text-body-desktop">
           {t("intro")}
         </p>
 
-        <Reveal className="mt-16  " delay={0.1}>
-          {/*<h2 className="text-h3 font-mono font-extrabold tracking-h1 text-fg md:text-h3-desktop">
-            {t("direct.title")}
-          </h2> */}
+        <Reveal className="mt-8" delay={0.1}>
           <nav
             aria-label={t("direct.title")}
-            className="mt-6 flex flex-wrap items-center gap-6"
+            className="flex flex-wrap items-center gap-6"
           >
             <a
               href={`mailto:${siteLinks.email}`}
@@ -59,10 +60,19 @@ export function ContactPage() {
             >
               <BracketLabel>{tFooter("whatsapp")}</BracketLabel>
             </a>
+            {/* Serves the CV in whichever language the page is being read in. */}
+            <a
+              href={cvPath}
+              download
+              data-testid="contact-direct-cv"
+              className={directLinkClassName}
+            >
+              <BracketLabel>{tNav("cv")}</BracketLabel>
+            </a>
           </nav>
         </Reveal>
 
-        <Reveal className="mt-12 border-t border-grid-border pt-8">
+        <Reveal className="mt-6 border-t border-grid-border pt-6">
           <ContactForm />
         </Reveal>
       </Container>

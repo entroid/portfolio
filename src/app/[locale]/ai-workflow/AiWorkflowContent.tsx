@@ -2,6 +2,8 @@
 
 import { Fragment } from "react";
 import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
+import { buttonClassName } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import { Reveal } from "@/components/ui/Reveal";
@@ -198,6 +200,29 @@ function StepsList({ steps }: { steps: Step[] }) {
   );
 }
 
+/** Closes the page under both tab panels, centered. */
+function WorkflowCta() {
+  const t = useTranslations("aiWorkflow.cta");
+
+  return (
+    <Reveal className="mt-16 flex flex-col items-center gap-4 text-center">
+      <p
+        data-testid="ai-workflow-cta-body"
+        className="text-body text-fg md:text-body-desktop"
+      >
+        {t("body")}
+      </p>
+      <Link
+        href="/contact"
+        data-testid="ai-workflow-cta"
+        className={cn(buttonClassName.primary, "inline-flex")}
+      >
+        {t("button")}
+      </Link>
+    </Reveal>
+  );
+}
+
 function PrototypingTab() {
   const t = useTranslations("aiWorkflow.prototyping");
   const steps = t.raw("steps") as Step[];
@@ -302,6 +327,8 @@ export function AiWorkflowContent() {
             },
           ]}
         />
+
+        <WorkflowCta />
       </Container>
     </Section>
   );

@@ -72,4 +72,18 @@ describe("AiWorkflowContent", () => {
     expect(list.tagName).toBe("OL");
     expect(list.children).toHaveLength(7);
   });
+
+  it("closes the page with a single contact CTA below both tab panels", async () => {
+    const user = userEvent.setup();
+    renderWithIntl(<AiWorkflowContent />, { locale: "en" });
+
+    expect(screen.getByTestId("ai-workflow-cta")).toHaveAttribute(
+      "href",
+      "/en/contact",
+    );
+
+    // Switching tabs must not duplicate or drop it.
+    await user.click(screen.getByRole("tab", { name: "Figma to Code" }));
+    expect(screen.getAllByTestId("ai-workflow-cta")).toHaveLength(1);
+  });
 });

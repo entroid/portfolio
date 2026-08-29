@@ -33,14 +33,16 @@
     "email": "Email",
     "linkedin": "LinkedIn",
     "whatsapp": "WhatsApp",
+    "status": "Rosario, Argentina · Trabajo remoto en horario de EE.UU. · Abierto a roles full-time y contrataciones por contrato",
     "rights": "Todos los derechos reservados."
   },
   "home": {
     "hero": {
       "eyebrow": "PRODUCT DESIGNER · UX ENGINEER",
       "headline": "DISEÑO Y DESARROLLO",
-      "subtext": "De la investigación al producto en producción, con flujos asistidos por IA.",
-      "cta": "[ Casos de Estudio y Trabajo ]"
+      "subtext": "Llevo productos enterprise complejos — herramientas internas densas y plataformas de operaciones — desde la investigación hasta una interfaz en producción.",
+      "cta": "[ Casos de Estudio y Trabajo ]",
+      "availability": "Disponible ahora · Remoto, horario EE.UU. · Full-time o por contrato"
     },
     "about": {
       "title": "Hola, soy Hernán.",
@@ -71,6 +73,10 @@
           "description": "Con una gran experiencia y resultados."
         }
       ]
+    },
+    "featured": {
+      "heading": "Trabajo seleccionado",
+      "all": "Ver todos los casos"
     }
   },
   "work": {
@@ -90,12 +96,18 @@
       "back": "Volver a Trabajo",
       "expandImage": "Ver a tamaño completo",
       "closeImage": "Cerrar"
+    },
+    "outro": {
+      "title": "¿Querés que lo charlemos?",
+      "body": "Estoy disponible para roles full-time y trabajo por contrato, remoto en horario de EE.UU.",
+      "cta": "[ Contactame ]",
+      "next": "Siguiente caso"
     }
   },
   "contact": {
     "eyebrow": "HABLEMOS",
     "title": "Hablemos.",
-    "intro": "¿Tenés un proyecto en mente, o solo querés saludar? Enviá un mensaje, o contactame directamente.",
+    "intro": "¿Estás buscando a alguien para llevar un producto desde la investigación hasta la interfaz en producción? Escribime.",
     "form": {
       "name": "Nombre",
       "email": "Email",
@@ -128,11 +140,26 @@
     "workflow": {
       "heading": "El Workflow Real",
       "diagram": [
-        { "label": "Prompt", "microLabel": "Instrucción detallada" },
-        { "label": "Revisión", "microLabel": "Evaluar el resultado" },
-        { "label": "Crítica", "microLabel": "Qué funciona, qué no" },
-        { "label": "Iteración", "microLabel": "Refinar y reintentar" },
-        { "label": "Repetición", "microLabel": "Hasta lograrlo" }
+        {
+          "label": "Prompt",
+          "microLabel": "Instrucción detallada"
+        },
+        {
+          "label": "Revisión",
+          "microLabel": "Evaluar el resultado"
+        },
+        {
+          "label": "Crítica",
+          "microLabel": "Qué funciona, qué no"
+        },
+        {
+          "label": "Iteración",
+          "microLabel": "Refinar y reintentar"
+        },
+        {
+          "label": "Repetición",
+          "microLabel": "Hasta lograrlo"
+        }
       ],
       "contextLine": "*Un ciclo puede tomar 15 minutos o varias horas, según la complejidad.",
       "helps": {
@@ -157,6 +184,10 @@
     "tabs": {
       "prototyping": "Prototipado",
       "figmaToCode": "Figma a Código"
+    },
+    "cta": {
+      "body": "Así es como trabajaría con tu equipo.",
+      "button": "[ Hablemos ]"
     },
     "prototyping": {
       "steps": [

@@ -2,7 +2,11 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
 import type { Locale } from "@/i18n/routing";
-import { getAllProjectSlugs, getProjectBySlug } from "@/content/lib";
+import {
+  getAllProjectSlugs,
+  getNextProject,
+  getProjectBySlug,
+} from "@/content/lib";
 import { CaseStudyTemplate } from "@/components/work/CaseStudyTemplate";
 import { OtherWorkTemplate } from "@/components/work/OtherWorkTemplate";
 
@@ -55,11 +59,14 @@ export default async function CaseStudyPage({
     notFound();
   }
 
-  const project = await getProjectBySlug(slug, locale as Locale);
+  const [project, nextProject] = await Promise.all([
+    getProjectBySlug(slug, locale as Locale),
+    getNextProject(slug, locale as Locale),
+  ]);
 
   return project.meta.depth === "featured" ? (
-    <CaseStudyTemplate project={project} />
+    <CaseStudyTemplate project={project} nextProject={nextProject} />
   ) : (
-    <OtherWorkTemplate project={project} />
+    <OtherWorkTemplate project={project} nextProject={nextProject} />
   );
 }
