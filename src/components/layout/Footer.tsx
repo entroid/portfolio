@@ -22,7 +22,7 @@ export function Footer() {
       <div className="relative mx-auto flex w-full max-w-[1280px] flex-col gap-6 px-4 py-10 md:px-8">
         <p
           data-testid="footer-status"
-          className="font-mono text-label uppercase tracking-label text-muted md:text-label-desktop"
+          className="text-center font-mono text-label uppercase tracking-label text-muted md:text-label-desktop"
         >
           {t("status")}
         </p>

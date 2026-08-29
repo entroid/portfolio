@@ -200,16 +200,12 @@ function StepsList({ steps }: { steps: Step[] }) {
   );
 }
 
-/**
- * Repeated at the end of both tabs rather than once under the tab strip:
- * only one panel is ever visible, so a single shared CTA would sit below
- * whichever tab the reader didn't open.
- */
-function TabCta() {
+/** Closes the page under both tab panels, centered. */
+function WorkflowCta() {
   const t = useTranslations("aiWorkflow.cta");
 
   return (
-    <Reveal className="mt-10 flex flex-col items-start gap-4">
+    <Reveal className="mt-16 flex flex-col items-center gap-4 text-center">
       <p
         data-testid="ai-workflow-cta-body"
         className="text-body text-fg md:text-body-desktop"
@@ -248,8 +244,6 @@ function PrototypingTab() {
           {t("team.body")}
         </p>
       </Reveal>
-
-      <TabCta />
     </>
   );
 }
@@ -275,8 +269,6 @@ function FigmaToCodeTab() {
           {t("team.body")}
         </p>
       </Reveal>
-
-      <TabCta />
     </div>
   );
 }
@@ -335,6 +327,8 @@ export function AiWorkflowContent() {
             },
           ]}
         />
+
+        <WorkflowCta />
       </Container>
     </Section>
   );

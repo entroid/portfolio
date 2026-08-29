@@ -39,7 +39,7 @@ export function ContactPage() {
             {status.map((item) => (
               <li
                 key={item}
-                className="font-mono text-label uppercase tracking-label text-accent after:mx-3 after:text-muted after:content-['·'] last:after:content-none md:text-label-desktop"
+                className="font-mono text-label uppercase tracking-label text-muted after:mx-3 after:content-['·'] last:after:content-none md:text-label-desktop"
               >
                 {item}
               </li>
