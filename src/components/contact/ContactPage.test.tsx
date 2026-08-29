@@ -26,14 +26,6 @@ describe("ContactPage", () => {
     );
   });
 
-  it("lists the qualifying details a recruiter screens on", () => {
-    renderWithIntl(<ContactPage />);
-    const status = screen.getByTestId("contact-availability");
-    expect(status).toHaveTextContent("Available now");
-    expect(status).toHaveTextContent("Remote");
-    expect(status).toHaveTextContent("Full-time or contract");
-  });
-
   it("offers the CV in the language the page is read in", () => {
     renderWithIntl(<ContactPage />);
     expect(screen.getByTestId("contact-direct-cv")).toHaveAttribute(

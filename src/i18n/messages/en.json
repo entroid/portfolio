@@ -108,12 +108,6 @@
     "eyebrow": "GET IN TOUCH",
     "title": "Let's talk.",
     "intro": "Hiring, or looking for someone to take a product from research to shipped interface? Send a message.",
-    "status": [
-      "Available now",
-      "Remote — US hours (UTC-3)",
-      "Full-time or contract",
-      "English (professional) · Spanish (native)"
-    ],
     "form": {
       "name": "Name",
       "email": "Email",

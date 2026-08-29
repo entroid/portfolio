@@ -108,12 +108,6 @@
     "eyebrow": "HABLEMOS",
     "title": "Hablemos.",
     "intro": "¿Estás buscando a alguien para llevar un producto desde la investigación hasta la interfaz en producción? Escribime.",
-    "status": [
-      "Disponible ahora",
-      "Remoto — horario EE.UU. (UTC-3)",
-      "Full-time o por contrato",
-      "Inglés (profesional) · Español (nativo)"
-    ],
     "form": {
       "name": "Nombre",
       "email": "Email",

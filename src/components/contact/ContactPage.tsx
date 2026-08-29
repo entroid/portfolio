@@ -16,7 +16,6 @@ export function ContactPage() {
   const tNav = useTranslations("nav");
   const locale = useLocale();
 
-  const status = t.raw("status") as string[];
   const cvPath = locale === "es" ? siteLinks.cvPathEs : siteLinks.cvPathEn;
 
   return (
@@ -30,22 +29,6 @@ export function ContactPage() {
         <p className="mt-5 text-body text-muted md:text-body-desktop">
           {t("intro")}
         </p>
-
-        {status.length > 0 && (
-          <ul
-            data-testid="contact-availability"
-            className="mt-5 flex flex-wrap items-center gap-y-1"
-          >
-            {status.map((item) => (
-              <li
-                key={item}
-                className="font-mono text-label uppercase tracking-label text-muted after:mx-3 after:content-['·'] last:after:content-none md:text-label-desktop"
-              >
-                {item}
-              </li>
-            ))}
-          </ul>
-        )}
 
         <Reveal className="mt-8" delay={0.1}>
           <nav
@@ -89,7 +72,7 @@ export function ContactPage() {
           </nav>
         </Reveal>
 
-        <Reveal className="mt-8 border-t border-grid-border pt-8">
+        <Reveal className="mt-6 border-t border-grid-border pt-6">
           <ContactForm />
         </Reveal>
       </Container>
