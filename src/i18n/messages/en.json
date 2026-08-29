@@ -1,10 +1,14 @@
 {
   "meta": {
     "title": "Hernán Ainsa — Portfolio",
-    "description": "Design + development portfolio.",
+    "description": "Hernán Ainsa — Product Designer and UX Engineer. 9 years leading enterprise product design, on top of 8 as a front-end developer. Remote, US hours.",
+    "og": {
+      "kicker": "Product Design · Design Systems · AI-Assisted Delivery",
+      "tagline": "I design in Figma and build it in React."
+    },
     "work": {
       "title": "Case Studies & Work",
-      "description": "Selected UX/UI design and front-end engineering case studies by Hernán Ainsa."
+      "description": "Selected product design and design-systems case studies by Hernán Ainsa — enterprise tools, internal platforms, and interfaces shipped to production."
     },
     "contact": {
       "title": "Contact",
@@ -33,14 +37,14 @@
   },
   "home": {
     "hero": {
-      "eyebrow": "PRODUCT DESIGNER · DESIGN TECHNOLOGIST",
+      "eyebrow": "PRODUCT DESIGNER · UX ENGINEER",
       "headline": "DESIGN & BUILD",
       "subtext": "From research to shipped product, powered by AI-assisted workflows.",
       "cta": "[ Case Studies & Work ]"
     },
     "about": {
       "title": "Hey, I'm Hernán.",
-      "bio": "I design user-centered interfaces in Figma, and build them myself using AI-assisted development workflows (React, Next.js). 15+ years in the industry, 8+ of them leading UX/UI and product design end-to-end — based in Rosario, Argentina. Currently open to full-time roles, or select part-time collaborations.",
+      "bio": "I design user-centered interfaces in Figma and build them myself with AI-assisted development workflows (React, Next.js). 15+ years in tech: the first 8 hand-writing HTML, CSS and JavaScript as a web UI developer, the last 9 leading UX/UI and product design end-to-end — based in Rosario, Argentina. Currently open to full-time roles, or select part-time collaborations.",
       "skills": [
         "Product Design",
         "UX/UI Design",
@@ -181,7 +185,7 @@
           "body": "I quickly validate it — with users or stakeholders when possible — identify critical improvement points, and apply the necessary changes."
         },
         {
-          "lead": "Synch to Figma.",
+          "lead": "Sync to Figma.",
           "body": "Once the product gains some solidity, it may be necessary to sync the UI and design system with Figma, via Chrome extension or MCP, to be able to evolve and scale the design as the product grows."
         }
       ],
