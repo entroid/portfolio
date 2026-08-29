@@ -33,14 +33,16 @@
     "email": "Email",
     "linkedin": "LinkedIn",
     "whatsapp": "WhatsApp",
+    "status": "Based in Rosario, Argentina · Working remotely on US hours · Open to full-time roles and contract work",
     "rights": "All rights reserved."
   },
   "home": {
     "hero": {
       "eyebrow": "PRODUCT DESIGNER · UX ENGINEER",
       "headline": "DESIGN & BUILD",
-      "subtext": "From research to shipped product, powered by AI-assisted workflows.",
-      "cta": "[ Case Studies & Work ]"
+      "subtext": "I take complex enterprise products — dense internal tools and operations platforms — from research to a shipped interface.",
+      "cta": "[ Case Studies & Work ]",
+      "availability": "Available now · Remote, US hours · Full-time or contract"
     },
     "about": {
       "title": "Hey, I'm Hernán.",
@@ -105,7 +107,13 @@
   "contact": {
     "eyebrow": "GET IN TOUCH",
     "title": "Let's talk.",
-    "intro": "Have a project in mind, or just want to say hi? Send a message, or reach out directly.",
+    "intro": "Hiring, or looking for someone to take a product from research to shipped interface? Send a message.",
+    "status": [
+      "Available now",
+      "Remote — US hours (UTC-3)",
+      "Full-time or contract",
+      "English (professional) · Spanish (native)"
+    ],
     "form": {
       "name": "Name",
       "email": "Email",
@@ -182,6 +190,10 @@
     "tabs": {
       "prototyping": "Prototyping",
       "figmaToCode": "Figma to Code"
+    },
+    "cta": {
+      "body": "This is how I'd work with your team.",
+      "button": "[ Let's talk ]"
     },
     "prototyping": {
       "steps": [

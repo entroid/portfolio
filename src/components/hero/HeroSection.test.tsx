@@ -37,6 +37,13 @@ describe("HeroSection", () => {
     expect(cta).toHaveAttribute("href", "/en/work");
   });
 
+  it("states availability, hours and contract type under the CTA", () => {
+    renderWithIntl(<HeroSection />);
+    expect(screen.getByTestId("hero-availability")).toHaveTextContent(
+      "Available now",
+    );
+  });
+
   it("has no automatically detectable accessibility violations", async () => {
     const { container } = renderWithIntl(<HeroSection />);
     expect(await axe(container)).toHaveNoViolations();

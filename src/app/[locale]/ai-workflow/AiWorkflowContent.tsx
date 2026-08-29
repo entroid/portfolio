@@ -2,6 +2,8 @@
 
 import { Fragment } from "react";
 import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
+import { buttonClassName } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import { Reveal } from "@/components/ui/Reveal";
@@ -198,6 +200,33 @@ function StepsList({ steps }: { steps: Step[] }) {
   );
 }
 
+/**
+ * Repeated at the end of both tabs rather than once under the tab strip:
+ * only one panel is ever visible, so a single shared CTA would sit below
+ * whichever tab the reader didn't open.
+ */
+function TabCta() {
+  const t = useTranslations("aiWorkflow.cta");
+
+  return (
+    <Reveal className="mt-10 flex flex-col items-start gap-4">
+      <p
+        data-testid="ai-workflow-cta-body"
+        className="text-body text-fg md:text-body-desktop"
+      >
+        {t("body")}
+      </p>
+      <Link
+        href="/contact"
+        data-testid="ai-workflow-cta"
+        className={cn(buttonClassName.primary, "inline-flex")}
+      >
+        {t("button")}
+      </Link>
+    </Reveal>
+  );
+}
+
 function PrototypingTab() {
   const t = useTranslations("aiWorkflow.prototyping");
   const steps = t.raw("steps") as Step[];
@@ -219,6 +248,8 @@ function PrototypingTab() {
           {t("team.body")}
         </p>
       </Reveal>
+
+      <TabCta />
     </>
   );
 }
@@ -244,6 +275,8 @@ function FigmaToCodeTab() {
           {t("team.body")}
         </p>
       </Reveal>
+
+      <TabCta />
     </div>
   );
 }

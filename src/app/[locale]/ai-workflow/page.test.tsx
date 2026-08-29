@@ -72,4 +72,21 @@ describe("AiWorkflowContent", () => {
     expect(list.tagName).toBe("OL");
     expect(list.children).toHaveLength(7);
   });
+
+  it("closes each tab panel with its own contact CTA", async () => {
+    const user = userEvent.setup();
+    renderWithIntl(<AiWorkflowContent />, { locale: "en" });
+
+    // Only one panel is mounted at a time, so each tab needs its own CTA.
+    expect(screen.getByTestId("ai-workflow-cta")).toHaveAttribute(
+      "href",
+      "/en/contact",
+    );
+
+    await user.click(screen.getByRole("tab", { name: "Figma to Code" }));
+    expect(screen.getByTestId("ai-workflow-cta")).toHaveAttribute(
+      "href",
+      "/en/contact",
+    );
+  });
 });

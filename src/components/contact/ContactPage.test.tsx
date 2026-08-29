@@ -26,6 +26,28 @@ describe("ContactPage", () => {
     );
   });
 
+  it("lists the qualifying details a recruiter screens on", () => {
+    renderWithIntl(<ContactPage />);
+    const status = screen.getByTestId("contact-availability");
+    expect(status).toHaveTextContent("Available now");
+    expect(status).toHaveTextContent("Remote");
+    expect(status).toHaveTextContent("Full-time or contract");
+  });
+
+  it("offers the CV in the language the page is read in", () => {
+    renderWithIntl(<ContactPage />);
+    expect(screen.getByTestId("contact-direct-cv")).toHaveAttribute(
+      "href",
+      siteLinks.cvPathEn,
+    );
+
+    renderWithIntl(<ContactPage />, { locale: "es" });
+    expect(screen.getAllByTestId("contact-direct-cv")[1]).toHaveAttribute(
+      "href",
+      siteLinks.cvPathEs,
+    );
+  });
+
   it("has no automatically detectable accessibility violations", async () => {
     const { container } = renderWithIntl(<ContactPage />);
     expect(await axe(container)).toHaveNoViolations();
