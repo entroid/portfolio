@@ -71,6 +71,10 @@
           "description": "With A Great Experience And Results."
         }
       ]
+    },
+    "featured": {
+      "heading": "Selected work",
+      "all": "See all case studies"
     }
   },
   "work": {
@@ -90,6 +94,12 @@
       "back": "Back to Work",
       "expandImage": "View full size",
       "closeImage": "Close"
+    },
+    "outro": {
+      "title": "Want to talk through this one?",
+      "body": "I'm available for full-time roles and contract work, remote on US hours.",
+      "cta": "[ Get in touch ]",
+      "next": "Next case study"
     }
   },
   "contact": {
@@ -128,11 +138,26 @@
     "workflow": {
       "heading": "The Real Workflow",
       "diagram": [
-        { "label": "Prompt", "microLabel": "Detailed instruction" },
-        { "label": "Review", "microLabel": "Assess the output" },
-        { "label": "Critique", "microLabel": "What works, what doesn't" },
-        { "label": "Iterate", "microLabel": "Refine and re-prompt" },
-        { "label": "Repeat", "microLabel": "Until it's right" }
+        {
+          "label": "Prompt",
+          "microLabel": "Detailed instruction"
+        },
+        {
+          "label": "Review",
+          "microLabel": "Assess the output"
+        },
+        {
+          "label": "Critique",
+          "microLabel": "What works, what doesn't"
+        },
+        {
+          "label": "Iterate",
+          "microLabel": "Refine and re-prompt"
+        },
+        {
+          "label": "Repeat",
+          "microLabel": "Until it's right"
+        }
       ],
       "contextLine": "*A single loop can take 15 minutes or several hours, depending on the complexity.",
       "helps": {

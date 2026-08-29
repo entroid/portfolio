@@ -71,6 +71,10 @@
           "description": "Con una gran experiencia y resultados."
         }
       ]
+    },
+    "featured": {
+      "heading": "Trabajo seleccionado",
+      "all": "Ver todos los casos"
     }
   },
   "work": {
@@ -90,6 +94,12 @@
       "back": "Volver a Trabajo",
       "expandImage": "Ver a tamaño completo",
       "closeImage": "Cerrar"
+    },
+    "outro": {
+      "title": "¿Querés que lo charlemos?",
+      "body": "Estoy disponible para roles full-time y trabajo por contrato, remoto en horario de EE.UU.",
+      "cta": "[ Contactame ]",
+      "next": "Siguiente caso"
     }
   },
   "contact": {
@@ -128,11 +138,26 @@
     "workflow": {
       "heading": "El Workflow Real",
       "diagram": [
-        { "label": "Prompt", "microLabel": "Instrucción detallada" },
-        { "label": "Revisión", "microLabel": "Evaluar el resultado" },
-        { "label": "Crítica", "microLabel": "Qué funciona, qué no" },
-        { "label": "Iteración", "microLabel": "Refinar y reintentar" },
-        { "label": "Repetición", "microLabel": "Hasta lograrlo" }
+        {
+          "label": "Prompt",
+          "microLabel": "Instrucción detallada"
+        },
+        {
+          "label": "Revisión",
+          "microLabel": "Evaluar el resultado"
+        },
+        {
+          "label": "Crítica",
+          "microLabel": "Qué funciona, qué no"
+        },
+        {
+          "label": "Iteración",
+          "microLabel": "Refinar y reintentar"
+        },
+        {
+          "label": "Repetición",
+          "microLabel": "Hasta lograrlo"
+        }
       ],
       "contextLine": "*Un ciclo puede tomar 15 minutos o varias horas, según la complejidad.",
       "helps": {

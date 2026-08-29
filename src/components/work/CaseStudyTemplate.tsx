@@ -5,10 +5,12 @@ import { Container } from "@/components/ui/Container";
 import { GridOverlay } from "@/components/ui/GridOverlay";
 import type { Project } from "@/content/lib";
 import { Gallery } from "./Gallery";
+import { CaseStudyOutro } from "./CaseStudyOutro";
 import { CaseStudyHeader } from "./CaseStudyHeader";
 
 export type CaseStudyTemplateProps = {
   project: Pick<Project, "meta" | "frontmatter"> & { content: ReactElement };
+  nextProject?: Pick<Project, "meta" | "frontmatter"> | null;
 };
 
 /**
@@ -18,7 +20,10 @@ export type CaseStudyTemplateProps = {
  * exception: it fades out via a mask before the body content starts, same
  * header treatment as hero/contact/ai-workflow.
  */
-export function CaseStudyTemplate({ project }: CaseStudyTemplateProps) {
+export function CaseStudyTemplate({
+  project,
+  nextProject,
+}: CaseStudyTemplateProps) {
   const t = useTranslations("work.caseStudy");
   const { meta, frontmatter, content } = project;
 
@@ -63,6 +68,8 @@ export function CaseStudyTemplate({ project }: CaseStudyTemplateProps) {
         </div>
 
         <Gallery images={meta.gallery} title={t("gallery")} />
+
+        <CaseStudyOutro nextProject={nextProject} />
       </Container>
     </Section>
   );
