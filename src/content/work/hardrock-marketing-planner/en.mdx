@@ -34,7 +34,18 @@ Reverse-engineered the legacy Excel/SQL logic into a clear, scalable data hierar
   alt="Flow diagram walking through the Marketing Planner's core steps: create plan, define jobs, configure campaigns, and set offering variables"
 />
 
-In parallel, treated the design system as a product decision, not just a styling exercise: built it on Ant Design as a foundation, then defined tokens (color, spacing, typography) as the shared source of truth between Figma and code. So FE consumed the same variables design was iterating on. To close the loop with development, set up an AI-assisted workflow (Figma MCP → Claude Code →React) that generated ui/component code directly from Figma into a separate branch, which developers then reviewed and merged — turning handoff into a working starting point for engineering rather than a static spec to re-interpret.
+In parallel, treated the design system as a product decision, not just a styling exercise: built it on Ant Design as a foundation, then defined tokens (color, spacing, typography) as the shared source of truth between Figma and code. So FE consumed the same variables design was iterating on.
+
+## The handoff: Figma to reviewed React
+
+To close the loop with development, I set up an AI-assisted pipeline — **Figma MCP → Claude Code → React** — that generated component code directly from the Figma files into a dedicated branch. The dev team reviewed it there, added business logic and backend connections, and merged it through the same pull request process as any other contribution.
+
+The tokens are what made that possible: because color, spacing and typography lived in one shared place, the generated code inherited the decisions design was still iterating on. The handoff stopped being a static spec to re-interpret and rebuild from scratch, and became a working starting point for engineering — cutting implementation time on the design system layer.
+
+<CaseStudyImage
+  src="/images/work/hardrock-marketing-planner/design-system.webp"
+  alt="Design system tokens and component library used across the Marketing Planner"
+/>
 
 ## Key Product Decisions
 
@@ -50,18 +61,11 @@ In parallel, treated the design system as a product decision, not just a styling
   alt="Wireframes and hi-fi mockups for the Marketing Planner interface"
 />
 
-<CaseStudyImage
-  src="/images/work/hardrock-marketing-planner/design-system.webp"
-  alt="Design system tokens and component library used across the Marketing Planner"
-/>
-
 ## Technical notes
 
 - **• Base component library:** the interface was built on **Ant Design** as the base component library, which kept the team from re-solving already-solved interaction patterns (tables, date pickers, form validation, pagination) and focused engineering effort on the app's actual complexity — the campaign data model and calendar density — instead of UI plumbing.
 
 - **• Design tokens as the design-dev contract:** color, spacing, typography, and component variants were defined as tokens on top of Ant Design's theming layer (through **Tailwind**) rather than hard-coded values, so changes propagated from a single source of truth shared between Figma and the codebase.
-
-- **• AI-assisted Figma-to-code pipeline:** component code was generated directly from Figma files via **Figma MCP + Claude Code** into a dedicated branch. The dev team then took that code and added business logic and backend connections, so the handoff produced working React components instead of a static file and documentation reference to rebuild from scratch — cutting implementation time on the design system layer.
 
 ## Results
 
