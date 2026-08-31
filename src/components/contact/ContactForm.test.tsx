@@ -14,23 +14,46 @@ describe("ContactForm", () => {
     vi.unstubAllGlobals();
   });
 
-  it("blocks submission and shows accessible errors when fields are empty", async () => {
+  it("keeps submit disabled until every field is valid", async () => {
     const user = userEvent.setup();
     renderWithIntl(<ContactForm />);
 
-    await user.click(screen.getByTestId("contact-submit"));
+    const submit = screen.getByTestId("contact-submit");
+    expect(submit).toBeDisabled();
+
+    // An untouched form shows no errors — the page shouldn't open in red.
+    expect(
+      document.getElementById("contact-name-error"),
+    ).not.toBeInTheDocument();
+
+    await user.click(submit);
+    expect(global.fetch).not.toHaveBeenCalled();
+
+    await user.type(screen.getByTestId("contact-name-input"), "Ada Lovelace");
+    await user.type(
+      screen.getByTestId("contact-email-input"),
+      "ada@example.com",
+    );
+    expect(submit).toBeDisabled();
+
+    await user.type(screen.getByTestId("contact-message-input"), "Hello there");
+    await waitFor(() => expect(submit).toBeEnabled());
+  });
+
+  it("flags a field the visitor has typed in and left invalid", async () => {
+    const user = userEvent.setup();
+    renderWithIntl(<ContactForm />);
+
+    const nameInput = screen.getByTestId("contact-name-input");
+    await user.type(nameInput, "A");
+    await user.clear(nameInput);
 
     await waitFor(() =>
       expect(document.getElementById("contact-name-error")).toBeInTheDocument(),
     );
-    const nameInput = screen.getByTestId("contact-name-input");
     expect(nameInput).toHaveAttribute("aria-invalid", "true");
     expect(nameInput).toHaveAttribute("aria-describedby", "contact-name-error");
-    expect(document.getElementById("contact-email-error")).toBeInTheDocument();
-    expect(
-      document.getElementById("contact-message-error"),
-    ).toBeInTheDocument();
-    expect(global.fetch).not.toHaveBeenCalled();
+    expect(screen.getByTestId("contact-submit")).toBeDisabled();
   });
 
   it("rejects an invalid email format", async () => {

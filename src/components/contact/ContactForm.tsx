@@ -39,8 +39,20 @@ export function ContactForm() {
     register,
     handleSubmit,
     reset,
-    formState: { errors },
-  } = useForm<FormValues>({ resolver: zodResolver(schema) });
+    formState: { errors, isValid, dirtyFields },
+  } = useForm<FormValues>({
+    resolver: zodResolver(schema),
+    // Live validation so the submit button can reflect whether the form is
+    // actually sendable. Errors are shown per field only once that field has
+    // been typed in, so the page doesn't open covered in red.
+    mode: "onChange",
+  });
+
+  const showError = {
+    name: Boolean(errors.name && dirtyFields.name),
+    email: Boolean(errors.email && dirtyFields.email),
+    message: Boolean(errors.message && dirtyFields.message),
+  };
 
   async function onSubmit(values: FormValues) {
     if (values.company) {
@@ -90,52 +102,60 @@ export function ContactForm() {
         }}
         className="flex flex-col gap-6"
       >
-        <div className="flex flex-col gap-2">
-          <label htmlFor="contact-name" className={labelClassName}>
-            {t("name")}
-          </label>
-          <input
-            id="contact-name"
-            data-testid="contact-name-input"
-            type="text"
-            className={inputClassName}
-            aria-invalid={errors.name ? "true" : "false"}
-            aria-describedby={errors.name ? "contact-name-error" : undefined}
-            {...register("name")}
-          />
-          {errors.name && (
-            <p
-              id="contact-name-error"
-              role="alert"
-              className="text-label text-accent"
-            >
-              {errors.name.message}
-            </p>
-          )}
-        </div>
+        <div className="grid gap-6 sm:grid-cols-2">
+          <div className="flex flex-col gap-2">
+            <label htmlFor="contact-name" className={labelClassName}>
+              {t("name")}
+            </label>
+            <input
+              id="contact-name"
+              data-testid="contact-name-input"
+              type="text"
+              autoComplete="name"
+              className={inputClassName}
+              aria-invalid={showError.name ? "true" : "false"}
+              aria-describedby={
+                showError.name ? "contact-name-error" : undefined
+              }
+              {...register("name")}
+            />
+            {showError.name && (
+              <p
+                id="contact-name-error"
+                role="alert"
+                className="text-label text-accent"
+              >
+                {errors.name?.message}
+              </p>
+            )}
+          </div>
 
-        <div className="flex flex-col gap-2">
-          <label htmlFor="contact-email" className={labelClassName}>
-            {t("email")}
-          </label>
-          <input
-            id="contact-email"
-            data-testid="contact-email-input"
-            type="email"
-            className={inputClassName}
-            aria-invalid={errors.email ? "true" : "false"}
-            aria-describedby={errors.email ? "contact-email-error" : undefined}
-            {...register("email")}
-          />
-          {errors.email && (
-            <p
-              id="contact-email-error"
-              role="alert"
-              className="text-label text-accent"
-            >
-              {errors.email.message}
-            </p>
-          )}
+          <div className="flex flex-col gap-2">
+            <label htmlFor="contact-email" className={labelClassName}>
+              {t("email")}
+            </label>
+            <input
+              id="contact-email"
+              data-testid="contact-email-input"
+              type="email"
+              autoComplete="email"
+              className={inputClassName}
+              aria-invalid={showError.email ? "true" : "false"}
+              aria-describedby={
+                showError.email ? "contact-email-error" : undefined
+              }
+              {...register("email")}
+            />
+            {showError.email && (
+              <p
+                id="contact-email-error"
+                role="alert"
+                className="text-label text-accent"
+              >
+                {errors.email?.message}
+              </p>
+            )}
+          </div>
         </div>
 
         <div className="flex flex-col gap-2">
@@ -147,19 +167,19 @@ export function ContactForm() {
             data-testid="contact-message-input"
             rows={5}
             className={inputClassName}
-            aria-invalid={errors.message ? "true" : "false"}
+            aria-invalid={showError.message ? "true" : "false"}
             aria-describedby={
-              errors.message ? "contact-message-error" : undefined
+              showError.message ? "contact-message-error" : undefined
             }
             {...register("message")}
           />
-          {errors.message && (
+          {showError.message && (
             <p
               id="contact-message-error"
               role="alert"
               className="text-label text-accent"
             >
-              {errors.message.message}
+              {errors.message?.message}
             </p>
           )}
         </div>
@@ -180,10 +200,11 @@ export function ContactForm() {
         <button
           type="submit"
           data-testid="contact-submit"
-          disabled={status === "submitting"}
+          disabled={status === "submitting" || !isValid}
           className={cn(
-            buttonClassName.primary,
-            "self-start disabled:cursor-not-allowed disabled:opacity-50",
+            buttonClassName.secondary,
+            "self-start cursor-pointer border-grid-border px-6 py-3",
+            "disabled:cursor-not-allowed disabled:opacity-40",
           )}
         >
           {status === "submitting" ? t("submitting") : t("submit")}

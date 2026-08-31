@@ -66,7 +66,7 @@
     "index": {
       "eyebrow": "TRABAJO SELECCIONADO",
       "title": "Casos de Estudio y Trabajo",
-      "intro": "Siete proyectos entre SaaS enterprise, herramientas internas y apps de campo. Casi todos comparten el mismo problema: una operación que funcionaba con planillas hasta que dejó de alcanzar. Los cuatro casos destacados desarrollan el razonamiento; el resto son más breves.",
+      "intro": "Proyectos entre SaaS enterprise, herramientas internas y apps de operaciones. Casi todos comparten el mismo problema: una operación que funcionaba con planillas hasta que dejó de alcanzar. Los cuatro casos destacados desarrollan el razonamiento; el resto son más breves.",
       "featuredHeading": "Casos de Estudio Destacados",
       "otherHeading": "Otros Trabajos",
       "viewCaseStudy": "Ver caso de estudio"
@@ -110,7 +110,8 @@
       }
     },
     "direct": {
-      "title": "O contactame directamente"
+      "title": "O contactame directamente",
+      "emailSubject": "Te escribo desde tu portfolio"
     }
   },
   "aiWorkflow": {

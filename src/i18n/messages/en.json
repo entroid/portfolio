@@ -66,7 +66,7 @@
     "index": {
       "eyebrow": "SELECTED WORK",
       "title": "Case Studies & Work",
-      "intro": "Seven projects across enterprise SaaS, internal tools and field apps. Most of them share the same problem: an operation running on spreadsheets that outgrew them. The four featured cases go deep on the reasoning; the rest are shorter.",
+      "intro": "Projects across enterprise SaaS, internal tools and field apps. Most of them share the same problem: an operation running on spreadsheets that outgrew them. The four featured cases go deep on the reasoning; the rest are shorter.",
       "featuredHeading": "Featured Case Studies",
       "otherHeading": "Other Work",
       "viewCaseStudy": "View case study"
@@ -110,7 +110,8 @@
       }
     },
     "direct": {
-      "title": "Or reach out directly"
+      "title": "Or reach out directly",
+      "emailSubject": "Reaching out from your portfolio"
     }
   },
   "aiWorkflow": {
