@@ -29,6 +29,11 @@ const project = {
   frontmatter: {
     title: "Signal Desk — real-time ops dashboard",
     summary: "Turning a wall of raw logs into a trusted dashboard.",
+    role: "Product Designer",
+    results: [
+      { value: "-30%", label: "incident response time" },
+      { value: "3", label: "user roles defined upfront" },
+    ],
   },
 };
 
@@ -52,6 +57,32 @@ describe("CaseStudyCard", () => {
     const link = screen.getByRole("link");
     const decorative = link.querySelectorAll('[aria-hidden="true"]');
     expect(decorative.length).toBeGreaterThanOrEqual(2);
+  });
+
+  it("puts the year and role on one line, and the headline metric on the cover", () => {
+    renderWithIntl(<CaseStudyCard project={project} />);
+    expect(screen.getByTestId("case-study-year")).toHaveTextContent(
+      "2023 · Product Designer",
+    );
+    // Only the first result reaches the card.
+    const chip = screen.getByTestId("case-study-card-result");
+    expect(chip).toHaveTextContent("-30% incident response time");
+    expect(chip).not.toHaveTextContent("user roles");
+  });
+
+  it("drops the cover chip for a project without results", () => {
+    renderWithIntl(
+      <CaseStudyCard
+        project={{
+          ...project,
+          frontmatter: { ...project.frontmatter, results: undefined },
+        }}
+      />,
+    );
+    expect(
+      screen.queryByTestId("case-study-card-result"),
+    ).not.toBeInTheDocument();
+    expect(screen.getByTestId("case-study-card-role")).toBeInTheDocument();
   });
 
   it("has no automatically detectable accessibility violations", async () => {

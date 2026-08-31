@@ -3,6 +3,7 @@ import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { axe } from "jest-axe";
 import { renderWithIntl } from "@/test/renderWithIntl";
+import { siteLinks } from "@/lib/site-links";
 import { AiWorkflowContent } from "./AiWorkflowContent";
 
 describe("AiWorkflowContent", () => {
@@ -71,6 +72,18 @@ describe("AiWorkflowContent", () => {
     const list = screen.getByRole("list");
     expect(list.tagName).toBe("OL");
     expect(list.children).toHaveLength(7);
+  });
+
+  it("points at its own source as evidence for the process it describes", () => {
+    renderWithIntl(<AiWorkflowContent />, { locale: "en" });
+
+    expect(screen.getByTestId("ai-workflow-built-with")).toHaveTextContent(
+      "This site was designed and built with the workflow above",
+    );
+    expect(screen.getByTestId("ai-workflow-repo")).toHaveAttribute(
+      "href",
+      siteLinks.repo,
+    );
   });
 
   it("closes the page with a single contact CTA below both tab panels", async () => {

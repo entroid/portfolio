@@ -14,7 +14,7 @@ describe("ContactPage", () => {
 
     expect(screen.getByTestId("contact-direct-email")).toHaveAttribute(
       "href",
-      `mailto:${siteLinks.email}`,
+      expect.stringContaining(`mailto:${siteLinks.email}?subject=`),
     );
     expect(screen.getByTestId("contact-direct-linkedin")).toHaveAttribute(
       "href",
@@ -37,6 +37,13 @@ describe("ContactPage", () => {
     expect(screen.getAllByTestId("contact-direct-cv")[1]).toHaveAttribute(
       "href",
       siteLinks.cvPathEs,
+    );
+  });
+
+  it("spells out the address for machines with no mailto: handler", () => {
+    renderWithIntl(<ContactPage />);
+    expect(screen.getByTestId("contact-email-address")).toHaveTextContent(
+      siteLinks.email,
     );
   });
 

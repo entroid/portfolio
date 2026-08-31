@@ -18,6 +18,10 @@ const bracket =
  * "Project cards: same bracket/underline language + subtle lift"), so the
  * "view case study" bracket affordance is decorative text inside the link,
  * not a second nested link.
+ *
+ * The cover chip carries the headline metric where a project has one; role
+ * moved down to the year line, so a project without results reads as one
+ * clean image rather than a card missing an element.
  */
 export function CaseStudyCard({
   project,
@@ -25,6 +29,9 @@ export function CaseStudyCard({
 }: CaseStudyCardProps) {
   const t = useTranslations("work.index");
   const { meta, frontmatter } = project;
+  // The card surfaces one figure, not the whole results block: the first is
+  // the strongest in every case study that has them.
+  const headlineResult = frontmatter.results?.[0];
 
   return (
     <Link
@@ -47,9 +54,15 @@ export function CaseStudyCard({
           className="object-cover transition-transform duration-300 ease-out group-hover:scale-105"
         />
         <div className="absolute inset-0 bg-bg/30 transition-colors duration-150 group-hover:bg-bg/0" />
-        {frontmatter.role && (
-          <span className="absolute right-3 bottom-3 border border-grid-border bg-bg/80 px-4 py-2 font-mono text-label uppercase tracking-label md:text-label-desktop">
-            {frontmatter.role}
+        {headlineResult && (
+          <span
+            data-testid="case-study-card-result"
+            className="absolute right-3 bottom-3 max-w-[80%] border border-grid-border bg-bg/80 px-3 py-1.5 font-mono text-label leading-snug uppercase tracking-label md:text-label-desktop"
+          >
+            <span className="font-bold text-accent-2-text">
+              {headlineResult.value}
+            </span>{" "}
+            <span className="text-muted">{headlineResult.label}</span>
           </span>
         )}
       </div>
@@ -59,6 +72,12 @@ export function CaseStudyCard({
         className="mt-4 block font-mono text-label uppercase tracking-label text-accent-2-text"
       >
         {meta.year}
+        {frontmatter.role && (
+          <span data-testid="case-study-card-role" className="text-muted">
+            {" · "}
+            {frontmatter.role}
+          </span>
+        )}
       </span>
       <h3
         data-testid="case-study-title"

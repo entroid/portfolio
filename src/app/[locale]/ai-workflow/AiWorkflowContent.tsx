@@ -9,6 +9,7 @@ import { Section } from "@/components/ui/Section";
 import { Reveal } from "@/components/ui/Reveal";
 import { Tabs } from "@/components/ui/Tabs";
 import { GridOverlay } from "@/components/ui/GridOverlay";
+import { siteLinks } from "@/lib/site-links";
 import { cn } from "@/lib/cn";
 
 type Step = {
@@ -91,13 +92,14 @@ function WorkflowDiagram() {
                   className={cn(
                     "flex-1 border px-4 py-3 text-center transition-[border-color,border-image] duration-150",
                     isLast
-                      ? "border-accent-gradient"
-                      : "border-grid-border hover:border-accent-gradient",
+                      ? "text-accent"
+                      : "border-grid-border hover:text-accent",
                   )}
                 >
                   <p
                     className={cn(
                       "font-mono text-label-desktop font-bold uppercase tracking-label text-fg",
+                      isLast ? "text-accent" : "hover:text-accent",
                     )}
                   >
                     {node.label}
@@ -197,6 +199,40 @@ function StepsList({ steps }: { steps: Step[] }) {
         </li>
       ))}
     </ol>
+  );
+}
+
+/**
+ * The page's one piece of first-hand evidence: the reader is already on a
+ * site built by the process the page describes, and the source is public.
+ */
+function BuiltWithThis() {
+  const t = useTranslations("aiWorkflow.builtWith");
+
+  return (
+    <Reveal className="mt-12 border border-grid-border p-6 md:p-8">
+      <p
+        data-testid="ai-workflow-built-with"
+        className="text-body text-muted md:text-body-desktop"
+      >
+        {t("body")}
+      </p>
+      <a
+        href={siteLinks.repo}
+        target="_blank"
+        rel="noreferrer"
+        data-testid="ai-workflow-repo"
+        className="group mt-4 inline-flex items-center gap-2 font-mono text-cta uppercase tracking-cta text-accent transition-colors duration-150 hover:text-fg focus-visible:text-fg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-4 focus-visible:ring-offset-bg"
+      >
+        {t("link")}
+        <span
+          aria-hidden="true"
+          className="inline-block transition-transform duration-150 group-hover:translate-x-1 group-focus-visible:translate-x-1"
+        >
+          →
+        </span>
+      </a>
+    </Reveal>
   );
 }
 
@@ -327,6 +363,8 @@ export function AiWorkflowContent() {
             },
           ]}
         />
+
+        <BuiltWithThis />
 
         <WorkflowCta />
       </Container>

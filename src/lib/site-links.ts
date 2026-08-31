@@ -7,6 +7,7 @@ export const siteLinks = {
   linkedin: "https://www.linkedin.com/in/hainsa/",
   whatsapp: "https://wa.me/5493417211814?text=Hey%20Hernan!",
   github: "https://github.com/entroid",
+  repo: "https://github.com/entroid/portfolio",
   cvPathEn: "/cv/Hernan-Ainsa-CV-EN.pdf",
   cvPathEs: "/cv/Hernan-Ainsa-CV-ES.pdf",
 } as const;

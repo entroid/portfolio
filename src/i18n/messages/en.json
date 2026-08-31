@@ -55,23 +55,6 @@
         "AI Assisted Development",
         "Prototyping",
         "Cross-functional Collaboration"
-      ],
-      "stats": [
-        {
-          "value": "15+",
-          "label": "Years Experience",
-          "description": "In The IT Industry Field."
-        },
-        {
-          "value": "8+",
-          "label": "End-to-end Product Design",
-          "description": "Plus Dozens Of Smaller Projects."
-        },
-        {
-          "value": "6+",
-          "label": "Real companies helped",
-          "description": "With A Great Experience And Results."
-        }
       ]
     },
     "featured": {
@@ -83,6 +66,7 @@
     "index": {
       "eyebrow": "SELECTED WORK",
       "title": "Case Studies & Work",
+      "intro": "Projects across enterprise SaaS, internal tools and field apps. Most of them share the same problem: an operation running on spreadsheets that outgrew them. The four featured cases go deep on the reasoning; the rest are shorter.",
       "featuredHeading": "Featured Case Studies",
       "otherHeading": "Other Work",
       "viewCaseStudy": "View case study"
@@ -126,7 +110,8 @@
       }
     },
     "direct": {
-      "title": "Or reach out directly"
+      "title": "Or reach out directly",
+      "emailSubject": "Reaching out from your portfolio"
     }
   },
   "aiWorkflow": {
@@ -179,11 +164,15 @@
           "Being creative on its own"
         ]
       },
-      "closing": "Creativity, taste, and judgment — the three things AI still can't do. That's exactly what I'm sharpening for 2026 and beyond."
+      "closing": "Creativity, taste, and judgment — the three things AI still can't do. Those are exactly the three I'm doubling down on."
     },
     "tabs": {
       "prototyping": "Prototyping",
       "figmaToCode": "Figma to Code"
+    },
+    "builtWith": {
+      "body": "This site was designed and built with the workflow above — Next.js, TypeScript, Tailwind, bilingual, tested, deployed on Vercel. It is the same process, run on my own product instead of a client's.",
+      "link": "Source on GitHub"
     },
     "cta": {
       "body": "This is how I'd work with your team.",
@@ -253,7 +242,7 @@
         },
         {
           "lead": "Sync & Evolve.",
-          "body": "Once merged, I keep the Figma file and the live component library aligned, so design and code don't drift apart as the product grows — the same discipline as step 07 in Prototyping, applied in reverse."
+          "body": "Once merged, I keep the Figma file and the live component library aligned, so design and code don't drift apart as the product grows. Same discipline as keeping tokens in sync on the way in, applied on the way back out."
         }
       ],
       "team": {

@@ -29,7 +29,18 @@ Se hizo análisis e ingeniería inversa de la lógica legacy en Excel/SQL para d
   alt="Diagrama de flujo que recorre los pasos centrales del Marketing Planner: crear plan, definir jobs, configurar campañas y establecer variables de oferta"
 />
 
-En paralelo, consideré el design system como una decisión de producto: lo construí sobre Ant Design como base, y definí tokens (color, espaciado, tipografía) como fuente única de verdad compartida entre Figma y código, para que FE consumiera las mismas variables que diseño iteraba. Para cerrar el círculo con desarrollo, propuse un flujo asistido por IA (Figma MCP → Claude Code → React) que generaba el código de los componentes directamente desde Figma en un branch separado, que luego los developers revisaban y mergeaban — convirtiendo el handoff en un punto de partida funcional para ingeniería, más que solo una spec estática.
+En paralelo, consideré el design system como una decisión de producto: lo construí sobre Ant Design como base, y definí tokens (color, espaciado, tipografía) como fuente única de verdad compartida entre Figma y código, para que FE consumiera las mismas variables que diseño iteraba.
+
+## El handoff: de Figma a React revisado
+
+Para cerrar el círculo con desarrollo armé un pipeline asistido por IA —**Figma MCP → Claude Code → React**— que generaba el código de los componentes directamente desde los archivos de Figma hacia una branch dedicada. El equipo de desarrollo lo revisaba ahí, le sumaba la lógica de negocio y la conexión con backend, y lo mergeaba por el mismo proceso de pull request que cualquier otra contribución.
+
+Los tokens son lo que lo hizo posible: como color, espaciado y tipografía vivían en un único lugar compartido, el código generado heredaba las decisiones que diseño seguía iterando. El handoff dejó de ser una spec estática para reinterpretar y reconstruir desde cero, y pasó a ser un punto de partida funcional para ingeniería — reduciendo el tiempo de implementación de la capa de design system.
+
+<CaseStudyImage
+  src="/images/work/hardrock-marketing-planner/design-system.webp"
+  alt="Tokens y librería de componentes del sistema de diseño usado en el Marketing Planner"
+/>
 
 ## Decisiones Clave
 
@@ -47,13 +58,6 @@ En paralelo, consideré el design system como una decisión de producto: lo cons
 
 - **• Tokens de diseño como contrato entre diseño y desarrollo:** el Design System: color, espaciado, tipografía y variantes de componentes, se definió como tokens sobre la capa de theming de Ant Design (a través de **Tailwind**) en lugar de valores hardcodeados, de modo que los cambios se implementaron desde una única fuente de verdad compartida entre Figma y el código.
 
-- **• Pipeline de Figma a código asistido por IA:** el código de los componentes se generó directamente desde Figma vía **Figma MCP + Claude Code** en una branch dedicada. El equipo de desarrollo tomaba ese código y le sumaba lógica de negocio y conexión con backend. De modo que el handoff entregaba componentes React funcionales en lugar de solo una referencia a archivos o documentación estática a reconstruir desde cero, reduciendo el tiempo de implementación de la capa de design system.
-
-
-<CaseStudyImage
-  src="/images/work/hardrock-marketing-planner/design-system.webp"
-  alt="Tokens y librería de componentes del sistema de diseño usado en el Marketing Planner"
-/>
 
 ## Resultados
 
