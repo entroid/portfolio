@@ -185,6 +185,10 @@
       "prototyping": "Prototyping",
       "figmaToCode": "Figma to Code"
     },
+    "builtWith": {
+      "body": "This site was designed and built with the workflow above — Next.js, TypeScript, Tailwind, bilingual, tested, deployed on Vercel. It is the same process, run on my own product instead of a client's.",
+      "link": "Source on GitHub"
+    },
     "cta": {
       "body": "This is how I'd work with your team.",
       "button": "[ Let's talk ]"
