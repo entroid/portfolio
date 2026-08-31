@@ -92,13 +92,14 @@ function WorkflowDiagram() {
                   className={cn(
                     "flex-1 border px-4 py-3 text-center transition-[border-color,border-image] duration-150",
                     isLast
-                      ? "border-accent-gradient"
-                      : "border-grid-border hover:border-accent-gradient",
+                      ? "text-accent"
+                      : "border-grid-border hover:text-accent",
                   )}
                 >
                   <p
                     className={cn(
                       "font-mono text-label-desktop font-bold uppercase tracking-label text-fg",
+                      isLast ? "text-accent" : "hover:text-accent",
                     )}
                   >
                     {node.label}

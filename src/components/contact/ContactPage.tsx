@@ -10,7 +10,7 @@ import { ContactForm } from "./ContactForm";
 import { GridOverlay } from "@/components/ui/GridOverlay";
 
 const secondaryLinkClassName =
-  "group inline-flex items-center font-mono text-label uppercase tracking-label text-muted transition-colors duration-150 hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg md:text-label-desktop";
+  "group inline-flex items-center font-mono uppercase tracking-label transition-colors duration-150 hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg ";
 
 /**
  * The three direct channels carry the primary button treatment and the form
@@ -44,7 +44,7 @@ export function ContactPage() {
           {t("intro")}
         </p>
 
-        <Reveal className="mt-8" delay={0.1}>
+        <Reveal className="mt-6" delay={0.1}>
           <nav
             aria-label={t("direct.title")}
             className="flex flex-wrap items-center gap-3"
@@ -79,10 +79,10 @@ export function ContactPage() {
           {/* Plenty of corporate machines have no mail client bound to
               mailto:, where the button above does nothing. The address is
               spelled out and select-all so it can always be copied. */}
-          <div className="mt-4 flex flex-wrap items-center gap-x-6 gap-y-2">
+          <div className="mt-4 flex flex-wrap items-center gap-x-8 gap-y-2">
             <span
               data-testid="contact-email-address"
-              className="cursor-text font-mono text-label tracking-label text-muted select-all md:text-label-desktop"
+              className="cursor-text font-mono  tracking-label text-muted select-all "
             >
               {siteLinks.email}
             </span>
