@@ -32,6 +32,12 @@ export function WorkIndex({ projects }: WorkIndexProps) {
         <h1 className="mt-4 text-h1 font-mono font-extrabold tracking-h1 text-fg md:text-h1-desktop">
           {t("title")}
         </h1>
+        <p
+          data-testid="work-intro"
+          className="mt-6 max-w-[60ch] text-body text-muted md:text-body-desktop"
+        >
+          {t("intro")}
+        </p>
 
         {featured.length > 0 && (
           <Reveal className="mt-16" data-testid="work-featured">

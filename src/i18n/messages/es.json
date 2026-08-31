@@ -55,23 +55,6 @@
         "Desarrollo Asistido por IA",
         "Prototipado",
         "Colaboración Interequipos"
-      ],
-      "stats": [
-        {
-          "value": "12+",
-          "label": "Años de Experiencia",
-          "description": "En la industria del diseño web."
-        },
-        {
-          "value": "75+",
-          "label": "Proyectos Realizados",
-          "description": "Alrededor del mundo en los últimos cinco años."
-        },
-        {
-          "value": "98%",
-          "label": "Clientes Satisfechos",
-          "description": "Con una gran experiencia y resultados."
-        }
       ]
     },
     "featured": {
@@ -83,6 +66,7 @@
     "index": {
       "eyebrow": "TRABAJO SELECCIONADO",
       "title": "Casos de Estudio y Trabajo",
+      "intro": "Siete proyectos entre SaaS enterprise, herramientas internas y apps de campo. Casi todos comparten el mismo problema: una operación que funcionaba con planillas hasta que dejó de alcanzar. Los cuatro casos destacados desarrollan el razonamiento; el resto son más breves.",
       "featuredHeading": "Casos de Estudio Destacados",
       "otherHeading": "Otros Trabajos",
       "viewCaseStudy": "Ver caso de estudio"
@@ -179,7 +163,7 @@
           "Ser creativa por sí misma"
         ]
       },
-      "closing": "Creatividad, gusto y criterio — las tres cosas que la IA todavía no puede hacer. Es exactamente lo que estoy afilando para 2026 y en adelante."
+      "closing": "Creatividad, gusto y criterio — las tres cosas que la IA todavía no puede hacer. Son exactamente las tres en las que me estoy enfocando."
     },
     "tabs": {
       "prototyping": "Prototipado",

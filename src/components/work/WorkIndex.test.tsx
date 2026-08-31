@@ -78,6 +78,13 @@ describe("WorkIndex", () => {
     expect(screen.queryByTestId("work-other")).not.toBeInTheDocument();
   });
 
+  it("frames the grid with an intro paragraph", () => {
+    renderWithIntl(<WorkIndex projects={projects} />);
+    expect(screen.getByTestId("work-intro")).toHaveTextContent(
+      "an operation running on spreadsheets that outgrew them",
+    );
+  });
+
   it("has no automatically detectable accessibility violations", async () => {
     const { container } = renderWithIntl(<WorkIndex projects={projects} />);
     expect(await axe(container)).toHaveNoViolations();

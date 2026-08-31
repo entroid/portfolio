@@ -41,26 +41,6 @@ export function AboutSection() {
               ))}
             </ul>
           )}
-          {/* {stats.length > 0 && (
-            <dl
-              data-testid="about-stats"
-              className="mt-12 grid grid-cols-1 gap-8 border-t border-grid-border pt-8 sm:grid-cols-3"
-            >
-              {stats.map((stat) => (
-                <div key={stat.label}>
-                  <dt className="text-h3 font-mono font-extrabold text-fg md:text-h3-desktop">
-                    {stat.value}
-                  </dt>
-                  <dd className="mt-2 font-mono text-label font-bold uppercase tracking-label text-fg md:text-label-desktop">
-                    {stat.label}
-                  </dd>
-                  <dd className="mt-1 font-mono text-label text-muted md:text-label-desktop">
-                    {stat.description}
-                  </dd>
-                </div>
-              ))}
-            </dl>
-          )} */}
         </Reveal>
       </Container>
     </Section>
