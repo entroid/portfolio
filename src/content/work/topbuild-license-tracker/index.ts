@@ -3,7 +3,7 @@ import type { ProjectMeta } from "../../schema";
 export const meta: ProjectMeta = {
   slug: "topbuild-license-tracker",
   depth: "featured",
-  order: 2,
+  order: 3,
   year: "2020",
   coverImage: "/images/work/topbuild-license-tracker/portada.webp",
   coverImageAlt:

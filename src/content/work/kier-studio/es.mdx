@@ -1,0 +1,92 @@
+---
+title: "Kier Studio — Sitio de Agencia e Instrumentación"
+
+summary: "Cofundé un estudio boutique de diseño y desarrollo y llevé su sitio desde el posicionamiento hasta producción en solitario — un flujo de product design asistido por IA que termina en código instrumentado, no en un archivo de Figma"
+
+role: "Cofundador & Design Engineer"
+
+responsibilities: "Posicionamiento y Definición de Servicios • Definición de Usuarios Objetivo • Arquitectura de Información • Copywriting • Diseño UX/UI • Implementación Front-End • Deploy y Tooling • Instrumentación de Product Analytics"
+
+context: "Kier Studio es un estudio boutique de diseño y desarrollo que cofundé. No había brief de cliente, ni stakeholders a los que alinear, ni equipo al que hacerle handoff — lo que eliminó toda excusa para las grietas habituales entre estrategia, diseño, código y medición. El sitio tenía un solo trabajo: convertir la visita de un desconocido en una conversación. Este caso trata sobre el método que lo produjo, y sobre qué pasó cuando dejé de suponer si funcionaba."
+---
+
+## Enfoque
+
+El proyecto empezó como un problema de posicionamiento, no de diseño. Antes de que existiera un layout había que responder por escrito tres preguntas: qué vende el estudio, quién está del otro lado de la pantalla, y qué es un buen resultado para una visita.
+
+Trabajé esas respuestas con mi socio, con los primeros clientes, y con un LLM como sparring: yo defendía una postura, el modelo devolvía las objeciones de un prospecto escéptico, y yo reescribía. De ahí salieron las cuatro líneas de servicio y un objetivo más afilado — no "empresas que necesitan una web", sino **pymes en funcionamiento cuyo crecimiento superó a sus procesos manuales**: turnos por WhatsApp, operación en planillas, un sitio que ya no las representa. Eso define cómo abre la página: por la fricción que el visitante ya siente, no por las credenciales del estudio.
+
+<CaseStudyImage
+  src="/images/work/kier-studio/positioning.webp"
+  alt="Las cuatro líneas de servicio, cada una abriendo por la fricción que resuelve"
+/>
+
+## El loop: de la estructura al código publicado
+
+Con la oferta resuelta, el resto corrió como un loop continuo en vez de como fases separadas de diseño y desarrollo.
+
+**Estructura antes que superficie.** La arquitectura se escribió como un esquema de conversión, con un argumento explícito para el orden de las secciones: plantear el problema, probar que tiene solución, mostrar que ya se resolvió, y recién ahí pedir.
+
+**Contenido antes que UI.** El copy se escribió antes de tener layout, para que el diseño tuviera texto real al que darle forma en lugar de bloques placeholder.
+
+**UI directamente en código.** La interfaz se construyó como componentes Next.js + Tailwind en vez de mockearse y después rehacerse. La IA hizo la traducción mecánica de intención a markup; las decisiones de diseño —jerarquía, ritmo, densidad, qué se recorta— siguieron siendo mías, revisadas en el navegador a anchos reales.
+
+**Publicar y después iterar sobre lo real.** Con GitHub y Vercel cada cambio quedaba previsualizable en una URL y en producción el mismo día. Iterar sobre la página publicada es más rápido y más honesto que iterar sobre una maqueta de ella.
+
+<CaseStudyImage
+  src="/images/work/kier-studio/loop.webp"
+  alt="El loop: posicionamiento y copy, componentes en Next.js, deploy, y de vuelta a iterar"
+/>
+
+## Medir: el plan, el hallazgo y la decisión
+
+Una landing que nunca se midió es una hipótesis con buena tipografía. El sitio salió con PostHog y una pregunta concreta: **qué parte del argumento convierte, y por qué canal.**
+
+La página ofrece cinco invitaciones a iniciar una conversación —hero, beneficios, servicios, proceso y formulario— más email, WhatsApp e Instagram. Sin instrumentar, eso tiene un agujero: cuando llega un mensaje, nada dice qué sección se lo ganó, y el que se va a WhatsApp en lugar de scrollear hasta el formulario es invisible. Cada punto de entrada emite entonces un evento con su origen y su canal, y convierte una bandeja anónima en un embudo atribuible.
+
+<CaseStudyImage
+  src="/images/work/kier-studio/funnel.webp"
+  alt="Plan de instrumentación: cada punto de entrada emite un evento con su origen y su canal"
+/>
+
+**Desde que se instaló PostHog, el 8 de agosto, hasta el 2 de septiembre, la línea de base terminó respondiendo una pregunta distinta de la que se había instrumentado.** 24 visitantes únicos, 47 sesiones, tres de cada cuatro llegando directo.
+
+<CaseStudyImage
+  src="/images/work/kier-studio/posthog-analytics.webp"
+  alt="PostHog, del 8 de agosto al 2 de septiembre: 24 visitantes, 47 sesiones, tres de cada cuatro directos"
+/>
+
+Search Console aportó el dato que faltaba: 40 impresiones, **cero clics**, posición media 12,4. Las únicas consultas con volumen son el nombre del estudio.
+
+<CaseStudyImage
+  src="/images/work/kier-studio/google-console.webp"
+  alt="Search Console, mismo rango: 40 impresiones, cero clics, y solo consultas de marca"
+/>
+
+La conclusión: **el cuello de botella no es el sitio, es adquisición.** A ese volumen cualquier lectura del embudo produce conclusiones falsas y un A/B nunca alcanzaría significancia, así que no correrlo es la decisión correcta y no una carencia. Optimizar el copy habría sido trabajo prolijo sobre el problema equivocado.
+
+El sitio no se toca y el ciclo de medición sigue abierto, pero el problema cambió: de convertir mejor a conseguir tráfico con intención comercial.
+
+## Decisiones Clave
+
+**• Una página, un argumento:** se descartó el sitio multipágina. Con un cuerpo de trabajo chico, partir el argumento en varias rutas agrega navegación sin aliviar la carga del lector. El trade-off se tomó a conciencia: deja inservible la analítica a nivel de página y obliga a medir el interés con eventos.
+
+**• Los canales externos cuentan como conversión:** para esta audiencia WhatsApp es el primer contacto natural, no un plan B. Medir solo los envíos del formulario habría subcontado el resultado que al estudio le importa.
+
+**• Una regla para lo que sigue:** escribir la hipótesis antes de cambiar nada, cambiar una sola cosa por vez, y registrar el resultado incluso cuando la hipótesis se cae.
+
+## Notas técnicas
+
+- **• Asistido por IA en todas las etapas:** distintos LLMs, herramientas de coding y agentes, con ingeniería de prompt y de contexto. La dirección y las decisiones fueron mías; la IA aceleró la ejecución.
+
+- **• Stack:** Next.js + Tailwind, deploy en Vercel desde GitHub. Sin CMS — el contenido vive en el repositorio, que es lo correcto para un sitio cuyo copy lo edita quien escribe los componentes.
+
+- **• Analytics:** PostHog con eventos propios que llevan `origen` y `canal`. El autocapture sirve de red de seguridad, pero un click capturado por posición en el DOM te dice que se apretó un botón, no qué significaba.
+
+## Resultados
+
+El sitio está online, el posicionamiento del estudio se lee en él, y todo el loop —qué vendemos, a quién, el copy, los componentes, el deploy, los eventos— lo llevó una sola persona de punta a punta, sin perder nada en un handoff.
+
+La instrumentación ya rindió su primera decisión, y fue de las que ahorran trabajo en vez de generarlo: leer la línea de base contra Search Console mostró que el problema estaba un escalón más arriba y frenó una optimización de conversión que no tenía con qué sostenerse. Ese es el caso más útil que puede dar un sitio propio — no un gráfico que prueba que un rediseño funcionó, sino la instrumentación y el método que hacen que la próxima decisión sea informada, incluso cuando la decisión informada es no tocar nada todavía.
+
+**Sitio en producción:** [kierstudio.com](https://kierstudio.com)

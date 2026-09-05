@@ -12,6 +12,7 @@ describe("getAllProjectSlugs", () => {
       "groundworks-inspection-app",
       "hardrock-marketing-planner",
       "issutrax-onboard",
+      "kier-studio",
       "muu-livestock-app",
       "oz-svm",
       "signos-santafesinos",
@@ -25,6 +26,7 @@ describe("getAllProjects", () => {
     const projects = await getAllProjects("en");
     expect(projects.map((p) => p.meta.slug)).toEqual([
       "hardrock-marketing-planner",
+      "kier-studio",
       "topbuild-license-tracker",
       "oz-svm",
       "issutrax-onboard",
@@ -36,9 +38,10 @@ describe("getAllProjects", () => {
     expect(projects[1].meta.depth).toBe("featured");
     expect(projects[2].meta.depth).toBe("featured");
     expect(projects[3].meta.depth).toBe("featured");
-    expect(projects[4].meta.depth).toBe("other");
+    expect(projects[4].meta.depth).toBe("featured");
     expect(projects[5].meta.depth).toBe("other");
     expect(projects[6].meta.depth).toBe("other");
+    expect(projects[7].meta.depth).toBe("other");
   });
 
   it("returns validated, typed frontmatter for every project", async () => {

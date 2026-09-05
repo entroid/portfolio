@@ -3,7 +3,7 @@ import type { ProjectMeta } from "../../schema";
 export const meta: ProjectMeta = {
   slug: "issutrax-onboard",
   depth: "featured",
-  order: 4,
+  order: 5,
   year: "2018",
   coverImage: "/images/work/issutrax-onboard/hero-mockup.webp",
   coverImageAlt: "IssuTrax laptop and phone mockup, hero composition",

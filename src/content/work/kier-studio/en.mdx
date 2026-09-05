@@ -1,0 +1,92 @@
+---
+title: "Kier Studio — Agency Site & Instrumentation"
+
+summary: "Co-founded a boutique design and development studio and took its site from positioning to production alone — an AI-assisted product design loop that ends in instrumented code, not in a Figma file"
+
+role: "Co-founder & Design Engineer"
+
+responsibilities: "Positioning & Service Definition • Target User Definition • Information Architecture • Copywriting • UX/UI Design • Front-End Implementation • Deployment & Tooling • Product Analytics Instrumentation"
+
+context: "Kier Studio is a boutique design and development studio I co-founded. There was no client brief, no stakeholder to align, and no team to hand off to — which removed every excuse for the usual gaps between strategy, design, code and measurement. The site had to do one job: turn a stranger's visit into a conversation. This case is about the method that produced it, and about what happened when I stopped guessing whether it worked."
+---
+
+## Approach
+
+The project started as a positioning problem, not a design one. Before there was a layout, three questions had to be answered in writing: what the studio actually sells, who is on the other side of the screen, and what counts as a good outcome for a visit.
+
+I worked those answers out with my business partner, with the first clients, and with an LLM as a sparring partner: I argued a position, the model returned the objections a sceptical prospect would raise, and I rewrote. Out of that came the four service lines and a sharper target — not "companies that need a website" but **working small businesses whose growth outpaced their manual processes**: appointments over WhatsApp, operations in spreadsheets, a site that no longer represents them. That decides how the page opens: on the friction the visitor already feels, not on the studio's credentials.
+
+<CaseStudyImage
+  src="/images/work/kier-studio/positioning.webp"
+  alt="The four service lines, each opening on the friction it resolves"
+/>
+
+## The loop: from structure to deployed code
+
+With the offer settled, the rest ran as one continuous loop rather than as separate design and development phases.
+
+**Structure before surface.** The architecture was written as a conversion outline, with an explicit argument for the order of the sections: state the problem, prove it can be solved, show it already has been, and only then ask.
+
+**Content before UI.** The copy was written before there was a layout, so the design had real text to shape instead of placeholder blocks.
+
+**UI straight in code.** The interface was built as Next.js + Tailwind components rather than mocked up and then rebuilt. AI did the mechanical translation from intent to markup; the design decisions — hierarchy, rhythm, density, what gets cut — stayed mine, reviewed in the browser at real widths.
+
+**Ship, then iterate on the real thing.** With GitHub and Vercel every change was previewable at a URL and in production the same day. Iterating on the published page is faster and more honest than iterating on a mockup of it.
+
+<CaseStudyImage
+  src="/images/work/kier-studio/loop.webp"
+  alt="The loop: positioning and copy, components in Next.js, deploy, and back to iterating"
+/>
+
+## Measuring: the plan, the finding and the decision
+
+A landing page that was never measured is a hypothesis with good typography. The site shipped with PostHog and one concrete question: **which part of the argument converts, and through which channel.**
+
+The page offers five invitations to start a conversation — hero, benefits, services, process and form — plus email, WhatsApp and Instagram. Uninstrumented, that has a hole in it: when a message arrives, nothing says which section earned it, and the visitor who leaves for WhatsApp instead of scrolling to the form is invisible. So every entry point emits an event carrying its origin and its channel, turning an anonymous inbox into an attributable funnel.
+
+<CaseStudyImage
+  src="/images/work/kier-studio/funnel.webp"
+  alt="Instrumentation plan: every entry point emits an event carrying its origin and its channel"
+/>
+
+**From the day PostHog went in, 8 August, to 2 September, the baseline ended up answering a different question from the one it was instrumented for.** 24 unique visitors, 47 sessions, three in four arriving direct.
+
+<CaseStudyImage
+  src="/images/work/kier-studio/posthog-analytics.webp"
+  alt="PostHog, 8 August to 2 September: 24 visitors, 47 sessions, three in four direct"
+/>
+
+Search Console supplied the missing piece: 40 impressions, **zero clicks**, average position 12.4. The only queries with any volume are the studio's own name.
+
+<CaseStudyImage
+  src="/images/work/kier-studio/google-console.webp"
+  alt="Search Console, same range: 40 impressions, zero clicks, and brand queries only"
+/>
+
+The conclusion: **the bottleneck isn't the site, it's acquisition.** At that volume any reading of the funnel produces false conclusions and an A/B test would never reach significance, so not running one is the correct decision rather than a gap. Optimising the copy would have been tidy work on the wrong problem.
+
+The site stays untouched and the measurement cycle stays open, but the problem changed: from converting better to earning traffic with commercial intent.
+
+## Key product decisions
+
+**• One page, one argument:** the multi-page studio site was ruled out. With a small body of work, splitting the argument across routes adds navigation without easing the reader's load. The trade-off was taken deliberately: it makes page-level analytics useless and forces interest to be measured with events.
+
+**• External channels count as conversions:** for this audience WhatsApp is the natural first contact, not a fallback. Measuring form submissions alone would have undercounted the outcome the studio actually cares about.
+
+**• A rule for what comes next:** write the hypothesis before changing anything, change one thing at a time, and record the result even when the hypothesis fails.
+
+## Technical notes
+
+- **• AI-assisted at every stage:** different LLMs, coding tools and agents, with prompt and context engineering. The direction and the decisions were mine; AI accelerated the execution.
+
+- **• Stack:** Next.js + Tailwind, deployed to Vercel from GitHub. No CMS — the content lives in the repository, which is the right call for a site whose copy is edited by whoever writes the components.
+
+- **• Analytics:** PostHog with named custom events carrying `origin` and `channel` properties. Autocapture works as a safety net, but a click captured by DOM position tells you a button was pressed, not what it meant.
+
+## Results
+
+The site is live, the studio's positioning reads on it, and the whole loop — what we sell, to whom, the copy, the components, the deploy, the events — was carried end to end by one person, with nothing lost in a handoff.
+
+The instrumentation has already returned its first decision, and it was the kind that saves work rather than creating it: reading the baseline against Search Console showed the problem sat one step upstream, and stopped a conversion optimisation that had nothing to stand on. That's the most useful case a site of your own can give — not a chart proving a redesign worked, but the instrumentation and the method that make the next decision an informed one, even when the informed decision is to leave it alone for now.
+
+**Live site:** [kierstudio.com](https://kierstudio.com)

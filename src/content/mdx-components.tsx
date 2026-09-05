@@ -61,6 +61,30 @@ function CaseStudyHeading3({
   );
 }
 
+/**
+ * MDX bodies had no link styling: Tailwind's preflight makes a bare `<a>`
+ * inherit colour and drop the underline, so a markdown link rendered as
+ * plain text. External links open in a new tab so a case study isn't lost.
+ */
+function CaseStudyLink({
+  href,
+  children,
+  ...props
+}: ComponentPropsWithoutRef<"a">) {
+  const isExternal = typeof href === "string" && /^https?:/.test(href);
+
+  return (
+    <a
+      href={href}
+      {...(isExternal ? { target: "_blank", rel: "noreferrer" } : {})}
+      className="text-accent underline underline-offset-4 transition-colors duration-150 hover:text-fg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
+      {...props}
+    >
+      {children}
+    </a>
+  );
+}
+
 function CaseStudyParagraph({
   children,
   ...props
@@ -80,6 +104,7 @@ export const caseStudyMdxComponents = {
   h2: CaseStudyHeading2,
   h3: CaseStudyHeading3,
   p: CaseStudyParagraph,
+  a: CaseStudyLink,
 };
 
 /**
@@ -91,4 +116,5 @@ export const caseStudyMdxComponents = {
 export const otherWorkMdxComponents = {
   CaseStudyImage,
   p: CaseStudyParagraph,
+  a: CaseStudyLink,
 };
