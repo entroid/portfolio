@@ -39,10 +39,23 @@ describe("AiWorkflowContent", () => {
     expect(await axe(container)).toHaveNoViolations();
   });
 
-  it("renders a Prototyping/Figma to Code tablist defaulting to Prototyping", () => {
+  it("has no accessibility violations in the Prompting panel either", async () => {
+    const user = userEvent.setup();
+    const { container } = renderWithIntl(<AiWorkflowContent />, {
+      locale: "en",
+    });
+
+    // Only the active panel is in the DOM, so the default-panel axe run
+    // above never sees this markup.
+    await user.click(screen.getByRole("tab", { name: "Prompting" }));
+    expect(await axe(container)).toHaveNoViolations();
+  });
+
+  it("renders the three-tab tablist defaulting to Prototyping", () => {
     renderWithIntl(<AiWorkflowContent />, { locale: "en" });
 
     expect(screen.getByRole("tablist")).toBeInTheDocument();
+    expect(screen.getAllByRole("tab")).toHaveLength(3);
     expect(screen.getByRole("tab", { name: "Prototyping" })).toHaveAttribute(
       "aria-selected",
       "true",
@@ -51,6 +64,57 @@ describe("AiWorkflowContent", () => {
       "aria-selected",
       "false",
     );
+    expect(screen.getByRole("tab", { name: "Prompting" })).toHaveAttribute(
+      "aria-selected",
+      "false",
+    );
+  });
+
+  it("switches to the Prompting panel, with its four-block structure and prompt example", async () => {
+    const user = userEvent.setup();
+    renderWithIntl(<AiWorkflowContent />, { locale: "en" });
+
+    await user.click(screen.getByRole("tab", { name: "Prompting" }));
+
+    const panel = screen.getByTestId("ai-workflow-tab-prompting");
+    expect(panel).toBeInTheDocument();
+
+    const heading = screen.getByTestId("ai-workflow-prompting-heading");
+    expect(heading.tagName).toBe("H2");
+    expect(heading).toHaveTextContent("What a strong prompt still needs");
+
+    // The four blocks are the scannable payload of this tab; a dropped one
+    // would break the structure the copy is arguing for.
+    for (const label of ["The task", "Guardrails", "Done when", "Let it run"]) {
+      expect(panel).toHaveTextContent(label);
+    }
+
+    // The standing setup is what makes the prompt short; the example is
+    // misleading without it, so it has to render alongside.
+    expect(screen.getByTestId("ai-workflow-prompt-context")).toHaveTextContent(
+      "Before the prompt",
+    );
+    expect(panel).toHaveTextContent("the team’s coding standards");
+    expect(panel).toHaveTextContent("the design system rules");
+
+    const example = screen.getByTestId("ai-workflow-prompt-example");
+    expect(example.tagName).toBe("PRE");
+    expect(example).toHaveTextContent("TASK");
+    expect(example).toHaveTextContent("GUARDRAILS");
+    expect(example).toHaveTextContent("DONE WHEN");
+    expect(example).toHaveTextContent("Pull the component from Figma over MCP");
+
+    // This tab is deliberately the light one: no artefact, no team box, no
+    // case link. Those belong to the two process tabs.
+    expect(
+      screen.queryByTestId("ai-workflow-team-heading"),
+    ).not.toBeInTheDocument();
+    expect(
+      screen.queryByTestId("ai-workflow-proto-artifact"),
+    ).not.toBeInTheDocument();
+    expect(
+      screen.queryByTestId("ai-workflow-figma-artifact"),
+    ).not.toBeInTheDocument();
   });
 
   it("switches to the Figma to Code panel when its tab is activated", async () => {
@@ -63,8 +127,8 @@ describe("AiWorkflowContent", () => {
       screen.getByTestId("ai-workflow-tab-figma-to-code"),
     ).toBeInTheDocument();
     expect(screen.getByTestId("ai-workflow-closing")).toBeInTheDocument();
-    // Both tabs carry their own team box; assert this is the Figma-to-Code
-    // one rather than the Prototyping panel's.
+    // Both process tabs carry their own team box; assert this is the
+    // Figma-to-Code one rather than the Prototyping panel's.
     expect(screen.getByTestId("ai-workflow-team-heading")).toHaveTextContent(
       "Handoff Process",
     );
@@ -130,7 +194,7 @@ describe("AiWorkflowContent", () => {
     ).not.toBeInTheDocument();
   });
 
-  it("closes the page with a single contact CTA below both tab panels", async () => {
+  it("closes the page with a single contact CTA below every tab panel", async () => {
     const user = userEvent.setup();
     renderWithIntl(<AiWorkflowContent />, { locale: "en" });
 
@@ -141,6 +205,9 @@ describe("AiWorkflowContent", () => {
 
     // Switching tabs must not duplicate or drop it.
     await user.click(screen.getByRole("tab", { name: "Figma to Code" }));
+    expect(screen.getAllByTestId("ai-workflow-cta")).toHaveLength(1);
+
+    await user.click(screen.getByRole("tab", { name: "Prompting" }));
     expect(screen.getAllByTestId("ai-workflow-cta")).toHaveLength(1);
   });
 });

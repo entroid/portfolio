@@ -23,6 +23,11 @@ type DiagramNode = {
   microLabel: string;
 };
 
+type PromptBlock = {
+  label: string;
+  body: string;
+};
+
 /**
  * Shared between both tabs, so it lives above the tab selector rather than
  * inside PrototypingTab/FigmaToCodeTab. Deliberately plain `div`s, not an
@@ -416,6 +421,112 @@ function FigmaToCodeTab() {
 }
 
 /**
+ * The prompt example is deliberately rendered from a single string rather
+ * than marked-up lines: its ALL-CAPS section headers are what carry the
+ * structure, so they get picked out here and tinted. Kept in English in
+ * both locales because that is how the prompts are actually written.
+ */
+function PromptExample({ code }: { code: string }) {
+  return (
+    <pre
+      data-testid="ai-workflow-prompt-example"
+      className="mt-4 overflow-x-auto border border-grid-border p-5 font-mono text-cta leading-relaxed text-muted md:text-cta-desktop"
+    >
+      <code>
+        {code.split("\n").map((line, index) => (
+          <Fragment key={index}>
+            {/^[A-Z][A-Z ]+$/.test(line) ? (
+              <span className="font-bold text-accent-2-text">{line}</span>
+            ) : (
+              line
+            )}
+            {"\n"}
+          </Fragment>
+        ))}
+      </code>
+    </pre>
+  );
+}
+
+/**
+ * The layer underneath both other tabs rather than a third phase: how the
+ * agent gets instructed in either flow. Deliberately the shortest panel of
+ * the three — no artefact, no team box, no case link, since the example
+ * already names the project it came from.
+ */
+function PromptingTab() {
+  const t = useTranslations("aiWorkflow.prompting");
+  const blocks = t.raw("structure.items") as PromptBlock[];
+
+  return (
+    <div data-testid="ai-workflow-tab-prompting">
+      <Reveal>
+        <p className="text-body text-muted md:text-body-desktop">
+          {t("intro")}
+        </p>
+      </Reveal>
+
+      <Reveal className="mt-10">
+        <h2
+          data-testid="ai-workflow-prompting-heading"
+          className="font-mono text-label font-bold uppercase tracking-label text-fg md:text-label-desktop"
+        >
+          {t("structure.heading")}
+        </h2>
+        {/*
+          gap-px over a border-coloured background draws the hairlines
+          between all four cells, which `divide-*` can't do cleanly on a
+          2x2 grid that collapses to one column.
+        */}
+        <div className="mt-6 grid grid-cols-1 gap-px border border-grid-border bg-grid-border sm:grid-cols-2">
+          {blocks.map((block, index) => (
+            <div key={block.label} className="bg-bg p-5">
+              <p className="font-mono text-label font-bold uppercase tracking-label text-fg md:text-label-desktop">
+                <span className="text-accent-2-text">
+                  {String(index + 1).padStart(2, "0")}
+                </span>{" "}
+                {block.label}
+              </p>
+              <p className="mt-2 text-body text-muted md:text-body-desktop">
+                {block.body}
+              </p>
+            </div>
+          ))}
+        </div>
+      </Reveal>
+
+      {/*
+        The prompt is short because the standing setup carries the rest;
+        without this note the example reads as an underspecified request
+        rather than as one task inside an already-configured team practice.
+      */}
+      <Reveal className="mt-12 border-l border-grid-border pl-5">
+        <p
+          data-testid="ai-workflow-prompt-context"
+          className="font-mono text-label font-bold uppercase tracking-label text-accent-2-text md:text-label-desktop"
+        >
+          {t("example.context.label")}
+        </p>
+        <p className="mt-2 text-body text-muted md:text-body-desktop">
+          {t("example.context.body")}
+        </p>
+      </Reveal>
+
+      <Reveal className="mt-10">
+        <p className="text-body text-muted md:text-body-desktop">
+          {t("example.lead")}
+        </p>
+        <PromptExample code={t("example.code")} />
+      </Reveal>
+
+      <Reveal className="mt-10">
+        <p className="text-body text-fg md:text-body-desktop">{t("closing")}</p>
+      </Reveal>
+    </div>
+  );
+}
+
+/**
  * Split from the default export so it can be unit-tested directly:
  * `setRequestLocale` (next-intl/server) resolves to a client-incompatible
  * stub outside a real RSC pipeline and throws under Vitest (jsdom has no
@@ -466,6 +577,11 @@ export function AiWorkflowContent() {
               id: "figmaToCode",
               label: t("tabs.figmaToCode"),
               content: <FigmaToCodeTab />,
+            },
+            {
+              id: "prompting",
+              label: t("tabs.prompting"),
+              content: <PromptingTab />,
             },
           ]}
         />

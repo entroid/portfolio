@@ -170,7 +170,8 @@
     },
     "tabs": {
       "prototyping": "Prototyping",
-      "figmaToCode": "Figma to Code"
+      "figmaToCode": "Figma to Code",
+      "prompting": "Prompting"
     },
     "builtWith": {
       "body": "This site was designed and built with the workflow above — Next.js, TypeScript, Tailwind, bilingual, tested, deployed on Vercel. It is the same process, run on my own product instead of a client's.",
@@ -267,6 +268,39 @@
         "body": "See this workflow applied end to end, on a client product:",
         "link": "Hard Rock — Marketing Planner"
       }
+    },
+    "prompting": {
+      "intro": "Prompt engineering as a craft is fading. The models got good enough that elaborate prompting buys almost nothing — and the guidance now coming out of the labs themselves says the same: describe the task, set the limits, define what “done” looks like, then get out of the way. What’s left was never really about the model. It’s knowing what you’re asking for, and how you’ll know it’s right.",
+      "structure": {
+        "heading": "What a strong prompt still needs",
+        "items": [
+          {
+            "label": "The task",
+            "body": "What to build. It can be ambitious — the model holds it now."
+          },
+          {
+            "label": "Guardrails",
+            "body": "What it must not touch, invent, or hardcode."
+          },
+          {
+            "label": "Done when",
+            "body": "The finish line, and how it verifies itself against it."
+          },
+          {
+            "label": "Let it run",
+            "body": "No step-by-step babysitting. Review the result, not the route."
+          }
+        ]
+      },
+      "example": {
+        "context": {
+          "label": "Before the prompt",
+          "body": "None of this starts from zero. The agent is already loaded with the project’s context — stack and folder structure, the team’s coding standards, the design system rules — set up once and shared by everyone working on the repo. The prompt only carries what’s specific to this task."
+        },
+        "lead": "A real request from the Hard Rock migration, rewritten the way I’d write it today. My old version of this was three times longer: an assigned role, tone instructions, worked examples, the conventions restated inline. None of that earns its place anymore. This does:",
+        "code": "Migrate the Planner filter bar from Figma to code.\n\nTASK\nPull the component from Figma over MCP: [link to component].\nBuild it in src/components/planner/, matching every state\ndefined in the file.\n\nGUARDRAILS\nFollow the coding standards and design system rules already\nin context — don't restate or reinterpret them.\nTokens only: no hardcoded hex, px or font sizes.\nReuse Button and Select from the existing library.\nTouch nothing outside src/components/planner/.\n\nDONE WHEN\nEvery Figma state renders: default, focus, disabled, loading, error.\npnpm test and pnpm build pass.\nVisual diff against the Figma frame is under 2%.\n\nCheck all three yourself before handing it back."
+      },
+      "closing": "Writing that prompt took four minutes. Knowing what belonged under DONE WHEN took fifteen years. That’s the part that doesn’t get automated."
     }
   }
 }

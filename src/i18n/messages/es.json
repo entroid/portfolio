@@ -170,7 +170,8 @@
     },
     "tabs": {
       "prototyping": "Prototipado",
-      "figmaToCode": "Figma a Código"
+      "figmaToCode": "Figma a Código",
+      "prompting": "Prompting"
     },
     "builtWith": {
       "body": "Este sitio fue diseñado y construido con el workflow de arriba — Next.js, TypeScript, Tailwind, bilingüe, con tests, deployado en Vercel. Es el mismo proceso, corrido sobre mi propio producto en vez del de un cliente.",
@@ -267,6 +268,39 @@
         "body": "Mirá este workflow aplicado de punta a punta, sobre un producto de cliente:",
         "link": "Hard Rock — Marketing Planner"
       }
+    },
+    "prompting": {
+      "intro": "El prompt engineering como oficio se está apagando. Los modelos se volvieron lo bastante buenos como para que el prompting elaborado casi no aporte nada — y la guía que hoy sale de los propios laboratorios dice lo mismo: describir la tarea, poner los límites, definir cómo se ve “terminado”, y correrse. Lo que queda nunca fue realmente sobre el modelo: es saber qué estás pidiendo, y cómo vas a saber que está bien.",
+      "structure": {
+        "heading": "Lo que un buen prompt todavía necesita",
+        "items": [
+          {
+            "label": "La tarea",
+            "body": "Qué construir. Puede ser ambiciosa: hoy el modelo la sostiene."
+          },
+          {
+            "label": "Los límites",
+            "body": "Qué no puede tocar, inventar ni hardcodear."
+          },
+          {
+            "label": "Terminado cuando",
+            "body": "La línea de llegada, y cómo se verifica solo contra ella."
+          },
+          {
+            "label": "Dejarlo trabajar",
+            "body": "Sin supervisar paso a paso. Se revisa el resultado, no el trayecto."
+          }
+        ]
+      },
+      "example": {
+        "context": {
+          "label": "Antes del prompt",
+          "body": "Nada de esto arranca de cero. El agente ya viene cargado con el contexto del proyecto — stack y estructura de carpetas, los estándares de código del equipo, las reglas del design system — configurado una vez y compartido por todos los que tocan el repo. El prompt solo carga lo específico de esta tarea."
+        },
+        "lead": "Un pedido real de la migración de Hard Rock, reescrito como lo escribiría hoy. Mi versión vieja de esto era tres veces más larga: un rol asignado, instrucciones de tono, ejemplos resueltos, las convenciones repetidas ahí adentro. Nada de eso se gana el lugar ya. Esto sí:",
+        "code": "Migrate the Planner filter bar from Figma to code.\n\nTASK\nPull the component from Figma over MCP: [link to component].\nBuild it in src/components/planner/, matching every state\ndefined in the file.\n\nGUARDRAILS\nFollow the coding standards and design system rules already\nin context — don't restate or reinterpret them.\nTokens only: no hardcoded hex, px or font sizes.\nReuse Button and Select from the existing library.\nTouch nothing outside src/components/planner/.\n\nDONE WHEN\nEvery Figma state renders: default, focus, disabled, loading, error.\npnpm test and pnpm build pass.\nVisual diff against the Figma frame is under 2%.\n\nCheck all three yourself before handing it back."
+      },
+      "closing": "Escribir ese prompt me llevó cuatro minutos. Saber qué iba abajo de DONE WHEN me llevó quince años. Esa es la parte que no se automatiza."
     }
   }
 }
