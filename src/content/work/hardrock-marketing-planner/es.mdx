@@ -22,7 +22,7 @@ resultsNote: "*Impacto estimado comparando el proceso manual anterior con el nue
 
 ## Proceso
 
-Se hizo análisis e ingeniería inversa de la lógica legacy en Excel/SQL para definir una jerarquía de datos clara y escalable: Plan → Jobs → Campaigns → Offers/Tiers. Con esto estandaricé la creación, gestión y reutilización de campañas para agilizar el proceso y mantener la consistencia. Mapeé y validé el flujo principal (crear plan → agregar jobs vía import/copia/creación → definir campañas y ofertas → validar y publicar a CMP o exportar) con un flowchart en FigJam antes de tocar la UI. Luego creé wireframes y prototipos HiFi sobre ese modelo.
+Analicé la lógica legacy en Excel/SQL y le hice ingeniería inversa para definir una jerarquía de datos clara y escalable: Plan → Jobs → Campaigns → Offers/Tiers. Con esto estandaricé la creación, gestión y reutilización de campañas para agilizar el proceso y mantener la consistencia. Mapeé y validé el flujo principal (crear plan → agregar jobs vía import/copia/creación → definir campañas y ofertas → validar y publicar a CMP o exportar) con un flowchart en FigJam antes de tocar la UI. Luego creé wireframes y prototipos HiFi sobre ese modelo.
 
 <CaseStudyImage
   src="/images/work/hardrock-marketing-planner/legacy.webp"
@@ -54,11 +54,11 @@ Los tokens son lo que lo hizo posible: como color, espaciado y tipografía viví
 
 ## Decisiones Clave
 
-**• Se simplificó la estructura del sistema:** se estandarizó un proceso desestructurado y disperso, cargado de reglas de negocio, en una jerarquía clara, pese a la resistencia inicial de los stakeholders al cambio — cambiando fricción de corto plazo por consistencia y escalabilidad de largo plazo.
+**• Simplifiqué la estructura del sistema:** estandaricé un proceso desestructurado y disperso, cargado de reglas de negocio, en una jerarquía clara, pese a la resistencia inicial de los stakeholders al cambio — cambiando fricción de corto plazo por consistencia y escalabilidad de largo plazo.
 
-**• Se protegió la usabilidad en vistas densas en datos:** se redujo el ruido visual limitando los datos mostrados (decenas de campañas superpuestas con miles de ofertas por mes) — sumando más detalles con la interacción y creando un sistema basado en color para comunicar información adicional, priorizando la claridad por sobre la sobrecarga cognitiva.
+**• Protegí la usabilidad en vistas densas en datos:** reduje el ruido visual limitando los datos mostrados (decenas de campañas superpuestas con miles de ofertas por mes) — sumando más detalles con la interacción y creando un sistema basado en color para comunicar información adicional, priorizando la claridad por sobre la sobrecarga cognitiva.
 
-**• Se automatizaron flujos repetitivos a nivel de interacción:** se diseñaron flujos de importación y duplicación de 'jobs', autocompletado de datos, aprobaciones rápidas y publicación directa, reduciendo el esfuerzo manual y los errores humanos.
+**• Diseñé la automatización de flujos repetitivos a nivel de interacción:** flujos de importación y duplicación de 'jobs', autocompletado de datos, aprobaciones rápidas y publicación directa, reduciendo el esfuerzo manual y los errores humanos.
 
 <CaseStudyImage
   src="/images/work/hardrock-marketing-planner/wireframes.webp"
@@ -69,12 +69,12 @@ Los tokens son lo que lo hizo posible: como color, espaciado y tipografía viví
 
 - **• Librería base de componentes:** la interfaz se construyó sobre **Ant Design**, elegida en buena medida porque su componente de calendario se adaptaba muy bien a lo que un planificador de campañas necesita. Eso ahorró al equipo el trabajo de resolver patrones de interacción ya resueltos (tablas, date pickers, validación de formularios, paginación y, sobre todo, el calendario) y permitió enfocar el esfuerzo de ingeniería en la complejidad real de la app: el modelo de datos de campañas y las reglas de validación y publicación. Yo customicé el calendario a nivel de UI; los developers lo hicieron dinámico y lo conectaron a datos reales.
 
-- **• Tokens de diseño como contrato entre diseño y desarrollo:** el Design System: color, espaciado, tipografía y variantes de componentes, se definió como tokens sobre la capa de theming de Ant Design (a través de **Tailwind**) en lugar de valores hardcodeados, de modo que los cambios se implementaron desde una única fuente de verdad compartida entre Figma y el código.
+- **• Tokens de diseño como contrato entre diseño y desarrollo:** definí el color, el espaciado, la tipografía y las variantes de componentes como tokens sobre la capa de theming de Ant Design (a través de **Tailwind**), en lugar de valores hardcodeados. Así los cambios salían de una única fuente de verdad compartida entre Figma y el código.
 
 
 ## Resultados
 
-Feedback temprano del MVP mostró a los equipos de marketing reemplazando flujos manuales por el nuevo sistema, creando campañas más rápido, con menos errores y a una escala significativamente mayor. La lección principal: el mayor impacto no vino de agregar más features, sino de estructurar y simplificar la complejidad y habilitar la automatización.
+El feedback temprano del MVP mostró que los equipos de marketing estaban reemplazando sus flujos manuales por el nuevo sistema, creando campañas más rápido, con menos errores y a una escala bastante mayor. La lección principal: el mayor impacto no vino de agregar más features, sino de estructurar y simplificar la complejidad y habilitar la automatización.
 
 <CaseStudyImage
   src="/images/work/hardrock-marketing-planner/00.webp"

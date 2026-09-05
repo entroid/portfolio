@@ -7,14 +7,14 @@ role: "Cofundador & Design Engineer"
 
 responsibilities: "Posicionamiento y Definición de Servicios • Definición de Usuarios Objetivo • Arquitectura de Información • Copywriting • Diseño UX/UI • Implementación Front-End • Deploy y Tooling • Instrumentación de Product Analytics"
 
-context: "Kier Studio es un estudio boutique de diseño y desarrollo que cofundé. No había brief de cliente, ni stakeholders a los que alinear, ni equipo al que hacerle handoff — lo que eliminó toda excusa para las grietas habituales entre estrategia, diseño, código y medición. El sitio tenía un solo trabajo: convertir la visita de un desconocido en una conversación. Este caso trata sobre el método que lo produjo, y sobre qué pasó cuando dejé de suponer si funcionaba."
+context: "Kier Studio es un estudio boutique de diseño y desarrollo que cofundé. No había brief de cliente, ni stakeholders a los que alinear, ni equipo al que hacerle handoff, así que tampoco quedaba excusa para las grietas habituales entre estrategia, diseño, código y medición. El sitio tenía un solo trabajo: convertir la visita de un desconocido en una conversación. Este caso trata sobre el método que lo produjo, y sobre qué pasó cuando dejé de suponer si funcionaba."
 ---
 
 ## Enfoque
 
-El proyecto empezó como un problema de posicionamiento, no de diseño. Antes de que existiera un layout había que responder por escrito tres preguntas: qué vende el estudio, quién está del otro lado de la pantalla, y qué es un buen resultado para una visita.
+El proyecto empezó como un problema de posicionamiento, no de diseño. Antes de que existiera un layout tuve que responder tres preguntas por escrito: qué vende el estudio, quién está del otro lado de la pantalla, y qué es un buen resultado para una visita.
 
-Trabajé esas respuestas con mi socio, con los primeros clientes, y con un LLM como sparring: yo defendía una postura, el modelo devolvía las objeciones de un prospecto escéptico, y yo reescribía. De ahí salieron las cuatro líneas de servicio y un objetivo más afilado — no "empresas que necesitan una web", sino **pymes en funcionamiento cuyo crecimiento superó a sus procesos manuales**: turnos por WhatsApp, operación en planillas, un sitio que ya no las representa. Eso define cómo abre la página: por la fricción que el visitante ya siente, no por las credenciales del estudio.
+Esas respuestas las trabajé con mi socio, con los primeros clientes, y con un LLM de sparring: yo defendía una postura, el modelo devolvía las objeciones de un prospecto escéptico, y yo reescribía. De ahí salieron las cuatro líneas de servicio y un objetivo mucho más angosto. Veníamos diciendo "empresas que necesitan una web". Lo que en realidad queríamos decir era **pymes en funcionamiento cuyo crecimiento superó a sus procesos manuales**: turnos por WhatsApp, operación en planillas, un sitio que ya no las representa. Eso también definió cómo abre la página: por la fricción que el visitante ya siente.
 
 <CaseStudyImage
   src="/images/work/kier-studio/positioning.webp"
@@ -23,15 +23,15 @@ Trabajé esas respuestas con mi socio, con los primeros clientes, y con un LLM c
 
 ## El loop: de la estructura al código publicado
 
-Con la oferta resuelta, el resto corrió como un loop continuo en vez de como fases separadas de diseño y desarrollo.
+Con la oferta resuelta, el resto corrió como un loop continuo y no como fases separadas de diseño y desarrollo.
 
-**Estructura antes que superficie.** La arquitectura se escribió como un esquema de conversión, con un argumento explícito para el orden de las secciones: plantear el problema, probar que tiene solución, mostrar que ya se resolvió, y recién ahí pedir.
+**Estructura antes que superficie.** Escribí la arquitectura como un esquema de conversión, con un argumento explícito para el orden de las secciones: plantear el problema, probar que tiene solución, mostrar que ya se resolvió, y recién ahí pedir.
 
-**Contenido antes que UI.** El copy se escribió antes de tener layout, para que el diseño tuviera texto real al que darle forma en lugar de bloques placeholder.
+**Contenido antes que UI.** El copy lo escribí antes de tener layout, así el diseño tenía texto real al que darle forma.
 
-**UI directamente en código.** La interfaz se construyó como componentes Next.js + Tailwind en vez de mockearse y después rehacerse. La IA hizo la traducción mecánica de intención a markup; las decisiones de diseño —jerarquía, ritmo, densidad, qué se recorta— siguieron siendo mías, revisadas en el navegador a anchos reales.
+**UI directamente en código.** Construí la interfaz como componentes Next.js + Tailwind en vez de maquetarla y después rehacerla. La IA hizo la traducción mecánica de intención a markup. Las decisiones de diseño —jerarquía, ritmo, densidad, qué se recorta— siguieron siendo mías, revisadas en el navegador a anchos reales.
 
-**Publicar y después iterar sobre lo real.** Con GitHub y Vercel cada cambio quedaba previsualizable en una URL y en producción el mismo día. Iterar sobre la página publicada es más rápido y más honesto que iterar sobre una maqueta de ella.
+**Publicar y después iterar sobre lo real.** Con GitHub y Vercel cada cambio quedaba previsualizable en una URL y en producción el mismo día. Iterar sobre la página publicada es más rápido, y además cuesta más engañarse.
 
 <CaseStudyImage
   src="/images/work/kier-studio/loop.webp"
@@ -40,38 +40,38 @@ Con la oferta resuelta, el resto corrió como un loop continuo en vez de como fa
 
 ## Medir: el plan, el hallazgo y la decisión
 
-Una landing que nunca se midió es una hipótesis con buena tipografía. El sitio salió con PostHog y una pregunta concreta: **qué parte del argumento convierte, y por qué canal.**
+Una landing que nadie mide es una hipótesis con buena tipografía. El sitio salió con PostHog y una pregunta concreta: **qué parte del argumento convierte, y por qué canal.**
 
-La página ofrece cinco invitaciones a iniciar una conversación —hero, beneficios, servicios, proceso y formulario— más email, WhatsApp e Instagram. Sin instrumentar, eso tiene un agujero: cuando llega un mensaje, nada dice qué sección se lo ganó, y el que se va a WhatsApp en lugar de scrollear hasta el formulario es invisible. Cada punto de entrada emite entonces un evento con su origen y su canal, y convierte una bandeja anónima en un embudo atribuible.
+La página ofrece cinco maneras de iniciar una conversación —hero, beneficios, servicios, proceso y formulario— más email, WhatsApp e Instagram. Sin instrumentar, ahí queda un agujero: cuando llega un mensaje, nada dice qué sección se lo ganó, y el que se va a WhatsApp en lugar de scrollear hasta el formulario directamente no aparece. Por eso cada punto de entrada emite un evento con su origen y su canal.
 
 <CaseStudyImage
   src="/images/work/kier-studio/funnel.webp"
   alt="Plan de instrumentación: cada punto de entrada emite un evento con su origen y su canal"
 />
 
-**Desde que se instaló PostHog, el 8 de agosto, hasta el 2 de septiembre, la línea de base terminó respondiendo una pregunta distinta de la que se había instrumentado.** 24 visitantes únicos, 47 sesiones, tres de cada cuatro llegando directo.
+**Desde que instalé PostHog, el 8 de agosto, hasta el 2 de septiembre, la línea de base terminó respondiendo una pregunta distinta de la que había instrumentado.** 24 visitantes únicos, 47 sesiones, tres de cada cuatro llegando directo.
 
 <CaseStudyImage
   src="/images/work/kier-studio/posthog-analytics.webp"
   alt="PostHog, del 8 de agosto al 2 de septiembre: 24 visitantes, 47 sesiones, tres de cada cuatro directos"
 />
 
-Search Console aportó el dato que faltaba: 40 impresiones, **cero clics**, posición media 12,4. Las únicas consultas con volumen son el nombre del estudio.
+Search Console completó el resto: 40 impresiones, **cero clics**, posición media 12,4. Las únicas consultas con volumen son el nombre del estudio.
 
 <CaseStudyImage
   src="/images/work/kier-studio/google-console.webp"
   alt="Search Console, mismo rango: 40 impresiones, cero clics, y solo consultas de marca"
 />
 
-La conclusión: **el cuello de botella no es el sitio, es adquisición.** A ese volumen cualquier lectura del embudo produce conclusiones falsas y un A/B nunca alcanzaría significancia, así que no correrlo es la decisión correcta y no una carencia. Optimizar el copy habría sido trabajo prolijo sobre el problema equivocado.
+Entonces **el cuello de botella es la adquisición, no el sitio.** A ese volumen cualquier lectura del embudo produce conclusiones falsas, y un A/B nunca alcanzaría significancia. No correrlo fue la decisión. Optimizar el copy habría sido trabajo prolijo sobre el problema equivocado.
 
-El sitio no se toca y el ciclo de medición sigue abierto, pero el problema cambió: de convertir mejor a conseguir tráfico con intención comercial.
+El sitio queda como está y el ciclo de medición sigue abierto. El problema se corrió: de convertir mejor a conseguir tráfico con intención comercial.
 
 ## Decisiones Clave
 
-**• Una página, un argumento:** se descartó el sitio multipágina. Con un cuerpo de trabajo chico, partir el argumento en varias rutas agrega navegación sin aliviar la carga del lector. El trade-off se tomó a conciencia: deja inservible la analítica a nivel de página y obliga a medir el interés con eventos.
+**• Una página, un argumento:** descarté el sitio multipágina. Con un cuerpo de trabajo chico, partir el argumento en varias rutas agrega navegación sin aliviarle la carga al lector. El trade-off lo tomé a conciencia: deja inservible la analítica a nivel de página y obliga a medir el interés con eventos.
 
-**• Los canales externos cuentan como conversión:** para esta audiencia WhatsApp es el primer contacto natural, no un plan B. Medir solo los envíos del formulario habría subcontado el resultado que al estudio le importa.
+**• Los canales externos cuentan como conversión:** para esta audiencia WhatsApp es el primer contacto natural, no un plan B. Contar solo los envíos del formulario habría subcontado el resultado que al estudio le importa.
 
 **• Una regla para lo que sigue:** escribir la hipótesis antes de cambiar nada, cambiar una sola cosa por vez, y registrar el resultado incluso cuando la hipótesis se cae.
 
@@ -79,14 +79,14 @@ El sitio no se toca y el ciclo de medición sigue abierto, pero el problema camb
 
 - **• Asistido por IA en todas las etapas:** distintos LLMs, herramientas de coding y agentes, con ingeniería de prompt y de contexto. La dirección y las decisiones fueron mías; la IA aceleró la ejecución.
 
-- **• Stack:** Next.js + Tailwind, deploy en Vercel desde GitHub. Sin CMS — el contenido vive en el repositorio, que es lo correcto para un sitio cuyo copy lo edita quien escribe los componentes.
+- **• Stack:** Next.js + Tailwind, deploy en Vercel desde GitHub. Sin CMS: el contenido vive en el repositorio, que es lo que corresponde en un sitio donde el copy lo edita el mismo que escribe los componentes.
 
 - **• Analytics:** PostHog con eventos propios que llevan `origen` y `canal`. El autocapture sirve de red de seguridad, pero un click capturado por posición en el DOM te dice que se apretó un botón, no qué significaba.
 
 ## Resultados
 
-El sitio está online, el posicionamiento del estudio se lee en él, y todo el loop —qué vendemos, a quién, el copy, los componentes, el deploy, los eventos— lo llevó una sola persona de punta a punta, sin perder nada en un handoff.
+El sitio está online, el posicionamiento del estudio se lee en él, y el loop completo lo llevé de punta a punta: qué vendemos, a quién, el copy, los componentes, el deploy, los eventos. No se perdió nada en un handoff porque no hubo handoff.
 
-La instrumentación ya rindió su primera decisión, y fue de las que ahorran trabajo en vez de generarlo: leer la línea de base contra Search Console mostró que el problema estaba un escalón más arriba y frenó una optimización de conversión que no tenía con qué sostenerse. Ese es el caso más útil que puede dar un sitio propio — no un gráfico que prueba que un rediseño funcionó, sino la instrumentación y el método que hacen que la próxima decisión sea informada, incluso cuando la decisión informada es no tocar nada todavía.
+La instrumentación ya se pagó sola una vez, y para el lado que ahorra trabajo: leer la línea de base contra Search Console mostró que el problema estaba un escalón más arriba, y frenó una optimización de conversión que no tenía con qué sostenerse. Eso es lo más útil que te puede dar un sitio propio — no un gráfico que prueba que un rediseño funcionó, sino el método que hace que la próxima decisión sea informada. A veces la decisión informada es no tocar nada todavía.
 
 **Sitio en producción:** [kierstudio.com](https://kierstudio.com)
