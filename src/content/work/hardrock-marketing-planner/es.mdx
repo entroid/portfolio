@@ -1,7 +1,7 @@
 ---
 title: "Hard Rock — Marketing Planner"
 
-summary: "Aplicación interna para el equipo de marketing de Hard Rock que reemplaza complejos procesos manuales y no estandarizados de creación de campañas, por un sistema automatizado y estructurado fácil de usar"
+summary: "Aplicación web interna que convirtió flujos manuales y no estandarizados, montados sobre planillas, en un planificador de campañas automatizado y estructurado en el que el equipo de marketing realmente confía"
 
 role: "Design Engineer"
 
@@ -23,6 +23,11 @@ resultsNote: "*Impacto estimado comparando el proceso manual anterior con el nue
 ## Proceso
 
 Se hizo análisis e ingeniería inversa de la lógica legacy en Excel/SQL para definir una jerarquía de datos clara y escalable: Plan → Jobs → Campaigns → Offers/Tiers. Con esto estandaricé la creación, gestión y reutilización de campañas para agilizar el proceso y mantener la consistencia. Mapeé y validé el flujo principal (crear plan → agregar jobs vía import/copia/creación → definir campañas y ofertas → validar y publicar a CMP o exportar) con un flowchart en FigJam antes de tocar la UI. Luego creé wireframes y prototipos HiFi sobre ese modelo.
+
+<CaseStudyImage
+  src="/images/work/hardrock-marketing-planner/legacy.webp"
+  alt="Diagrama del proceso legacy en Excel/SQL, mostrando el flujo complejo y poco intuitivo que reemplazó el nuevo sistema"
+/>
 
 <CaseStudyImage
   src="/images/work/hardrock-marketing-planner/flow.webp"
@@ -55,7 +60,10 @@ Los tokens son lo que lo hizo posible: como color, espaciado y tipografía viví
 
 **• Se automatizaron flujos repetitivos a nivel de interacción:** se diseñaron flujos de importación y duplicación de 'jobs', autocompletado de datos, aprobaciones rápidas y publicación directa, reduciendo el esfuerzo manual y los errores humanos.
 
-
+<CaseStudyImage
+  src="/images/work/hardrock-marketing-planner/wireframes.webp"
+  alt="Wireframes y mockups hi-fi de la interfaz del Marketing Planner"
+/>
 
 ## Notas técnicas
 
@@ -66,4 +74,9 @@ Los tokens son lo que lo hizo posible: como color, espaciado y tipografía viví
 
 ## Resultados
 
-Feedback temprano del MVP mostró a los equipos de marketing reemplazando flujos manuales por el nuevo sistema, creando campañas más rápido, con menos errores y a una escala significativamente mayor. La lección principal: el mayor impacto no vino de agregar más features, sino de estructurar y simplifcar la complejidad y habilitar la automatización.
+Feedback temprano del MVP mostró a los equipos de marketing reemplazando flujos manuales por el nuevo sistema, creando campañas más rápido, con menos errores y a una escala significativamente mayor. La lección principal: el mayor impacto no vino de agregar más features, sino de estructurar y simplificar la complejidad y habilitar la automatización.
+
+<CaseStudyImage
+  src="/images/work/hardrock-marketing-planner/00.webp"
+  alt="Collage de UI mostrando la interfaz del Marketing Planner"
+/>
