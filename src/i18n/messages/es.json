@@ -214,6 +214,10 @@
       "team": {
         "heading": "¿Cómo encaja esto en un equipo?",
         "body": "Quitá las herramientas específicas y lo que queda es solo buen proceso: un brief escrito antes de construir algo, un sistema de diseño como única fuente de verdad, un checkpoint de revisión entre cada etapa. Esto funciona tanto si soy yo y Claude, como un equipo completo en Figma y Jira sin IA involucrada. Las herramientas cambian. La disciplina no."
+      },
+      "caseLink": {
+        "body": "Mirá el mismo loop corrido de punta a punta por una sola persona, medición incluida:",
+        "link": "Kier Studio"
       }
     },
     "figmaToCode": {
@@ -250,6 +254,14 @@
       "team": {
         "heading": "Proceso de handoff",
         "body": "El código generado por IA pasa por el mismo proceso de revisión que cualquier otro pull request. Esto requiere sincronización con el equipo de desarrollo y hablar su mismo lenguaje."
+      },
+      "artifact": {
+        "alt": "VS Code mostrando la carpeta docs de este repo — ARCHITECTURE, CODING_STANDARDS, CONTENT_MODEL, DESIGN_SYSTEM, IMPLEMENTATION_PLAN, PROJECT_BRIEF — con DESIGN_SYSTEM.md abierto en las reglas de uso del color de acento",
+        "caption": "El paso 02 en la práctica: el contexto que un agente lee antes de escribir una línea de código. Las reglas de acento son, según el propio archivo, restricciones duras, no sugerencias."
+      },
+      "caseLink": {
+        "body": "Mirá este workflow aplicado de punta a punta, sobre un producto de cliente:",
+        "link": "Hard Rock — Marketing Planner"
       }
     }
   }

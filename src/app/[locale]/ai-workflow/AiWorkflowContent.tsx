@@ -9,6 +9,7 @@ import { Section } from "@/components/ui/Section";
 import { Reveal } from "@/components/ui/Reveal";
 import { Tabs } from "@/components/ui/Tabs";
 import { GridOverlay } from "@/components/ui/GridOverlay";
+import { Lightbox } from "@/components/ui/Lightbox";
 import { siteLinks } from "@/lib/site-links";
 import { cn } from "@/lib/cn";
 
@@ -183,6 +184,69 @@ function WorkflowDiagram() {
   );
 }
 
+/**
+ * The one artefact on this page that is first-hand rather than described:
+ * the context layer of this very repo, which is what step 02 of the
+ * Figma-to-code tab is actually asking for.
+ */
+function ContextArtifact() {
+  const t = useTranslations("aiWorkflow.figmaToCode.artifact");
+
+  return (
+    <Reveal className="mt-12">
+      <figure data-testid="ai-workflow-artifact">
+        <Lightbox
+          src="/images/ai-workflow/context-and-conventions.webp"
+          alt={t("alt")}
+          width={1235}
+          height={794}
+          className="border border-grid-border"
+        />
+        <figcaption className="mt-3 text-label text-muted md:text-label-desktop">
+          {t("caption")}
+        </figcaption>
+      </figure>
+    </Reveal>
+  );
+}
+
+/**
+ * Each tab describes a process; the matching case study is where that
+ * process actually ran. Without this the two halves of the same argument
+ * sit on separate pages with nothing pointing across.
+ */
+function CaseStudyPointer({
+  namespace,
+  slug,
+  testId,
+}: {
+  namespace:
+    "aiWorkflow.prototyping.caseLink" | "aiWorkflow.figmaToCode.caseLink";
+  slug: string;
+  testId: string;
+}) {
+  const t = useTranslations(namespace);
+
+  return (
+    <Reveal className="mt-8">
+      <p className="text-body text-muted md:text-body-desktop">{t("body")}</p>
+      <Link
+        href={`/work/${slug}`}
+        data-testid={testId}
+        className="group mt-3 inline-flex items-center gap-2 font-mono text-cta uppercase tracking-cta text-accent transition-colors duration-150 hover:text-fg focus-visible:text-fg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-4 focus-visible:ring-offset-bg"
+      >
+        {t("link")}
+        <span
+          aria-hidden="true"
+          className="inline-block transition-transform duration-150 group-hover:translate-x-1 group-focus-visible:translate-x-1"
+        >
+          →
+        </span>
+      </Link>
+    </Reveal>
+  );
+}
+
 function StepsList({ steps }: { steps: Step[] }) {
   return (
     <ol className="flex flex-col gap-6">
@@ -280,6 +344,12 @@ function PrototypingTab() {
           {t("team.body")}
         </p>
       </Reveal>
+
+      <CaseStudyPointer
+        namespace="aiWorkflow.prototyping.caseLink"
+        slug="kier-studio"
+        testId="ai-workflow-proto-case"
+      />
     </>
   );
 }
@@ -294,6 +364,8 @@ function FigmaToCodeTab() {
         <StepsList steps={steps} />
       </Reveal>
 
+      <ContextArtifact />
+
       <Reveal className="mt-12 border border-grid-border p-6 md:p-8">
         <h2
           data-testid="ai-workflow-team-heading"
@@ -305,6 +377,12 @@ function FigmaToCodeTab() {
           {t("team.body")}
         </p>
       </Reveal>
+
+      <CaseStudyPointer
+        namespace="aiWorkflow.figmaToCode.caseLink"
+        slug="hardrock-marketing-planner"
+        testId="ai-workflow-figma-case"
+      />
     </div>
   );
 }

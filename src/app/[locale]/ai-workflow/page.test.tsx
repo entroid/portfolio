@@ -86,6 +86,40 @@ describe("AiWorkflowContent", () => {
     );
   });
 
+  it("points each tab at the case study where that process actually ran", async () => {
+    const user = userEvent.setup();
+    renderWithIntl(<AiWorkflowContent />, { locale: "en" });
+
+    expect(screen.getByTestId("ai-workflow-proto-case")).toHaveAttribute(
+      "href",
+      "/en/work/kier-studio",
+    );
+
+    await user.click(screen.getByRole("tab", { name: "Figma to Code" }));
+    expect(screen.getByTestId("ai-workflow-figma-case")).toHaveAttribute(
+      "href",
+      "/en/work/hardrock-marketing-planner",
+    );
+  });
+
+  it("shows the context-layer artefact alongside the Figma-to-Code steps", async () => {
+    const user = userEvent.setup();
+    renderWithIntl(<AiWorkflowContent />, { locale: "en" });
+
+    // It belongs to step 02 of that tab, so it must not leak into the other.
+    expect(
+      screen.queryByTestId("ai-workflow-artifact"),
+    ).not.toBeInTheDocument();
+
+    await user.click(screen.getByRole("tab", { name: "Figma to Code" }));
+
+    const figure = screen.getByTestId("ai-workflow-artifact");
+    expect(figure.tagName).toBe("FIGURE");
+    expect(
+      screen.getByRole("img", { name: /DESIGN_SYSTEM\.md/ }),
+    ).toBeInTheDocument();
+  });
+
   it("closes the page with a single contact CTA below both tab panels", async () => {
     const user = userEvent.setup();
     renderWithIntl(<AiWorkflowContent />, { locale: "en" });

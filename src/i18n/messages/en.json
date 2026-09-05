@@ -214,6 +214,10 @@
       "team": {
         "heading": "How does this fit into a team?",
         "body": "Strip away the specific tools and what's left is just good process: a written brief before building anything, a design system as the single source of truth, a review checkpoint between each stage. This works whether it's me and Claude, or a full team on Figma and Jira with no AI involved. The tools change. The discipline doesn't."
+      },
+      "caseLink": {
+        "body": "See the same loop run end to end by one person, measurement included:",
+        "link": "Kier Studio"
       }
     },
     "figmaToCode": {
@@ -250,6 +254,14 @@
       "team": {
         "heading": "Handoff Process",
         "body": "AI-generated code goes through the same review process as any other pull request. This requires synchronization with the development team and speaking their language."
+      },
+      "artifact": {
+        "alt": "VS Code showing this repo's docs folder — ARCHITECTURE, CODING_STANDARDS, CONTENT_MODEL, DESIGN_SYSTEM, IMPLEMENTATION_PLAN, PROJECT_BRIEF — with DESIGN_SYSTEM.md open on its accent-colour usage rules",
+        "caption": "Step 02 in practice: the context an agent reads before writing a line of code. The accent rules are, in the file's own words, hard constraints, not suggestions."
+      },
+      "caseLink": {
+        "body": "See this workflow applied end to end, on a client product:",
+        "link": "Hard Rock — Marketing Planner"
       }
     }
   }
