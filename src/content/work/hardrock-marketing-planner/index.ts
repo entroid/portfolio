@@ -5,7 +5,7 @@ export const meta: ProjectMeta = {
   depth: "featured",
   order: 1,
   year: "2026",
-  coverImage: "/images/work/hardrock-marketing-planner/cover.jpg",
+  coverImage: "/images/work/hardrock-marketing-planner/cover.webp",
   coverImageAlt:
     "Hard Rock Marketing Planner UI showcase: campaign calendar view, offering-variant setup form, and the Plan / Jobs / Campaigns hierarchy view",
   gallery: [

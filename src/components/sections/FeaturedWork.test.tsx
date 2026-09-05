@@ -10,7 +10,7 @@ const projects = [
       slug: "hardrock-marketing-planner",
       depth: "featured" as const,
       order: 1,
-      coverImage: "/images/work/hardrock-marketing-planner/cover.jpg",
+      coverImage: "/images/work/hardrock-marketing-planner/cover.webp",
       coverImageAlt: "Hard Rock Marketing Planner calendar view.",
       year: "2026",
       gallery: [],
