@@ -67,7 +67,7 @@ Los tokens son lo que lo hizo posible: como color, espaciado y tipografía viví
 
 ## Notas técnicas
 
-- **• Librería base de componentes:** la interfaz se construyó sobre **Ant Design** como librería base, lo que ahorró al equipo el trabajo de resolver patrones de interacción ya resueltos (tablas, date pickers, validación de formularios, paginación, y especialmente, el calendario) y permitió enfocar el esfuerzo de ingeniería en la complejidad real de la app: el modelo de datos de campañas y la complejidad de las validaciones y publicación.
+- **• Librería base de componentes:** la interfaz se construyó sobre **Ant Design**, elegida en buena medida porque su componente de calendario se adaptaba muy bien a lo que un planificador de campañas necesita. Eso ahorró al equipo el trabajo de resolver patrones de interacción ya resueltos (tablas, date pickers, validación de formularios, paginación y, sobre todo, el calendario) y permitió enfocar el esfuerzo de ingeniería en la complejidad real de la app: el modelo de datos de campañas y las reglas de validación y publicación. Yo customicé el calendario a nivel de UI; los developers lo hicieron dinámico y lo conectaron a datos reales.
 
 - **• Tokens de diseño como contrato entre diseño y desarrollo:** el Design System: color, espaciado, tipografía y variantes de componentes, se definió como tokens sobre la capa de theming de Ant Design (a través de **Tailwind**) en lugar de valores hardcodeados, de modo que los cambios se implementaron desde una única fuente de verdad compartida entre Figma y el código.
 

@@ -68,7 +68,7 @@ The tokens are what made that possible: because color, spacing and typography li
 
 ## Technical notes
 
-- **• Base component library:** the interface was built on **Ant Design** as the base component library, which kept the team from re-solving already-solved interaction patterns (tables, date pickers, form validation, pagination) and focused engineering effort on the app's actual complexity — the campaign data model and calendar density — instead of UI plumbing.
+- **• Base component library:** the interface was built on **Ant Design**, picked in large part because its calendar component fit what a campaign planner needs. That kept the team from re-solving already-solved interaction patterns (tables, date pickers, form validation, pagination, and above all the calendar) and focused engineering effort on the app's actual complexity — the campaign data model and the validation and publishing rules — instead of UI plumbing. I customized the calendar at the UI level; the developers made it dynamic and wired it to real data.
 
 - **• Design tokens as the design-dev contract:** color, spacing, typography, and component variants were defined as tokens on top of Ant Design's theming layer (through **Tailwind**) rather than hard-coded values, so changes propagated from a single source of truth shared between Figma and the codebase.
 
