@@ -79,7 +79,9 @@
       "gallery": "Gallery",
       "back": "Back to Work",
       "expandImage": "View full size",
-      "closeImage": "Close"
+      "closeImage": "Close",
+      "previousImage": "Previous image",
+      "nextImage": "Next image"
     },
     "outro": {
       "title": "Want to talk through this one?",

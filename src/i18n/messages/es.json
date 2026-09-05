@@ -79,7 +79,9 @@
       "gallery": "Galería",
       "back": "Volver a Trabajo",
       "expandImage": "Ver a tamaño completo",
-      "closeImage": "Cerrar"
+      "closeImage": "Cerrar",
+      "previousImage": "Imagen anterior",
+      "nextImage": "Imagen siguiente"
     },
     "outro": {
       "title": "¿Querés que lo charlemos?",
