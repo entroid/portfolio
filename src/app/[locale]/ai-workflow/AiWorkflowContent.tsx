@@ -185,21 +185,35 @@ function WorkflowDiagram() {
 }
 
 /**
- * The one artefact on this page that is first-hand rather than described:
- * the context layer of this very repo, which is what step 02 of the
- * Figma-to-code tab is actually asking for.
+ * The visual evidence for a tab, sitting under its steps. Each tab gets the
+ * artefact whose provenance matches it: this repo was built with the
+ * prototyping flow, so its context layer belongs there — the Figma-to-code
+ * tab gets the token handoff from actual client work.
  */
-function ContextArtifact() {
-  const t = useTranslations("aiWorkflow.figmaToCode.artifact");
+function TabArtifact({
+  namespace,
+  src,
+  width,
+  height,
+  testId,
+}: {
+  namespace:
+    "aiWorkflow.prototyping.artifact" | "aiWorkflow.figmaToCode.artifact";
+  src: string;
+  width: number;
+  height: number;
+  testId: string;
+}) {
+  const t = useTranslations(namespace);
 
   return (
     <Reveal className="mt-12">
-      <figure data-testid="ai-workflow-artifact">
+      <figure data-testid={testId}>
         <Lightbox
-          src="/images/ai-workflow/context-and-conventions.webp"
+          src={src}
           alt={t("alt")}
-          width={1235}
-          height={794}
+          width={width}
+          height={height}
           className="border border-grid-border"
         />
         <figcaption className="mt-3 text-label text-muted md:text-label-desktop">
@@ -333,6 +347,14 @@ function PrototypingTab() {
         <StepsList steps={steps} />
       </Reveal>
 
+      <TabArtifact
+        namespace="aiWorkflow.prototyping.artifact"
+        src="/images/ai-workflow/context-and-conventions.webp"
+        width={1235}
+        height={794}
+        testId="ai-workflow-proto-artifact"
+      />
+
       <Reveal className="mt-12 border border-grid-border p-6 md:p-8">
         <h2
           data-testid="ai-workflow-team-heading"
@@ -364,7 +386,13 @@ function FigmaToCodeTab() {
         <StepsList steps={steps} />
       </Reveal>
 
-      <ContextArtifact />
+      <TabArtifact
+        namespace="aiWorkflow.figmaToCode.artifact"
+        src="/images/work/hardrock-marketing-planner/tokens-tailwind-theme.webp"
+        width={1558}
+        height={922}
+        testId="ai-workflow-figma-artifact"
+      />
 
       <Reveal className="mt-12 border border-grid-border p-6 md:p-8">
         <h2

@@ -218,6 +218,10 @@
       "caseLink": {
         "body": "See the same loop run end to end by one person, measurement included:",
         "link": "Kier Studio"
+      },
+      "artifact": {
+        "alt": "VS Code showing this repo's docs folder — ARCHITECTURE, CODING_STANDARDS, CONTENT_MODEL, DESIGN_SYSTEM, IMPLEMENTATION_PLAN, PROJECT_BRIEF — with DESIGN_SYSTEM.md open on its accent-colour usage rules",
+        "caption": "What those guiding documents look like in practice, on this very site: what an agent reads before writing a line of code. The accent rules are, in the file's own words, hard constraints, not suggestions."
       }
     },
     "figmaToCode": {
@@ -256,8 +260,8 @@
         "body": "AI-generated code goes through the same review process as any other pull request. This requires synchronization with the development team and speaking their language."
       },
       "artifact": {
-        "alt": "VS Code showing this repo's docs folder — ARCHITECTURE, CODING_STANDARDS, CONTENT_MODEL, DESIGN_SYSTEM, IMPLEMENTATION_PLAN, PROJECT_BRIEF — with DESIGN_SYSTEM.md open on its accent-colour usage rules",
-        "caption": "Step 02 in practice: the context an agent reads before writing a line of code. The accent rules are, in the file's own words, hard constraints, not suggestions."
+        "alt": "Figma's Variables panel showing the alias, base and typography collections, beside theme.css in VS Code where the same tokens are declared as CSS custom properties",
+        "caption": "Step 03 in practice, on Hard Rock: the Figma variable collections on the left, the same tokens as CSS custom properties on the right — a base layer resolving into semantic aliases, which is the layer product code consumes."
       },
       "caseLink": {
         "body": "See this workflow applied end to end, on a client product:",

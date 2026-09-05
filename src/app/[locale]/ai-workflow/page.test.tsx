@@ -102,22 +102,32 @@ describe("AiWorkflowContent", () => {
     );
   });
 
-  it("shows the context-layer artefact alongside the Figma-to-Code steps", async () => {
+  it("gives each tab the artefact whose provenance matches it", async () => {
     const user = userEvent.setup();
     renderWithIntl(<AiWorkflowContent />, { locale: "en" });
 
-    // It belongs to step 02 of that tab, so it must not leak into the other.
+    // This repo was built with the prototyping flow, so its context layer
+    // is the evidence for that tab, not for the Figma one.
+    const proto = screen.getByTestId("ai-workflow-proto-artifact");
+    expect(proto.tagName).toBe("FIGURE");
     expect(
-      screen.queryByTestId("ai-workflow-artifact"),
+      screen.getByRole("img", { name: /DESIGN_SYSTEM\.md/ }),
+    ).toBeInTheDocument();
+    expect(
+      screen.queryByTestId("ai-workflow-figma-artifact"),
     ).not.toBeInTheDocument();
 
     await user.click(screen.getByRole("tab", { name: "Figma to Code" }));
 
-    const figure = screen.getByTestId("ai-workflow-artifact");
-    expect(figure.tagName).toBe("FIGURE");
     expect(
-      screen.getByRole("img", { name: /DESIGN_SYSTEM\.md/ }),
+      screen.getByTestId("ai-workflow-figma-artifact"),
     ).toBeInTheDocument();
+    expect(
+      screen.getByRole("img", { name: /Variables panel/ }),
+    ).toBeInTheDocument();
+    expect(
+      screen.queryByTestId("ai-workflow-proto-artifact"),
+    ).not.toBeInTheDocument();
   });
 
   it("closes the page with a single contact CTA below both tab panels", async () => {
