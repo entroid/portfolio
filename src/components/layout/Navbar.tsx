@@ -52,7 +52,7 @@ export function Navbar() {
             alt=""
             width={68}
             height={68}
-            className="border border-grid-border"
+            className="border border-grid-border object-cover"
           />
           <span className="font-mono text-label uppercase tracking-label text-fg">
             Hernán Ainsa
