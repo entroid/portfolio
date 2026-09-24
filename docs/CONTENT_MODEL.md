@@ -72,6 +72,7 @@ export const projectMetaSchema = z.object({
   order: z.number(), // display order within its depth group
   coverImage: z.string(), // path under /public/images/work/<slug>/
   coverImageAlt: z.string(), // real, descriptive alt text for coverImage
+  year: z.string(), // e.g. "2023" or "2023–2024" — shown as a kicker above the title
   gallery: z.array(galleryImageSchema).default([]),
 });
 
@@ -171,8 +172,10 @@ worth stating here since it directly shapes the MDX body template (no
 Not every page needs the content-as-data machinery above. `/ai-workflow`
 (added 2026-07-24, see [PROJECT_BRIEF.md](./PROJECT_BRIEF.md#structural-revision--2026-07-24))
 is a single, one-off static page — a title, an intro paragraph, a closing
-line, and two tabs ("Prototyping" and "Figma to Code"), each with its own
-seven numbered steps and a highlighted callout/closing subsection. It is
+line, and three tabs: "Prototyping" and "Figma to Code", each with seven
+numbered steps and a highlighted callout/closing subsection, plus
+"Prompting", which renders an intro, a numbered 2×2 grid of structure
+blocks, a worked example, and a closing. It is
 **not** a collection like case studies (no enumeration, no per-item schema,
 no locale variants to keep in sync yet), so it deliberately skips the
 zod-schema + MDX pipeline built for `/work`:
@@ -186,9 +189,9 @@ zod-schema + MDX pipeline built for `/work`:
   premature abstraction.
 - Each tab's seven steps render as a real semantic `<ol>` (ordered list —
   order is meaningful here), not a sequence of styled `<div>`s, per the
-  accessibility rules in CODING_STANDARDS.md. Both tabs share one
-  `StepsList` sub-component so numbering/typography can't drift between
-  them.
+  accessibility rules in CODING_STANDARDS.md. The two steps-based tabs
+  share one `StepsList` sub-component so numbering/typography can't drift
+  between them.
 - The "How does this fit into a team?" callout (Prototyping tab) and the
   closing-line callout (Figma to Code tab) both use the same bordered
   highlight treatment. Built inline for this page; only promote it to

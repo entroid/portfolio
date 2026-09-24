@@ -58,10 +58,12 @@ repo, read at build time).
   without checking with Hernán first — they were deliberately chosen
   together (e.g. don't swap Tailwind for styled-components mid-project).
 - Every route/component ships bilingual (ES/EN) from the commit that
-  introduces it, not as a follow-up. **One deliberate exception:**
-  `/ai-workflow` ships English-only; its Spanish translation is an
-  explicitly deferred later pass (decided 2026-07-24). Don't extend this
-  carve-out to any other route without checking first.
+  introduces it, not as a follow-up. This is unconditional. A 2026-07-24
+  plan to ship `/ai-workflow` English-only was **superseded**: its content,
+  including all three tabs, is fully translated via the `aiWorkflow.*`
+  namespaces like every other route. Don't reintroduce that carve-out.
+  (`PROJECT_BRIEF.md` "Structural revision", plus ARCHITECTURE.md and
+  CONTENT_MODEL.md, all record the supersession.)
 - No invented metrics/numbers in case study "Results" content.
 - Zero border-radius, dark palette, mono-for-technical/sans-for-prose —
   don't drift from DESIGN_SYSTEM.md's tokens even for a "temporary" build.

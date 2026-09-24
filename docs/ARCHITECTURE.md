@@ -32,7 +32,7 @@ routes below live under the `[locale]` segment (`en`/`es`) except where noted.
 | `/`            | Hero + About only                                                    | No anchors — Hero's CTA and the nav's "Work" link both navigate to `/work` as a real route transition, not a scroll. |
 | `/work`        | Work index: Featured Case Studies + Other Work grid                  | Was a home-page section; now its own route.                                                                          |
 | `/work/[slug]` | Case study detail (featured or other-depth template)                 | Unchanged from the original content model.                                                                           |
-| `/ai-workflow` | AI-Assisted Workflow page (new — see IMPLEMENTATION_PLAN.md Phase 7) | Two tabs (Prototyping, Figma to Code), fully bilingual.                                                              |
+| `/ai-workflow` | AI-Assisted Workflow page (new — see IMPLEMENTATION_PLAN.md Phase 7) | Three tabs (Prototyping, Figma to Code, Prompting), fully bilingual.                                                 |
 | `/contact`     | Contact form + direct links (email, LinkedIn, WhatsApp)              | Was a home-page section; now its own route. The same direct links also appear in the persistent footer — see below.  |
 
 Persistent nav (every route): **Start, Work, AI Workflow, Contact** — in
