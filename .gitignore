@@ -40,6 +40,9 @@ yarn-error.log*
 # Claude Code local (machine/session-specific) settings
 .claude/settings.local.json
 
+# Agent working memory (local, machine/session-specific)
+AGENT_NOTES.md
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
